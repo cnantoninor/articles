@@ -5,7 +5,7 @@ type: article
 audience: [engineering leaders, senior engineers, architects, researchers]
 target_length: 4000
 created: 2026-01-25
-last_updated: 2026-01-26
+last_updated: 2026-01-26T18:30:00Z
 ---
 
 # Epistemic Debt: The Hidden Cost of LLM-Generated Code
@@ -32,7 +32,17 @@ LLMs introduce a rupture in this epistemological framework. A probabilistic laye
 
 The primary risk is not merely technical correctness. It is **epistemic opacity**: the LLM produces what we might call the "feeling of knowing" without the "labor of knowing."
 
-[GAP: How technical/philosophical should this section be for a broad tech audience?]
+We can think of this as **epistemic debt**—code that works but nobody understands.[^1] Like technical debt, it represents a future cost: not the cost of changing code, but the cost of comprehending it. Ngabang (2026) offers a precise definition: epistemic debt is the divergence between system complexity and the developer's cognitive model of that system.[^2] When you ship code you cannot explain, you have not just delivered a feature—you have created a comprehension obligation that compounds over time.
+
+The shift from construction to curation makes this debt accumulate differently. Pre-LLM, epistemic gaps were localized (one Stack Overflow snippet), visible (you knew you copied it), and socially stigmatized (copy-paste carried reputational cost). Post-LLM, they are pervasive (entire modules), invisible (feels like collaboration), and normalized (no stigma attached). The velocity is exponential rather than linear—LLMs remove the natural friction that once limited how fast teams could accumulate code they didn't understand.
+
+This is what Quattrociocchi et al. (2025) call *Epistemia*: a structural condition where linguistic plausibility substitutes for epistemic evaluation.[^3] The system produces fluent, confident outputs without the internal machinery that makes reliability accountable. You experience the possession of an answer without having traversed the process of forming a justified belief. Understanding becomes optional when generation is cheap.
+
+[^1]: The term originates in manufacturing (Ionescu et al., 2020) but maps precisely to LLM-assisted development.
+
+[^2]: Ngabang, L.A. (2026). "The Illusion of Competence: Defining 'Epistemic Debt' in the Era of LLM-Assisted Software Engineering." *viXra preprint*.
+
+[^3]: Quattrociocchi, W., Capraro, V., & Perc, M. (2025). "Epistemological Fault Lines Between Human and Artificial Intelligence." *arXiv:2512.19466*.
 
 ---
 

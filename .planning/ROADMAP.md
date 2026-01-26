@@ -21,6 +21,11 @@
 
 **Depends on:** None
 
+**Plans:** 1 plan
+
+Plans:
+- [ ] 01-01-PLAN.md — Draft Section I with 2020/2025 hook and epistemic shift thesis
+
 ---
 
 ### Phase 2: Core Concepts

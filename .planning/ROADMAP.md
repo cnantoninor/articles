@@ -39,10 +39,10 @@ Plans:
 
 **Requirements:** UNDR-01, UNDR-02, UNDR-03, RELY-01, RELY-02, RELY-03, SPEED-01, SPEED-02, SPEED-03, META-01, META-02
 
-**Plans:** 0 plans
+**Plans:** 1 plan
 
 Plans:
-- [ ] TBD (created by /gsd:plan-phase 10)
+- [ ] 10-01-PLAN.md — Add vertex content slides (Understanding, Reliability, Speed, Meta)
 
 **Success Criteria:**
 1. Understanding vertex: At least 2 DDD examples with file paths

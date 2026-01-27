@@ -9,8 +9,8 @@ Requirements for 8-10 slide internal Bloomberg presentation.
 
 ### Structure
 
-- [ ] **STRUCT-01**: Opening slide with hook — "Same confidence, different warrant"
-- [ ] **STRUCT-02**: Trade-off Triangle visual as central framework
+- [x] **STRUCT-01**: Opening slide with hook — "Same confidence, different warrant"
+- [x] **STRUCT-02**: Trade-off Triangle visual as central framework
 - [ ] **STRUCT-03**: Closing slide with actionable takeaways for colleagues
 
 ### Understanding Vertex (DDD Pull)
@@ -49,20 +49,20 @@ Requirements for 8-10 slide internal Bloomberg presentation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| STRUCT-01 | Phase 1 | Pending |
-| STRUCT-02 | Phase 1 | Pending |
-| STRUCT-03 | Phase 3 | Pending |
-| UNDR-01 | Phase 2 | Pending |
-| UNDR-02 | Phase 2 | Pending |
-| UNDR-03 | Phase 2 | Pending |
-| RELY-01 | Phase 2 | Pending |
-| RELY-02 | Phase 2 | Pending |
-| RELY-03 | Phase 2 | Pending |
-| SPEED-01 | Phase 2 | Pending |
-| SPEED-02 | Phase 2 | Pending |
-| SPEED-03 | Phase 2 | Pending |
-| META-01 | Phase 2 | Pending |
-| META-02 | Phase 2 | Pending |
+| STRUCT-01 | Phase 9 | Complete |
+| STRUCT-02 | Phase 9 | Complete |
+| STRUCT-03 | Phase 11 | Pending |
+| UNDR-01 | Phase 10 | Pending |
+| UNDR-02 | Phase 10 | Pending |
+| UNDR-03 | Phase 10 | Pending |
+| RELY-01 | Phase 10 | Pending |
+| RELY-02 | Phase 10 | Pending |
+| RELY-03 | Phase 10 | Pending |
+| SPEED-01 | Phase 10 | Pending |
+| SPEED-02 | Phase 10 | Pending |
+| SPEED-03 | Phase 10 | Pending |
+| META-01 | Phase 10 | Pending |
+| META-02 | Phase 10 | Pending |
 
 **Coverage:**
 - Total requirements: 14

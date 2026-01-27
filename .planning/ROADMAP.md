@@ -14,15 +14,15 @@ Phases 1-7 paused indefinitely. Phase 1 complete (Section I drafted).
 
 ## Milestone 2: IRIS-2 Learnings Presentation
 
-### Phase 9: Opening & Framework
+### Phase 9: Opening & Framework ✓
 **Goal:** Establish the hook and introduce Trade-off Triangle as central visual
 
 **Requirements:** STRUCT-01, STRUCT-02
 
-**Plans:** 1 plan
+**Status:** Complete (2026-01-27)
 
 Plans:
-- [ ] 09-01-PLAN.md — Create opening slides (title, hook, triangle, IRIS-2 positioning)
+- [x] 09-01-PLAN.md — Create opening slides (title, hook, triangle, IRIS-2 positioning)
 
 **Success Criteria:**
 1. Opening slide grabs attention with "Same confidence, different warrant" contrast

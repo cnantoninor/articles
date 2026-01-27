@@ -156,3 +156,23 @@ Meta practices amplify all three vertices, they don't replace conscious choice.
 <!--
 Speaker notes: GSD is post-IRIS-2 learning — evolved from project-specific commands into general workflow. Multi-AI sync addresses epistemic boundary problem: when you have multiple AI tools, keeping their context synchronized prevents divergence. These are amplifiers because they make it easier to maintain whatever position you choose on the triangle — better DDD context, more reliable test generation, faster iteration cycles. They don't solve the trade-off, they help you execute your chosen position more effectively.
 -->
+
+---
+
+## Key Takeaways
+
+**Conscious positioning on the Trade-off Triangle:**
+
+1. **Bounded contexts as guardrails** — Glob-activated context files (`.cursor/rules/*.mdc`) ensure LLM output aligns with domain boundaries, not just syntax. Pull: Understanding.
+
+2. **Human E2E tests break circular validation** — One comprehensive integration test (`test_user_journey_e2e.py`) validates LLM-generated code against real user workflow, preventing LLM tests from validating LLM code. Pull: Reliability.
+
+3. **Verification-before-fix workflow** — Structure LLM interaction with explicit phases (run tests → analyze → then fix). Prevents solutioning trap, enables speed without sacrificing rigor. Pull: Speed.
+
+4. **Multi-AI context sync** — When using multiple AI tools (Claude, Cursor), synchronize their context explicitly to prevent divergence. Amplifies all vertices.
+
+**Trade-offs are real choices.** Pick your position deliberately.
+
+<!--
+Speaker notes: Leave the team with four specific practices they can adopt, each tied to a vertex. Final statement reinforces core message — not prescriptive, but conscious. The practices shown here worked for IRIS-2's lower-triangle positioning (understanding + reliability emphasis). Your project may choose differently based on its constraints.
+-->

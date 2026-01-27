@@ -19,6 +19,11 @@ Phases 1-7 paused indefinitely. Phase 1 complete (Section I drafted).
 
 **Requirements:** STRUCT-01, STRUCT-02
 
+**Plans:** 1 plan
+
+Plans:
+- [ ] 09-01-PLAN.md — Create opening slides (title, hook, triangle, IRIS-2 positioning)
+
 **Success Criteria:**
 1. Opening slide grabs attention with "Same confidence, different warrant" contrast
 2. Trade-off Triangle visual is clear and memorable
@@ -33,6 +38,11 @@ Phases 1-7 paused indefinitely. Phase 1 complete (Section I drafted).
 **Goal:** Fill each triangle vertex with concrete IRIS-2 examples
 
 **Requirements:** UNDR-01, UNDR-02, UNDR-03, RELY-01, RELY-02, RELY-03, SPEED-01, SPEED-02, SPEED-03, META-01, META-02
+
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (created by /gsd:plan-phase 10)
 
 **Success Criteria:**
 1. Understanding vertex: At least 2 DDD examples with file paths
@@ -49,6 +59,11 @@ Phases 1-7 paused indefinitely. Phase 1 complete (Section I drafted).
 **Goal:** Actionable takeaways and presentation-ready quality
 
 **Requirements:** STRUCT-03
+
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (created by /gsd:plan-phase 11)
 
 **Success Criteria:**
 1. Closing slide has 3-5 actionable takeaways

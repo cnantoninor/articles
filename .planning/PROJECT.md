@@ -1,12 +1,25 @@
-# Epistemic Debt Article & Presentation
+# Epistemic Debt Content
 
 ## What This Is
 
-An exploratory article examining the epistemological risks of integrating LLMs into software engineering workflows, followed by a presentation adaptation. The article argues that LLMs create "epistemic debt"—code that works but nobody understands—and explores practices that might help maintain developer understanding in an LLM-augmented world.
+Content exploring the epistemological risks of integrating LLMs into software engineering workflows. The core thesis: LLMs create "epistemic debt"—code that works but nobody understands. Current focus is a concrete presentation using IRIS-2 project learnings to illustrate the Trade-off Triangle.
 
 ## Core Value
 
-Reframe the "will AI replace programmers?" debate toward "what practices maintain epistemic warrant in LLM-assisted development?"
+Show practitioners how to consciously position their LLM-assisted development on the Speed/Understanding/Reliability trade-off triangle.
+
+## Current Milestone: IRIS-2 Learnings Presentation
+
+**Goal:** 5-10 slide presentation for internal Bloomberg team demonstrating Trade-off Triangle through concrete IRIS-2 practices.
+
+**Core message:** Trade-offs are real — Speed/Understanding/Reliability require conscious positioning, not speed maximization.
+
+**Target features:**
+- Trade-off Triangle visual with IRIS-2 examples
+- DDD as Understanding pull (bounded contexts, ubiquitous language)
+- Human E2E tests as Reliability pull (circular validation breaker)
+- Workflow commands as Speed enabler (now replaced by GSD)
+- Concrete "what I actually did" examples with file paths
 
 ## Requirements
 
@@ -16,60 +29,64 @@ Reframe the "will AI replace programmers?" debate toward "what practices maintai
 
 ### Active
 
-**Milestone 1: Article**
-- [ ] Complete 4000-word article with exploratory, non-prescriptive tone
-- [ ] Fill all identified content gaps with concrete examples
-- [ ] Maintain accessibility for broad tech audience while preserving philosophical rigor
-- [ ] Integrate relevant research citations
+**Milestone 2: IRIS-2 Learnings Presentation**
+- [ ] 5-10 slides in Marp format
+- [ ] Trade-off Triangle as central visual
+- [ ] Concrete IRIS-2 examples for each triangle vertex
+- [ ] Actionable takeaways for Bloomberg colleagues
 
-**Milestone 2: Presentation**
-- [ ] Transform article into conference/meetup presentation format
-- [ ] Create Marp-compatible slides
-- [ ] Design visual aids for key concepts (epistemic boundaries diagram, debt accumulation comparison)
+### Paused
+
+**Milestone 1: Article** — Paused indefinitely (Phase 1/7 complete)
+- Section I drafted with 2020/2025 hook, Ngabang & Quattrociocchi citations
+- Trade-off Triangle visualization framework added
+- Remaining: Phases 2-7 (Core Concepts through Polish)
 
 ### Out of Scope
 
-- Prescriptive framework or methodology — this is exploratory
-- Technical implementation guides — this is conceptual
-- Academic paper format — this is for practitioners
-- Video production — written/slide formats only
+- Full article completion — paused for now
+- Prescriptive methodology — show trade-offs, not mandates
+- Academic format — this is for practitioners
+- External conference version — internal team first
 
 ## Context
 
-**Origin:** Initial thesis explored in conversation on 2026-01-25. Deep questioning covered:
-- Epistemic warrant vs. epistemic debt framing (chose "debt" for accessibility)
-- Solutioning trap concept (not about juniority, about skipping problem definition)
-- Three epistemic boundaries where debt accumulates
-- Guardrails worth examining (DDD, E2E testing, transformed PR review)
-- Measurement problem (most open area)
+**Origin:** Initial thesis explored in conversation on 2026-01-25.
+
+**IRIS-2 as case study:** Real project where Trade-off Triangle practices were developed:
+- 5 bounded contexts with glob-activated Cursor rules (`.cursor/rules/*.mdc`)
+- Centralized ubiquitous language (`constants.py`)
+- Human-authored E2E test (`test_user_journey_e2e.py` — 972 lines)
+- 5 custom workflow commands (`.cursor/commands/`)
+- Multi-AI context sync script (`sync-ai-instructions.sh`)
+- LOC metrics in PR descriptions ("Pure Code Added" column)
 
 **Existing work:**
-- `epistemic_debt/article.md` — Draft with structure and gaps marked
-- `epistemic_debt/raw_material/outline-v1-epistemic-debt.md` — Detailed outline
-- `epistemic_debt/raw_material/gsd-convo-1-on-epistemic-debt.md` — Exploration transcript
-- `epistemic_debt/slides.md` — Placeholder for presentation
+- `epistemic_debt/slides.md` — General presentation with Trade-off Triangle (slides 8-14)
+- `epistemic_debt/article.md` — Draft article (paused)
+- `epistemic_debt/assets/trade-off-triangle.md` — Triangle visualization framework
 
-**Key decisions from prior conversation:**
-- Use "epistemic debt" not "epistemic warrant" (more accessible)
-- Frame as exploratory essay, not prescriptive solutions
-- Emphasize that LLMs expose existing problems but make them worse (velocity and scale)
-- Measurement section should be most open/exploratory
+**Key IRIS-2 practices to feature:**
+- DDD → Understanding: bounded contexts, business rules in context files
+- E2E → Reliability: human-authored integration tests break circular validation
+- Workflow → Speed: structured commands, LOC tracking, verification-before-fix
+- GSD → Meta: obsoletes custom commands with systematic workflow
 
 ## Constraints
 
-- **Tone**: Exploratory, not prescriptive — present ideas for discussion
-- **Audience**: Broad tech audience — define philosophical terms, use concrete examples
-- **Length**: ~4000 words for article, 20-30 slides for presentation
-- **Format**: Markdown (Marp for slides), following CLAUDE.md conventions
+- **Audience**: Internal Bloomberg team — can reference IRIS-2 directly
+- **Length**: 5-10 slides for 20-minute talk
+- **Format**: Marp markdown, following CLAUDE.md conventions
+- **Tone**: Practical, experience-based — "here's what I learned"
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| "Epistemic debt" framing over "warrant" | More accessible, connects to existing mental models (tech debt) | — Pending |
-| Three epistemic boundaries structure | Intent→Spec, Spec→Code, Code→Tests captures where debt accumulates | — Pending |
-| Exploratory tone, not prescriptive | Target audience wants discussion, not another methodology | — Pending |
-| Milestones: Article first, then presentation | Article establishes content, presentation adapts it | — Pending |
+| Trade-off Triangle as central framework | Visual, memorable, actionable | — Pending |
+| IRIS-2 as sole case study | Concrete > abstract; internal audience knows context | — Pending |
+| Pause article for focused presentation | Ship smaller deliverable first | — Pending |
+| "Trade-offs are real" core message | Not prescriptive; emphasizes conscious choice | — Pending |
 
 ---
-*Last updated: 2026-01-26 after GSD initialization from prior conversation*
+*Last updated: 2026-01-27 after pivoting to IRIS-2 presentation milestone*

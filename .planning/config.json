@@ -2,5 +2,15 @@
   "mode": "interactive",
   "depth": "standard",
   "parallelization": true,
-  "created": "2026-01-26"
+  "created": "2026-01-26",
+  "model_profile": "balanced",
+  "planning": {
+    "commit_docs": false,
+    "search_gitignored": true
+  },
+  "workflow": {
+    "research": "ask",
+    "plan_check": true,
+    "verifier": "ask"
+  }
 }

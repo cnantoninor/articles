@@ -1,78 +1,67 @@
-# Project State: Epistemic Debt Content
-
-**Last Updated:** 2026-02-07
-**Current Milestone:** Planning next milestone
-**Status:** v1.0 shipped — ready for next phase
+# Project State
 
 ## Project Reference
 
 See: .planning/PROJECT.md (updated 2026-02-07)
 
-**Core value:** Show practitioners how to consciously position on Speed/Understanding/Reliability triangle
-**Current focus:** Planning next milestone direction
+**Core value:** Show practitioners how to consciously position their LLM-assisted development on the Speed/Understanding/Reliability trade-off triangle.
+**Current focus:** Phase 12 - Epistemic Debt Definition (Section II)
 
-## Progress
+## Current Position
 
-| Milestone | Version | Status | Notes |
-|-----------|---------|--------|-------|
-| Article | — | Paused | Phase 1/7 complete, indefinitely paused |
-| IRIS-2 Presentation | v1.0 | ✅ Shipped | 9 slides delivered (2026-02-07) |
-| Next Milestone | TBD | Planning | Awaiting direction |
+Phase: 12 of 17 (Epistemic Debt Definition - Section II)
+Plan: None yet (ready to plan)
+Status: Ready to plan
+Last activity: 2026-02-07 — v2.0 roadmap created with 6 phases (12-17)
 
-## Shipped Phases (v1.0)
+Progress: [███░░░░░░░] 30% (3 of 9 phases complete — v1.0 shipped Phases 9-11)
 
-| Phase | Name | Plans | Shipped |
-|-------|------|-------|---------|
-| 9 | Opening & Framework | 1/1 | 2026-01-27 |
-| 10 | Vertex Content | 1/1 | 2026-01-27 |
-| 11 | Close & Polish | 1/1 | 2026-01-27 |
+## Performance Metrics
 
-## Paused Phases (Article Milestone)
+**Velocity:**
+- Total plans completed: 3 (v1.0)
+- Average duration: ~20 minutes per phase
+- Total execution time: ~1 hour (v1.0 same-day delivery)
 
-| Phase | Name | Status | Notes |
-|-------|------|--------|-------|
-| 1 | Opening & Framing | ✓ Complete | Section I drafted |
-| 2-7 | Article phases | Paused | Indefinitely paused |
-| 8 | General Presentation | Paused | 16 slides exist in slides.md |
+**By Phase:**
 
-## Recent Activity
+| Phase | Plans | Status | Notes |
+|-------|-------|--------|-------|
+| 9. Opening & Positioning | 1/1 | Complete | v1.0 |
+| 10. Vertex Content | 1/1 | Complete | v1.0 |
+| 11. Close & Polish | 1/1 | Complete | v1.0 |
 
-- 2026-02-07: **v1.0 milestone complete and shipped** — Archived to `.planning/milestones/v1.0-*`
-- 2026-01-27: IRIS-2 Presentation milestone complete — 9 slides ready for delivery
-- 2026-01-27: Phase 11 complete — Added closing slide with 4 actionable takeaways
-- 2026-01-27: Phase 10 complete — Added vertex content slides (5-8) with concrete IRIS-2 examples
-- 2026-01-27: Phase 9 complete — Created IRIS-2 learnings presentation opening (slides 1-4)
-- 2026-01-27: Pivoted to IRIS-2 Learnings Presentation milestone
-- 2026-01-27: Article milestone paused indefinitely (Phase 1 complete)
+**Recent Trend:**
+- v1.0: Same-day delivery (9 slides, complete framework)
+- v2.0: Starting with research-backed content (41 requirements across 6 sections)
+
+*Will update after v2.0 plan completions*
 
 ## Accumulated Context
 
-**Shipped Artifacts:**
-- `epistemic_debt/iris2-learnings.md` — 9-slide Marp presentation (v1.0)
-- Trade-off Triangle visualization in `epistemic_debt/assets/`
-- General slides.md with triangle slides (8-14) available for adaptation
+### Decisions
 
-**Preserved from Paused Work:**
-- Article Section I drafted (epistemic debt framing established)
-- IRIS-2 exploration complete (5 bounded contexts, 972-line E2E test, workflow commands)
+Decisions are logged in PROJECT.md Key Decisions table.
+Recent decisions affecting current work:
 
-**Key Learnings from v1.0:**
-- Concrete file paths ground abstract concepts effectively
-- Framework-first ordering (theory before examples) works well
-- Meta practices positioned as amplifiers, not vertices, avoids confusion
+- **Resume article work from Phase 1**: v2.0 completes full article; v1.0 shipped presentation gave triangle validation
+- **Trade-off Triangle as central framework**: Visual, memorable, actionable — Framework resonated, grounded abstract concepts
+- **IRIS-2 as sole case study**: Concrete > abstract; internal audience knows context — File-path specificity made practices verifiable
 
-## Decisions Log
+### Pending Todos
 
-_Major decisions archived in PROJECT.md Key Decisions table._
+None yet.
 
-**For next milestone planning:**
-- Consider whether to revive article work or pursue new direction
-- Evaluate if additional IRIS-2 content needed (e.g., workshop format)
-- Assess whether epistemic debt framing needs refinement based on v1.0 delivery
+### Blockers/Concerns
 
-## Blockers
+None yet. Research completed 2026-02-07 provides concrete examples for all [GAP] markers.
 
-None currently.
+## Session Continuity
+
+Last session: 2026-02-07 (roadmap creation)
+Stopped at: Roadmap and STATE.md created for v2.0 milestone
+Resume file: None (ready to begin Phase 12 planning)
+Next step: `/gsd:plan-phase 12`
 
 ---
-*State file updated: 2026-02-07 after v1.0 milestone completion*
+*State initialized: 2026-02-07 for v2.0 Article Completion milestone*

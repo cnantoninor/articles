@@ -1,0 +1,176 @@
+# Requirements: Epistemic Debt Article v2.0
+
+**Defined:** 2026-02-07
+**Core Value:** Show practitioners how to consciously position on Speed/Understanding/Reliability triangle
+**Milestone:** v2.0 Article Completion (Sections II-VII)
+
+## v2.0 Requirements
+
+Requirements for article completion. Each maps to specific sections and content elements.
+
+### Section II: Epistemic Debt — A New Lens
+
+- [ ] **SECT2-01**: Tech debt comparison table shows 4+ key differences (accumulation, visibility, social stigma, velocity)
+- [ ] **SECT2-02**: Include 3 concrete "default event" examples (dramatic, quantified, industry pattern)
+- [ ] **SECT2-03**: Lead with SaaStr database deletion case (dramatic impact)
+- [ ] **SECT2-04**: Include AlterSquare "200→2000 hours" case (quantified 10:1 cost ratio)
+- [ ] **SECT2-05**: Present industry failure statistics (breach rates, outage increases, quality gaps)
+
+### Section III: The Solutioning Trap
+
+- [ ] **SECT3-01**: Define "vibe coding" term with attribution (Karpathy reference)
+- [ ] **SECT3-02**: Explain automation bias in LLM context with concrete scenario
+- [ ] **SECT3-03**: Present junior developer skills gap with supporting data
+- [ ] **SECT3-04**: Include 2+ concrete scenarios showing trap in action
+- [ ] **SECT3-05**: Connect velocity trap to epistemic debt accumulation rate
+
+### Section IV: SDLC Boundaries
+
+- [ ] **SECT4-01**: Intent→Spec boundary: vibe-based requirements example with consequences
+- [ ] **SECT4-02**: Spec→Impl boundary: probabilistic drift example (edge case failures)
+- [ ] **SECT4-03**: Impl→Validation boundary: circular validation example with detection method
+- [ ] **SECT4-04**: Each boundary includes concrete scenario from research
+- [ ] **SECT4-05**: Show how boundaries compound (failure at one boundary affects downstream)
+
+### Section V: Trade-off Triangle Framework
+
+- [ ] **SECT5-01**: Present triangle as universal framework (not just software engineering)
+- [ ] **SECT5-02**: Software engineering instantiation with IRIS-2 examples (adapt from v1.0 slides)
+- [ ] **SECT5-03**: Include 3-5 domain generalizations beyond software (content, LLM-as-Judge, research, decision support, data analysis)
+- [ ] **SECT5-04**: For each domain: define what Speed/Understanding/Reliability mean in that context
+- [ ] **SECT5-05**: Present meta-patterns (HITL, Pre-Specification, RAG, Adversarial Testing)
+- [ ] **SECT5-06**: Include self-referential example (applying triangle to this article itself)
+- [ ] **SECT5-07**: Provide 5-step generalization protocol for readers to apply to their domains
+- [ ] **SECT5-08**: Maintain "worth examining, not prescriptive" tone throughout
+
+### Section VI: The Measurement Problem
+
+- [ ] **SECT6-01**: Lead with honest assessment: "no single metric works"
+- [ ] **SECT6-02**: Present measurement paradox (measurable aspects correlate weakly with understanding)
+- [ ] **SECT6-03**: Explain correlation-causation trap with 2+ concrete examples
+- [ ] **SECT6-04**: Include practical triangulation approach (bus factor + onboarding + incidents)
+- [ ] **SECT6-05**: Present what's measurable today vs emerging vs research-only
+- [ ] **SECT6-06**: Include biometric research as forward-looking insight
+- [ ] **SECT6-07**: Address "insufficient data" honestly (most studies from 2024-2026)
+
+### Section VII: Conclusion
+
+- [ ] **SECT7-01**: Reframe debate from "will AI replace programmers?" to "how maintain understanding?"
+- [ ] **SECT7-02**: Present conscious positioning strategy (core vs supporting vs generic domains)
+- [ ] **SECT7-03**: Include honest trade-off assessment (not all practices needed everywhere)
+- [ ] **SECT7-04**: End with practitioner-actionable takeaways (3-5 specific steps)
+- [ ] **SECT7-05**: Maintain balanced tone (neither AI-booster nor skeptic extreme)
+
+### Cross-Cutting Requirements
+
+- [ ] **CROSS-01**: Replace all [GAP] markers with research-backed content
+- [ ] **CROSS-02**: Maintain practitioner-focused tone (not academic)
+- [ ] **CROSS-03**: Minimize academic citations, emphasize concrete examples
+- [ ] **CROSS-04**: Target 6000-10000 word range (comprehensive, will summarize later)
+- [ ] **CROSS-05**: Include attribution for all quantified claims
+- [ ] **CROSS-06**: Ensure narrative flow between sections (transition sentences)
+- [ ] **CROSS-07**: Prioritize depth and completeness over brevity (summarization comes later)
+
+### Summarization & Polish
+
+- [ ] **SUMM-01**: Create executive summary version (1500-2000 words)
+- [ ] **SUMM-02**: Identify sections that can be condensed without losing key insights
+- [ ] **SUMM-03**: Extract key quotes and statistics for standalone highlights
+- [ ] **SUMM-04**: Verify summary preserves core thesis and actionable takeaways
+- [ ] **SUMM-05**: Produce both full and summary versions as deliverables
+
+## Validated Requirements
+
+**v1.0 IRIS-2 Learnings Presentation** — shipped 2026-02-07
+- ✓ 9-slide Marp presentation — v1.0
+- ✓ Trade-off Triangle framework — v1.0
+- ✓ IRIS-2 concrete examples — v1.0
+- ✓ Actionable takeaways — v1.0
+
+**Phase 1: Opening & Framing** — shipped 2026-01-26
+- ✓ Section I drafted with 2020/2025 hook — Phase 1
+- ✓ Epistemic debt definition — Phase 1
+- ✓ Construction→Curation shift — Phase 1
+- ✓ Academic citations (Ngabang, Quattrociocchi) — Phase 1
+
+## Out of Scope
+
+| Feature | Reason |
+|---------|--------|
+| Academic paper format | Practitioner-focused article, not research paper |
+| Heavy academic literature review | Minimize citations, focus on concrete examples |
+| Prescriptive step-by-step methodology | Show trade-offs, not mandates — "worth examining" tone |
+| Tool comparisons | Not comparing specific LLMs or AI coding tools |
+| Code implementation examples | Conceptual article, not tutorial |
+| External conference version | Not yet — internal focus first |
+
+## Traceability
+
+Which phases cover which requirements.
+
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| SECT2-01 | Phase 12 | Pending |
+| SECT2-02 | Phase 12 | Pending |
+| SECT2-03 | Phase 12 | Pending |
+| SECT2-04 | Phase 12 | Pending |
+| SECT2-05 | Phase 12 | Pending |
+| SECT3-01 | Phase 13 | Pending |
+| SECT3-02 | Phase 13 | Pending |
+| SECT3-03 | Phase 13 | Pending |
+| SECT3-04 | Phase 13 | Pending |
+| SECT3-05 | Phase 13 | Pending |
+| SECT4-01 | Phase 14 | Pending |
+| SECT4-02 | Phase 14 | Pending |
+| SECT4-03 | Phase 14 | Pending |
+| SECT4-04 | Phase 14 | Pending |
+| SECT4-05 | Phase 14 | Pending |
+| SECT5-01 | Phase 15 | Pending |
+| SECT5-02 | Phase 15 | Pending |
+| SECT5-03 | Phase 15 | Pending |
+| SECT5-04 | Phase 15 | Pending |
+| SECT5-05 | Phase 15 | Pending |
+| SECT5-06 | Phase 15 | Pending |
+| SECT5-07 | Phase 15 | Pending |
+| SECT5-08 | Phase 15 | Pending |
+| SECT6-01 | Phase 16 | Pending |
+| SECT6-02 | Phase 16 | Pending |
+| SECT6-03 | Phase 16 | Pending |
+| SECT6-04 | Phase 16 | Pending |
+| SECT6-05 | Phase 16 | Pending |
+| SECT6-06 | Phase 16 | Pending |
+| SECT6-07 | Phase 16 | Pending |
+| SECT7-01 | Phase 16 | Pending |
+| SECT7-02 | Phase 16 | Pending |
+| SECT7-03 | Phase 16 | Pending |
+| SECT7-04 | Phase 16 | Pending |
+| SECT7-05 | Phase 16 | Pending |
+| CROSS-01 | Phases 12-16 (distributed) | Pending |
+| CROSS-02 | Phase 17 | Pending |
+| CROSS-03 | Phase 17 | Pending |
+| CROSS-04 | Phase 17 | Pending |
+| CROSS-05 | Phases 12-16 (distributed) | Pending |
+| CROSS-06 | Phase 17 | Pending |
+| CROSS-07 | Phase 17 | Pending |
+| SUMM-01 | Phase 17 | Pending |
+| SUMM-02 | Phase 17 | Pending |
+| SUMM-03 | Phase 17 | Pending |
+| SUMM-04 | Phase 17 | Pending |
+| SUMM-05 | Phase 17 | Pending |
+
+**Coverage:**
+- v2.0 requirements: 41 total
+- Mapped to phases: 41/41 ✓ (100% coverage)
+- Unmapped: 0
+
+**Distribution:**
+- Phase 12 (Section II): 5 requirements + 2 cross-cutting partial
+- Phase 13 (Section III): 5 requirements + 2 cross-cutting partial
+- Phase 14 (Section IV): 5 requirements + 2 cross-cutting partial
+- Phase 15 (Section V): 8 requirements + 2 cross-cutting partial
+- Phase 16 (Sections VI-VII): 12 requirements + 2 cross-cutting partial
+- Phase 17 (Polish & Summary): 5 cross-cutting + 5 summarization
+
+---
+*Requirements defined: 2026-02-07*
+*Traceability updated: 2026-02-07 after v2.0 roadmap creation*

@@ -2,23 +2,27 @@
 
 ## What This Is
 
-Content exploring the epistemological risks of integrating LLMs into software engineering workflows. The core thesis: LLMs create "epistemic debt"—code that works but nobody understands. Currently shipped: 9-slide IRIS-2 learnings presentation demonstrating the Trade-off Triangle framework.
+A practitioner-focused article exploring the epistemological risks of integrating LLMs into workflows. The core thesis: LLMs create "epistemic debt"—outputs that work but nobody understands. The article presents the Speed/Understanding/Reliability trade-off triangle as a framework for conscious positioning, with concrete examples from software engineering (IRIS-2 case study) and generalized applications to other LLM-assisted tasks.
 
 ## Core Value
 
 Show practitioners how to consciously position their LLM-assisted development on the Speed/Understanding/Reliability trade-off triangle.
 
-## Current State
+## Current Milestone: v2.0 Article Completion
 
-**Version:** v1.0 IRIS-2 Learnings Presentation (shipped 2026-02-07)
+**Goal:** Complete the full epistemic debt article (Sections II-VII), filling content gaps with research and concrete examples, while generalizing the Trade-off Triangle framework beyond software engineering.
 
-**Shipped:**
-- 9-slide Marp presentation ready for Bloomberg team delivery
-- Trade-off Triangle framework with concrete IRIS-2 examples
-- 4 actionable takeaways with specific file paths
-- All slides have speaker notes for 20-minute delivery
+**Target sections:**
+- Section II: Epistemic Debt: A New Lens (comparison table, default events)
+- Section III: The Solutioning Trap (jumping to solutions without epistemic clarity)
+- Section IV: Epistemic Debt in the SDLC (Intent→Spec, Spec→Impl, Impl→Validation boundaries)
+- Section V: The Trade-off Triangle (adapt from IRIS-2 slides + generalize to any LLM task)
+- Section VI: The Measurement Problem (empirical indicators)
+- Section VII: Conclusion
 
-**Next:** Planning next milestone (article revival or new content direction)
+**Shipped in v1.0:**
+- 9-slide IRIS-2 Learnings Presentation (2026-02-07)
+- Section I: The Epistemic Shift (Phase 1, 2026-01-26)
 
 ## Requirements
 
@@ -32,21 +36,23 @@ Show practitioners how to consciously position their LLM-assisted development on
 
 ### Active
 
-(To be defined in next milestone)
+**v2.0 Article Completion** — In progress
+- Section II: Epistemic debt definition with tech debt comparison table and failure examples
+- Section III: Solutioning trap analysis with concrete scenarios
+- Section IV: SDLC boundary analysis (3 boundaries with examples)
+- Section V: Trade-off Triangle framework adapted from IRIS-2 + generalized applications
+- Section VI: Measurement approaches (empirical indicators, challenges)
+- Section VII: Conclusion with practitioner takeaways
+- Research-backed examples filling [GAP] markers
+- Practitioner-focused tone with minimal academic citations
 
-### Paused
-
-**Milestone 1: Article** — Paused indefinitely (Phase 1/7 complete)
-- Section I drafted with 2020/2025 hook, Ngabang & Quattrociocchi citations
-- Trade-off Triangle visualization framework added
-- Remaining: Phases 2-7 (Core Concepts through Polish)
 
 ### Out of Scope
 
-- Full article completion — paused for now
 - Prescriptive methodology — show trade-offs, not mandates
-- Academic format — this is for practitioners
-- External conference version — internal team first
+- Academic paper format — practitioner-focused article
+- Heavy academic citations — minimize, focus on industry examples
+- External conference version — not yet
 
 ## Context
 
@@ -73,10 +79,12 @@ Show practitioners how to consciously position their LLM-assisted development on
 
 ## Constraints
 
-- **Audience**: Internal Bloomberg team — can reference IRIS-2 directly
-- **Length**: 5-10 slides for 20-minute talk
-- **Format**: Marp markdown, following CLAUDE.md conventions
-- **Tone**: Practical, experience-based — "here's what I learned"
+- **Audience**: Practitioners (engineering leaders, senior engineers, architects) — use accessible language
+- **Length**: 4000-6000 words target (from article.md metadata)
+- **Format**: Markdown article format
+- **Tone**: Practical, experience-based, balanced — "here's what I've found worth examining"
+- **Citations**: Practitioner-focused — minimize academic sources, emphasize concrete examples and industry experience
+- **Triangle Scope**: Software engineering (IRIS-2) as primary + generalized applications (article writing, LLM-as-Judge, etc.)
 
 ## Key Decisions
 
@@ -89,5 +97,7 @@ Show practitioners how to consciously position their LLM-assisted development on
 | Four takeaways structure (one per vertex + meta) | Maps to presentation structure, reinforces framework | ✓ Good — Clear synthesis of vertex learnings |
 | Meta practices as amplifiers, not vertices | GSD/multi-AI sync enable positioning, don't pick it | ✓ Good — Avoided confusing workflow with solution |
 
+| Resume article work from Phase 1 | v2.0 completes full article; v1.0 shipped presentation gave triangle validation | ✓ Good — Presentation validated framework resonates; ready to expand |
+
 ---
-*Last updated: 2026-02-07 after v1.0 milestone completion*
+*Last updated: 2026-02-07 after v2.0 milestone start*

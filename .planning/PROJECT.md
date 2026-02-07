@@ -2,38 +2,37 @@
 
 ## What This Is
 
-Content exploring the epistemological risks of integrating LLMs into software engineering workflows. The core thesis: LLMs create "epistemic debt"—code that works but nobody understands. Current focus is a concrete presentation using IRIS-2 project learnings to illustrate the Trade-off Triangle.
+Content exploring the epistemological risks of integrating LLMs into software engineering workflows. The core thesis: LLMs create "epistemic debt"—code that works but nobody understands. Currently shipped: 9-slide IRIS-2 learnings presentation demonstrating the Trade-off Triangle framework.
 
 ## Core Value
 
 Show practitioners how to consciously position their LLM-assisted development on the Speed/Understanding/Reliability trade-off triangle.
 
-## Current Milestone: IRIS-2 Learnings Presentation
+## Current State
 
-**Goal:** 5-10 slide presentation for internal Bloomberg team demonstrating Trade-off Triangle through concrete IRIS-2 practices.
+**Version:** v1.0 IRIS-2 Learnings Presentation (shipped 2026-02-07)
 
-**Core message:** Trade-offs are real — Speed/Understanding/Reliability require conscious positioning, not speed maximization.
+**Shipped:**
+- 9-slide Marp presentation ready for Bloomberg team delivery
+- Trade-off Triangle framework with concrete IRIS-2 examples
+- 4 actionable takeaways with specific file paths
+- All slides have speaker notes for 20-minute delivery
 
-**Target features:**
-- Trade-off Triangle visual with IRIS-2 examples
-- DDD as Understanding pull (bounded contexts, ubiquitous language)
-- Human E2E tests as Reliability pull (circular validation breaker)
-- Workflow commands as Speed enabler (now replaced by GSD)
-- Concrete "what I actually did" examples with file paths
+**Next:** Planning next milestone (article revival or new content direction)
 
 ## Requirements
 
 ### Validated
 
-(None yet — ship to validate)
+**v1.0 IRIS-2 Learnings Presentation** — shipped 2026-02-07
+- ✓ 5-10 slides in Marp format — v1.0 (delivered 9 slides)
+- ✓ Trade-off Triangle as central visual — v1.0
+- ✓ Concrete IRIS-2 examples for each triangle vertex — v1.0 (DDD, E2E, workflow, meta)
+- ✓ Actionable takeaways for Bloomberg colleagues — v1.0 (4 takeaways with file paths)
 
 ### Active
 
-**Milestone 2: IRIS-2 Learnings Presentation**
-- [ ] 5-10 slides in Marp format
-- [ ] Trade-off Triangle as central visual
-- [ ] Concrete IRIS-2 examples for each triangle vertex
-- [ ] Actionable takeaways for Bloomberg colleagues
+(To be defined in next milestone)
 
 ### Paused
 
@@ -83,10 +82,12 @@ Show practitioners how to consciously position their LLM-assisted development on
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Trade-off Triangle as central framework | Visual, memorable, actionable | — Pending |
-| IRIS-2 as sole case study | Concrete > abstract; internal audience knows context | — Pending |
-| Pause article for focused presentation | Ship smaller deliverable first | — Pending |
-| "Trade-offs are real" core message | Not prescriptive; emphasizes conscious choice | — Pending |
+| Trade-off Triangle as central framework | Visual, memorable, actionable | ✓ Good — Framework resonated, grounded abstract concepts |
+| IRIS-2 as sole case study | Concrete > abstract; internal audience knows context | ✓ Good — File-path specificity made practices verifiable |
+| Pause article for focused presentation | Ship smaller deliverable first | ✓ Good — Shipped v1.0 in single day |
+| "Trade-offs are real" core message | Not prescriptive; emphasizes conscious choice | ✓ Good — Non-prescriptive tone maintained throughout |
+| Four takeaways structure (one per vertex + meta) | Maps to presentation structure, reinforces framework | ✓ Good — Clear synthesis of vertex learnings |
+| Meta practices as amplifiers, not vertices | GSD/multi-AI sync enable positioning, don't pick it | ✓ Good — Avoided confusing workflow with solution |
 
 ---
-*Last updated: 2026-01-27 after pivoting to IRIS-2 presentation milestone*
+*Last updated: 2026-02-07 after v1.0 milestone completion*

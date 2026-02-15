@@ -55,8 +55,6 @@ alwaysApply: false
 3. **Cross-post** teasers to LinkedIn, Twitter/X, Instagram, Substack Notes
 4. **Monitor** engagement and adjust cadence/format
 
-## Planned Enhancements (Phase 2)
+## MCP Servers (Phase 2)
 
-- MCP server for Substack drafting and publishing
-- MCP server for social media cross-posting
-- Analytics integration for tracking reach and engagement
+MCP servers for Substack drafting, social cross-posting, and GA4 analytics are documented in **[docs/mcp-setup.md](../../docs/mcp-setup.md)**. Use that guide for credential extraction, config templates (`.mcp.json.example`), and semi-manual data collection.

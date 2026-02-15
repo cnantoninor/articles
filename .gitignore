@@ -5,4 +5,5 @@ tmp/
 # Secrets and credentials
 .mcp.json
 .env
-analytics/credentials/
+analytics/credentials/*
+!analytics/credentials/.gitkeep

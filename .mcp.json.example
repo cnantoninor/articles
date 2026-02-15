@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "substack-api": {
+      "command": "npx",
+      "args": ["-y", "substack-mcp@latest"],
+      "env": {
+        "SUBSTACK_PUBLICATION_URL": "https://your-publication.substack.com",
+        "SUBSTACK_SESSION_TOKEN": "YOUR_SUBSTACK_SID_COOKIE_VALUE",
+        "SUBSTACK_USER_ID": "YOUR_USER_ID"
+      }
+    },
+    "crosspost": {
+      "command": "npx",
+      "args": ["@humanwhocodes/crosspost", "-t", "-l", "--mcp"],
+      "env": {
+        "CROSSPOST_DOTENV": "/absolute/path/to/your/.env"
+      }
+    },
+    "google-analytics": {
+      "command": "python",
+      "args": ["-m", "google_analytics_mcp"],
+      "env": {
+        "GA4_PROPERTY_ID": "361268692",
+        "GOOGLE_APPLICATION_CREDENTIALS": "/absolute/path/to/analytics/credentials/ga4-service-account.json"
+      }
+    }
+  }
+}

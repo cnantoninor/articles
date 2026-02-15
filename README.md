@@ -59,7 +59,6 @@ Alternatively, you can install them manually:
 ai-articles/
 ├── README.md                    # This file
 ├── CLAUDE.md -> .ai/context.md  # AI context (symlink, always-applied)
-├── .cursorrules -> .ai/context.md # AI context (symlink, always-applied)
 ├── GLOSSARY.md                  # Domain terms across all topics
 ├── .gitignore                   # Git ignore rules
 ├── .ai/                         # Centralized AI context (source of truth)
@@ -148,7 +147,7 @@ See `.ai/rules/publication.md` for detailed teaser conventions and distribution 
 This repository is optimized for AI-assisted writing in both Cursor and Claude Code.
 
 - **Rules source of truth**: `.ai/` directory (context + glob-activated rules)
-- **Symlinks**: `.cursorrules` and `CLAUDE.md` point to `.ai/context.md` (always-applied)
+- **Symlink**: `CLAUDE.md` points to `.ai/context.md` (always-applied by both Cursor and Claude Code)
 - **Glob rules**: `.cursor/rules/` and `.claude/rules/` are symlinked from `.ai/rules/`
 - **Sync**: Run `bash .ai/sync-rules.sh` to create or update all symlinks
 - **Terminology**: See `GLOSSARY.md` for consistent domain terms

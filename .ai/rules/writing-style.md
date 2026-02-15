@@ -43,10 +43,12 @@ All articles should include:
 ```yaml
 ---
 title: "Article Title"
+subtitle: "A short tagline or secondary description"
 status: draft | review | published
 type: article | slides | research
 audience: [list of target readers]
 target_length: word count target
+estimated_reading_time: "X min"
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
 ---

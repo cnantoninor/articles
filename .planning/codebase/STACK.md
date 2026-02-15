@@ -85,7 +85,7 @@
 
 **Input Formats:**
 - Markdown with YAML front-matter (articles): Standard CommonMark with extensions
-  - Front-matter fields: `title`, `status`, `type`, `audience`, `target_length`, `created`, `last_updated`
+  - Front-matter fields: `title`, `subtitle`, `status`, `type`, `audience`, `target_length`, `created`, `last_updated`
   - Footnote syntax: `[^n]` / `[^n]: text` (markdown-it-footnote format)
 - Marp Markdown (slides): Markdown with `---` slide separators and HTML speaker notes
   - Front-matter: `marp: true`, `theme`, `paginate`, `title`
@@ -117,7 +117,7 @@
 - Pandoc options hardcoded in shell scripts
 
 **AI Authoring Configuration:**
-- `.ai/context.md` — Concise rulebook (symlinked to `.cursorrules` and `CLAUDE.md`)
+- `.ai/context.md` — Concise rulebook (symlinked to `CLAUDE.md`)
 - `.ai/rules/` — Glob-activated rules: writing-style, publication, terminology
 - `.ai/sync-rules.sh` — Creates/updates symlinks for Cursor and Claude Code
 - `GLOSSARY.md` — Shared domain terminology definitions

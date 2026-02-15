@@ -74,7 +74,7 @@
 - Not applicable — No secrets required
 
 **Configuration files:**
-- `.ai/context.md` — Concise AI rulebook (symlinked to `.cursorrules` and `CLAUDE.md`)
+- `.ai/context.md` — Concise AI rulebook (symlinked to `CLAUDE.md`)
 - `.ai/rules/` — Glob-activated rules (writing-style, publication, terminology)
 - `GLOSSARY.md` — Shared terminology definitions
 - `.planning/config.json` — GSD planning tool settings
@@ -143,10 +143,10 @@ This repository's main "integrations" are its export pipelines — local CLI too
 
 **Cursor AI Editor:**
 - Primary authoring environment
-- Configuration: `.ai/context.md` (via `.cursorrules` symlink) + `.cursor/rules/*.mdc` (glob-activated symlinks)
+- Configuration: `.ai/context.md` (via `CLAUDE.md` symlink) + `.cursor/rules/*.mdc` (glob-activated symlinks)
 - Integration: File-based context loading (no API integration)
 - Key files:
-  - `.ai/context.md` → `.cursorrules` — Always-applied concise rulebook
+  - `.ai/context.md` → `CLAUDE.md` — Always-applied concise rulebook
   - `.ai/rules/` → `.cursor/rules/` — Writing style, publication, terminology rules
   - `GLOSSARY.md` — Domain terminology
   - `templates/` — Content scaffolding (article, slides, research)

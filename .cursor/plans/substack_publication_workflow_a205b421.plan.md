@@ -4,31 +4,31 @@ overview: Update all repository documentation to declare Substack as the primary
 todos:
   - id: update-cursorrules
     content: Add Publication & Distribution Target section to .cursorrules with Substack URL, social channels, AI guidelines for teasers
-    status: pending
+    status: completed
   - id: update-claude-md
     content: Add publication target, distribution workflow, and MCP server references to CLAUDE.md
-    status: pending
+    status: completed
   - id: update-readme
     content: Add Publication section to README.md with Substack destination and end-to-end workflow
-    status: pending
+    status: completed
   - id: run-gsd-mapper
     content: Run gsd-codebase-mapper to update all .planning/codebase/ files (ARCHITECTURE, INTEGRATIONS, STACK, STRUCTURE, CONVENTIONS, CONCERNS)
-    status: pending
+    status: completed
   - id: update-glossary
     content: Add distribution terminology to GLOSSARY.md
-    status: pending
+    status: completed
   - id: update-article-template
     content: Add publication_url, social_teasers, and published_date to templates/article.md front-matter
-    status: pending
+    status: completed
   - id: create-teaser-template
     content: Create templates/social-teasers.md with platform-specific teaser structures
     status: pending
   - id: create-mcp-setup-doc
     content: Create docs/mcp-setup.md with instructions for Substack MCP, Crosspost MCP, and browser-use analytics
-    status: pending
+    status: completed
   - id: configure-gitignore
     content: Add .mcp.json and credential files to .gitignore
-    status: pending
+    status: completed
   - id: create-publishing-workflow
     content: Create docs/publishing-workflow.md documenting the weekly end-to-end workflow with social media teaser conventions and growth tactics
     status: pending
@@ -37,7 +37,7 @@ todos:
     status: pending
   - id: setup-ga4-mcp
     content: Add GA4 MCP server (google-analytics-mcp) config to docs/mcp-setup.md and .mcp.json template; document service account setup for property 361268692
-    status: pending
+    status: completed
   - id: create-ga4-fetch-script
     content: Create analytics/scripts/fetch_ga4.py to pull page views, traffic sources, referrals, user behavior from GA4 API into CSV files automatically
     status: pending
@@ -65,9 +65,11 @@ isProject: false
 
 ---
 
-## Phase 1: Update All Documentation Files
+## Phase 1: Update All Documentation Files ✅ COMPLETED
 
 Every AI rules/docs file currently has zero mention of Substack or social media. Add a **Publication & Distribution** section to each.
+
+> **Status**: Completed via Phase 1 sub-plan (`phase1_substack_docs_66897fd3.plan.md`). Implemented as centralized `.ai/` directory with symlink architecture instead of inline edits to `.cursorrules`/`CLAUDE.md`. See commits `3c7b604` (baseline) and `a87c2cf` (Phase 1 implementation).
 
 ### Files to Update
 
@@ -109,7 +111,9 @@ goal: 100 subscribers
 
 ---
 
-## Phase 2: MCP Server Configuration
+## Phase 2: MCP Server Configuration ✅ COMPLETED
+
+> **Status**: Completed via Phase 2 sub-plan (`phase2_mcp_setup_0ab60c03.plan.md`). Created comprehensive setup documentation (`docs/mcp-setup.md`), config template (`.mcp.json.example`), credentials directory (`analytics/credentials/.gitkeep`), and updated `.ai/rules/publication.md` to reference the new docs. Documentation-only scope — no credentials configured yet. See commit `93e4c04`.
 
 ### 2a. Substack MCP (Draft Creation)
 

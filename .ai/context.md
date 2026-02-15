@@ -30,11 +30,11 @@
 ### Publication
 - Primary: Substack (The AI Mirror) -- weekly cadence
 - Promotion: LinkedIn, Twitter/X, Instagram, Substack Notes
-- MCP servers for drafting and cross-posting are planned (Phase 2)
+- MCP servers for drafting and cross-posting are documented (Phase 2); see docs/mcp-setup.md and docs/publishing-workflow.md
 - Teasers must match the exploratory writing tone
 
 ### Content
-- YAML front-matter required (see templates/article.md)
+- YAML front-matter required (see templates/article.md) -- includes title, subtitle, status, type, audience, estimated_reading_time, dates
 - H1 title only, H2 sections, H3 subsections, no deeper than H4
 - Start new content from templates/
 - Check GLOSSARY.md for consistent terminology

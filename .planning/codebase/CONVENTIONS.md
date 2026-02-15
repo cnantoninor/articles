@@ -8,15 +8,17 @@ This is primarily a content authoring repository, not a software project. "Codin
 
 ### Front-Matter Format
 
-**Convention (from `.cursorrules`):**
+**Convention (from `CLAUDE.md`):**
 All articles must include YAML front-matter with these fields:
 ```yaml
 ---
 title: "Article Title"
+subtitle: "A short tagline or secondary description"
 status: draft | review | published
 type: article | slides | research
 audience: [list of target readers]
 target_length: word count target
+estimated_reading_time: "X min"
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
 ---
@@ -24,13 +26,13 @@ last_updated: YYYY-MM-DD
 
 **Adherence in existing content:**
 
-| File | title | status | type | audience | target_length | created | last_updated | Verdict |
-|------|-------|--------|------|----------|---------------|---------|--------------|---------|
-| `topics/epistemic_debt/article.md` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | **Compliant** |
-| `topics/epistemic_debt/cursor-article.md` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | **Compliant** |
-| `topics/epistemic_debt/slides.md` | ✓ (Marp) | — | — | — | — | — | — | **Marp format (expected)** |
-| `topics/epistemic_debt/iris-learnings.md` | ✓ (Marp) | — | — | — | — | — | — | **Marp format (expected)** |
-| `topics/epistemic_debt/README.md` | — | — | — | — | — | — | — | **No front-matter (acceptable for README)** |
+| File | title | subtitle | status | type | audience | target_length | created | last_updated | Verdict |
+|------|-------|----------|--------|------|----------|---------------|---------|--------------|---------|
+| `topics/epistemic_debt/article.md` | ✓ | — | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | **Missing subtitle** |
+| `topics/epistemic_debt/cursor-article.md` | ✓ | — | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | **Missing subtitle** |
+| `topics/epistemic_debt/slides.md` | ✓ (Marp) | — | — | — | — | — | — | — | **Marp format (expected)** |
+| `topics/epistemic_debt/iris-learnings.md` | ✓ (Marp) | — | — | — | — | — | — | — | **Marp format (expected)** |
+| `topics/epistemic_debt/README.md` | — | — | — | — | — | — | — | — | — | **No front-matter (acceptable for README)** |
 
 **Assessment:** Article files follow front-matter convention well. Marp slides use Marp-specific front-matter (marp: true, theme, paginate, title) which is correct for their format. README uses plain markdown headings per the research template.
 
@@ -142,8 +144,10 @@ All export scripts follow a consistent pattern:
 - **Rules file**: `.ai/rules/publication.md` (glob-activated on `topics/**/artifacts/**`)
 
 ### Article Front-Matter (Publication Fields)
-New articles should include publication fields in YAML front-matter:
+New articles should include `subtitle` (used as Substack subtitle and social teaser hook), `estimated_reading_time`, and publication fields in YAML front-matter:
 ```yaml
+subtitle: "A short tagline or secondary description"
+estimated_reading_time: "X min"
 published_date:
 publication_url: ""
 social_teasers:
@@ -192,7 +196,7 @@ social_teasers:
 
 ## Tone and Style Compliance
 
-### .cursorrules Tone Requirements
+### CLAUDE.md Tone Requirements
 
 | Requirement | article.md | cursor-article.md |
 |-------------|-----------|-------------------|
@@ -205,7 +209,7 @@ social_teasers:
 | Prefer "understanding" over "knowledge" | ✓ Consistently uses "understanding" | ✓ Same |
 | Active voice | ✓ Predominantly active | ✓ Same |
 
-**Assessment:** Both article versions demonstrate excellent adherence to the tone and style guidelines in `.cursorrules`. The articles practice what they preach — they're exploratory, acknowledge uncertainty, and provide concrete examples.
+**Assessment:** Both article versions demonstrate excellent adherence to the tone and style guidelines in `CLAUDE.md`. The articles practice what they preach — they're exploratory, acknowledge uncertainty, and provide concrete examples.
 
 ---
 

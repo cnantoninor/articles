@@ -7,3 +7,4 @@ tmp/
 .env
 analytics/credentials/*
 !analytics/credentials/.gitkeep
+.cursor/plans

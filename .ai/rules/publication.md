@@ -50,8 +50,10 @@ alwaysApply: false
 
 ## Distribution Workflow
 
+The full weekly workflow (write → export → publish → distribute → analytics) is documented in **[docs/publishing-workflow.md](../../docs/publishing-workflow.md)**. In short:
+
 1. **Publish** article on Substack
-2. **Create teasers** for each platform (see conventions above)
+2. **Create teasers** for each platform (see conventions above; use [templates/social-teasers.md](../../templates/social-teasers.md))
 3. **Cross-post** teasers to LinkedIn, Twitter/X, Instagram, Substack Notes
 4. **Monitor** engagement and adjust cadence/format
 

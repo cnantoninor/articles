@@ -6,8 +6,7 @@
 
 ```
 ai-articles/
-├── .cursorrules -> .ai/context.md  # Symlink: always-applied AI context (Cursor)
-├── CLAUDE.md -> .ai/context.md     # Symlink: always-applied AI context (Claude Code)
+├── CLAUDE.md -> .ai/context.md     # Symlink: always-applied AI context (Cursor + Claude Code)
 ├── README.md                       # Repository docs, quickstart, structure overview
 ├── GLOSSARY.md                     # Shared domain terminology with AI usage notes
 ├── .gitignore                      # Ignores node_modules, .planning/phases, secrets
@@ -17,6 +16,8 @@ ai-articles/
 │   │   ├── writing-style.md        # Writing style, content structure, AI guidelines
 │   │   ├── publication.md          # Publication workflow, social teasers
 │   │   └── terminology.md          # Domain terminology, key concepts
+│   ├── commands/                   # Reusable command/prompt templates
+│   │   └── ar-create-execution-plan-for-phase.md  # Phase planning with dependency checks
 │   └── sync-rules.sh              # Creates/updates symlinks for Cursor + Claude Code
 ├── scripts/                    # Export automation and setup scripts
 │   ├── setup.sh                # Installs pandoc, marp-cli, LaTeX
@@ -69,12 +70,16 @@ ai-articles/
 ├── tmp/                        # Temporary/scratch files (images, working docs)
 ├── .cursor/                    # Cursor IDE metadata
 │   ├── plans/                  # AI-generated planning artifacts
+│   ├── commands/               # Symlinked command templates (.mdc)
+│   │   └── ar:create-execution-plan-for-phase.mdc -> ../../.ai/commands/ar-create-execution-plan-for-phase.md
 │   └── rules/                  # Symlinked glob-activated rules (.mdc)
 │       ├── writing-style.mdc -> ../../.ai/rules/writing-style.md
 │       ├── publication.mdc -> ../../.ai/rules/publication.md
 │       └── terminology.mdc -> ../../.ai/rules/terminology.md
 ├── .claude/                    # Claude Code configuration
 │   ├── settings.local.json     # Local Claude settings
+│   ├── commands/               # Symlinked command templates (.md)
+│   │   └── ar-create-execution-plan-for-phase.md -> ../../.ai/commands/ar-create-execution-plan-for-phase.md
 │   └── rules/                  # Symlinked glob-activated rules (.md)
 │       ├── writing-style.md -> ../../.ai/rules/writing-style.md
 │       ├── publication.md -> ../../.ai/rules/publication.md
@@ -93,8 +98,7 @@ ai-articles/
 - Contains: README, glossary, AI assistant config files, Git config
 - Key files:
   - `README.md`: Getting started guide, quickstart for new topics, structure overview, export workflow docs, publication info
-  - `.cursorrules` → `.ai/context.md`: Symlink to concise rulebook (always-applied by Cursor)
-  - `CLAUDE.md` → `.ai/context.md`: Symlink to concise rulebook (always-applied by Claude Code)
+  - `CLAUDE.md` → `.ai/context.md`: Symlink to concise rulebook (always-applied by both Cursor and Claude Code)
   - `GLOSSARY.md`: Domain terminology reference with AI usage notes
 
 **`scripts/`:**
@@ -111,7 +115,7 @@ ai-articles/
 - Purpose: Scaffolding for new content — copy to a topic directory to start writing
 - Contains: 3 Markdown templates with pre-filled structure
 - Key files:
-  - `article.md`: YAML front-matter (title, status, type, audience, dates) + Abstract → Introduction → Sections → Conclusion → References with `[GAP:]` markers
+  - `article.md`: YAML front-matter (title, subtitle, status, type, audience, dates) + Abstract → Introduction → Sections → Conclusion → References with `[GAP:]` markers
   - `slides.md`: Marp front-matter (marp: true, theme, paginate) + title slide → agenda → key concepts → summary → Q&A with speaker notes
   - `research.md`: Topic overview with status tracking, key questions, source tracking table, key quotes, working notes, gaps, connections, next steps
 
@@ -209,6 +213,7 @@ ai-articles/
 
 **YAML Front-Matter Fields (articles):**
 - `title`: Quoted string
+- `subtitle`: Quoted string — short tagline or secondary description (used as Substack subtitle)
 - `status`: `draft` | `review` | `published`
 - `type`: `article` | `slides` | `research`
 - `audience`: Array of target reader types (e.g., `[engineering leaders, senior engineers]`)

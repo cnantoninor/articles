@@ -11,7 +11,7 @@
 - Topic-based content organization under `topics/` directory with standardized subdirectory layout
 - Template-driven content creation for articles, presentations, and research notes
 - Multi-format export pipeline converting Markdown to DOCX, PPTX, and PDF via shell scripts
-- AI-assistant-aware: `.cursorrules` and `GLOSSARY.md` provide persistent context for Cursor/Claude sessions
+- AI-assistant-aware: `CLAUDE.md` and `GLOSSARY.md` provide persistent context for Cursor/Claude sessions
 - Dual PDF pipeline: shell-based (pandoc/marp) for standard exports, Node.js-based (Puppeteer) for high-quality typeset output
 
 ## Layers
@@ -39,9 +39,9 @@
 
 **Configuration Layer:**
 - Purpose: Provides authoring guidance, conventions, and shared vocabulary for human and AI authors
-- Location: `.ai/` (source of truth), root symlinks (`.cursorrules`, `CLAUDE.md`), `.cursor/rules/`, `.claude/rules/`
+- Location: `.ai/` (source of truth), root symlink (`CLAUDE.md`), `.cursor/rules/`, `.claude/rules/`
 - Contains: `.ai/context.md` (concise rulebook, always-applied), `.ai/rules/` (glob-activated: writing-style, publication, terminology), `GLOSSARY.md` (domain terminology with usage notes for AI)
-- Sync: `.ai/sync-rules.sh` creates symlinks into `.cursor/rules/*.mdc` and `.claude/rules/*.md`
+- Sync: `.ai/sync-rules.sh` creates symlinks into `.cursor/rules/*.mdc`, `.claude/rules/*.md`, and root `CLAUDE.md`
 - Depends on: Nothing
 - Used by: AI assistants (Cursor, Claude Code), content creators
 
@@ -75,7 +75,7 @@
 2. Copy templates from `templates/` to topic directory
 3. Create subdirectories: `raw_material/`, `references/`, `assets/`, `exports/`
 4. Author content in Markdown, referencing `GLOSSARY.md` for consistent terminology
-5. AI assistant reads `.cursorrules` for tone, structure, and gap-marking conventions
+5. AI assistant reads `CLAUDE.md` for tone, structure, and gap-marking conventions
 6. Store supporting materials in `raw_material/` (brainstorms, outlines) and `references/` (literature, papers)
 
 **Export Pipeline Flow:**
@@ -114,7 +114,7 @@
 **Content Type:**
 - Purpose: Defines the format, structure, and metadata of a content piece
 - Examples: `article.md` (long-form article), `slides.md` (Marp presentation), `README.md` (topic overview/research tracker)
-- Pattern: YAML front-matter followed by Markdown sections with H1 title, H2 sections, H3 subsections
+- Pattern: YAML front-matter (title, subtitle, status, type, audience, dates) followed by Markdown sections with H1 title, H2 sections, H3 subsections
 - Variants: A topic may have multiple article variants (e.g., `article.md`, `cursor-article.md`, `iris-learnings.md`) for different audiences or contexts
 
 **Export Target:**
@@ -156,7 +156,7 @@
 - Responsibilities: Detects OS, installs pandoc, npm, marp-cli, and LaTeX (pdflatex)
 
 **AI Authoring Context:**
-- Location: `.ai/context.md` (via root symlinks `.cursorrules` and `CLAUDE.md`), `.ai/rules/` (via `.cursor/rules/` and `.claude/rules/` symlinks), `GLOSSARY.md`
+- Location: `.ai/context.md` (via root symlink `CLAUDE.md`), `.ai/rules/` (via `.cursor/rules/` and `.claude/rules/` symlinks), `GLOSSARY.md`
 - Triggers: Always-applied context loaded at session start; glob-activated rules loaded when working on matching files
 - Responsibilities: Provides writing tone, structure conventions, terminology, publication workflow, and AI-specific instructions
 
@@ -191,7 +191,7 @@
 **Authentication:** Not applicable — all operations are local filesystem.
 
 **AI Context Loading:**
-- `.cursorrules` automatically loaded by Cursor IDE for all sessions in workspace
+- `CLAUDE.md` automatically loaded by Cursor IDE and Claude Code for all sessions in workspace
 - `GLOSSARY.md` referenced by AI instructions for consistent terminology
 - Topic-specific context (e.g., `README.md` with gaps and status) informs AI assistance
 

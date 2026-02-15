@@ -93,6 +93,7 @@ echo "Created: $OUTPUT_FILE"
 ```yaml
 ---
 title: ""
+subtitle: ""
 status: draft
 type: article
 audience: []

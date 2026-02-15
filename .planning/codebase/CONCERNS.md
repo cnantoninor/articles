@@ -23,7 +23,7 @@
 - **Impact:** Scripts in git HEAD may reference old paths, making them non-functional if someone checks out a clean copy.
 - **Fix approach:** Include in the restructure commit.
 
-### 1.4 Modified `.cursorrules` and `README.md` Not Committed
+### 1.4 Modified `CLAUDE.md` and `README.md` Not Committed
 
 - **Issue:** Both root files are modified, likely updated for the `topics/` restructure.
 - **Impact:** Documentation and AI context reference old paths in the committed version.
@@ -97,8 +97,8 @@
 ### 3.3 Empty `artifacts/` Directory Structure
 
 - **Issue:** `topics/epistemic_debt/artifacts/` contains subdirectories (`articles/drafts`, `articles/published`, `presentation/drafts`, `presentation/published`) but all are empty.
-- **Impact:** This structure doesn't appear in the documented topic directory structure (in `.cursorrules` or `README.md`). It's either an abandoned organizational experiment or an incomplete migration.
-- **Fix approach:** Either populate it with content (move final exports here?) or remove the empty structure. If kept, document it in `.cursorrules` topic directory structure.
+- **Impact:** This structure doesn't appear in the documented topic directory structure (in `CLAUDE.md` or `README.md`). It's either an abandoned organizational experiment or an incomplete migration.
+- **Fix approach:** Either populate it with content (move final exports here?) or remove the empty structure. If kept, document it in `CLAUDE.md` topic directory structure.
 
 ### 3.4 Content Files Outside Topic Directory Structure
 
@@ -254,9 +254,9 @@
 
 ### 10.1 No Project Context for Claude Code
 
-- **Issue:** `CLAUDE.md` exists at the repository root but is empty.
-- **Impact:** Claude Code (terminal-based) sessions have no project context. `.cursorrules` provides Cursor-specific context, but `CLAUDE.md` should provide equivalent context for Claude Code. This is a missed opportunity for consistent AI assistance.
-- **Fix approach:** Populate `CLAUDE.md` with project overview, conventions, and instructions similar to `.cursorrules` but formatted for Claude Code's expectations.
+- **Issue:** `CLAUDE.md` previously existed at the repository root but was empty.
+- **Impact:** Claude Code (terminal-based) sessions had no project context.
+- **Status:** Resolved — `CLAUDE.md` is now a symlink to `.ai/context.md`, providing always-applied context for both Cursor and Claude Code. The legacy `.cursorrules` symlink has been removed to avoid duplicating context tokens.
 
 ---
 

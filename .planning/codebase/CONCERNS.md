@@ -260,18 +260,41 @@
 
 ---
 
+## 11. Distribution Layer Concerns (Phase 2 Prep)
+
+### 11.1 Token and API Key Security
+
+- **Issue:** Phase 2 will introduce MCP servers for Substack publishing and social media cross-posting, requiring API tokens and credentials.
+- **Impact:** Accidental commit of `.mcp.json`, `.env`, or analytics credentials could expose tokens.
+- **Mitigation:** `.gitignore` updated to exclude `.mcp.json`, `.env`, and `analytics/credentials/`. Documented in `.ai/rules/publication.md`.
+
+### 11.2 API Fragility
+
+- **Issue:** Social media APIs (Twitter/X, LinkedIn, Instagram) are notoriously unstable — rate limits, breaking changes, deprecation.
+- **Impact:** MCP servers may need frequent maintenance. Cross-posting workflow should not depend on all platforms being available.
+- **Mitigation:** Manual workflow documented as fallback. MCP integrations planned as progressive enhancement, not hard dependency.
+
+### 11.3 Analytics Limitations
+
+- **Issue:** Substack provides limited analytics. Cross-platform analytics (LinkedIn impressions, Twitter engagement) require separate tracking.
+- **Impact:** Difficult to measure content reach and optimize distribution strategy.
+- **Mitigation:** Marked as Phase 2 scope. Initial focus on manual observation and simple metrics.
+
+---
+
 ## Priority Summary
 
 | Priority | Issue | Impact | Effort |
 |----------|-------|--------|--------|
-| **Critical** | §1: Uncommitted directory restructure | Data loss risk, broken git state | Low (one commit) |
+| ~~**Critical**~~ | ~~§1: Uncommitted directory restructure~~ | ~~Data loss risk, broken git state~~ | ~~Resolved (baseline commit)~~ |
 | **High** | §2.1: Exports not gitignored | Repository bloat | Low |
 | **High** | §3.2: Two parallel article versions | Content confusion | Medium (editorial decision) |
 | **High** | §5: Glossary staleness | Inconsistent AI assistance | Medium |
 | **Medium** | §2.2: tmp/ not gitignored | Repository bloat | Low |
 | **Medium** | §4.2: Hardcoded path in export-pdf.js | Non-portable tooling | Low |
 | **Medium** | §7: No package.json | Non-reproducible setup | Low |
-| **Medium** | §10: Empty CLAUDE.md | Missing AI context | Medium |
+| ~~**Medium**~~ | ~~§10: Empty CLAUDE.md~~ | ~~Missing AI context~~ | ~~Resolved (.ai/context.md + symlink)~~ |
+| **Low** | §11: Distribution layer concerns | Token security, API fragility, analytics limits | Phase 2 |
 | **Low** | §3.1: Duplicate triangle file | Maintenance burden | Low |
 | **Low** | §3.3: Empty artifacts/ directory | Confusing structure | Low |
 | **Low** | §4.1: No tool checks in scripts | Poor error messages | Low |

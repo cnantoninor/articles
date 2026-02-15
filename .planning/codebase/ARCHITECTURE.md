@@ -39,8 +39,9 @@
 
 **Configuration Layer:**
 - Purpose: Provides authoring guidance, conventions, and shared vocabulary for human and AI authors
-- Location: Root directory
-- Contains: `.cursorrules` (comprehensive writing guidelines, structure conventions, AI assistant instructions), `GLOSSARY.md` (domain terminology with usage notes for AI), `CLAUDE.md` (Claude Code agent instructions)
+- Location: `.ai/` (source of truth), root symlinks (`.cursorrules`, `CLAUDE.md`), `.cursor/rules/`, `.claude/rules/`
+- Contains: `.ai/context.md` (concise rulebook, always-applied), `.ai/rules/` (glob-activated: writing-style, publication, terminology), `GLOSSARY.md` (domain terminology with usage notes for AI)
+- Sync: `.ai/sync-rules.sh` creates symlinks into `.cursor/rules/*.mdc` and `.claude/rules/*.md`
 - Depends on: Nothing
 - Used by: AI assistants (Cursor, Claude Code), content creators
 
@@ -51,12 +52,20 @@
 - Depends on: Nothing
 - Used by: Content Layer (informs article writing), AI assistants (context for generation)
 
+**Distribution Layer:**
+- Purpose: Publishes content and promotes it across platforms with platform-specific adaptations
+- Platform: Substack (The AI Mirror) — primary publication; LinkedIn, Twitter/X, Instagram, Substack Notes — promotion
+- Contains: Publication workflow, social teasers, cross-posting conventions (documented in `.ai/rules/publication.md`)
+- Depends on: Export Layer (distributable formats), Artifact Storage Layer (polished outputs)
+- Used by: Author for publishing and audience engagement
+- Status: Manual workflow; MCP server integrations planned for Phase 2
+
 **Artifact Storage Layer:**
 - Purpose: Stores generated outputs and intermediate artifacts
 - Location: `topics/<topic_name>/exports/` (primary), `topics/<topic_name>/artifacts/` (supplementary with drafts/published structure)
 - Contains: DOCX, PPTX, PDF files; CSS stylesheets for PDF rendering
 - Depends on: Export Layer
-- Used by: Distribution, sharing, external presentation tools
+- Used by: Distribution Layer, sharing, external presentation tools
 
 ## Data Flow
 
@@ -147,9 +156,9 @@
 - Responsibilities: Detects OS, installs pandoc, npm, marp-cli, and LaTeX (pdflatex)
 
 **AI Authoring Context:**
-- Location: `.cursorrules` (Cursor IDE), `CLAUDE.md` (Claude Code), `GLOSSARY.md`
-- Triggers: Automatically loaded by AI tools at session start
-- Responsibilities: Provides writing tone, structure conventions, terminology, and AI-specific instructions
+- Location: `.ai/context.md` (via root symlinks `.cursorrules` and `CLAUDE.md`), `.ai/rules/` (via `.cursor/rules/` and `.claude/rules/` symlinks), `GLOSSARY.md`
+- Triggers: Always-applied context loaded at session start; glob-activated rules loaded when working on matching files
+- Responsibilities: Provides writing tone, structure conventions, terminology, publication workflow, and AI-specific instructions
 
 ## Error Handling
 

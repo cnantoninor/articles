@@ -117,11 +117,17 @@
 - Pandoc options hardcoded in shell scripts
 
 **AI Authoring Configuration:**
-- `.cursorrules` — AI writing guidelines, style conventions, domain terminology, file organization rules
-- `CLAUDE.md` — Claude Code context file
+- `.ai/context.md` — Concise rulebook (symlinked to `.cursorrules` and `CLAUDE.md`)
+- `.ai/rules/` — Glob-activated rules: writing-style, publication, terminology
+- `.ai/sync-rules.sh` — Creates/updates symlinks for Cursor and Claude Code
 - `GLOSSARY.md` — Shared domain terminology definitions
 - `templates/` — Content scaffolding templates (article, slides, research)
 - `.planning/config.json` — GSD planning tool configuration
+
+**Planned Tools (Phase 2):**
+- Substack MCP server — Drafting and publishing from editor
+- Social media MCP server — Cross-posting teasers to LinkedIn, Twitter/X, Instagram
+- Analytics integration — Tracking reach and engagement
 
 ## Platform Requirements
 
@@ -139,7 +145,8 @@
 - Installs: Pandoc, Node.js/npm, Marp CLI (global, falls back to local), LaTeX (texlive)
 
 **Production:**
-- Static content repository — no deployment infrastructure
+- Primary publication: Substack (The AI Mirror)
+- Promotion: LinkedIn, Twitter/X, Instagram, Substack Notes
 - Manual export workflow to Google Workspace (Docs/Slides)
 - Exports stored locally in `topics/<topic>/exports/` directories
 - Git-based version control

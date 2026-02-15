@@ -4,10 +4,14 @@
 
 ## APIs & External Services
 
-**None:**
+**Current:**
 - No API clients or SDKs in use
-- No external service integrations
 - Content is self-contained Markdown files processed by local CLI tools
+
+**Planned (Phase 2):**
+- **Substack MCP Server**: Drafting and publishing articles directly from the editor
+- **Social Media MCP Server**: Cross-posting teasers to LinkedIn, Twitter/X, Instagram, Substack Notes
+- **Analytics Integration**: Tracking reach and engagement across platforms
 
 ## Data Storage
 
@@ -49,8 +53,8 @@
 ## CI/CD & Deployment
 
 **Hosting:**
-- Not applicable — Local content repository
-- Exports manually shared via Google Docs/Slides
+- Primary publication: Substack (The AI Mirror — https://antoninorau.substack.com/)
+- Exports shared via Google Docs/Slides for collaboration
 
 **CI Pipeline:**
 - None detected
@@ -70,8 +74,8 @@
 - Not applicable — No secrets required
 
 **Configuration files:**
-- `.cursorrules` — AI authoring guidelines (not runtime config)
-- `CLAUDE.md` — Claude Code context
+- `.ai/context.md` — Concise AI rulebook (symlinked to `.cursorrules` and `CLAUDE.md`)
+- `.ai/rules/` — Glob-activated rules (writing-style, publication, terminology)
 - `GLOSSARY.md` — Shared terminology definitions
 - `.planning/config.json` — GSD planning tool settings
 
@@ -139,15 +143,17 @@ This repository's main "integrations" are its export pipelines — local CLI too
 
 **Cursor AI Editor:**
 - Primary authoring environment
-- Configuration: `.cursorrules` provides writing guidelines, style conventions, terminology
+- Configuration: `.ai/context.md` (via `.cursorrules` symlink) + `.cursor/rules/*.mdc` (glob-activated symlinks)
 - Integration: File-based context loading (no API integration)
 - Key files:
-  - `.cursorrules` — Main AI context and writing rules
+  - `.ai/context.md` → `.cursorrules` — Always-applied concise rulebook
+  - `.ai/rules/` → `.cursor/rules/` — Writing style, publication, terminology rules
   - `GLOSSARY.md` — Domain terminology
   - `templates/` — Content scaffolding (article, slides, research)
 
 **Claude Code:**
-- Context file: `CLAUDE.md`
+- Context file: `.ai/context.md` (via `CLAUDE.md` symlink)
+- Glob-activated rules: `.claude/rules/*.md` (symlinked from `.ai/rules/`)
 - Planning infrastructure: `.planning/` directory with project docs
 
 **No LLM APIs:**

@@ -6,11 +6,18 @@
 
 ```
 ai-articles/
-├── .cursorrules                # AI authoring guidelines (Cursor IDE auto-loads)
-├── CLAUDE.md                   # Claude Code agent instructions
-├── README.md                   # Repository docs, quickstart, structure overview
-├── GLOSSARY.md                 # Shared domain terminology with AI usage notes
-├── .gitignore                  # Ignores node_modules, .planning/phases
+├── .cursorrules -> .ai/context.md  # Symlink: always-applied AI context (Cursor)
+├── CLAUDE.md -> .ai/context.md     # Symlink: always-applied AI context (Claude Code)
+├── README.md                       # Repository docs, quickstart, structure overview
+├── GLOSSARY.md                     # Shared domain terminology with AI usage notes
+├── .gitignore                      # Ignores node_modules, .planning/phases, secrets
+├── .ai/                            # Centralized AI context (source of truth)
+│   ├── context.md                  # Concise rulebook (~50 lines, always-applied)
+│   ├── rules/                      # Glob-activated rules
+│   │   ├── writing-style.md        # Writing style, content structure, AI guidelines
+│   │   ├── publication.md          # Publication workflow, social teasers
+│   │   └── terminology.md          # Domain terminology, key concepts
+│   └── sync-rules.sh              # Creates/updates symlinks for Cursor + Claude Code
 ├── scripts/                    # Export automation and setup scripts
 │   ├── setup.sh                # Installs pandoc, marp-cli, LaTeX
 │   ├── export-all.sh           # Batch export orchestrator
@@ -61,9 +68,17 @@ ai-articles/
 │           └── iris-learnings-editable.pptx
 ├── tmp/                        # Temporary/scratch files (images, working docs)
 ├── .cursor/                    # Cursor IDE metadata
-│   └── plans/                  # AI-generated planning artifacts
+│   ├── plans/                  # AI-generated planning artifacts
+│   └── rules/                  # Symlinked glob-activated rules (.mdc)
+│       ├── writing-style.mdc -> ../../.ai/rules/writing-style.md
+│       ├── publication.mdc -> ../../.ai/rules/publication.md
+│       └── terminology.mdc -> ../../.ai/rules/terminology.md
 ├── .claude/                    # Claude Code configuration
-│   └── settings.local.json     # Local Claude settings
+│   ├── settings.local.json     # Local Claude settings
+│   └── rules/                  # Symlinked glob-activated rules (.md)
+│       ├── writing-style.md -> ../../.ai/rules/writing-style.md
+│       ├── publication.md -> ../../.ai/rules/publication.md
+│       └── terminology.md -> ../../.ai/rules/terminology.md
 └── .planning/                  # Project planning and analysis
     ├── codebase/               # Codebase mapping documents (this file, etc.)
     ├── milestones/             # Milestone tracking
@@ -77,10 +92,10 @@ ai-articles/
 - Purpose: Repository-level documentation and AI configuration
 - Contains: README, glossary, AI assistant config files, Git config
 - Key files:
-  - `README.md`: Getting started guide, quickstart for new topics, structure overview, export workflow docs
-  - `.cursorrules`: Comprehensive AI authoring guidelines — tone, structure, terminology, file organization, gap markers
-  - `GLOSSARY.md`: 74-line domain terminology reference with AI usage notes (e.g., "prefer 'understanding' over 'knowledge'")
-  - `CLAUDE.md`: Claude Code agent instructions (currently empty — conventions primarily in `.cursorrules`)
+  - `README.md`: Getting started guide, quickstart for new topics, structure overview, export workflow docs, publication info
+  - `.cursorrules` → `.ai/context.md`: Symlink to concise rulebook (always-applied by Cursor)
+  - `CLAUDE.md` → `.ai/context.md`: Symlink to concise rulebook (always-applied by Claude Code)
+  - `GLOSSARY.md`: Domain terminology reference with AI usage notes
 
 **`scripts/`:**
 - Purpose: Automation scripts for exporting content and setting up the development environment
@@ -156,9 +171,12 @@ ai-articles/
 - `templates/research.md`: Copy to create topic README
 
 **Configuration (AI Context):**
-- `.cursorrules`: Writing tone, structure conventions, terminology, AI assistant instructions — auto-loaded by Cursor IDE
+- `.ai/context.md`: Concise rulebook (~50 lines) — always-applied via root symlinks
+- `.ai/rules/writing-style.md`: Full writing style, content structure, AI guidelines — glob-activated on `topics/**/*.md`
+- `.ai/rules/publication.md`: Publication workflow, social teasers — glob-activated on `topics/**/artifacts/**`
+- `.ai/rules/terminology.md`: Domain terminology, key concepts — glob-activated on `topics/**/*.md`
+- `.ai/sync-rules.sh`: Creates/updates symlinks for both tools
 - `GLOSSARY.md`: Domain vocabulary with definitions and AI usage notes
-- `CLAUDE.md`: Claude Code agent instructions
 
 **Export Pipeline:**
 - `scripts/export-all.sh`: Batch export entry point

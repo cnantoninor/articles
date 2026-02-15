@@ -1,0 +1,62 @@
+---
+globs: topics/**/artifacts/**
+paths: topics/**/artifacts/**
+description: "Publication workflow, social media distribution, and teaser conventions"
+alwaysApply: false
+---
+
+# Publication & Distribution
+
+## Primary Platform
+
+- **Name**: The AI Mirror
+- **Platform**: Substack
+- **URL**: https://antoninorau.substack.com/
+- **Tagline**: AI, philosophy, and spirituality
+- **Cadence**: Weekly
+- **Subscribers**: 26-50 (goal: 100)
+
+## Social Media Channels
+
+- **LinkedIn**: https://www.linkedin.com/in/antoninorau/
+- **Twitter/X**: https://x.com/antoninorau
+- **Instagram**: https://www.instagram.com/eckardius_/
+- **Substack Notes**: Native short-form posting on Substack
+
+## Platform-Specific Teaser Conventions
+
+### LinkedIn
+- Professional framing with industry relevance
+- 1-3 short paragraphs, ending with a question or call to read
+- Use relevant hashtags sparingly (3-5 max)
+- Tone: thoughtful and accessible, matching the exploratory writing style
+
+### Twitter/X
+- Hook + insight format (1-2 tweets max)
+- Lead with the most provocative or surprising claim
+- End with a link to the full article
+- Tone: concise, punchy, but still exploratory
+
+### Instagram
+- Visual-first: pair with a relevant image or quote card
+- Caption: 2-3 sentences summarizing the core insight
+- Use relevant hashtags (10-15 in first comment)
+- Tone: accessible, slightly more casual
+
+### Substack Notes
+- Brief teaser (2-3 sentences) with a direct link
+- Leverage Substack's native discovery for organic reach
+- Tone: matches the article's exploratory voice
+
+## Distribution Workflow
+
+1. **Publish** article on Substack
+2. **Create teasers** for each platform (see conventions above)
+3. **Cross-post** teasers to LinkedIn, Twitter/X, Instagram, Substack Notes
+4. **Monitor** engagement and adjust cadence/format
+
+## Planned Enhancements (Phase 2)
+
+- MCP server for Substack drafting and publishing
+- MCP server for social media cross-posting
+- Analytics integration for tracking reach and engagement

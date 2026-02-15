@@ -1,0 +1,51 @@
+# AI Articles Repository
+
+## Project
+- Structured repo for AI-related articles, presentations, and research
+- Publication: The AI Mirror (https://antoninorau.substack.com/)
+- Audience: Technical professionals interested in AI and software development
+
+## Repository Layout
+- topics/<name>/   -- all content (articles, slides, references, exports)
+- templates/       -- starting templates for new content
+- scripts/         -- export scripts (pandoc, marp)
+- .ai/             -- centralized AI context (this file + rules/)
+- .ai/rules/       -- detailed rules activated by file path
+- GLOSSARY.md      -- shared terminology
+
+## Core Rules
+
+### Writing
+- Exploratory, not prescriptive -- present ideas as investigations
+- Define domain-specific terms on first use
+- Mark uncertainties: [GAP:], [TODO:], [QUESTION:], [EXAMPLE NEEDED]
+- Never invent content -- mark gaps instead
+- Preserve the author's voice
+
+### Glossary
+- Only add novel, niche, or author-introduced terms
+- Skip common industry terms
+- Each term needs a one-line definition
+
+### Publication
+- Primary: Substack (The AI Mirror) -- weekly cadence
+- Promotion: LinkedIn, Twitter/X, Instagram, Substack Notes
+- MCP servers for drafting and cross-posting are planned (Phase 2)
+- Teasers must match the exploratory writing tone
+
+### Content
+- YAML front-matter required (see templates/article.md)
+- H1 title only, H2 sections, H3 subsections, no deeper than H4
+- Start new content from templates/
+- Check GLOSSARY.md for consistent terminology
+
+### File Organization
+- Topic dirs: lowercase with underscores (topics/topic_name/)
+- Files: lowercase with hyphens (file-name.md)
+- Descriptive names (outline-v1.md not notes.md)
+
+## Export
+./scripts/export-all.sh <topic_name>
+
+## Current Topics
+- epistemic_debt -- Epistemic risks of LLM-based software engineering

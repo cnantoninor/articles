@@ -6,6 +6,13 @@ audience: []
 target_length: 0
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
+published_date:
+publication_url: ""
+social_teasers:
+  linkedin: ""
+  twitter: ""
+  instagram_caption: ""
+  substack_notes: ""
 ---
 
 # [Article Title]

@@ -132,6 +132,31 @@ All export scripts follow a consistent pattern:
 - No shellcheck compliance verification
 - `setup.sh` uses `set -e` but some installation sections could fail silently on unsupported platforms (e.g., Linux without apt/dnf/pacman for Node.js installation)
 
+## Publishing Conventions
+
+### Publication Workflow
+- **Primary platform**: Substack (The AI Mirror) — weekly cadence
+- **Distribution**: LinkedIn (professional framing), Twitter/X (hook+insight), Instagram (visual+caption), Substack Notes (organic discovery)
+- **Teaser tone**: Must match the exploratory writing style — no clickbait, no prescriptive claims
+- **Workflow**: Publish on Substack → create platform-specific teasers → cross-post to social channels
+- **Rules file**: `.ai/rules/publication.md` (glob-activated on `topics/**/artifacts/**`)
+
+### Article Front-Matter (Publication Fields)
+New articles should include publication fields in YAML front-matter:
+```yaml
+published_date:
+publication_url: ""
+social_teasers:
+  linkedin: ""
+  twitter: ""
+  instagram_caption: ""
+  substack_notes: ""
+```
+
+**Assessment:** Template updated. Existing articles not retroactively updated (acceptable for pre-publication content).
+
+---
+
 ## Glossary Consistency
 
 ### GLOSSARY.md Coverage

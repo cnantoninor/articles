@@ -64,6 +64,22 @@ End-to-end tests that validate system behavior against requirements rather than 
 
 ---
 
+## Publication & Distribution
+
+### Cross-posting
+Publishing or promoting content across multiple platforms with platform-specific adaptations in tone, format, and length.
+
+### Social Teaser
+A short, platform-adapted excerpt designed to drive traffic to the primary publication (Substack).
+
+### Substack Notes
+Substack's native short-form posting feature, used for organic discovery within the Substack ecosystem.
+
+### Distribution Layer
+The workflow stage between content export and audience reach — encompasses publishing, cross-posting, and promotion across channels.
+
+---
+
 ## Usage Notes for AI
 
 When writing about these topics:

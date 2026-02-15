@@ -58,10 +58,17 @@ Alternatively, you can install them manually:
 ```
 ai-articles/
 ├── README.md                    # This file
-├── CLAUDE.md                    # AI context for Claude Code sessions
-├── .cursorrules                 # AI context for Cursor sessions
+├── CLAUDE.md -> .ai/context.md  # AI context (symlink, always-applied)
+├── .cursorrules -> .ai/context.md # AI context (symlink, always-applied)
 ├── GLOSSARY.md                  # Domain terms across all topics
 ├── .gitignore                   # Git ignore rules
+├── .ai/                         # Centralized AI context (source of truth)
+│   ├── context.md               # Concise rulebook (always-applied)
+│   ├── rules/                   # Glob-activated rules
+│   │   ├── writing-style.md     # Writing style & content structure
+│   │   ├── publication.md       # Publication workflow & social teasers
+│   │   └── terminology.md       # Domain terminology & key concepts
+│   └── sync-rules.sh            # Creates/updates symlinks for all tools
 ├── scripts/
 │   ├── setup.sh                 # Install prerequisites (Pandoc, Marp, LaTeX)
 │   ├── export-docx.sh           # Markdown → DOCX (for Google Docs)
@@ -108,6 +115,20 @@ Export a topic to various formats:
 
 All exports are saved to `topics/<topic>/exports/`.
 
+## Publication
+
+Articles are published on **[The AI Mirror](https://antoninorau.substack.com/)** — a Substack publication exploring AI, philosophy, and spirituality.
+
+**Social channels:**
+- [LinkedIn](https://www.linkedin.com/in/antoninorau/) — professional framing, industry relevance
+- [Twitter/X](https://x.com/antoninorau) — hook + insight teasers
+- [Instagram](https://www.instagram.com/eckardius_/) — visual + caption format
+- Substack Notes — native short-form for organic discovery
+
+**Workflow:** Publish on Substack → create platform-specific teasers → cross-post to social channels.
+
+See `.ai/rules/publication.md` for detailed teaser conventions and distribution workflow.
+
 ## Folder Conventions
 
 - **raw_material/**: Working notes, brainstorming sessions, conversation logs
@@ -124,4 +145,12 @@ All exports are saved to `topics/<topic>/exports/`.
 
 ## AI Authoring
 
-This repository is optimized for AI-assisted writing in Cursor. See `.cursorrules` for style guidelines and conventions. Reference `GLOSSARY.md` for consistent terminology.
+This repository is optimized for AI-assisted writing in both Cursor and Claude Code.
+
+- **Rules source of truth**: `.ai/` directory (context + glob-activated rules)
+- **Symlinks**: `.cursorrules` and `CLAUDE.md` point to `.ai/context.md` (always-applied)
+- **Glob rules**: `.cursor/rules/` and `.claude/rules/` are symlinked from `.ai/rules/`
+- **Sync**: Run `bash .ai/sync-rules.sh` to create or update all symlinks
+- **Terminology**: See `GLOSSARY.md` for consistent domain terms
+
+> **Note (symlink compatibility)**: Symlinks work natively on Linux and WSL2. On Windows, you may need to enable Developer Mode or run `git config core.symlinks true`.

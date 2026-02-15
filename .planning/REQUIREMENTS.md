@@ -10,11 +10,11 @@ Requirements for article completion. Each maps to specific sections and content 
 
 ### Section II: Epistemic Debt — A New Lens
 
-- [ ] **SECT2-01**: Tech debt comparison table shows 4+ key differences (accumulation, visibility, social stigma, velocity)
-- [ ] **SECT2-02**: Include 3 concrete "default event" examples (dramatic, quantified, industry pattern)
-- [ ] **SECT2-03**: Lead with SaaStr database deletion case (dramatic impact)
-- [ ] **SECT2-04**: Include AlterSquare "200→2000 hours" case (quantified 10:1 cost ratio)
-- [ ] **SECT2-05**: Present industry failure statistics (breach rates, outage increases, quality gaps)
+- [x] **SECT2-01**: Tech debt comparison table shows 4+ key differences (accumulation, visibility, social stigma, velocity)
+- [x] **SECT2-02**: Include 3 concrete "default event" examples (dramatic, quantified, industry pattern)
+- [x] **SECT2-03**: Lead with SaaStr database deletion case (dramatic impact)
+- [x] **SECT2-04**: Include AlterSquare "200→2000 hours" case (quantified 10:1 cost ratio)
+- [x] **SECT2-05**: Present industry failure statistics (breach rates, outage increases, quality gaps)
 
 ### Section III: The Solutioning Trap
 
@@ -110,11 +110,11 @@ Which phases cover which requirements.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SECT2-01 | Phase 12 | Pending |
-| SECT2-02 | Phase 12 | Pending |
-| SECT2-03 | Phase 12 | Pending |
-| SECT2-04 | Phase 12 | Pending |
-| SECT2-05 | Phase 12 | Pending |
+| SECT2-01 | Phase 12 | Complete |
+| SECT2-02 | Phase 12 | Complete |
+| SECT2-03 | Phase 12 | Complete |
+| SECT2-04 | Phase 12 | Complete |
+| SECT2-05 | Phase 12 | Complete |
 | SECT3-01 | Phase 13 | Pending |
 | SECT3-02 | Phase 13 | Pending |
 | SECT3-03 | Phase 13 | Pending |

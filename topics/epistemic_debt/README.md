@@ -27,10 +27,15 @@ An exploratory article examining the epistemic risks of integrating LLMs into so
 | File | Purpose |
 |------|---------|
 | `article.md` | Main article draft |
-| `slides.md` | Presentation for talks |
+| `cursor-article.md` | Cursor-focused article variant |
+| `iris-learnings.md` | IRIS learnings presentation content |
+| `slides.md` | Marp presentation for talks |
 | `raw_material/outline-v1-epistemic-debt.md` | Detailed outline with gaps identified |
 | `raw_material/gsd-convo-1-on-epistemic-debt.md` | Initial brainstorming conversation |
 | `references/literature-review-on-epistemic-debt.md` | Related research and citations |
+| `assets/epistemic-trade-off-triangle.md` | Trade-off triangle diagram source |
+| `artifacts/` | Polished article and presentation versions |
+| `exports/` | Generated PDF, PPTX, and other export files |
 
 ## Current Gaps
 

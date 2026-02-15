@@ -3,7 +3,7 @@
 # Usage: ./scripts/export-docx.sh <topic-directory> [md-file-path]
 #
 # Example: ./scripts/export-docx.sh epistemic_debt
-#          ./scripts/export-docx.sh epistemic_debt epistemic_debt/article.md
+#          ./scripts/export-docx.sh epistemic_debt article.md
 
 set -e
 
@@ -17,7 +17,7 @@ TOPIC="$1"
 MD_FILE="${2:-article.md}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
-TOPIC_DIR="$REPO_ROOT/$TOPIC"
+TOPIC_DIR="$REPO_ROOT/topics/$TOPIC"
 
 # If MD_FILE is an absolute path or starts with ./ or ../, use it directly
 # Otherwise, assume it's relative to TOPIC_DIR

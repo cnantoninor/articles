@@ -1,164 +1,284 @@
 # Codebase Concerns
 
-**Analysis Date:** 2026-01-26
+**Analysis Date:** 2026-02-15
 
-## Tech Debt
+## 1. Directory Restructure Inconsistencies
 
-**Incomplete Article Content:**
-- Issue: Multiple content gaps marked throughout primary article requiring substantial writing work
-- Files: `/home/arau6/projects/ai-articles/epistemic_debt/article.md`
-- Impact: Article cannot be published or presented without completing 9+ major gaps including opening hook, concrete examples, conclusion, and emotional landing
-- Fix approach: Systematic gap filling working from outline, prioritizing concrete examples first (lines 21, 49, 63, 79, 89, 99, 139, 167, 173, 181)
+### 1.1 Git Status Shows Deleted Files from Old Location
 
-**Missing References Integration:**
-- Issue: Literature review completed but not integrated into article
-- Files: `/home/arau6/projects/ai-articles/epistemic_debt/article.md` (line 187), `/home/arau6/projects/ai-articles/epistemic_debt/references/literature-review-on-epistemic-debt.md`
-- Impact: Article lacks academic grounding and citation support, reducing credibility
-- Fix approach: Add formal references section with citations from Ngabang (2026), Ionescu et al. (2020), and supporting blog posts
+- **Issue:** Git status shows many `D` (deleted) entries for files under `epistemic_debt/` (without the `topics/` prefix). This indicates the content was moved from a top-level `epistemic_debt/` directory to `topics/epistemic_debt/` but the deletion of the old files was never committed.
+- **Files affected:** All files previously at `epistemic_debt/*` are shown as deleted in git status — 30+ files including articles, exports, references, and raw material.
+- **Impact:** The working tree is cluttered with uncommitted changes. New contributors running `git status` will see confusing deletion noise. Risk of accidentally reverting the restructure.
+- **Fix approach:** Stage and commit the directory move: `git add -A && git commit -m "Move epistemic_debt/ to topics/epistemic_debt/"`. This is the most critical pending action.
 
-**Incomplete Slides Presentation:**
-- Issue: Contact information and resources section not filled in
-- Files: `/home/arau6/projects/ai-articles/epistemic_debt/slides.md` (line 191)
-- Impact: Presentation cannot be delivered without speaker contact/resource information
-- Fix approach: Add author contact details and links to resources (article URL, literature review, etc.)
+### 1.2 Untracked `topics/` Directory
 
-**Empty Export Directories:**
-- Issue: Export directories created but no generated artifacts present
-- Files: `/home/arau6/projects/ai-articles/epistemic_debt/exports/`, `/home/arau6/projects/ai-articles/epistemic_debt/artifacts/articles/`, `/home/arau6/projects/ai-articles/epistemic_debt/artifacts/presentation/`
-- Impact: No publishable formats exist; manual export required before sharing
-- Fix approach: Run export scripts once content gaps are filled: `/home/arau6/projects/ai-articles/scripts/export-docx.sh`, `/home/arau6/projects/ai-articles/scripts/export-slides.sh`, `/home/arau6/projects/ai-articles/scripts/export-pdf.sh`
+- **Issue:** Git status shows `?? topics/` — the entire new directory structure is untracked.
+- **Impact:** All content in `topics/epistemic_debt/` is not version-controlled. Data loss risk if the working directory is cleaned or lost.
+- **Fix approach:** Add `topics/` to version control as part of the restructure commit above. Ensure `.gitignore` excludes only what should be excluded (exports, node_modules).
 
-**Artifacts Directory Confusion:**
-- Issue: Both `artifacts/` and `exports/` directories exist with similar purposes but different conventions
-- Files: `/home/arau6/projects/ai-articles/epistemic_debt/artifacts/`, `/home/arau6/projects/ai-articles/epistemic_debt/exports/`
-- Impact: Unclear which directory to use for generated outputs; README.md specifies `exports/` but `artifacts/` also exists
-- Fix approach: Consolidate to single export location (per README.md convention use `exports/`), remove or repurpose `artifacts/`
+### 1.3 Modified Scripts Not Committed
 
-## Known Bugs
+- **Issue:** `scripts/export-all.sh`, `scripts/export-docx.sh`, `scripts/export-pdf.sh`, `scripts/export-slides.sh` are all modified but not committed. These were likely updated to reflect the new `topics/` path prefix.
+- **Impact:** Scripts in git HEAD may reference old paths, making them non-functional if someone checks out a clean copy.
+- **Fix approach:** Include in the restructure commit.
 
-**No bugs detected** - This is a content repository without executable code.
+### 1.4 Modified `.cursorrules` and `README.md` Not Committed
 
-## Security Considerations
-
-**No External Dependencies:**
-- Risk: Repository relies on external tools (pandoc, marp-cli) not managed in project
-- Files: `/home/arau6/projects/ai-articles/scripts/export-docx.sh`, `/home/arau6/projects/ai-articles/scripts/export-slides.sh`, `/home/arau6/projects/ai-articles/scripts/export-pdf.sh`
-- Current mitigation: README.md documents prerequisites
-- Recommendations: Add dependency version checking in export scripts to warn if tools are missing or outdated
-
-**No Sensitive Data Controls:**
-- Risk: Repository structure doesn't prevent accidental commit of sensitive data in raw_material/ directories
-- Files: All directories under `/home/arau6/projects/ai-articles/*/raw_material/`
-- Current mitigation: None detected
-- Recommendations: Add `.gitignore` patterns for common sensitive file types (.env, credentials, API keys) and document raw_material/ security guidelines in README.md
-
-## Performance Bottlenecks
-
-**Not applicable** - Static content repository has no runtime performance concerns.
-
-## Fragile Areas
-
-**Gap Marker Convention Dependency:**
-- Files: `/home/arau6/projects/ai-articles/epistemic_debt/article.md`, `/home/arau6/projects/ai-articles/.cursorrules` (lines 54-59)
-- Why fragile: Entire workflow depends on consistent use of `[GAP:]`, `[TODO:]`, `[QUESTION:]`, `[EXAMPLE NEEDED]` markers; inconsistent usage breaks tracking
-- Safe modification: Always use exact marker syntax from .cursorrules; search for markers before considering content "complete"
-- Test coverage: No automated validation that markers are used correctly
-
-**Front-Matter Schema Enforcement:**
-- Files: All article/slides files, template defined in `/home/arau6/projects/ai-articles/.cursorrules` (lines 34-46)
-- Why fragile: No validation that YAML front-matter matches expected schema (title, status, type, audience, target_length, created, last_updated)
-- Safe modification: Always copy template structure; validate YAML syntax before committing
-- Test coverage: None - could fail silently if export scripts expect specific fields
-
-**Cross-Reference Integrity:**
-- Files: `/home/arau6/projects/ai-articles/GLOSSARY.md`, all articles referencing terminology
-- Why fragile: No automated checking that article terminology matches GLOSSARY.md definitions
-- Safe modification: Always verify GLOSSARY.md when introducing new domain terms; update both locations
-- Test coverage: Manual review only
-
-**Script Path Assumptions:**
-- Files: `/home/arau6/projects/ai-articles/scripts/export-docx.sh` (lines 16-18), similar in other export scripts
-- Why fragile: Export scripts use relative path navigation assuming specific directory structure
-- Safe modification: Run scripts from repository root only; don't rename topic directories while exports are running
-- Test coverage: None - scripts fail with unclear errors if directory structure changes
-
-## Scaling Limits
-
-**Single Topic Limitation:**
-- Current capacity: 1 topic (epistemic_debt)
-- Limit: README.md describes multi-topic structure, but no automation for creating new topics
-- Scaling path: Create topic scaffolding script to automate directory creation, template copying, and README.md updates
-
-**No Content Organization for Large Articles:**
-- Current capacity: Single-file articles work for 4000-word target
-- Limit: Articles exceeding ~10,000 words become unwieldy in single file; no chunking strategy
-- Scaling path: Add section-per-file convention with assembly script for long-form content
-
-**Export Script Serial Processing:**
-- Current capacity: `export-all.sh` runs exports sequentially
-- Limit: Slow for multiple large topics
-- Scaling path: Parallelize exports in `/home/arau6/projects/ai-articles/scripts/export-all.sh`
-
-## Dependencies at Risk
-
-**pandoc:**
-- Risk: External tool, version compatibility unknown
-- Impact: DOCX/PDF exports break if pandoc syntax changes
-- Migration plan: Document tested pandoc version; consider containerized export environment
-
-**marp-cli:**
-- Risk: External NPM package, global install required
-- Impact: Slide exports fail without global npm install; potential version drift
-- Migration plan: Add package.json to lock marp-cli version; use npx for version-specific execution
-
-## Missing Critical Features
-
-**No Version Control Integration:**
-- Problem: Repository described as not a git repo (per environment info)
-- Blocks: Collaboration, change tracking, backup, CI/CD for exports
-- Priority: High - git init recommended immediately
-
-**No Draft/Review Workflow Enforcement:**
-- Problem: Front-matter has `status` field (draft/review/published) but no validation or workflow automation
-- Blocks: Quality control, publication pipeline, preventing accidental publication of drafts
-- Priority: Medium - add pre-commit hook or CI check for status field validation
-
-**No Automated Gap Detection:**
-- Problem: Content gaps tracked manually with markers; no automated reporting
-- Blocks: Knowing completion status without manual file inspection
-- Priority: Medium - script to extract and report all `[GAP:]`, `[TODO:]`, `[QUESTION:]`, `[EXAMPLE NEEDED]` markers across codebase
-
-**No Template Validation:**
-- Problem: Templates exist but no enforcement that new content follows template structure
-- Blocks: Consistency across topics as repository scales
-- Priority: Low - add linting script to validate article structure matches conventions
-
-## Test Coverage Gaps
-
-**Export Script Functionality:**
-- What's not tested: Scripts in `/home/arau6/projects/ai-articles/scripts/` have no automated tests
-- Files: `/home/arau6/projects/ai-articles/scripts/export-docx.sh`, `/home/arau6/projects/ai-articles/scripts/export-slides.sh`, `/home/arau6/projects/ai-articles/scripts/export-pdf.sh`, `/home/arau6/projects/ai-articles/scripts/export-all.sh`
-- Risk: Export failures discovered only when running scripts; invalid exports could be created silently
-- Priority: Medium
-
-**Markdown Syntax Validity:**
-- What's not tested: No validation that markdown files are syntactically valid or will render correctly
-- Files: All `.md` files under `/home/arau6/projects/ai-articles/`
-- Risk: Broken links, malformed tables, invalid YAML front-matter discovered during export or presentation
-- Priority: Medium
-
-**Glossary-Article Terminology Sync:**
-- What's not tested: No validation that terms used in articles match GLOSSARY.md definitions
-- Files: `/home/arau6/projects/ai-articles/GLOSSARY.md`, `/home/arau6/projects/ai-articles/epistemic_debt/article.md`
-- Risk: Inconsistent terminology across repository; confusion for readers and AI assistants
-- Priority: Low
-
-**Convention Compliance:**
-- What's not tested: No automated checking that files follow .cursorrules conventions (heading hierarchy, gap markers, citation format, naming patterns)
-- Files: All content files, conventions defined in `/home/arau6/projects/ai-articles/.cursorrules`
-- Risk: Content drift from established conventions as repository grows
-- Priority: Low
+- **Issue:** Both root files are modified, likely updated for the `topics/` restructure.
+- **Impact:** Documentation and AI context reference old paths in the committed version.
+- **Fix approach:** Include in the restructure commit.
 
 ---
 
-*Concerns audit: 2026-01-26*
+## 2. Incomplete .gitignore
+
+### 2.1 Generated Exports Not Gitignored
+
+- **Issue:** `.gitignore` contains only `node_modules` and `.planning/phases`. The `topics/*/exports/` directories contain generated binary files (PDFs: 292KB–5.2MB, PPTX: 65KB–5.2MB, HTML, CSS) that should not be version-controlled.
+- **Files affected:**
+  - `topics/epistemic_debt/exports/claude-article-cc.pdf` (393 KB)
+  - `topics/epistemic_debt/exports/claude-article.pdf` (292 KB)
+  - `topics/epistemic_debt/exports/cursor-article-cc.pdf` (431 KB)
+  - `topics/epistemic_debt/exports/cursor-article.pdf` (328 KB)
+  - `topics/epistemic_debt/exports/iris-learnings.pptx` (5.2 MB)
+  - `topics/epistemic_debt/exports/iris-learnings-editable.pptx` (65 KB)
+  - `topics/epistemic_debt/exports/iris-learnings.html` (169 KB)
+- **Impact:** Repository bloat. Binary files inflate git history. Each export regeneration creates a new large blob.
+- **Fix approach:** Add to `.gitignore`:
+  ```
+  topics/*/exports/*.pdf
+  topics/*/exports/*.pptx
+  topics/*/exports/*.docx
+  topics/*/exports/*.html
+  ```
+  Keep CSS and JS export tooling files tracked.
+
+### 2.2 tmp/ Directory Not Gitignored
+
+- **Issue:** `tmp/` directory at repository root contains 6 PNG files (259KB–585KB) and a DOCX file. These appear to be working/scratch files (triangle diagram iterations).
+- **Impact:** ~2.3MB of temporary binary files that will bloat git history if committed. Names with spaces (`01 simple triangle.png`) also suggest these are informal working assets, not final content.
+- **Fix approach:** Either:
+  - Add `tmp/` to `.gitignore` (if purely scratch)
+  - Move relevant files to `topics/epistemic_debt/assets/` and gitignore the rest
+
+### 2.3 node_modules/ Present but Minimal
+
+- **Issue:** `node_modules/` exists and is correctly gitignored. Contains markdown-it and footnote plugin for the custom `export-pdf.js` script. No `package.json` or `package-lock.json` in the repository root to track these dependencies.
+- **Impact:** Dependencies are installed but not declared. Running `npm install` would fail because there's no package.json. The custom `export-pdf.js` script also hardcodes an absolute path to puppeteer: `/home/arau6/.nvm/versions/node/v22.17.1/lib/node_modules/md-to-pdf/node_modules/puppeteer`.
+- **Fix approach:** Either:
+  - Add a `package.json` declaring `markdown-it` and `markdown-it-footnote` as dependencies
+  - Or document the manual install requirement in README
+  - Fix the hardcoded puppeteer path in `exports/export-pdf.js`
+
+---
+
+## 3. Content Organization Issues
+
+### 3.1 Duplicate Triangle Framework File
+
+- **Issue:** `topics/epistemic_debt/assets/epistemic-trade-off-triangle.md` and `topics/epistemic_debt/references/epistemic-trade-off-triangle.md` are identical files (verified via diff).
+- **Impact:** Maintenance burden — edits to one won't propagate to the other. Unclear which is canonical.
+- **Fix approach:** Keep one copy. The `assets/` location makes more sense (it's an authored asset, not a reference). Remove the `references/` copy, or vice versa.
+
+### 3.2 Two Parallel Article Versions with Unclear Relationship
+
+- **Issue:** `topics/epistemic_debt/article.md` (7,912 words) and `topics/epistemic_debt/cursor-article.md` (7,493 words) are both full article drafts covering the same topic with the same structure, same title, same abstract, and many shared passages.
+- **Differences:** 
+  - `article.md` has more polished prose and a "Beyond Software" generalization section
+  - `cursor-article.md` has more practitioner-focused content, vibe coding details, additional references, and a spec-driven development section
+  - Both are dated differently (article.md: created 2026-01-25, cursor-article.md: created 2026-02-08)
+- **Impact:** Unclear which is the "canonical" article. Risk of divergent editing. README lists only `article.md` as the "Main article draft" — `cursor-article.md` is not mentioned.
+- **Fix approach:** Either:
+  - Merge the best content from both into one canonical article
+  - Rename/reorganize to make the relationship clear (e.g., `article-v1.md` and `article-v2.md`, or `article-academic.md` and `article-practitioner.md`)
+  - Update README to document both files and their intended audiences
+
+### 3.3 Empty `artifacts/` Directory Structure
+
+- **Issue:** `topics/epistemic_debt/artifacts/` contains subdirectories (`articles/drafts`, `articles/published`, `presentation/drafts`, `presentation/published`) but all are empty.
+- **Impact:** This structure doesn't appear in the documented topic directory structure (in `.cursorrules` or `README.md`). It's either an abandoned organizational experiment or an incomplete migration.
+- **Fix approach:** Either populate it with content (move final exports here?) or remove the empty structure. If kept, document it in `.cursorrules` topic directory structure.
+
+### 3.4 Content Files Outside Topic Directory Structure
+
+- **Issue:** `iris-learnings.md` is a standalone Marp presentation in the topic root. It's not `slides.md` (the convention) and not mentioned in the README's "Files in This Topic" table.
+- **Impact:** New contributors won't discover it. It breaks the convention of one `slides.md` per topic.
+- **Fix approach:** Either:
+  - Mention it in README
+  - Rename to something like `iris-presentation.md` and update README
+  - Keep `slides.md` as the general-audience presentation and `iris-learnings.md` as a specialized internal one, but document this in README
+
+---
+
+## 4. Script Robustness Issues
+
+### 4.1 No Tool Availability Checks in Export Scripts
+
+- **Issue:** Export scripts (`export-docx.sh`, `export-slides.sh`, `export-pdf.sh`) assume `pandoc` and `marp` are installed but don't verify before attempting export.
+- **Impact:** Cryptic errors if tools are missing. Users see "command not found" instead of a helpful message pointing to `setup.sh`.
+- **Fix approach:** Add checks at script start:
+  ```bash
+  if ! command -v pandoc &>/dev/null; then
+      echo "Error: pandoc not found. Run ./scripts/setup.sh first."
+      exit 1
+  fi
+  ```
+
+### 4.2 export-pdf.js Has Hardcoded Absolute Path
+
+- **Issue:** `topics/epistemic_debt/exports/export-pdf.js` line 12 contains:
+  ```javascript
+  const puppeteer = require('/home/arau6/.nvm/versions/node/v22.17.1/lib/node_modules/md-to-pdf/node_modules/puppeteer');
+  ```
+- **Impact:** This will fail on any other machine or if nvm version changes. The script is completely non-portable.
+- **Fix approach:** Either:
+  - Add `puppeteer` as a proper dependency
+  - Use a relative require path
+  - Document the manual puppeteer setup requirement
+
+### 4.3 export-pdf.js Has Hardcoded Export Targets
+
+- **Issue:** The `main()` function in `export-pdf.js` hardcodes specific files to export (`article.md` → `claude-article-cc.pdf`, `cursor-article.md` → `cursor-article-cc.pdf`).
+- **Impact:** Adding new articles requires editing the JS file. The naming convention (`claude-article-cc.pdf`) doesn't follow any documented pattern and mixes tool-specific names with content names.
+- **Fix approach:** Accept input/output as command-line arguments, or make the script auto-discover markdown files in the topic directory.
+
+### 4.4 setup.sh Platform Coverage Gaps
+
+- **Issue:** `setup.sh` handles:
+  - Linux: apt-get, dnf, pacman
+  - macOS: brew
+  But for Node.js installation on Linux:
+  - Only handles apt-get (line 52): `sudo apt-get install -y nodejs npm`
+  - Missing: dnf, pacman fallbacks for Node.js (unlike pandoc which handles all three)
+  - Missing: Windows/WSL detection (relevant since user is on WSL2)
+- **Impact:** On Fedora/Arch Linux, setup.sh will fail to install Node.js if npm isn't already present.
+- **Fix approach:** Add dnf/pacman fallbacks for Node.js installation, matching the pandoc pattern.
+
+### 4.5 setup.sh LaTeX Installation Incomplete on Some Platforms
+
+- **Issue:** LaTeX installation only handles apt-get on Linux and brew on macOS. Missing dnf/pacman fallbacks.
+- **Impact:** Users on Fedora/Arch won't get LaTeX installed automatically.
+- **Fix approach:** Add `dnf install texlive-scheme-basic` and `pacman -S texlive-basic` fallbacks.
+
+### 4.6 export-all.sh Unconditionally Calls export-pdf.sh with "both"
+
+- **Issue:** When no specific MD file is provided, `export-all.sh` (line 79) calls `export-pdf.sh "$TOPIC" both` regardless of whether `article.md` or `slides.md` exist. The `|| true` in `export-pdf.sh` handles the missing files gracefully, but it still prints confusing warning messages.
+- **Impact:** Minor — users see "Warning: No file found at..." messages during batch export even though the script continues.
+- **Fix approach:** Check for file existence before calling export-pdf.sh for each type.
+
+---
+
+## 5. Glossary Staleness
+
+### 5.1 Ten+ Terms Missing from GLOSSARY.md
+
+- **Issue:** GLOSSARY.md has not been updated since article development added many new concepts. See CONVENTIONS.md §Glossary Consistency for full list.
+- **Missing terms:** Epistemic Credit, Automation Bias, Stochastic Spaghetti Effect, Context Window Amnesia, Vibe Coding, Spec-Driven Development, Epistemia, Rubber-Stamp Culture, Trade-off Triangle, Bus Factor.
+- **Impact:** AI assistants referencing GLOSSARY.md for consistent terminology will miss key concepts. New article development may use inconsistent definitions.
+- **Fix approach:** Update GLOSSARY.md with definitions for all terms used in published content.
+
+---
+
+## 6. File Naming Violations
+
+### 6.1 Reference Files with Spaces and Mixed Case
+
+- **Issue:** Several reference files violate the naming convention (lowercase with hyphens):
+  - `references/Epistemic_debt_definition.md` → should be `epistemic-debt-definition.md`
+  - `references/Epistemic Debt Research Complete.pdf` → should be `epistemic-debt-research-complete.pdf`
+  - `references/Triangle Interaction Table.pdf` → should be `triangle-interaction-table.pdf`
+  - `tmp/01 simple triangle.png` → should use hyphens not spaces
+  - `tmp/Triangle Interaction Table.docx` → should use hyphens not spaces
+- **Impact:** Inconsistency. Scripts that handle filenames with spaces need quoting. Git operations on files with spaces are error-prone.
+- **Fix approach:** Rename to follow convention. Update any references to these files.
+
+---
+
+## 7. Missing Package Management
+
+### 7.1 No package.json for Node.js Dependencies
+
+- **Issue:** `node_modules/` exists with `markdown-it`, `markdown-it-footnote`, and related packages, but there's no `package.json` or `package-lock.json` at the repository root.
+- **Impact:** Cannot reproduce the dependency installation. `npm install` in a fresh clone will fail. Dependencies are invisible to contributors.
+- **Fix approach:** Run `npm init -y` and `npm install markdown-it markdown-it-footnote` to create proper package management files.
+
+---
+
+## 8. Orphaned/Outdated Content References
+
+### 8.1 README "Files in This Topic" Table Incomplete
+
+- **Issue:** `topics/epistemic_debt/README.md` lists only 5 files in its table. Missing:
+  - `cursor-article.md` (second full article draft)
+  - `iris-learnings.md` (IRIS presentation)
+  - `assets/epistemic-trade-off-triangle.md` (triangle framework reference)
+  - `references/Epistemic_debt_definition.md`
+  - `exports/export-pdf.js` (custom export tool)
+- **Impact:** Incomplete discoverability. Contributors won't know about all available content.
+- **Fix approach:** Update the table to include all significant files.
+
+### 8.2 README "Last Updated" Dates May Be Stale
+
+- **Issue:** `topics/epistemic_debt/README.md` shows `Last Updated: 2026-01-26` but content files have been modified through 2026-02-08.
+- **Impact:** Misleading freshness indicator.
+- **Fix approach:** Update to reflect actual last modification date.
+
+---
+
+## 9. Export Workflow Fragmentation
+
+### 9.1 Two Competing PDF Export Mechanisms
+
+- **Issue:** There are two PDF export paths:
+  1. **Shell script** (`scripts/export-pdf.sh`): Uses pandoc/marp CLI tools. Part of the standard export workflow.
+  2. **Node.js script** (`topics/epistemic_debt/exports/export-pdf.js`): Uses markdown-it + puppeteer for higher-quality output with footnote support. Topic-specific, not integrated into the standard workflow.
+- **Impact:** Confusing. Which should be used? The Node.js script produces better output (proper footnote rendering) but is non-portable and topic-specific. The shell script is portable but may not handle footnotes well.
+- **Fix approach:** Either:
+  - Integrate the Node.js approach into the standard export workflow
+  - Document when to use which tool
+  - Consolidate into one approach
+
+### 9.2 Export File Naming Inconsistency
+
+- **Issue:** Export files use mixed naming patterns:
+  - Shell scripts produce: `article-YYYYMMDD.pdf`, `article.pdf` (latest)
+  - Node.js script produces: `claude-article-cc.pdf`, `cursor-article-cc.pdf`
+  - Manually created: `iris-learnings.pptx`, `iris-learnings-editable.pptx`
+- **Impact:** Unclear provenance. Hard to tell which export was generated by which tool, or which article it corresponds to.
+- **Fix approach:** Standardize export naming to `{source-filename}-{format}.{ext}` or similar.
+
+---
+
+## 10. CLAUDE.md is Empty
+
+### 10.1 No Project Context for Claude Code
+
+- **Issue:** `CLAUDE.md` exists at the repository root but is empty.
+- **Impact:** Claude Code (terminal-based) sessions have no project context. `.cursorrules` provides Cursor-specific context, but `CLAUDE.md` should provide equivalent context for Claude Code. This is a missed opportunity for consistent AI assistance.
+- **Fix approach:** Populate `CLAUDE.md` with project overview, conventions, and instructions similar to `.cursorrules` but formatted for Claude Code's expectations.
+
+---
+
+## Priority Summary
+
+| Priority | Issue | Impact | Effort |
+|----------|-------|--------|--------|
+| **Critical** | §1: Uncommitted directory restructure | Data loss risk, broken git state | Low (one commit) |
+| **High** | §2.1: Exports not gitignored | Repository bloat | Low |
+| **High** | §3.2: Two parallel article versions | Content confusion | Medium (editorial decision) |
+| **High** | §5: Glossary staleness | Inconsistent AI assistance | Medium |
+| **Medium** | §2.2: tmp/ not gitignored | Repository bloat | Low |
+| **Medium** | §4.2: Hardcoded path in export-pdf.js | Non-portable tooling | Low |
+| **Medium** | §7: No package.json | Non-reproducible setup | Low |
+| **Medium** | §10: Empty CLAUDE.md | Missing AI context | Medium |
+| **Low** | §3.1: Duplicate triangle file | Maintenance burden | Low |
+| **Low** | §3.3: Empty artifacts/ directory | Confusing structure | Low |
+| **Low** | §4.1: No tool checks in scripts | Poor error messages | Low |
+| **Low** | §6: File naming violations | Inconsistency | Low |
+| **Low** | §8: Stale README | Discoverability | Low |
+| **Low** | §9: Export workflow fragmentation | Confusion | Medium |
+
+---
+
+*Concerns audit: 2026-02-15*

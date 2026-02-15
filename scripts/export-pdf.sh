@@ -5,7 +5,7 @@
 # Example: ./scripts/export-pdf.sh epistemic_debt article
 #          ./scripts/export-pdf.sh epistemic_debt slides
 #          ./scripts/export-pdf.sh epistemic_debt both
-#          ./scripts/export-pdf.sh epistemic_debt epistemic_debt/custom.md
+#          ./scripts/export-pdf.sh epistemic_debt custom.md
 
 set -e
 
@@ -19,7 +19,7 @@ TOPIC="$1"
 MODE="${2:-both}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
-TOPIC_DIR="$REPO_ROOT/$TOPIC"
+TOPIC_DIR="$REPO_ROOT/topics/$TOPIC"
 
 # Validate topic directory exists
 if [ ! -d "$TOPIC_DIR" ]; then

@@ -79,31 +79,31 @@ ai-articles/
 - Uses `pandoc` to convert article.md to DOCX
 - Preserves front-matter as document properties where possible
 - Output to `<topic>/exports/`
+
 ```bash
 # Usage: ./scripts/export-docx.sh epistemic_debt
 pandoc "$1/article.md" -o "$1/exports/article.docx" \
   --from=markdown --to=docx --standalone
 ```
 
-
 ### scripts/export-slides.sh
 
 - Uses `marp` CLI to convert slides.md to PPTX
 - Supports themes and speaker notes
+
 ```bash
 # Usage: ./scripts/export-slides.sh epistemic_debt
 marp "$1/slides.md" -o "$1/exports/slides.pptx" --allow-local-files
 ```
 
-
 ### scripts/export-pdf.sh
 
 - Dual mode: article PDF (via pandoc) and slides PDF (via marp)
 - Article uses a clean template
+
 ```bash
 # Usage: ./scripts/export-pdf.sh epistemic_debt [article|slides|both]
 ```
-
 
 ### scripts/export-all.sh
 
@@ -220,3 +220,6 @@ flowchart LR
     MD --> PPTX --> GS
     MD --> PDF --> PDFO
 ```
+
+
+

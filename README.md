@@ -30,25 +30,25 @@ Alternatively, you can install them manually:
 
 ## Quickstart: Creating a New Topic
 
-1. Create a new directory for your topic:
+1. Create a new directory for your topic under `topics/`:
    ```bash
-   mkdir my_new_topic
+   mkdir topics/my_new_topic
    ```
 
 2. Copy templates to get started:
    ```bash
-   cp templates/article.md my_new_topic/article.md
-   cp templates/slides.md my_new_topic/slides.md
+   cp templates/article.md topics/my_new_topic/article.md
+   cp templates/slides.md topics/my_new_topic/slides.md
    ```
 
 3. Create supporting directories:
    ```bash
-   mkdir -p my_new_topic/{raw_material,references,assets,exports}
+   mkdir -p topics/my_new_topic/{raw_material,references,assets,exports,artifacts/{articles/{drafts,published},presentation/{drafts,published}}}
    ```
 
 4. Add a topic README:
    ```bash
-   cp templates/research.md my_new_topic/README.md
+   cp templates/research.md topics/my_new_topic/README.md
    ```
 
 5. Start writing!
@@ -58,9 +58,12 @@ Alternatively, you can install them manually:
 ```
 ai-articles/
 ├── README.md                    # This file
+├── CLAUDE.md                    # AI context for Claude Code sessions
 ├── .cursorrules                 # AI context for Cursor sessions
 ├── GLOSSARY.md                  # Domain terms across all topics
+├── .gitignore                   # Git ignore rules
 ├── scripts/
+│   ├── setup.sh                 # Install prerequisites (Pandoc, Marp, LaTeX)
 │   ├── export-docx.sh           # Markdown → DOCX (for Google Docs)
 │   ├── export-slides.sh         # Marp → PPTX (for Google Slides)
 │   ├── export-pdf.sh            # Markdown → PDF
@@ -69,14 +72,18 @@ ai-articles/
 │   ├── article.md               # Article template with front-matter
 │   ├── slides.md                # Marp presentation template
 │   └── research.md              # Research/notes template
-└── [topic-name]/                # Each topic follows this structure:
-    ├── README.md                # Topic overview, status, links
-    ├── article.md               # Main article draft
-    ├── slides.md                # Marp presentation
-    ├── raw_material/            # Working notes, brainstorms
-    ├── references/              # Literature, citations
-    ├── assets/                  # Images, diagrams
-    └── exports/                 # Generated DOCX, PPTX, PDF
+└── topics/                      # All article topics live here
+    └── [topic_name]/            # Each topic follows this structure:
+        ├── README.md            # Topic overview, status, links
+        ├── article.md           # Main article draft
+        ├── slides.md            # Marp presentation
+        ├── raw_material/        # Working notes, brainstorms
+        ├── references/          # Literature, citations
+        ├── assets/              # Images, diagrams
+        ├── artifacts/           # Polished outputs for distribution
+        │   ├── articles/        #   Article versions (drafts/, published/)
+        │   └── presentation/    #   Slide versions (drafts/, published/)
+        └── exports/             # Generated DOCX, PPTX, PDF
 ```
 
 ## Export Workflow
@@ -99,18 +106,21 @@ Export a topic to various formats:
 ./scripts/export-all.sh epistemic_debt
 ```
 
-All exports are saved to `<topic>/exports/`.
+All exports are saved to `topics/<topic>/exports/`.
 
 ## Folder Conventions
 
 - **raw_material/**: Working notes, brainstorming sessions, conversation logs
 - **references/**: Literature reviews, citations, source material
 - **assets/**: Images, diagrams, and other media
-- **exports/**: Generated output files (DOCX, PPTX, PDF)
+- **artifacts/**: Polished, distribution-ready versions of articles and presentations
+  - `articles/drafts/` and `articles/published/` for article versions
+  - `presentation/drafts/` and `presentation/published/` for slide versions
+- **exports/**: Generated output files (DOCX, PPTX, PDF) from export scripts
 
 ## Current Topics
 
-- **[epistemic_debt](epistemic_debt/)** - Exploring epistemic risks of LLM-based software engineering
+- **[epistemic_debt](topics/epistemic_debt/)** - Exploring epistemic risks of LLM-based software engineering
 
 ## AI Authoring
 

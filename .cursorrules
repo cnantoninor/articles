@@ -119,18 +119,25 @@ See `GLOSSARY.md` for shared definitions across all topics.
 ## File Organization
 
 ### Topic Directory Structure
+All topics live under the `topics/` directory:
 ```
-topic_name/
-├── README.md        # Topic overview and status
-├── article.md       # Main article draft
-├── slides.md        # Presentation (Marp format)
-├── raw_material/    # Working notes, brainstorms
-├── references/      # Literature, citations
-├── assets/          # Images, diagrams
-└── exports/         # Generated outputs (DOCX, PPTX, PDF)
+topics/
+└── topic_name/
+    ├── README.md            # Topic overview and status
+    ├── article.md           # Main article draft
+    ├── slides.md            # Presentation (Marp format)
+    ├── raw_material/        # Working notes, brainstorms
+    ├── references/          # Literature, citations
+    ├── assets/              # Images, diagrams
+    ├── artifacts/           # Polished outputs for distribution
+    │   ├── articles/        #   drafts/ and published/
+    │   └── presentation/    #   drafts/ and published/
+    └── exports/             # Generated outputs (DOCX, PPTX, PDF)
 ```
 
+Note: A topic may contain multiple article or slide variants (e.g., `cursor-article.md`, `iris-learnings.md`) beyond the standard `article.md` and `slides.md`.
+
 ### Naming Conventions
-- Use lowercase with underscores for directories: `topic_name/`
+- Use lowercase with underscores for topic directories: `topics/topic_name/`
 - Use lowercase with hyphens for files: `file-name.md`
 - Use descriptive names: `outline-v1.md` not `notes.md`

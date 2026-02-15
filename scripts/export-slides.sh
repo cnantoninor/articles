@@ -3,7 +3,7 @@
 # Usage: ./scripts/export-slides.sh <topic-directory> [md-file-path]
 #
 # Example: ./scripts/export-slides.sh epistemic_debt
-#          ./scripts/export-slides.sh epistemic_debt epistemic_debt/slides.md
+#          ./scripts/export-slides.sh epistemic_debt slides.md
 
 set -e
 
@@ -17,7 +17,7 @@ TOPIC="$1"
 MD_FILE="${2:-slides.md}"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
-TOPIC_DIR="$REPO_ROOT/$TOPIC"
+TOPIC_DIR="$REPO_ROOT/topics/$TOPIC"
 
 # If MD_FILE is an absolute path or starts with ./ or ../, use it directly
 # Otherwise, assume it's relative to TOPIC_DIR

@@ -1,211 +1,187 @@
 # Coding Conventions
 
-**Analysis Date:** 2026-01-26
+**Analysis Date:** 2026-02-15
 
-## Naming Patterns
+## Writing Conventions (Primary Codebase Output)
 
-**Files:**
-- Lowercase with hyphens for markdown files: `file-name.md`
-- Lowercase with underscores for directories: `topic_name/`
-- Descriptive names preferred: `outline-v1-epistemic-debt.md` over `notes.md`
-- Template files use base names: `article.md`, `slides.md`, `research.md`
-- Exported files include timestamps: `article-20260126.docx`
+This is primarily a content authoring repository, not a software project. "Coding conventions" map to writing conventions, template adherence, and script consistency.
 
-**Scripts:**
-- Executable shell scripts with `.sh` extension
-- Action-oriented naming: `export-docx.sh`, `export-all.sh`
-- Hyphen-separated words: `export-pdf.sh`
+### Front-Matter Format
 
-**Variables (Bash):**
-- UPPERCASE for environment/config variables: `TOPIC_DIR`, `SCRIPT_DIR`, `REPO_ROOT`
-- Lowercase for function parameters: `topic`
-- Descriptive names: `OUTPUT_FILE`, `TIMESTAMP`
+**Convention (from `.cursorrules`):**
+All articles must include YAML front-matter with these fields:
+```yaml
+---
+title: "Article Title"
+status: draft | review | published
+type: article | slides | research
+audience: [list of target readers]
+target_length: word count target
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+---
+```
 
-**Functions (Bash):**
-- Lowercase with underscores: `export_article`, `export_slides`
-- Verb-based naming indicating action
+**Adherence in existing content:**
 
-## Code Style
+| File | title | status | type | audience | target_length | created | last_updated | Verdict |
+|------|-------|--------|------|----------|---------------|---------|--------------|---------|
+| `topics/epistemic_debt/article.md` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | **Compliant** |
+| `topics/epistemic_debt/cursor-article.md` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | **Compliant** |
+| `topics/epistemic_debt/slides.md` | ✓ (Marp) | — | — | — | — | — | — | **Marp format (expected)** |
+| `topics/epistemic_debt/iris-learnings.md` | ✓ (Marp) | — | — | — | — | — | — | **Marp format (expected)** |
+| `topics/epistemic_debt/README.md` | — | — | — | — | — | — | — | **No front-matter (acceptable for README)** |
 
-**Formatting:**
-- Not applicable (content repository, not software project)
+**Assessment:** Article files follow front-matter convention well. Marp slides use Marp-specific front-matter (marp: true, theme, paginate, title) which is correct for their format. README uses plain markdown headings per the research template.
 
-**Linting:**
-- Not detected
+### Template Adherence
 
-**Shell Scripts:**
-- Bash strict mode: `set -e` (exit on error)
-- Comment headers with usage examples
-- Validation before execution (check directory exists, file exists)
+**Article template** (`templates/article.md`):
+- Requires: Abstract, Introduction, Section headings, Conclusion, References
+- `topics/epistemic_debt/article.md`: **Mostly compliant** — Uses Roman numeral sections (I-VII) instead of descriptive section titles. Has Abstract, Introduction-equivalent (Section I), and Conclusion (Section VII). Uses `---` horizontal rules between sections as template suggests.
+- `topics/epistemic_debt/cursor-article.md`: **Mostly compliant** — Same structure, slightly different section naming.
 
-## Content Style (Markdown)
+**Research template** (`templates/research.md`):
+- Requires: Overview (with Status, Created, Last Updated), Key Questions, Source Tracking table, Key Quotes, Working Notes, Gaps, Connections, Next Steps
+- `topics/epistemic_debt/README.md`: **Partially compliant** — Has Overview with Status/Created/Last Updated, Key Questions, Central Concepts (custom section), Files in This Topic (custom section), Current Gaps, Next Steps. Missing: Source Tracking table, Key Quotes, Working Notes, Connections to Other Topics.
 
-**Heading Hierarchy:**
+**Slides template** (`templates/slides.md`):
+- Requires: Marp front-matter, title slide, agenda, content slides with speaker notes, Q&A
+- `topics/epistemic_debt/slides.md`: **Compliant** — Has Marp front-matter, title slide, content slides with speaker notes, Q&A. Missing: explicit Agenda slide.
+- `topics/epistemic_debt/iris-learnings.md`: **Compliant** — Full Marp presentation with speaker notes throughout.
+
+### Section Heading Hierarchy
+
+**Convention:**
 - H1 (`#`) for article title only
 - H2 (`##`) for major sections
 - H3 (`###`) for subsections
-- Avoid going deeper than H4
+- Avoid deeper than H4
 
-**Front-Matter:**
-- YAML format at top of articles and slides
-- Required fields: `title`, `status`, `type`, `audience`, `target_length`, `created`, `last_updated`
-- Standard values: `status: draft | review | published`
-- Standard types: `type: article | slides | research`
+**Assessment:**
+- `article.md`: **Compliant** — H1 for title, H2 for major sections (I-VII), H3 for subsections, H4 for specific examples. One H4 level used (`#### The Database Deletion`) — acceptable.
+- `cursor-article.md`: **Compliant** — Same pattern.
+- Slides: N/A (Marp uses headings differently for slide separation).
 
-**Lists:**
-- Parallel structure (consistent grammatical form)
-- Prefer active voice
+### Gap/TODO Marking
 
-**Citations:**
-- Academic: Author (Year) or (Author, Year)
-- Web/informal: linked text or footnote
-- Reference lists: `Author. "Title." *Publication*, Year. [URL]`
+**Convention:**
+- `[GAP: description]` — Content to write
+- `[TODO: task]` — Task to complete
+- `[QUESTION: question]` — Open question
+- `[EXAMPLE NEEDED]` — Needs concrete example
 
-## Import Organization
+**Assessment:**
+- Only one remaining `[GAP:]` marker found in active content: `slides.md` line 271: `[GAP: Add contact information and resources]`
+- The outline file (`raw_material/outline-v1-epistemic-debt.md`) uses `🔴 GAP:` markers extensively — deviates from convention but is in raw material, so acceptable.
+- Both article versions have filled in all major gaps identified in the outline.
 
-**Not applicable** - This is a content repository without code imports.
+### Citation Format
 
-## Error Handling
+**Convention:**
+- Inline: Author (Year) or footnotes
+- Reference list: `Author. "Title." *Publication*, Year. [URL]`
 
-**Patterns (Bash scripts):**
-- Use `set -e` to exit on first error
-- Validate inputs at script start: check for required arguments, verify paths exist
-- Print clear error messages to stderr
-- Exit with non-zero status codes on failure
-- Use `|| true` to continue after expected failures: `export_article || true`
+**Assessment:**
+- `article.md`: **Compliant** — Uses markdown footnotes (`[^1]`, `[^2]`, etc.) with full citations. Reference list at end follows convention. Strong citation practice with URLs included.
+- `cursor-article.md`: **Compliant** — Same footnote pattern, slightly different reference formatting in the endnotes (numbered list instead of bullet list), but consistent internally.
+- `slides.md`: Minimal citations (appropriate for slides format).
+- `iris-learnings.md`: Has References slide with proper formatting.
 
-**Example pattern from `scripts/export-pdf.sh`:**
-```bash
-if [ ! -d "$TOPIC_DIR" ]; then
-    echo "Error: Topic directory '$TOPIC_DIR' does not exist"
-    exit 1
-fi
-```
+### Naming Conventions
 
-## Logging
+**Convention:**
+- Topic directories: lowercase with underscores (`topics/topic_name/`)
+- Files: lowercase with hyphens (`file-name.md`)
+- Descriptive names: `outline-v1.md` not `notes.md`
 
-**Framework:** `echo` commands to stdout/stderr
+**Assessment:**
+- `topics/epistemic_debt/`: **Compliant** — lowercase with underscores.
+- File names: **Mostly compliant** — `article.md`, `slides.md`, `cursor-article.md`, `iris-learnings.md`, `outline-v1-epistemic-debt.md` all use lowercase with hyphens.
+- Exception: `references/Epistemic_debt_definition.md` — Uses uppercase first letter and underscores instead of hyphens. Should be `epistemic-debt-definition.md`.
+- Exception: `references/Epistemic Debt Research Complete.pdf` — Contains spaces and uppercase. Should be `epistemic-debt-research-complete.pdf`.
+- Exception: `references/Triangle Interaction Table.pdf` — Contains spaces and uppercase. Should be `triangle-interaction-table.pdf`.
 
-**Patterns:**
-- Section headers with visual delimiters: `echo "=========================================="`
-- Progress messages: `echo "Exporting $TOPIC/article.md to PDF..."`
-- Completion confirmations: `echo "Created: $OUTPUT_FILE"`
-- Warnings for non-fatal issues: `echo "Warning: No article.md found..."`
+## Script Conventions
 
-## Comments
+### Shell Script Pattern
 
-**When to Comment:**
+All export scripts follow a consistent pattern:
+1. `#!/bin/bash` shebang
+2. Comment block with description and usage
+3. `set -e` for error-on-failure
+4. Argument validation with usage message
+5. `SCRIPT_DIR` / `REPO_ROOT` / `TOPIC_DIR` derivation
+6. Topic directory existence check
+7. `mkdir -p` for exports directory
+8. Timestamp generation
+9. Export operation
+10. Timestamped + latest copy output
 
-**Bash scripts:**
-- File-level header with purpose, usage, and example
-- Comments before validation blocks
-- Speaker notes in Marp slides using `<!-- comment -->`
+**Assessment:** Highly consistent across all four scripts (`export-docx.sh`, `export-slides.sh`, `export-pdf.sh`, `export-all.sh`). Good practice.
 
-**Example from `scripts/export-all.sh`:**
-```bash
-#!/bin/bash
-# Export all formats for a topic (DOCX, PPTX, PDF)
-# Usage: ./scripts/export-all.sh <topic-directory>
-#
-# Example: ./scripts/export-all.sh epistemic_debt
-```
+### Script Error Handling
 
-**Markdown content:**
-- Gap markers for incomplete sections: `[GAP: description]`
-- TODO markers for specific tasks: `[TODO: task]`
-- Questions to address: `[QUESTION: question]`
-- Example placeholders: `[EXAMPLE NEEDED]`
+- All scripts use `set -e`
+- Input validation present (check for arguments, check directory exists, check file exists)
+- `export-pdf.sh` uses `|| true` for "both" mode to continue even if one export fails
+- `export-all.sh` tracks whether anything was exported
 
-## Gap Markers Convention
+**Gaps:**
+- No tool availability checks (scripts don't verify `pandoc`, `marp` are installed before attempting to use them)
+- No shellcheck compliance verification
+- `setup.sh` uses `set -e` but some installation sections could fail silently on unsupported platforms (e.g., Linux without apt/dnf/pacman for Node.js installation)
 
-**Purpose:** Mark incomplete sections explicitly rather than leaving them blank
+## Glossary Consistency
 
-**Patterns:**
-- `[GAP: description]` - Content that needs to be written
-- `[TODO: task]` - Specific task to complete
-- `[QUESTION: question]` - Open question to address
-- `[EXAMPLE NEEDED]` - Place where concrete example is required
+### GLOSSARY.md Coverage
 
-**Usage:** Used extensively in `epistemic_debt/article.md` and templates
+**Terms defined in GLOSSARY.md:**
+1. Epistemic (general)
+2. Epistemic Warrant
+3. Epistemic Opacity
+4. Epistemic Debt
+5. Solutioning Trap
+6. Construction Paradigm
+7. Curation Paradigm
+8. Epistemic Boundary
+9. Circular Validation
+10. Velocity Trap
+11. Domain-Driven Design (DDD)
+12. Ubiquitous Language
+13. E2E Integration Testing
 
-## Directory Structure Convention
+**Terms used prominently in articles but MISSING from GLOSSARY.md:**
+1. **Epistemic Credit** — Used in `article.md`, `cursor-article.md`, `iris-learnings.md`, and `references/Epistemic_debt_definition.md`. Has a formal mathematical definition. Should be in glossary.
+2. **Automation Bias** — Used extensively in both article versions. A well-documented cognitive bias concept.
+3. **Stochastic Spaghetti Effect** — Coined by Ngabang (2026), used in `article.md`. A specific concept worth defining.
+4. **Context Window Amnesia** — From Ngabang (2026), used in `cursor-article.md` and `iris-learnings.md`.
+5. **Vibe Coding** — Coined by Karpathy (2025), central concept in both articles.
+6. **Spec-Driven Development** — From Thoughtworks (2025), used in `cursor-article.md`.
+7. **Epistemia** — From Quattrociocchi et al. (2025), used in `article.md`.
+8. **Rubber-Stamp Culture** — Used in both article versions.
+9. **Trade-off Triangle** — The central framework of the article. Deserves a glossary entry.
+10. **Bus Factor** — Used in measurement discussions. Common term but worth defining in context.
 
-**Standard topic structure:**
-```
-topic_name/
-├── README.md        # Topic overview and status
-├── article.md       # Main article draft
-├── slides.md        # Presentation (Marp format)
-├── raw_material/    # Working notes, brainstorms
-├── references/      # Literature, citations
-├── assets/          # Images, diagrams
-└── exports/         # Generated outputs (DOCX, PPTX, PDF)
-```
+**Assessment:** GLOSSARY.md covers foundational terms well but has not been updated to reflect the many concepts introduced during article development. Approximately 10 significant terms used in published content are missing.
 
-**Root structure:**
-```
-ai-articles/
-├── README.md
-├── .cursorrules (symlinked as CLAUDE.md)
-├── GLOSSARY.md
-├── scripts/
-├── templates/
-└── [topic-name]/
-```
+## Tone and Style Compliance
 
-## Script Design Patterns
+### .cursorrules Tone Requirements
 
-**Parameter Handling:**
-- Check for required arguments at script start
-- Provide usage examples in error messages
-- Support optional parameters with defaults: `MODE="${2:-both}"`
+| Requirement | article.md | cursor-article.md |
+|-------------|-----------|-------------------|
+| Exploratory, not prescriptive | ✓ Explicitly frames guardrails as "practices worth examining" | ✓ Same framing |
+| Thoughtful and nuanced | ✓ Acknowledges trade-offs, counter-arguments | ✓ Same pattern |
+| Accessible but rigorous | ✓ Defines terms, uses concrete examples | ✓ Same approach |
+| Honest about limitations | ✓ Section VI explicitly about measurement uncertainty | ✓ Same section |
+| Define terms on first use | ✓ Most terms defined; "epistemic" defined in opening | ✓ Same |
+| Concrete examples | ✓ Multiple scenarios (database deletion, 10:1 ratio, healthcare) | ✓ Same examples + additional ones |
+| Prefer "understanding" over "knowledge" | ✓ Consistently uses "understanding" | ✓ Same |
+| Active voice | ✓ Predominantly active | ✓ Same |
 
-**Path Resolution:**
-- Use absolute paths resolved from script location:
-  ```bash
-  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  REPO_ROOT="$(dirname "$SCRIPT_DIR")"
-  ```
-
-**Directory Creation:**
-- Create output directories if they don't exist: `mkdir -p "$TOPIC_DIR/exports"`
-
-**Timestamping:**
-- Generate timestamps for versioned outputs: `TIMESTAMP=$(date +%Y%m%d)`
-- Create both timestamped and "latest" versions
-
-**Example from `scripts/export-docx.sh`:**
-```bash
-OUTPUT_FILE="$TOPIC_DIR/exports/article-$TIMESTAMP.docx"
-# ... export ...
-cp "$OUTPUT_FILE" "$TOPIC_DIR/exports/article.docx"
-```
-
-## Terminology Conventions
-
-**Defined in GLOSSARY.md:**
-- Prefer "understanding" over "knowledge" when discussing comprehension
-- Use "process" or "generate" instead of "understand" for AI
-- Specify type when using "AI": LLM, ML model, etc.
-- Hedge absolutes ("always", "never") appropriately
-
-**Domain-specific terms:**
-- See `GLOSSARY.md` for definitions of: epistemic debt, epistemic warrant, solutioning trap, construction vs. curation paradigm, epistemic boundary, circular validation
-
-## Voice and Tone (Content)
-
-**Style:**
-- Exploratory, not prescriptive
-- Thoughtful and nuanced
-- Accessible but rigorous
-- Honest about limitations
-
-**Sentence Structure:**
-- Lead with main point, then elaborate
-- One idea per sentence when possible
-- Use transitional phrases to connect ideas
-- Vary sentence length for rhythm, but favor clarity
+**Assessment:** Both article versions demonstrate excellent adherence to the tone and style guidelines in `.cursorrules`. The articles practice what they preach — they're exploratory, acknowledge uncertainty, and provide concrete examples.
 
 ---
 
-*Convention analysis: 2026-01-26*
+*Convention analysis: 2026-02-15*

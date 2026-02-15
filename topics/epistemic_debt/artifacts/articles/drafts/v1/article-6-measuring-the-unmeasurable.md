@@ -1,3 +1,23 @@
+---
+title: "Measuring the Unmeasurable"
+subtitle: "Proxy indicators, honest caveats, and what we don't yet know"
+status: draft
+type: article
+audience: [technical professionals, engineering leaders, senior practitioners]
+target_length: 1381
+current_length: 1381
+estimated_reading_time: "6 min"
+created: 2026-02-15
+last_updated: 2026-02-15
+published_date:
+publication_url: ""
+social_teasers:
+  linkedin: ""
+  twitter: ""
+  instagram_caption: ""
+  substack_notes: ""
+---
+
 # Measuring the Unmeasurable
 
 *Proxy indicators, honest caveats, and what we don't yet know*

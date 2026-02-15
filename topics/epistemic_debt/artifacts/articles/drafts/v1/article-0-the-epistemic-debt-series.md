@@ -5,6 +5,7 @@ status: draft
 type: article
 audience: [technical professionals, engineering leaders, senior practitioners, content and research professionals]
 target_length: 800
+current_length: 800
 estimated_reading_time: "4 min"
 created: 2026-02-15
 last_updated: 2026-02-15
@@ -29,12 +30,12 @@ social_teasers:
 
 Your tests pass. Your code works. Your article sounds good. Your research is sound. So why can't anyone on your team explain how it actually works?
 
-LLMs generate code, copy, and analysis faster than we can comprehend them. We've shifted from *construction* — building artifacts we can justify step by step — to *curation* — approving output that looks right. That shift has a name: **epistemic debt** — work that functions but nobody understands (code that runs but no one can vouch for; content that reads well but the warrant is missing). Like technical debt, it compounds. Unlike technical debt, it's often invisible until a crisis. This series defines it precisely, shows where it comes from, and offers a framework for making the trade-off conscious. Software engineering is the main lens; Article 7 generalizes to content, research, and decision support.
+LLMs generate code, copy, and analysis faster than we can comprehend them. We've shifted from *construction* — building artifacts we can justify step by step — to *curation* — approving output that looks right. That shift has a name: [**Epistemic Debt**](https://vixra.org/pdf/2601.0013v1.pdf) — work that functions but nobody understands (code that runs but no one can vouch for; content that reads well but the warrant is missing). [Quattrociocchi and colleagues call *Epistemia*](https://www.pnas.org/doi/10.1073/pnas.2518443122) the illusion of knowledge when surface plausibility replaces verification — a sibling concept that explains why epistemic debt so often goes unnoticed until something breaks. Like technical debt, it compounds. Unlike technical debt, it's often invisible until a crisis. This series defines it precisely, shows where it comes from, and offers a framework for making the trade-off conscious. Software engineering is the main lens; Article 7 generalizes to content, research, and decision support.
 
 **Quick jump — find your entry point**
 
-- **Not in software** — content, research, or decision support. → [**1**](#§1-the-epistemic-shift-coming-soon), then [**7**](#§7-beyond-software-coming-soon).
-- **Leader** — actionable framework and team positioning. → [**1**](#§1-the-epistemic-shift-coming-soon), [**2**](#§2-epistemic-debt-a-new-lens-coming-soon), [**5**](#§5-the-trade-off-triangle-coming-soon).
+- **Not in software** — you work in content, research, or decision support. → [**1**](#§1-the-epistemic-shift-coming-soon), then [**7**](#§7-beyond-software-coming-soon).
+- **Leader** — actionable framework and how to position your team. → [**1**](#§1-the-epistemic-shift-coming-soon), [**2**](#§2-epistemic-debt-a-new-lens-coming-soon), [**5**](#§5-the-trade-off-triangle-coming-soon).
 - **Senior practitioner** — rigorous definition, differs from "technical debt." → [**1**](#§1-the-epistemic-shift-coming-soon), [**2**](#§2-epistemic-debt-a-new-lens-coming-soon), [**5**](#§5-the-trade-off-triangle-coming-soon).
 - **Evidence-first** — case studies and data before theory. → [**3**](#§3-when-epistemic-debt-defaults-coming-soon); [**1**](#§1-the-epistemic-shift-coming-soon) or [**2**](#§2-epistemic-debt-a-new-lens-coming-soon) for concept.
 - **"How did we get here?"** — vibe coding, automation bias. → [**1**](#§1-the-epistemic-shift-coming-soon), [**4**](#§4-the-solutioning-trap-coming-soon).
@@ -55,7 +56,7 @@ Two code reviews: 2020 vs. 2025. Same question — "Why this approach?" — radi
 
 *A framework for the understanding gap in AI-assisted work*
 
-Rigorous definition: Ngabang's formula, epistemic credit, six-dimension comparison with technical debt. Why epistemic debt compounds across boundaries instead of staying contained. The conceptual foundation for the rest of the series; the logic carries to content and research.
+Rigorous definition: [Ngabang's formula](https://vixra.org/pdf/2601.0013v1.pdf), epistemic credit, six-dimension comparison with technical debt. Why epistemic debt compounds across boundaries instead of staying contained. The conceptual foundation for the rest of the series; the logic carries to content and research.
 
 ---
 
@@ -79,7 +80,7 @@ Vibe coding, automation bias, rubber-stamp review. The junior developer crisis: 
 
 *A framework for conscious positioning in LLM-augmented work*
 
-Speed, Understanding, Reliability — you can't maximize all three. Circular validation trap (LLM code + LLM tests = same blind spots), strategy forces (DDD, human E2E tests, epistemic review). Bookmark this one; Article 7 gives the triangle for content, research, decision support.
+Speed, Understanding, Reliability — you can't maximize all three. Circular validation trap (LLM code + LLM tests = same blind spots), strategy forces (e.g. DDD, human E2E tests, epistemic review, structured workflows). The one to bookmark; Article 7 gives the triangle for content, research, decision support.
 
 ---
 

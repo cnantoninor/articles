@@ -22,7 +22,7 @@ todos:
     status: completed
   - id: create-teaser-template
     content: Create templates/social-teasers.md with platform-specific teaser structures
-    status: pending
+    status: completed
   - id: create-mcp-setup-doc
     content: Create docs/mcp-setup.md with instructions for Substack MCP, Crosspost MCP, and browser-use analytics
     status: completed
@@ -31,7 +31,7 @@ todos:
     status: completed
   - id: create-publishing-workflow
     content: Create docs/publishing-workflow.md documenting the weekly end-to-end workflow with social media teaser conventions and growth tactics
-    status: pending
+    status: completed
   - id: create-analytics-schema
     content: Create analytics/ directory with CSV schema, sample data, and Python analysis scripts for subscriber growth, post performance, and referral tracking
     status: pending
@@ -213,7 +213,9 @@ docs/mcp-setup.md               # Setup instructions (committed)
 
 ---
 
-## Phase 3: Publishing Workflow Documentation
+## Phase 3: Publishing Workflow Documentation ✅ COMPLETED
+
+> **Status**: Completed. Created `docs/publishing-workflow.md` (weekly cycle, mermaid diagram, growth playbook, references) and `templates/social-teasers.md` (platform-specific conventions, examples, fill-in templates for LinkedIn, Twitter/X, Instagram, Substack Notes). Updated `.ai/rules/publication.md` to reference both files.
 
 Create a new workflow document that codifies the end-to-end process:
 
@@ -272,7 +274,9 @@ Add templates/conventions for each platform:
 
 ---
 
-## Phase 4: New Templates and Conventions
+## Phase 4: New Templates and Conventions ✅ COMPLETED
+
+> **Status**: Completed via Phase 4 sub-plan (`phase_4_templates_conventions_24df1c31.plan.md`). Backfilled YAML front-matter (including new `current_length` field) for Articles 0-7, updated `templates/article.md` with `current_length`, created `scripts/validate-frontmatter.py` for schema validation of all Markdown files with front-matter, and added repo-level `requirements.txt` with `pyyaml`. Validation passes on all 8 articles and 3 templates.
 
 ### Updated Article Front-Matter
 

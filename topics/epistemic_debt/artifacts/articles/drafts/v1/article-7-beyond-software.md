@@ -1,3 +1,23 @@
+---
+title: "Beyond Software: The Universal Framework"
+subtitle: "Epistemic debt wherever humans collaborate with LLMs"
+status: draft
+type: article
+audience: [technical professionals, engineering leaders, senior practitioners, content and research professionals]
+target_length: 2085
+current_length: 2085
+estimated_reading_time: "9 min"
+created: 2026-02-15
+last_updated: 2026-02-15
+published_date:
+publication_url: ""
+social_teasers:
+  linkedin: ""
+  twitter: ""
+  instagram_caption: ""
+  substack_notes: ""
+---
+
 # Beyond Software: The Universal Framework
 
 *Epistemic debt wherever humans collaborate with LLMs*

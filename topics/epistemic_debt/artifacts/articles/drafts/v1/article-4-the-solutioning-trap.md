@@ -1,3 +1,23 @@
+---
+title: "The Solutioning Trap"
+subtitle: "Why experienced engineers ship code they can't explain"
+status: draft
+type: article
+audience: [technical professionals, engineering leaders, senior practitioners]
+target_length: 1952
+current_length: 1952
+estimated_reading_time: "8 min"
+created: 2026-02-15
+last_updated: 2026-02-15
+published_date:
+publication_url: ""
+social_teasers:
+  linkedin: ""
+  twitter: ""
+  instagram_caption: ""
+  substack_notes: ""
+---
+
 # The Solutioning Trap
 
 *Why experienced engineers ship code they can't explain*

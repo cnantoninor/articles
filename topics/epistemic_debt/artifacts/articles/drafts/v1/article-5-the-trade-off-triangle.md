@@ -1,3 +1,23 @@
+---
+title: "The Trade-off Triangle"
+subtitle: "A framework for conscious positioning in LLM-augmented development"
+status: draft
+type: article
+audience: [technical professionals, engineering leaders, senior practitioners]
+target_length: 2090
+current_length: 2090
+estimated_reading_time: "9 min"
+created: 2026-02-15
+last_updated: 2026-02-15
+published_date:
+publication_url: ""
+social_teasers:
+  linkedin: ""
+  twitter: ""
+  instagram_caption: ""
+  substack_notes: ""
+---
+
 # The Trade-off Triangle
 
 *A framework for conscious positioning in LLM-augmented development*

@@ -17,6 +17,13 @@
 ∙ Proposes a “Cognitive Ratchet” methodology for mitigation
 ∙ It formally defines epistemic debt in the LLM context and provides mathematical framing for the concept.
 
+### Complementary framework — Epistemia:
+Loru, E., Nudo, J., Quattrociocchi, W. et al. (2025). "The Simulation of Judgment in Large Language Models." *Proceedings of the National Academy of Sciences (PNAS)*.
+∙ Link: https://www.pnas.org/doi/10.1073/pnas.2518443122 (PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC12557803/)
+∙ Introduces *epistemia*: "the illusion of knowledge that emerges when surface plausibility replaces verification"
+∙ LLMs rely on lexical associations and statistical patterns rather than contextual reasoning; they confuse linguistic form with epistemic reliability
+∙ Complements epistemic debt: epistemia names the perceptual mechanism (we mistake plausibility for understanding); epistemic debt names the accumulated cost when that illusion scales across artifacts and teams
+
 ### Related blog posts and articles:
 1. “Comprehension Debt: The Ticking Time Bomb of LLM-Generated Code” by Codemanship
 ∙ Link: https://codemanship.wordpress.com/2025/09/30/comprehension-debt-the-ticking-time-bomb-of-llm-generated-code/

@@ -1,3 +1,23 @@
+---
+title: "When Epistemic Debt Defaults"
+subtitle: "Three case studies and the industry data that says they aren't outliers"
+status: draft
+type: article
+audience: [technical professionals, engineering leaders, senior practitioners]
+target_length: 1278
+current_length: 1278
+estimated_reading_time: "6 min"
+created: 2026-02-15
+last_updated: 2026-02-15
+published_date:
+publication_url: ""
+social_teasers:
+  linkedin: ""
+  twitter: ""
+  instagram_caption: ""
+  substack_notes: ""
+---
+
 # When Epistemic Debt Defaults
 
 *Three case studies and the industry data that says they aren't outliers*

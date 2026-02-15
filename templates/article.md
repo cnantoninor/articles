@@ -5,6 +5,7 @@ status: draft
 type: article
 audience: []
 target_length: 0
+current_length: 0
 estimated_reading_time: ""
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD

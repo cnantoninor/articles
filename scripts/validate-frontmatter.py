@@ -14,6 +14,7 @@ Usage:
 import re
 import sys
 from pathlib import Path
+from typing import Optional
 
 try:
     import yaml
@@ -30,6 +31,10 @@ VALID_STATUSES = {"draft", "review", "published"}
 VALID_TYPES = {"article", "slides", "research"}
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 PLACEHOLDER_DATE = "YYYY-MM-DD"
+
+READING_WPM = 238
+WORD_COUNT_TOLERANCE = 0.10  # warn if current_length differs by >10%
+READING_TIME_RE = re.compile(r"^(\d+)\s*min", re.IGNORECASE)
 
 SOCIAL_TEASER_KEYS = {"linkedin", "twitter", "instagram_caption", "substack_notes"}
 SOCIAL_TEASERS_PLATFORMS = {"linkedin", "twitter", "instagram", "substack_notes"}
@@ -90,6 +95,26 @@ def _is_date(value) -> bool:
 
 def _is_placeholder_date(value) -> bool:
     return isinstance(value, str) and value == PLACEHOLDER_DATE
+
+
+def _count_body_words(filepath: Path) -> int:
+    """Count words in the Markdown body (everything after front-matter)."""
+    text = filepath.read_text(encoding="utf-8")
+    if not text.startswith("---"):
+        return len(text.split())
+    end = text.find("\n---", 3)
+    if end == -1:
+        return len(text.split())
+    body = text[end + 4:]
+    return len(body.split())
+
+
+def _parse_reading_time(value) -> Optional[int]:
+    """Extract minutes from estimated_reading_time (e.g. '5 min' -> 5)."""
+    if not isinstance(value, str):
+        return None
+    m = READING_TIME_RE.match(value.strip())
+    return int(m.group(1)) if m else None
 
 
 # ---------------------------------------------------------------------------
@@ -181,6 +206,30 @@ def _validate_article(data: dict, result: FileResult):
             result.info(f"Placeholder date in published_date: {pub_date}")
         elif not _is_date(str(pub_date)):
             result.error(f"Invalid date format for published_date: '{pub_date}' (expected YYYY-MM-DD)")
+
+    # -- Word count and reading-time consistency --------------------------
+    actual_words = _count_body_words(result.filepath)
+
+    current_length = data.get("current_length")
+    if current_length is not None and isinstance(current_length, (int, float)) and current_length > 0:
+        diff_ratio = abs(actual_words - current_length) / current_length
+        if diff_ratio > WORD_COUNT_TOLERANCE:
+            result.warn(
+                f"current_length ({current_length}) differs from actual "
+                f"word count ({actual_words}) by {diff_ratio:.0%}"
+            )
+
+    reading_time = data.get("estimated_reading_time")
+    if reading_time is not None:
+        claimed_min = _parse_reading_time(reading_time)
+        if claimed_min is not None and actual_words > 0:
+            expected_min = max(1, round(actual_words / READING_WPM))
+            if abs(claimed_min - expected_min) > 1:
+                result.warn(
+                    f"estimated_reading_time ('{reading_time}') appears inconsistent "
+                    f"with actual word count ({actual_words} words "
+                    f"\u2248 {expected_min} min at {READING_WPM} wpm)"
+                )
 
     teasers = data.get("social_teasers")
     if teasers is not None and isinstance(teasers, dict):

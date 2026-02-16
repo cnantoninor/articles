@@ -5,11 +5,11 @@ status: draft
 type: article
 audience: [technical professionals, engineering leaders, senior practitioners, content and research professionals]
 target_length: 800
-current_length: 800
-estimated_reading_time: "4 min"
+current_length: 1065
+estimated_reading_time: "5 min"
 created: 2026-02-15
 last_updated: 2026-02-15
-published_date: 2026-02-15
+published_date:
 publication_url: ""
 social_teasers:
   linkedin: ""
@@ -30,15 +30,20 @@ social_teasers:
 
 _The New Feeling of Knowing_
 
-Your tests are passing and your code runs and doesn't break in production - so far.
-Your article reads well and your research looks solid. 
+Your tests are passing and your code runs and doesn’t break in production - at least so far... 
 
-But how is it possible that nobody on the team can explain the causal chain that produced that "working" artifact? I.e. how it actually "works"?
+Your article reads well or your data analysis research looks solid…
 
-LLMs generate code, copy, and analysis faster than we can digest and understand them, becuase we didn't do the intellectual manual labor of translating the idea into artifacts, like coding, copywriting, and analyzing data. We've shifted from *construction* — building artifacts we can justify step by step — to *curation* — approving output that looks right. 
+But how is it possible that nobody on the team can explain the causal chain that produced that “working” artifact? I.e. how it actually “works”?
 
-That shift isn't dangerous per se, what is dangerous is the unawarness of the consequences of that shift. The lack of a rigourous workflow to validate the output of the AI and stay in the loop of the causal chain of the artifact and hence the understanding of the artifact. 
-There is a trade-off between AI-speed (Time-ot-Value) and minimizing epistemic debt that you must learn to manage.
+LLMs generate code, copy, and analysis faster than we can digest and understand them, becuase we didn’t do the intellectual manual labor of translating the idea into artifacts, like coding, copywriting, and analyzing data. 
+
+We’ve shifted from ideation and construction — building artifacts we can justify step by step — to  weak ideation and quick curation — approving output that looks plausible and right. 
+
+The ideation phase was reinforced in the past by the construction phase, it was a virtuous circle that reinforce iteration over iteration. Now we need to find a different way to reinforce the ideation, the casual thinking that leads to the artifact, if we want to balance the quality of the artifact and the AI Speed of producing it.
+
+That shift isn't dangerous per se, what is dangerous is the unawarness of it. The lack of a rigourous workflow to validate the output of the AI and stay in the loop of the causal chain of the artifact and hence the understanding of the artifact. 
+There is a trade-off between AI-speed (Time-ot-Value) and minimizing epistemic debt that we must learn to manage.
 
 The main problem is the [**Epistemic Debt**](https://vixra.org/pdf/2601.0013v1.pdf), work that functions but it's hard to change because it's hard to explain *how* and *why* it works. [Quattrociocchi and colleagues call *Epistemia*](https://www.pnas.org/doi/10.1073/pnas.2518443122) the illusion of knowledge when surface plausibility replaces verification — a sibling concept that shows also why epistemic debt so often goes unnoticed until something breaks. Like [Technical Debt](https://en.wikipedia.org/wiki/Technical_debt), it compounds. Unlike Technical Debt, it's often invisible until a crisis. 
 

@@ -3,8 +3,16 @@ marp: true
 theme: default
 paginate: true
 title: 'Epistemic Debt: The Hidden Cost of LLM-Generated Code'
+status: draft
+type: slides
+audience:
+  - technical professionals
+  - engineering leaders
+target_length: 0
 current_length: 950
 estimated_reading_time: 4 min
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
 ---
 
 

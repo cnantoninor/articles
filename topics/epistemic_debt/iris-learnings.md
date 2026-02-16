@@ -3,8 +3,16 @@ marp: true
 theme: default
 paginate: true
 title: 'Trade-offs in LLM-Assisted Development: IRIS Learnings'
+status: draft
+type: slides
+audience:
+  - internal
+  - engineering leaders
+target_length: 0
 current_length: 3652
 estimated_reading_time: 15 min
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
 ---
 
 

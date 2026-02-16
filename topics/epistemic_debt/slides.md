@@ -2,8 +2,11 @@
 marp: true
 theme: default
 paginate: true
-title: "Epistemic Debt: The Hidden Cost of LLM-Generated Code"
+title: 'Epistemic Debt: The Hidden Cost of LLM-Generated Code'
+current_length: 950
+estimated_reading_time: 4 min
 ---
+
 
 # Epistemic Debt
 

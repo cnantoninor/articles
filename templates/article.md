@@ -1,22 +1,23 @@
 ---
-title: ""
-subtitle: ""
+title: ''
+subtitle: ''
 status: draft
 type: article
 audience: []
 target_length: 0
-current_length: 0
-estimated_reading_time: ""
+current_length: 96
+estimated_reading_time: 1 min
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
-published_date:
-publication_url: ""
+published_date: null
+publication_url: ''
 social_teasers:
-  linkedin: ""
-  twitter: ""
-  instagram_caption: ""
-  substack_notes: ""
+  linkedin: ''
+  twitter: ''
+  instagram_caption: ''
+  substack_notes: ''
 ---
+
 
 # [Article Title]
 

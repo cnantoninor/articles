@@ -2,8 +2,11 @@
 marp: true
 theme: default
 paginate: true
-title: "Trade-offs in LLM-Assisted Development: IRIS Learnings"
+title: 'Trade-offs in LLM-Assisted Development: IRIS Learnings'
+current_length: 3652
+estimated_reading_time: 15 min
 ---
+
 
 # Trade-offs in LLM-Assisted Development
 

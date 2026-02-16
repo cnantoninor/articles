@@ -1,22 +1,28 @@
 ---
-title: "Epistemic Debt: The Hidden Cost of LLM-Generated Content with a Focus on Code"
-subtitle: "A 7-part series on what we lose when content (code, research, decision support) writes itself"
+title: 'Epistemic Debt: The Hidden Cost of LLM-Generated Content with a Focus on Code'
+subtitle: A 7-part series on what we lose when content (code, research, decision support)
+  writes itself
 status: draft
 type: article
-audience: [technical professionals, engineering leaders, senior practitioners, content and research professionals]
+audience:
+- technical professionals
+- engineering leaders
+- senior practitioners
+- content and research professionals
 target_length: 800
-current_length: 1065
-estimated_reading_time: "5 min"
+current_length: 1075
+estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-02-15
-published_date:
-publication_url: ""
+published_date: null
+publication_url: ''
 social_teasers:
-  linkedin: ""
-  twitter: ""
-  instagram_caption: ""
-  substack_notes: ""
+  linkedin: ''
+  twitter: ''
+  instagram_caption: ''
+  substack_notes: ''
 ---
+
 
 # **Epistemic Debt: When AI Generation Outpaces Human Comprehension**
 

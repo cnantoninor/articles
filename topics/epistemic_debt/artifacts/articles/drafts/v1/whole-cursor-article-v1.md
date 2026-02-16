@@ -1,12 +1,19 @@
 ---
-title: "Epistemic Debt: The Hidden Cost of LLM-Generated Code"
+title: 'Epistemic Debt: The Hidden Cost of LLM-Generated Code'
 status: draft
 type: article
-audience: [engineering leaders, senior engineers, architects, researchers]
+audience:
+- engineering leaders
+- senior engineers
+- architects
+- researchers
 target_length: 6000-10000
 created: 2026-02-08
 last_updated: 2026-02-08
+current_length: 7465
+estimated_reading_time: 31 min
 ---
+
 
 # Epistemic Debt: The Hidden Cost of LLM-Generated Code
 

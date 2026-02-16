@@ -1,13 +1,16 @@
 ---
-article: ""           # topic/slug or article title for reference
-article_url: ""       # Substack URL after publish (e.g. https://antoninorau.substack.com/p/slug)
+article: ''
+article_url: ''
 date_prepared: YYYY-MM-DD
 platforms:
-  - linkedin
-  - twitter
-  - instagram
-  - substack_notes
+- linkedin
+- twitter
+- instagram
+- substack_notes
+current_length: 657
+estimated_reading_time: 3 min
 ---
+
 
 # Social Teasers
 

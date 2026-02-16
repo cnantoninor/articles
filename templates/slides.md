@@ -2,8 +2,11 @@
 marp: true
 theme: default
 paginate: true
-title: ""
+title: ''
+current_length: 196
+estimated_reading_time: 1 min
 ---
+
 
 # Presentation Title
 

@@ -1,5 +1,6 @@
-pyyaml
-google-analytics-data>=0.18.0
-pandas>=2.0.0
-matplotlib>=3.7.0
-scipy>=1.10.0
+pyyaml==6.0.3
+numpy==2.4.2
+pandas>=3.0.0,<4
+scipy==1.17.0
+matplotlib==3.10.8
+google-analytics-data==0.20.0

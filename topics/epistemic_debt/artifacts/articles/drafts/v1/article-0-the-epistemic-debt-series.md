@@ -18,7 +18,7 @@ social_teasers:
   substack_notes: ""
 ---
 
-# Epistemic Debt: The Hidden Cost of LLM-Generated Content with a Focus on Code
+# **Epistemic Debt: When AI Generation Outpaces Human Comprehension**
 
 *A 7-part series on what we lose when content (code, research, decision support) writes itself*
 
@@ -35,21 +35,22 @@ Your article reads well and your research looks solid.
 
 But how is it possible that nobody on the team can explain the causal chain that produced that "working" artifact? I.e. how it actually "works"?
 
-LLMs generate code, copy, and analysis faster than we can digest and understand them, becuase we didn't do the intellectual manual labor of translating the idea into artifacts, like code, copy, and analysis. We've shifted from *construction* — building artifacts we can justify step by step — to *curation* — approving output that looks right. 
+LLMs generate code, copy, and analysis faster than we can digest and understand them, becuase we didn't do the intellectual manual labor of translating the idea into artifacts, like coding, copywriting, and analyzing data. We've shifted from *construction* — building artifacts we can justify step by step — to *curation* — approving output that looks right. 
 
-That shift isn't dangerous per se, what is dangerous is the unawarness of the consequences of that shift. 
+That shift isn't dangerous per se, what is dangerous is the unawarness of the consequences of that shift. The lack of a rigourous workflow to validate the output of the AI and stay in the loop of the causal chain of the artifact and hence the understanding of the artifact. 
+There is a trade-off between AI-speed (Time-ot-Value) and minimizing epistemic debt that you must learn to manage.
 
-The problem is [**Epistemic Debt**](https://vixra.org/pdf/2601.0013v1.pdf), work that functions but nobody can casually explain how it works. [Quattrociocchi and colleagues call *Epistemia*](https://www.pnas.org/doi/10.1073/pnas.2518443122) the illusion of knowledge when surface plausibility replaces verification — a sibling concept that shows also why epistemic debt so often goes unnoticed until something breaks. Like [Technical Debt](https://en.wikipedia.org/wiki/Technical_debt), it compounds. Unlike Technical Debt, it's often invisible until a crisis. 
+The main problem is the [**Epistemic Debt**](https://vixra.org/pdf/2601.0013v1.pdf), work that functions but it's hard to change because it's hard to explain *how* and *why* it works. [Quattrociocchi and colleagues call *Epistemia*](https://www.pnas.org/doi/10.1073/pnas.2518443122) the illusion of knowledge when surface plausibility replaces verification — a sibling concept that shows also why epistemic debt so often goes unnoticed until something breaks. Like [Technical Debt](https://en.wikipedia.org/wiki/Technical_debt), it compounds. Unlike Technical Debt, it's often invisible until a crisis. 
 
-This series defines it precisely, shows where it comes from, and offers a framework for making the trade-off between AI-speed (Time-ot-Value) and minimizing epistemic debt conscious. 
+This series offers a framework for making the trade-off between AI-speed, understanding, and dependability of the artifact (e.g. Reliability + Maintainability in software engineering terms) conscious. 
 
-**Quick jump — find your entry point**
+**Find your entry point**
 
-You don't have to read these in order. If you're **not in software** and your work lives e.g. in content generation, research, or decision support, you can start with [**Article 1**](#§1-the-epistemic-shift-coming-soon) for the core shift, then skip ahead to [**7**](#§7-beyond-software-coming-soon) where the framework generalizes beyond code.
+You don't have to read the articles in order. If you're **NOT in software** and your work lives e.g. in content generation, research, or decision support, you can start with [**Article 1**](#§1-the-epistemic-shift-coming-soon) for the core shift, then skip ahead to [**7**](#§7-beyond-software-coming-soon) where the framework generalizes beyond code.
 
-**Leaders** looking for an actionable framework and **senior practitioners** after the rigorous definition (how epistemic debt differs from "technical debt") share a natural path: [**1**](#§1-the-epistemic-shift-coming-soon), [**2**](#§2-epistemic-debt-a-new-lens-coming-soon), then [**5**](#§5-the-trade-off-triangle-coming-soon).
+**Leaders** looking for an actionable framework and **Senior Practitioners** after the rigorous definition (how epistemic debt differs from "technical debt") share a natural path: [**1**](#§1-the-epistemic-shift-coming-soon), [**2**](#§2-epistemic-debt-a-new-lens-coming-soon), then [**5**](#§5-the-trade-off-triangle-coming-soon).
 
-If you're **evidence-first** — show me the case studies and data before the theory — go straight to [**3**](#§3-when-epistemic-debt-defaults-coming-soon), then circle back to [**1**](#§1-the-epistemic-shift-coming-soon) or [**2**](#§2-epistemic-debt-a-new-lens-coming-soon) for the conceptual grounding. Asking **"how did we get here?"** — vibe coding, automation bias, the mechanics of the trap — [**1**](#§1-the-epistemic-shift-coming-soon) and [**4**](#§4-the-solutioning-trap-coming-soon) are your articles.
+If you're **Evidence-First** — show me the case studies and data before the theory — go straight to [**3**](#§3-when-epistemic-debt-defaults-coming-soon), then circle back to [**1**](#§1-the-epistemic-shift-coming-soon) or [**2**](#§2-epistemic-debt-a-new-lens-coming-soon) for the conceptual grounding. Asking **"how did we get here?"** — vibe coding, automation bias, the mechanics of the trap — [**1**](#§1-the-epistemic-shift-coming-soon) and [**4**](#§4-the-solutioning-trap-coming-soon) are your articles.
 
 **Skeptical about measurability?** Fair. [**6**](#§6-measuring-the-unmeasurable-coming-soon) lays out what we can and can't measure today; pair it with [**1**](#§1-the-epistemic-shift-coming-soon) or [**2**](#§2-epistemic-debt-a-new-lens-coming-soon) for the concept underneath. And if you **just want the hook** — the short opener that frames everything — [**1**](#§1-the-epistemic-shift-coming-soon) and [**2**](#§2-epistemic-debt-a-new-lens-coming-soon) will do it.
 
@@ -91,7 +92,7 @@ Article 7 maps this to other domains, like content generation and research analy
 *Why experienced practitioners ship work they can't explain*
 
 Vibe coding is different from spec-driven development, and spec-driven development can be automated with LLMs, hence Vibe coding is not necessarily LLM assisted development.
- 
+
 Epistemic Debt accumulates at boundaries (intent → spec, spec → implementation) where meaning gets lost in translation. The solutioning trap, exhacerbated by automation bias, and AI speed, is the psychological mechanism that can cause this.
 
 ---

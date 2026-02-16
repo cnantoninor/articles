@@ -34,22 +34,22 @@ todos:
     status: completed
   - id: create-analytics-schema
     content: Create analytics/ directory with CSV schema, sample data, and Python analysis scripts for subscriber growth, post performance, and referral tracking
-    status: pending
+    status: completed
   - id: setup-ga4-mcp
     content: Add GA4 MCP server (google-analytics-mcp) config to docs/mcp-setup.md and .mcp.json template; document service account setup for property 361268692
     status: completed
   - id: create-ga4-fetch-script
     content: Create analytics/scripts/fetch_ga4.py to pull page views, traffic sources, referrals, user behavior from GA4 API into CSV files automatically
-    status: pending
+    status: completed
   - id: create-collection-checklist
     content: Create analytics/COLLECTION-CHECKLIST.md with weekly metrics checklist -- split into automated (GA4) and semi-manual (Substack dashboard, social media) sections with Claude Chrome plugin prompts
-    status: pending
+    status: completed
   - id: create-analysis-scripts
     content: Create Python scripts (analytics/analyze.py, report.py) for trend analysis, growth projections, and content performance ranking -- merging GA4 automated data with semi-manual Substack/social data
-    status: pending
+    status: completed
   - id: setup-analytics-prompt
     content: Create a reusable browser-use analytics check prompt/script for weekly Substack dashboard monitoring (fallback to semi-manual)
-    status: pending
+    status: completed
 isProject: false
 ---
 

@@ -45,7 +45,7 @@ flowchart TD
         PublishStep --> Notes[Post Substack Notes]
     end
 
-    subgraph analytics [Weekly Analytics Cycle - Planned]
+    subgraph analytics [Weekly Analytics Cycle]
         GA4[GA4 API Auto Fetch] --> Merge[Merge Data Sources]
         Calendar[Calendar Reminder] --> Dashboard[Substack Dashboard]
         Dashboard --> ChromePlugin[Claude Chrome Extract]
@@ -60,19 +60,69 @@ flowchart TD
     Adjust --> Write
 ```
 
-The **analytics** subgraph is **planned** and will be implemented in Phase 5 (see [Analytics cycle (planned)](#analytics-cycle-planned) below).
-
 ---
 
-## Analytics cycle (planned)
+## Analytics Cycle
 
-*Implemented in Phase 5. This section describes the intended flow.*
+The analytics system combines automated GA4 data collection with semi-manual Substack and social media metrics.
 
-- **Automated:** GA4 API script pulls page views, traffic sources, referrals, and user behavior into CSV files. Optional: GA4 MCP for conversational queries in Cursor.
-- **Semi-manual:** Weekly calendar reminder to open the Substack dashboard (and social analytics). Use the Claude Chrome plugin with a saved prompt to extract subscriber counts, email open/click rates, restacks, and social post engagement; append to CSV files in the repo.
-- **Merge and report:** Python scripts merge GA4 + manual data and generate a weekly Markdown report for review.
+### Automated Collection
 
-Setup for GA4 and semi-manual collection (credentials, checklist, prompts) is documented in [mcp-setup.md](mcp-setup.md). Scripts and directory layout will live under `analytics/` once Phase 5 is complete.
+Run the GA4 fetch script weekly to pull page views, traffic sources, referrals, and user behavior:
+
+```bash
+python analytics/scripts/fetch_ga4.py
+```
+
+Or use the convenience script for the full pipeline:
+
+```bash
+./scripts/run-analytics.sh
+```
+
+**What's automated:**
+- Page views per article
+- Traffic sources (LinkedIn, Twitter, direct, organic search)
+- Referral paths
+- User behavior (bounce rate, session duration)
+- Geographic and device breakdown
+
+### Semi-Manual Collection
+
+Weekly calendar reminder to collect Substack-specific and social media metrics (~5 minutes):
+
+1. **Substack dashboard** — Use Claude Chrome plugin with prompts from [`analytics/prompts/substack-dashboard-extract.md`](../analytics/prompts/substack-dashboard-extract.md) to extract:
+   - Subscriber counts (total, free, paid)
+   - Email open/click rates per post
+   - Substack-native engagement (likes, restacks, comments)
+
+2. **Social media analytics** — Use prompts from [`analytics/prompts/social-analytics-extract.md`](../analytics/prompts/social-analytics-extract.md) to extract:
+   - Impressions, likes, comments, shares, link clicks per platform
+
+3. **Validate and append** — Use `ingest.py` to validate and append manual data:
+
+```bash
+python analytics/scripts/ingest.py --target subscribers < data.csv
+```
+
+### Generate Report
+
+After collecting all data, generate the weekly report:
+
+```bash
+python analytics/scripts/report.py
+```
+
+The report includes:
+- Subscriber growth summary and projection to 100 subscribers
+- Traffic breakdown by channel
+- Top performing articles
+- Week-over-week changes
+- Actionable recommendations
+
+**Full workflow:** See [`analytics/COLLECTION-CHECKLIST.md`](../analytics/COLLECTION-CHECKLIST.md) for the complete weekly checklist.
+
+**Setup:** GA4 credentials and MCP configuration are documented in [mcp-setup.md](mcp-setup.md).
 
 ---
 

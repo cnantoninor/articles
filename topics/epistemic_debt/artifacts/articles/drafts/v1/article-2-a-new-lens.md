@@ -1,22 +1,26 @@
 ---
-title: "Epistemic Debt: A New Lens"
-subtitle: "A framework for the understanding gap in AI-assisted development"
+title: 'Epistemic Debt: A New Lens'
+subtitle: A framework for the understanding gap in AI-assisted development
 status: draft
 type: article
-audience: [technical professionals, engineering leaders, senior practitioners]
+audience:
+- technical professionals
+- engineering leaders
+- senior practitioners
 target_length: 1133
-current_length: 1133
-estimated_reading_time: "5 min"
+current_length: 1175
+estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-02-15
-published_date:
-publication_url: ""
+published_date: null
+publication_url: ''
 social_teasers:
-  linkedin: ""
-  twitter: ""
-  instagram_caption: ""
-  substack_notes: ""
+  linkedin: ''
+  twitter: ''
+  instagram_caption: ''
+  substack_notes: ''
 ---
+
 
 # Epistemic Debt: A New Lens
 
@@ -114,6 +118,13 @@ In the next article, we'll look at what happens when epistemic debt defaults: th
 
 ---
 
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
 **References**
 
 - Ngabang, L.A. (2026). "The Illusion of Competence: Defining 'Epistemic Debt' in the Era of LLM-Assisted Software Engineering." viXra preprint.

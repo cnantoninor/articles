@@ -1,22 +1,27 @@
 ---
-title: "Beyond Software: The Universal Framework"
-subtitle: "Epistemic debt wherever humans collaborate with LLMs"
+title: 'Beyond Software: The Universal Framework'
+subtitle: Epistemic debt wherever humans collaborate with LLMs
 status: draft
 type: article
-audience: [technical professionals, engineering leaders, senior practitioners, content and research professionals]
+audience:
+- technical professionals
+- engineering leaders
+- senior practitioners
+- content and research professionals
 target_length: 2085
-current_length: 2085
-estimated_reading_time: "9 min"
+current_length: 2127
+estimated_reading_time: 9 min
 created: 2026-02-15
 last_updated: 2026-02-15
-published_date:
-publication_url: ""
+published_date: null
+publication_url: ''
 social_teasers:
-  linkedin: ""
-  twitter: ""
-  instagram_caption: ""
-  substack_notes: ""
+  linkedin: ''
+  twitter: ''
+  instagram_caption: ''
+  substack_notes: ''
 ---
+
 
 # Beyond Software: The Universal Framework
 
@@ -193,6 +198,13 @@ The trade-offs are real. Make them conscious.
 
 ---
 
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
 **References**
 
 - All domain-specific analysis synthesized from patterns documented across the series.

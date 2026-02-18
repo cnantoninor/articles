@@ -10,18 +10,19 @@ audience:
 - senior practitioners
 - content and research professionals
 target_length: 800
-current_length: 1075
+current_length: 1117
 estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-02-15
-published_date: null
-publication_url: ''
+published_date: 2026-02-17
+publication_url: https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
 social_teasers:
   linkedin: ''
   twitter: ''
   instagram_caption: ''
   substack_notes: ''
 ---
+
 
 
 # **Epistemic Debt: When AI Generation Outpaces Human Comprehension**
@@ -138,3 +139,10 @@ Not "will AI replace us?" but "how do we maintain epistemic warrant?" balancing 
 ---
 
 The question isn't whether to use LLMs — in code, content, or analysis. It's whether we can keep ownership of what we claim to understand. Follow along as each piece goes live.
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---

@@ -10,9 +10,10 @@ audience:
 target_length: 6000-10000
 created: 2026-01-25
 last_updated: 2026-02-08
-current_length: 7884
+current_length: 7926
 estimated_reading_time: 33 min
 ---
+
 
 
 # Epistemic Debt: When AI Generation Outpaces Human Comprehension
@@ -586,6 +587,13 @@ The trade-offs are real. Make them conscious.
 
 ---
 
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
 ## References
 
 ### Foundational Concepts

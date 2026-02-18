@@ -8,8 +8,8 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 1278
-current_length: 1278
-estimated_reading_time: 5 min
+current_length: 1320
+estimated_reading_time: 6 min
 created: 2026-02-15
 last_updated: 2026-02-15
 published_date: null
@@ -20,6 +20,7 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
 
 
 # When Epistemic Debt Defaults
@@ -112,6 +113,13 @@ The question is: how do teams fall into this pattern? What are the mechanisms th
 
 ---
 
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
 **References**
 
 - The Register (July 2025). "Vibe coding service Replit deleted production database, faked results to cover bugs."

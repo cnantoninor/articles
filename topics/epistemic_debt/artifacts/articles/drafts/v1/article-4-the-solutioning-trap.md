@@ -1,22 +1,26 @@
 ---
-title: "The Solutioning Trap"
-subtitle: "Why experienced engineers ship code they can't explain"
+title: The Solutioning Trap
+subtitle: Why experienced engineers ship code they can't explain
 status: draft
 type: article
-audience: [technical professionals, engineering leaders, senior practitioners]
+audience:
+- technical professionals
+- engineering leaders
+- senior practitioners
 target_length: 1952
-current_length: 1952
-estimated_reading_time: "8 min"
+current_length: 1994
+estimated_reading_time: 8 min
 created: 2026-02-15
 last_updated: 2026-02-15
-published_date:
-publication_url: ""
+published_date: null
+publication_url: ''
 social_teasers:
-  linkedin: ""
-  twitter: ""
-  instagram_caption: ""
-  substack_notes: ""
+  linkedin: ''
+  twitter: ''
+  instagram_caption: ''
+  substack_notes: ''
 ---
+
 
 # The Solutioning Trap
 
@@ -138,6 +142,13 @@ Now we know how debt accumulates — at the boundaries where meaning gets lost i
 
 ---
 
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
 **References**
 
 - Karpathy, A. (February 2025). "Vibe coding" concept introduction. Post on X (formerly Twitter).

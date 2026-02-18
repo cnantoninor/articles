@@ -74,11 +74,13 @@ else
         echo ""
     fi
 
-    # Export PDFs
-    echo "--- PDF Export ---"
-    "$SCRIPT_DIR/export-pdf.sh" "$TOPIC" both
-    EXPORTED=1
-    echo ""
+    # Export PDFs (only if article or slides exist)
+    if [ -f "$TOPIC_DIR/article.md" ] || [ -f "$TOPIC_DIR/slides.md" ]; then
+        echo "--- PDF Export ---"
+        "$SCRIPT_DIR/export-pdf.sh" "$TOPIC" both
+        EXPORTED=1
+        echo ""
+    fi
 fi
 
 if [ $EXPORTED -eq 0 ]; then

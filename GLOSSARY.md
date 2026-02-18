@@ -49,6 +49,36 @@ When LLM-generated tests validate LLM-generated code, creating a closed loop tha
 ### Velocity Trap
 The tendency to optimize for speed of code generation while accumulating epistemic debt. LLMs enable generating entire features quickly, but understanding may not keep pace, leading to compounding gaps before teams notice.
 
+### Epistemic Credit
+A formal measure of the justification or warrant for a claim; in epistemic-debt discourse, often used to contrast with epistemic debt (credit as positive warrant, debt as deficit of understanding).
+
+### Automation Bias
+The tendency to over-trust or over-rely on automated systems (e.g. LLM suggestions) and under-weight contradictory human judgment, leading to uncritical acceptance of generated output.
+
+### Stochastic Spaghetti Effect
+(Ngabang, 2026.) The entanglement of probabilistically generated code and dependencies such that cause-effect and ownership become hard to trace, compounding epistemic opacity.
+
+### Context Window Amnesia
+(Ngabang, 2026.) The limitation that LLMs have no persistent memory outside the current context window, so earlier decisions or constraints can be "forgotten" within a long session or document.
+
+### Vibe Coding
+(Karpathy, 2025.) Coding by iterating on LLM output until it "feels right" or passes tests, without necessarily establishing causal understanding of how the code works.
+
+### Spec-Driven Development
+(Thoughtworks, 2025.) An approach where specifications are written and maintained as the source of truth, and code (including LLM-generated code) is validated against them to preserve epistemic boundaries.
+
+### Epistemia
+(Quattrociocchi et al., 2025.) A proposed measure or framework for epistemic quality or reliability of information (e.g. in socio-technical systems), relevant to assessing understanding and trust.
+
+### Rubber-Stamp Culture
+The pattern of approving or merging LLM-generated or suggested changes without substantive review, which accelerates delivery but can increase epistemic debt and automation bias.
+
+### Trade-off Triangle
+The framework (used in this topic) that pits three competing goals—e.g. speed, ownership/understanding, and quality—such that optimizing one constrains the others; used to reason about epistemic debt vs. velocity.
+
+### Bus Factor
+The number of people who must be unavailable before a project or codebase loses critical knowledge; in epistemic-debt terms, low bus factor plus opaque code increases risk.
+
 ---
 
 ## Guardrails & Practices

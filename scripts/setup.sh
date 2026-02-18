@@ -51,8 +51,12 @@ else
     if [[ "$OS" == "Linux" ]]; then
         if command_exists apt-get; then
             sudo apt-get update && sudo apt-get install -y nodejs npm
+        elif command_exists dnf; then
+            sudo dnf install -y nodejs npm
+        elif command_exists pacman; then
+            sudo pacman -S --noconfirm nodejs npm
         else
-            echo "Error: Please install Node.js and npm manually."
+            echo "Error: Could not find a supported package manager (apt, dnf, pacman). Please install Node.js and npm manually."
             exit 1
         fi
     elif [[ "$OS" == "Darwin" ]]; then
@@ -84,6 +88,13 @@ else
     if [[ "$OS" == "Linux" ]]; then
         if command_exists apt-get; then
             sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+        elif command_exists dnf; then
+            sudo dnf install -y texlive-scheme-basic
+        elif command_exists pacman; then
+            sudo pacman -S --noconfirm texlive-bin texlive-core
+        else
+            echo "Error: Could not find a supported package manager (apt, dnf, pacman). Please install LaTeX manually."
+            exit 1
         fi
     elif [[ "$OS" == "Darwin" ]]; then
         if command_exists brew; then

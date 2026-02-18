@@ -41,12 +41,11 @@ ai-articles/
 │       │   └── outline-v1-epistemic-debt.md        # Structured outline
 │       ├── references/         # Source material and literature
 │       │   ├── literature-review-on-epistemic-debt.md
-│       │   ├── Epistemic_debt_definition.md
-│       │   ├── epistemic-trade-off-triangle.md
+│       │   ├── epistemic-debt-definition.md
 │       │   ├── paper1.pdf ... paper5.pdf           # Academic papers
 │       │   ├── article1.pdf
-│       │   ├── Epistemic Debt Research Complete.pdf
-│       │   └── Triangle Interaction Table.pdf
+│       │   ├── epistemic-debt-research-complete.pdf
+│       │   └── triangle-interaction-table.pdf
 │       ├── assets/             # Images and diagrams
 │       │   └── epistemic-trade-off-triangle.md     # Diagram description
 │       ├── artifacts/          # Supplementary artifact storage

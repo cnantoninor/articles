@@ -4,7 +4,7 @@
 
 **Status:** Drafting
 **Created:** 2026-01-25
-**Last Updated:** 2026-01-26
+**Last Updated:** 2026-02-18
 
 An exploratory article examining the epistemic risks of integrating LLMs into software engineering workflows. The core thesis is that LLMs represent an epistemological rupture—shifting developers from a "construction" paradigm (where understanding derives from authorship) to a "curation" paradigm (where understanding must be actively established).
 

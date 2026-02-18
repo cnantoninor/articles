@@ -8,13 +8,13 @@
 
 *(Historical; no content — was about pre-restructure state.)*
 
-### 1.3 Modified Scripts Not Committed
+### 1.2 Modified Scripts Not Committed
 
 - **Issue:** `scripts/export-all.sh`, `scripts/export-docx.sh`, `scripts/export-pdf.sh`, `scripts/export-slides.sh` are all modified but not committed. These were likely updated to reflect the new `topics/` path prefix.
 - **Impact:** Scripts in git HEAD may reference old paths, making them non-functional if someone checks out a clean copy.
 - **Fix approach:** Include in the restructure commit.
 
-### 1.4 Modified `CLAUDE.md` and `README.md` Not Committed
+### 1.3 Modified `CLAUDE.md` and `README.md` Not Committed
 
 - **Issue:** Both root files are modified, likely updated for the `topics/` restructure.
 - **Impact:** Documentation and AI context reference old paths in the committed version.
@@ -48,10 +48,7 @@
 
 - **Issue:** `node_modules/` exists and is correctly gitignored. Contains markdown-it and footnote plugin for the custom `export-pdf.js` script. No `package.json` or `package-lock.json` in the repository root to track these dependencies.
 - **Impact:** Dependencies are installed but not declared. Running `npm install` would fail because there's no package.json. The custom `export-pdf.js` script also hardcodes an absolute path to puppeteer: `/home/arau6/.nvm/versions/node/v22.17.1/lib/node_modules/md-to-pdf/node_modules/puppeteer`.
-- **Fix approach:** Either:
-  - Add a `package.json` declaring `markdown-it` and `markdown-it-footnote` as dependencies
-  - Or document the manual install requirement in README
-  - Fix the hardcoded puppeteer path in `scripts/styles/export-pdf.js`
+- **Status:** Resolved — root `package.json` added with `markdown-it`, `markdown-it-footnote`, and `puppeteer`; `scripts/styles/export-pdf.js` now uses `require('puppeteer')`.
 
 ---
 
@@ -144,7 +141,7 @@
 
 ### 5.1 Ten+ Terms Missing from GLOSSARY.md
 
-- **Issue:** GLOSSARY.md has not been updated since article development added many new concepts. See CONVENTIONS.md §Glossary Consistency for full list.
+- **Issue:** GLOSSARY.md has not been updated since article development added many new concepts. See `.planning/codebase/CONVENTIONS.md` §Glossary Consistency for full list.
 - **Missing terms:** Epistemic Credit, Automation Bias, Stochastic Spaghetti Effect, Context Window Amnesia, Vibe Coding, Spec-Driven Development, Epistemia, Rubber-Stamp Culture, Trade-off Triangle, Bus Factor.
 - **Impact:** AI assistants referencing GLOSSARY.md for consistent terminology would miss key concepts. New article development might use inconsistent definitions.
 - **Status:** Resolved — GLOSSARY.md updated with Epistemic Credit, Automation Bias, Stochastic Spaghetti Effect, Context Window Amnesia, Vibe Coding, Spec-Driven Development, Epistemia, Rubber-Stamp Culture, Trade-off Triangle, Bus Factor.
@@ -184,7 +181,7 @@
   - `iris-learnings.md` (IRIS presentation)
   - `assets/epistemic-trade-off-triangle.md` (triangle framework reference)
   - `references/epistemic-debt-definition.md`
-  - `exports/export-pdf.js` (custom export tool)
+  - `scripts/styles/export-pdf.js` (custom export tool)
 - **Impact:** Incomplete discoverability. Contributors won't know about all available content.
 - **Status:** Resolved — table now includes `cursor-article.md`, `iris-learnings.md`, `assets/epistemic-trade-off-triangle.md`, `artifacts/`, `exports/`.
 
@@ -266,7 +263,7 @@
 | ~~**Medium**~~ | ~~§10: Empty CLAUDE.md~~ | ~~Missing AI context~~ | ~~Resolved (.ai/context.md + symlink)~~ |
 | **Low** | §11: Distribution layer concerns | Token security, API fragility, analytics limits | Phase 2 |
 | ~~**Low**~~ | ~~§3.1: Duplicate triangle file~~ | ~~Maintenance burden~~ | ~~Resolved (references/ copy removed)~~ |
-| **Low** | §3.3: Empty artifacts/ directory | Confusing structure | Low |
+| ~~**Low**~~ | ~~§3.3: Artifacts directory structure~~ | ~~Confusing structure~~ | ~~Resolved~~ |
 | ~~**Low**~~ | ~~§4.1: No tool checks in scripts~~ | ~~Poor error messages~~ | ~~Resolved (pandoc/marp checks)~~ |
 | ~~**Low**~~ | ~~§6.1: Reference file naming~~ | ~~Inconsistency~~ | ~~Resolved~~ |
 | ~~**Low**~~ | ~~§8.1: README table incomplete~~ | ~~Discoverability~~ | ~~Resolved~~ |

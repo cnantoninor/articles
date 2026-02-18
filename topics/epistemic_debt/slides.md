@@ -2,7 +2,7 @@
 marp: true
 theme: default
 paginate: true
-title: 'Epistemic Debt: The Hidden Cost of LLM-Generated Code'
+title: 'Epistemic Debt: When AI Generation Outpaces Human Comprehension'
 status: draft
 type: slides
 audience:
@@ -18,7 +18,7 @@ last_updated: YYYY-MM-DD
 
 # Epistemic Debt
 
-## The Hidden Cost of LLM-Generated Code
+## When AI Generation Outpaces Human Comprehension
 
 <!--
 Speaker notes: This presentation explores how LLMs change the nature of developer understanding and introduces "epistemic debt" as a framework for discussing the risks.

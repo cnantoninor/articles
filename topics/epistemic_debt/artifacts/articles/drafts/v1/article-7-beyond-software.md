@@ -24,7 +24,7 @@ social_teasers:
 
 ---
 
-*This is Part 7 of a 7-part series on epistemic debt — the hidden cost of LLM-generated code. This is the final article.*
+*This is Part 7 of a 7-part series on epistemic debt — when AI generation outpaces human comprehension. This is the final article.*
 
 ---
 
@@ -189,7 +189,7 @@ The trade-offs are real. Make them conscious.
 
 ---
 
-*This concludes the Epistemic Debt series. For the full framework and all references, see the companion article: "Epistemic Debt: The Hidden Cost of LLM-Generated Code" (full-length version).*
+*This concludes the Epistemic Debt series. For the full framework and all references, see the companion article: "Epistemic Debt: When AI Generation Outpaces Human Comprehension" (full-length version).*
 
 ---
 

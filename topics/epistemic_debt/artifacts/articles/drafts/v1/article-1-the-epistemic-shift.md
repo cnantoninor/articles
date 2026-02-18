@@ -24,17 +24,17 @@ social_teasers:
 
 ---
 
-*This is Part 1 of a 7-part series on epistemic debt — the hidden cost of LLM-generated code.*
+*This is Part 1 of a 7-part series on epistemic debt — when AI generation outpaces human comprehension.*
 
 ---
 
-A code review in 2020. The reviewer asks, "Why binary search here?" The engineer responds: "The dataset is sorted, and we need O(log n) lookups. I considered a hash table, but the memory overhead wasn't worth it for our scale, and we need range queries later." The reviewer nods. The reasoning is clear.
+Imagine the following mental experiment: we are in 2020 and my friend John asks, "Hey Antonino, why you used binary search here" I think a little bit, replay the thinking I did while typing and respond: "Initially I started creating a map but then, while I was writing a unit test, I noticed that the dataset is guaranteed to be sorted! We just need O(log n) lookups and so I did a judgement call with a mini trade off analysis and in this context the memory overhead wasn't worth it for our scale, and moreover, in any case, we'll need range queries later." John nods and says "makes sense" and approve it. The reasoning, i.e. the chain of cause and effect grounded in the specific context of our application and busiess, is clear.
 
-A code review in 2025. The same question. The engineer responds: "Claude suggested it. The tests pass — 100% coverage. I checked the edge cases I could think of. It handles the main scenarios." The reviewer scans the implementation. It looks professional. The logic seems sound. They approve it.
+Now fast forward to 2025, same question. I look at the code in the code review, aggrotto le ciglia and responds: "Well Claude suggested it. The tests pass — 100% coverage. I checked the edge cases I could think of. It handles the main scenarios." The reviewer scans the implementation. It looks professional. The logic seems sound. They approve it.
 
 Same confidence. Different warrant.
 
-The code works. The tests pass. But if you asked the 2025 engineer to explain *why* binary search is correct here, or what assumptions it makes about data distribution, or how it would fail if those assumptions broke — they might hesitate.
+The code works in both cases. The tests pass in both cases. But if you asked the 2025 engineer to explain *why* binary search is correct here, or what assumptions it makes about data distribution, or how it would fail if those assumptions broke — they might hesitate.
 
 The code appeared quickly — ten seconds to generate, ten minutes to review. The team moved fast. But something was lost in the velocity: the labor of knowing.
 

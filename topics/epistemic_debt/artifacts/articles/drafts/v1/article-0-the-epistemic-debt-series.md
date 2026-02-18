@@ -1,5 +1,5 @@
 ---
-title: 'Epistemic Debt: The Hidden Cost of LLM-Generated Content with a Focus on Code'
+title: 'Epistemic Debt: When AI Generation Outpaces Human Comprehension'
 subtitle: A 7-part series on what we lose when content (code, research, decision support)
   writes itself
 status: draft

@@ -1,5 +1,5 @@
 ---
-title: 'Epistemic Debt: The Hidden Cost of LLM-Generated Code'
+title: 'Epistemic Debt: When AI Generation Outpaces Human Comprehension'
 status: draft
 type: article
 audience:
@@ -15,7 +15,7 @@ estimated_reading_time: 33 min
 ---
 
 
-# Epistemic Debt: The Hidden Cost of LLM-Generated Code
+# Epistemic Debt: When AI Generation Outpaces Human Comprehension
 
 ## Abstract
 

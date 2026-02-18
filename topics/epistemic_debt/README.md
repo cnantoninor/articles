@@ -1,4 +1,4 @@
-# Epistemic Debt in LLM-Generated Code
+# Epistemic Debt: When AI Generation Outpaces Human Comprehension
 
 ## Overview
 

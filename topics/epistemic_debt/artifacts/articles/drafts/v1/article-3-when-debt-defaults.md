@@ -28,7 +28,7 @@ social_teasers:
 
 ---
 
-*This is Part 3 of a 7-part series on epistemic debt — the hidden cost of LLM-generated code.*
+*This is Part 3 of a 7-part series on epistemic debt — when AI generation outpaces human comprehension.*
 
 ---
 

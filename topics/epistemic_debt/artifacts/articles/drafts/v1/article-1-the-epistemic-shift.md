@@ -20,7 +20,7 @@ social_teasers:
 
 # The Epistemic Shift
 
-*When code generation outpaces code comprehension*
+*The feeling of knowing without the labor of knowing*
 
 ---
 
@@ -28,29 +28,26 @@ social_teasers:
 
 ---
 
-Imagine the following mental experiment: we are in 2020 and my friend John asks, "Hey Antonino, why you used binary search here" I think a little bit, replay the thinking I did while typing and respond: "Initially I started creating a map but then, while I was writing a unit test, I noticed that the dataset is guaranteed to be sorted! We just need O(log n) lookups and so I did a judgement call with a mini trade off analysis and in this context the memory overhead wasn't worth it for our scale, and moreover, in any case, we'll need range queries later." John nods and says "makes sense" and approve it. The reasoning, i.e. the chain of cause and effect grounded in the specific context of our application and busiess, is clear.
+Imagine the following a scenario not so far from reality: cold day of February 2020, my friend and coworker John asks me a question in GitHub PR review: "Hey Antonino, why did you use binary search here?" I think a little bit, took my time to replay the chain of thoughts I did while typing the code and dodging the compiler errors, and respond: "Good question. Initially I started creating a map but then, while I was writing a unit test, I noticed that the dataset is guaranteed to be sorted! So I did a judgement call with a mini trade off analysis in my mind and in this context the memory overhead wasn't worth it for our scale, and moreover, in any case, we'll need range queries later." John thumbs up my comment and replies "makes sense to me!" and approve it. The reasoning, i.e. the chain of cause and effect *grounded in the specific context* of our assumptions, requirements and user needs, is clear.
 
-Now fast forward to 2025, same question. I look at the code in the code review, aggrotto le ciglia and responds: "Well Claude suggested it. The tests pass — 100% coverage. I checked the edge cases I could think of. It handles the main scenarios." The reviewer scans the implementation. It looks professional. The logic seems sound. They approve it.
+Now fast forward to December 2025, still a cold day. Same question. I look at the code in the code review, frown a little bit and shamefully respond: "Good question. Well... Claude coded it actually 😊. The unit tests pass — almost 100% coverage. I checked the edge cases I could think of and it looked ok. It handles the main scenarios. I guess it's ok. If you want I can deep dive into the code and explain it better but we have a train of PRs dependent on this... LMK." John scans the implementation. It looks professional. The logic seems sound. They approve it. The team is accumulating epistemic debt.
 
-Same confidence. Different warrant.
-
-The code works in both cases. The tests pass in both cases. But if you asked the 2025 engineer to explain *why* binary search is correct here, or what assumptions it makes about data distribution, or how it would fail if those assumptions broke — they might hesitate.
-
-The code appeared quickly — ten seconds to generate, ten minutes to review. The team moved fast. But something was lost in the velocity: the labor of knowing.
+Same question. Same code. Actually, the one from 2025 is "better" in the sense that it has more comments, unit tests and docstrings, it looks more "confident" and "professional". 
+But different (epistemic) warrant: in 2020 the team knew - in the sense of being able to rebuild the chain of cause and effect that led to the code, in 2025 we gained speed and apparent "confidence" (Epistemia as Quattrociocchi et al. (2025) call it) but we lost the cognitive grasp over the system because we didn't do the labor of knowing.
 
 ## The Seventy-Year Rupture
 
 For roughly seventy years, programming has been grounded in deterministic authorship. A human agent with specific intent constructs a logical artifact. Software, in this view, is the crystallization of human reason. The epistemic warrant — the justification for claiming to understand the code — derives from a causal chain of authorship. You know the system because it is the product of your cognitive labor.
 
-LLMs introduce a rupture in this framework. A probabilistic layer now sits between human intent and machine execution. Code becomes the product of stochastic pattern matching across vast vector spaces rather than direct symbolic reasoning. The developer's role shifts from *construction* — being the architect of every decision — to *curation* — reviewing and selecting from probabilistically-generated suggestions.
+LLMs introduce a rupture in this framework. A **probabilistic layer** now sits between human intent and machine execution. Code becomes the product of stochastic pattern matching across vast vector spaces rather than direct symbolic reasoning. The developer's role shifts from *construction* — being the architect of every decision — to, in the best-case scenarios, *curation* — reviewing and selecting from probabilistically-generated suggestions. In the worst-case scenarios, *generation* — accepting the code as is without understanding it.
 
-This is not a minor adjustment. It is a change in the epistemic relationship between developer and code.
+This is not a minor adjustment. It is a change in the epistemic relationship between developer and code. We are moving from a deterministic to a probabilistic paradigm, and there is no way to avoid it, but there must be ways to tame it.
 
 ## The Feeling of Knowing
 
-The primary risk is not merely technical correctness. It is epistemic opacity: the LLM produces what we might call the "feeling of knowing" without the "labor of knowing."
+The primary risk is not merely technical correctness. It is epistemic opacity: the LLM produces what we might call the "feeling of knowing" without the "labor of knowing" -- a condition Quattrociocchi et al. (2025) term **Epistemia**, which in turn produces **Epistemic Debt** (Ngabang, 2026).
 
-There's a word for this accumulating opacity. We can think of it as **epistemic debt** — code that works but nobody understands. Like technical debt, it represents a future cost: not the cost of *changing* code, but the cost of *comprehending* it. When you ship code you cannot explain, you have not just delivered a feature — you have created a comprehension obligation that compounds over time.
+**Epistemic Debt**, like **Technical Debt**, represents a future cost: not the cost of *changing* code, but the cost of *comprehending* it. When you ship code you cannot explain, you have not just delivered a feature — you have created a comprehension obligation that compounds over time.
 
 The shift from construction to curation makes this debt accumulate differently than anything we've seen before. Pre-LLM, epistemic gaps were:
 
@@ -84,9 +81,9 @@ This isn't a theoretical concern. The term "epistemic debt" originates in manufa
 
 That divergence is growing. Faster than most teams realize.
 
-In the articles that follow, we'll give epistemic debt a rigorous definition and show how it differs from the technical debt you already know. We'll look at what happens when teams can't pay it back — the case studies are vivid and, increasingly, common. We'll trace the mechanisms that cause it to accumulate: the solutioning trap, the circular validation problem, the junior developer crisis. And we'll present a framework — the Speed/Understanding/Reliability trade-off triangle — for making conscious choices about where to accept epistemic debt and where to resist it.
+In the articles that follow, we'll give epistemic debt a rigorous definition following Ngabang (2026) and show how it differs from the technical debt you already know. We'll look at what happens when teams can't pay it back — the case studies are vivid and, increasingly, common. We'll trace the mechanisms that cause it to accumulate: the solutioning trap, the circular validation problem, the junior developer crisis. And we'll present a framework — the AI Speed/Epistemic Credit/Dependability trade-off triangle — for making conscious choices about where to accept epistemic debt and where to resist it.
 
-The question isn't whether to use LLMs. It's whether we can maintain epistemic ownership while we do.
+The question isn't whether to use LLMs. It's whether we can maintain the good-enough epistemic ownership for that task while we do it.
 
 ---
 

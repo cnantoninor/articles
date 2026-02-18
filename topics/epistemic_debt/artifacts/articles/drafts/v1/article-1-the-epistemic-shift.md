@@ -1,7 +1,7 @@
 ---
 title: The Epistemic Shift
 subtitle: When code generation outpaces code comprehension
-status: draft
+status: published
 type: article
 audience:
 - technical professionals
@@ -12,13 +12,23 @@ current_length: 1249
 estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-02-15
-published_date: null
-publication_url: ''
+published_date: 2026-02-18
+publication_url:https://antoninorau.substack.com/p/the-epistemic-shift
 social_teasers:
-  linkedin: ''
-  twitter: ''
-  instagram_caption: ''
-  substack_notes: ''
+  linkedin: |
+    We're gaining velocity with AI-generated code — but losing something we used to take for granted: the ability to explain why the code does what it does.
+
+    I've been looking at what happens when code generation outpaces code comprehension. It's not just technical debt; it's epistemic debt — the feeling of knowing without the labor of knowing. The article traces a seventy-year rupture: from deterministic authorship to a probabilistic layer between intent and execution.
+
+    How solid does the artifact need to be for the task at hand? I explore that question and what's at stake. Read the full piece here: {{publication_url}}
+
+    #AI #SoftwareEngineering #EpistemicDebt #TechLeadership #LLMs
+  twitter: |
+    The epistemic shift: we're liquefying the crystallization of human reasoning. Code generation is outpacing code comprehension — and the "feeling of knowing" is replacing the labor of knowing. Part 1 of a series on epistemic debt. {{publication_url}}
+  instagram_caption: |
+    The code runs. The tests pass. But can anyone on the team explain *why*? When AI generates and we curate (or just accept), we trade comprehension for speed. That's epistemic debt — and it compounds. Part 1 of a series on what's at stake. Full piece on Substack — link in bio.
+  substack_notes: |
+    When code generation outpaces code comprehension, we get the feeling of knowing without the labor of knowing. Part 1 of my series on epistemic debt: the seventy-year rupture from deterministic authorship to a probabilistic layer, and why it matters. {{publication_url}}
 ---
 
 
@@ -29,7 +39,7 @@ social_teasers:
 
 ---
 
-*This is Part 1 of a 7-part series on epistemic debt — when AI generation outpaces human comprehension.*
+*This is Part 1 of a 7-part series on [epistemic debt — when AI generation outpaces human comprehension](https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation).*
 
 ---
 
@@ -38,7 +48,7 @@ Imagine the following scenario not so far from reality: a cold day in February 2
 Now fast forward to December 2025, still a cold day. Same question. I look at the code in the code review, frown a little bit and shamefully respond: "Good question. Well... Claude coded it actually 😊. The unit tests pass — almost 100% coverage. I checked the edge cases I could think of and it looked ok. It handles the main scenarios. I guess it's ok. If you want I can deep dive into the code and explain it better but we have a train of PRs dependent on this... LMK." John scans the implementation. It looks professional. The logic seems sound. He approves it. The team is accumulating epistemic debt.
 
 Same question. Same code. Actually, the one from 2025 is "better" in the sense that it has more comments, unit tests and docstrings, it looks more "confident" and "professional". 
-But different (epistemic) warrant: in 2020, the team knew — in the sense of being able to rebuild the chain of cause and effect that led to the code, in 2025, we gained speed and apparent "confidence" (Epistemia as Quattrociocchi et al. (2025) call it) but we lost the cognitive grasp over the system because we didn't do the labor of knowing.
+But different (epistemic) warrant: in 2020, the team knew — in the sense of being able to rebuild the chain of cause and effect that led to the code, in 2025, we gained speed and apparent "confidence" but we lost the cognitive grasp over the system because we didn't do the labor of knowing.
 
 ## The Seventy-Year Rupture
 
@@ -52,23 +62,19 @@ This is not a minor adjustment. It is a change in the epistemic relationship bet
 
 ## The Feeling of Knowing
 
-The primary risk is not only technical correctness. It is epistemic opacity: the LLM produces what we might call the "feeling of knowing" without the "labor of knowing" -- a condition Quattrociocchi et al. (2025) term **Epistemia**, which in turn produces **Epistemic Debt** (Ngabang, 2026).
+The primary risk is not only technical correctness. It is epistemic opacity: the LLM produces what we might call the "feeling of knowing" without the "labor of knowing."
 
-**Epistemic Debt**, like **Technical Debt**, represents a future cost: not the cost of *changing* code, but the cost of *comprehending* it. When you ship code you cannot explain, you have not just delivered a feature — you have created a comprehension obligation that compounds over time.
-
-The velocity is exponential rather than linear. LLMs remove the natural friction that once limited how fast teams could accumulate code they didn't understand.
-
-## Epistemia
-
-Quattrociocchi, Capraro, and Perc (2025) identified a broader pattern they call *Epistemia*: a structural condition where linguistic plausibility substitutes for epistemic evaluation. The system produces fluent, confident outputs without the internal machinery, i.e., the causal chain of cause and effect that was implied by the writing process, that makes reliability accountable. Without taming this process, you risk experiencing the possession of an answer without having traversed the process of forming a justified belief.
-
-Understanding risks to become optional when generation is cheap.
+Quattrociocchi, Capraro, and Perc (2025) identified this broader pattern and called it **Epistemia**: a structural condition where linguistic plausibility substitutes for epistemic evaluation. The system produces fluent, confident outputs without the internal machinery — the causal chain of cause and effect — that makes reliability accountable. Without taming this process, you risk experiencing the possession of an answer without having traversed the process of forming a justified belief. Understanding risks to become optional when generation is cheap.
 
 This is the condition software engineering, and in general any other domain where we are using AI to generate artifacts, now finds itself in. Code follows conventions, uses proper names, handles the obvious cases. The surface plausibility is high enough that the absence of deep understanding goes unnoticed.
 
+This condition, in turn, produces **Epistemic Debt** (Ngabang, 2026) that, like **Technical Debt**, represents a future cost: not the cost of *changing* code, but the cost of *comprehending* it. When you ship code you cannot explain, you have not just delivered a feature — you have created a comprehension obligation that compounds over time.
+
+The velocity is exponential rather than linear. LLMs remove the natural friction that once limited how fast teams could accumulate code they didn't understand.
+
 ## What's at Stake
 
-This isn't a theoretical concern. The term "epistemic debt" originated in manufacturing, where Ionescu, Schlund, and Schmidbauer (2020) used it to describe technical ignorance in smart manufacturing systems. Ngabang (2026) brought it into software engineering with a precise definition: epistemic debt is the divergence between system complexity and the developer's cognitive model of that system.
+This isn't a theoretical concern. The idea came from manufacturing: Ionescu, Schlund, and Schmidbauer (2020) used it there to describe technical ignorance in smart manufacturing systems. Ngabang (2026) brought it into software engineering and gave it a precise definition — epistemic debt is the divergence between system complexity and the developer's cognitive model of that system.
 
 That divergence is growing. Faster than most teams realize.
 

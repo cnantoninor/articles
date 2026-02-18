@@ -17,10 +17,20 @@ last_updated: 2026-02-15
 published_date: 2026-02-17
 publication_url: https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
 social_teasers:
-  linkedin: ''
-  twitter: ''
-  instagram_caption: ''
-  substack_notes: ''
+  linkedin: |
+    We've shifted from building artifacts we can justify step by step to approving output that looks plausible. Tests pass, code runs — but who can explain the causal chain that produced it?
+
+    I've been exploring what we lose when generation outpaces comprehension: epistemic debt. It compounds like technical debt but often stays invisible until something breaks. This 7-part series offers a framework to make the trade-off between AI-speed, understanding, and dependability conscious — in code, content, and research.
+
+    If that gap between "it works" and "we know why" resonates, the overview and entry points are here: https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
+
+    #EpistemicDebt #AI #SoftwareEngineering #TechnicalDebt #LLM
+  twitter: |
+    Epistemic debt: when the artifact works but nobody can explain how or why. AI writes faster than we can digest — and the "feeling of knowing" replaces the labor of knowing. 7-part series on the trade-off we need to manage. https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
+  instagram_caption: |
+    When code, copy, or analysis writes itself, we gain speed — and risk losing the "why." Epistemic debt is the work that functions but is hard to change because it's hard to explain. I wrote a 7-part series on what we lose and how to stay in the loop. Full piece in my Substack — link in bio.
+  substack_notes: |
+    Epistemic debt: when AI generation outpaces human comprehension and "it works" no longer means "we know why." A 7-part series on the shift from construction to curation, how the debt compounds, and a framework to balance AI-speed vs understanding vs dependability. https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
 ---
 
 

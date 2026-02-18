@@ -28,7 +28,7 @@ social_teasers:
 
 ---
 
-*This is Part 2 of a 7-part series on epistemic debt — when AI generation outpaces human comprehension.*
+*This is Part 2 of a 7-part series on [epistemic debt — when AI generation outpaces human comprehension](https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation).*
 
 ---
 

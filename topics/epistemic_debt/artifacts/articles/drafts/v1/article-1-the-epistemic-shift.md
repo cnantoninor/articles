@@ -1,22 +1,26 @@
 ---
-title: "The Epistemic Shift"
-subtitle: "When code generation outpaces code comprehension"
+title: The Epistemic Shift
+subtitle: When code generation outpaces code comprehension
 status: draft
 type: article
-audience: [technical professionals, engineering leaders, senior practitioners]
+audience:
+- technical professionals
+- engineering leaders
+- senior practitioners
 target_length: 976
-current_length: 976
-estimated_reading_time: "4 min"
+current_length: 1222
+estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-02-15
-published_date:
-publication_url: ""
+published_date: null
+publication_url: ''
 social_teasers:
-  linkedin: ""
-  twitter: ""
-  instagram_caption: ""
-  substack_notes: ""
+  linkedin: ''
+  twitter: ''
+  instagram_caption: ''
+  substack_notes: ''
 ---
+
 
 # The Epistemic Shift
 

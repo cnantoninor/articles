@@ -11,7 +11,7 @@ Review an article for grammatical and syntactical issues using a tiered, risk-ba
 
 | Placeholder | Description | Example |
 | ----------- | ----------- | ------- |
-| `{{ARTICLE_PATH}}` | Path to the markdown article file | `topics/epistemic_debt/artifacts/articles/drafts/v1/article-1-the-epistemic-shift.md` |
+| `{{ARTICLE_PATH}}` | Path to the markdown article file | `topics/epistemic_debt/artifacts/articles/article-1-the-epistemic-shift.md` |
 | `{{DIALECT}}` | English dialect preference (optional) | `american` or `british` (default: `american`) |
 
 ## Prompt
@@ -168,4 +168,4 @@ After presenting the plan:
 
 ## Example Invocation
 
-> Review `topics/epistemic_debt/artifacts/articles/drafts/v1/article-1-the-epistemic-shift.md` for grammar issues using the tiered approach with trade-off analysis.
+> Review `topics/epistemic_debt/artifacts/articles/article-1-the-epistemic-shift.md` for grammar issues using the tiered approach with trade-off analysis.

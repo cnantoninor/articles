@@ -94,11 +94,9 @@
   - Rename/reorganize to make the relationship clear (e.g., `article-v1.md` and `article-v2.md`, or `article-academic.md` and `article-practitioner.md`)
   - Update README to document both files and their intended audiences
 
-### 3.3 Empty `artifacts/` Directory Structure
+### 3.3 Artifacts Directory Structure
 
-- **Issue:** `topics/epistemic_debt/artifacts/` contains subdirectories (`articles/drafts`, `articles/published`, `presentation/drafts`, `presentation/published`) but all are empty.
-- **Impact:** This structure doesn't appear in the documented topic directory structure (in `CLAUDE.md` or `README.md`). It's either an abandoned organizational experiment or an incomplete migration.
-- **Fix approach:** Either populate it with content (move final exports here?) or remove the empty structure. If kept, document it in `CLAUDE.md` topic directory structure.
+- **Status:** Resolved. `topics/<topic>/artifacts/` uses a flat layout: `articles/` and `presentation/` only (no `drafts/` or `published/` subdirs). Publication state is kept in the artifact's frontmatter (`published_date`, `status`) and git history.
 
 ### 3.4 Content Files Outside Topic Directory Structure
 

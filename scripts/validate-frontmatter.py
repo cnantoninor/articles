@@ -50,6 +50,11 @@ ARTICLE_RECOMMENDED = [
 ]
 ARTICLE_PUBLICATION = ["published_date", "publication_url", "social_teasers"]
 
+# When status is published, these must all be present and filled (blocking error if not)
+PUBLISHED_REQUIRED = ARTICLE_REQUIRED + ARTICLE_RECOMMENDED + ["published_date", "publication_url"]
+
+DATE_FIELDS = ("created", "last_updated", "published_date")
+
 TEASERS_TEMPLATE_KEYS = ["article", "article_url", "date_prepared", "platforms"]
 
 # ANSI colour helpers
@@ -95,6 +100,24 @@ def _is_date(value) -> bool:
 
 def _is_placeholder_date(value) -> bool:
     return isinstance(value, str) and value == PLACEHOLDER_DATE
+
+
+def _is_filled(data: dict, field: str) -> bool:
+    """Return True if the field is present and has a valid non-empty value."""
+    val = data.get(field)
+    if val is None:
+        return False
+    if field in DATE_FIELDS:
+        return _is_date(str(val)) and not _is_placeholder_date(str(val))
+    if field == "audience":
+        return isinstance(val, list) and len(val) > 0
+    if field in ("target_length", "current_length"):
+        return isinstance(val, (int, float))
+    if field in ("publication_url", "title", "estimated_reading_time"):
+        return isinstance(val, str) and val.strip() != ""
+    if field in ("status", "type"):
+        return True
+    return bool(val)
 
 
 def _count_body_words(filepath: Path) -> int:
@@ -182,7 +205,7 @@ def _validate_article(data: dict, result: FileResult):
 
     for field in ARTICLE_PUBLICATION:
         if field not in data:
-            result.info(f"Missing publication field: {field} (expected empty for drafts)")
+            result.info(f"Missing publication field: {field} (expected empty when status is draft)")
 
     status = data.get("status")
     if status is not None and status not in VALID_STATUSES:
@@ -238,14 +261,32 @@ def _validate_article(data: dict, result: FileResult):
             result.warn(f"social_teasers missing keys: {', '.join(sorted(missing_keys))}")
 
     if status == "published":
-        if not data.get("published_date"):
-            result.warn("Status is 'published' but published_date is empty")
-        if not data.get("publication_url"):
-            result.warn("Status is 'published' but publication_url is empty")
-        if isinstance(teasers, dict):
+        for field in PUBLISHED_REQUIRED:
+            if not _is_filled(data, field):
+                result.error(
+                    f"Status is 'published' but required field '{field}' is missing or empty"
+                )
+        if teasers is None or not isinstance(teasers, dict):
+            result.warn("Status is 'published' but social_teasers is missing")
+        elif not all(teasers.get(k) for k in SOCIAL_TEASER_KEYS):
             empty = [k for k in SOCIAL_TEASER_KEYS if not teasers.get(k)]
-            if empty:
-                result.warn(f"Status is 'published' but social_teasers empty for: {', '.join(sorted(empty))}")
+            result.warn(
+                f"Status is 'published' but social_teasers empty for: {', '.join(sorted(empty))}"
+            )
+        pub_date = data.get("published_date")
+        last_up = data.get("last_updated")
+        if (
+            pub_date is not None
+            and last_up is not None
+            and _is_date(str(pub_date))
+            and not _is_placeholder_date(str(pub_date))
+            and _is_date(str(last_up))
+            and not _is_placeholder_date(str(last_up))
+        ):
+            if str(pub_date) > str(last_up):
+                result.warn(
+                    f"published_date ({pub_date}) is after last_updated ({last_up})"
+                )
 
 
 def _validate_teaser_template(data: dict, result: FileResult):

@@ -13,7 +13,7 @@ with custom CSS styling, proper footnote rendering, and page numbers.
 | Placeholder | Description | Example |
 | ----------- | ----------- | ------- |
 | `{{TOPIC}}` | Topic directory name | `epistemic_debt` |
-| `{{SOURCE_PATH}}` | Relative path under `topics/{{TOPIC}}/artifacts/` to the source folder or file(s) | `articles/drafts/v1` or `articles/drafts/v1/article-0-the-epistemic-debt-series.md` |
+| `{{SOURCE_PATH}}` | Relative path under `topics/{{TOPIC}}/artifacts/` to the source folder or file(s) | `articles` or `articles/article-0-the-epistemic-debt-series.md` |
 
 ## Rules
 
@@ -24,9 +24,9 @@ each topic. The output path is derived by replacing `artifacts/` with `exports/`
 and swapping the `.md` extension for `.pdf`.
 
 ```
-artifacts/articles/drafts/v1/article-0-the-epistemic-debt-series.md
+artifacts/articles/article-0-the-epistemic-debt-series.md
     ↓
-exports/articles/drafts/v1/article-0-the-epistemic-debt-series.pdf
+exports/articles/article-0-the-epistemic-debt-series.pdf
 ```
 
 ### Styling assets live in `scripts/styles/`
@@ -68,8 +68,8 @@ to PDF.
 
 ### Example invocation
 
-> Export all v1 draft articles for the epistemic_debt topic to PDF.
+> Export all articles in artifacts for the epistemic_debt topic to PDF.
 
 With placeholders filled:
 - `{{TOPIC}}` = `epistemic_debt`
-- `{{SOURCE_PATH}}` = `articles/drafts/v1`
+- `{{SOURCE_PATH}}` = `articles`

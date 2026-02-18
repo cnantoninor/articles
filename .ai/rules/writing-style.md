@@ -117,9 +117,9 @@ topics/
     ├── raw_material/        # Working notes, brainstorms
     ├── references/          # Literature, citations
     ├── assets/              # Images, diagrams
-    ├── artifacts/           # Polished outputs for distribution
-    │   ├── articles/        #   drafts/ and published/
-    │   └── presentation/    #   drafts/ and published/
+    ├── artifacts/           # Polished outputs for distribution (flat; no drafts/published subdirs)
+    │   ├── articles/        #   Article artifacts; version and status in frontmatter and git
+    │   └── presentation/    #   Presentation artifacts; version and status in frontmatter and git
     └── exports/             # Generated outputs (DOCX, PPTX, PDF)
 ```
 

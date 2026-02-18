@@ -14,9 +14,10 @@ install:
 # --- 2. The shared check logic (DRY) ---
 pre-push-check:
 	bash .ai/sync-rules.sh
+	$(PY) scripts/check-cta.py topics/
 	$(PY) scripts/refresh-frontmatter.py topics/ templates/
 	@if [ -n "$$(git diff --name-only)" ]; then \
-		echo "Frontmatter was out of date and has been refreshed."; \
+		echo "Pre-push checks auto-updated one or more files (frontmatter and/or CTA)."; \
 		echo "Review changes, commit, and push again."; \
 		exit 1; \
 	fi

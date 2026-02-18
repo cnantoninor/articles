@@ -1,5 +1,5 @@
 ---
-title: 'Epistemic Debt: The Hidden Cost of LLM-Generated Content with a Focus on Code'
+title: 'Epistemic Debt: When AI Generation Outpaces Human Comprehension'
 subtitle: A 7-part series on what we lose when content (code, research, decision support)
   writes itself
 status: draft
@@ -10,18 +10,29 @@ audience:
 - senior practitioners
 - content and research professionals
 target_length: 800
-current_length: 1075
+current_length: 1117
 estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-02-15
-published_date: null
-publication_url: ''
+published_date: 2026-02-17
+publication_url: https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
 social_teasers:
-  linkedin: ''
-  twitter: ''
-  instagram_caption: ''
-  substack_notes: ''
+  linkedin: |
+    We've shifted from building artifacts we can justify step by step to approving output that looks plausible. Tests pass, code runs — but who can explain the causal chain that produced it?
+
+    I've been exploring what we lose when generation outpaces comprehension: epistemic debt. It compounds like technical debt but often stays invisible until something breaks. This 7-part series offers a framework to make the trade-off between AI-speed, understanding, and dependability conscious — in code, content, and research.
+
+    If that gap between "it works" and "we know why" resonates, the overview and entry points are here: https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
+
+    #EpistemicDebt #AI #SoftwareEngineering #TechnicalDebt #LLM
+  twitter: |
+    Epistemic debt: when the artifact works but nobody can explain how or why. AI writes faster than we can digest — and the "feeling of knowing" replaces the labor of knowing. 7-part series on the trade-off we need to manage. https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
+  instagram_caption: |
+    When code, copy, or analysis writes itself, we gain speed — and risk losing the "why." Epistemic debt is the work that functions but is hard to change because it's hard to explain. I wrote a 7-part series on what we lose and how to stay in the loop. Full piece in my Substack — link in bio.
+  substack_notes: |
+    Epistemic debt: when AI generation outpaces human comprehension and "it works" no longer means "we know why." A 7-part series on the shift from construction to curation, how the debt compounds, and a framework to balance AI-speed vs understanding vs dependability. https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
 ---
+
 
 
 # **Epistemic Debt: When AI Generation Outpaces Human Comprehension**
@@ -138,3 +149,10 @@ Not "will AI replace us?" but "how do we maintain epistemic warrant?" balancing 
 ---
 
 The question isn't whether to use LLMs — in code, content, or analysis. It's whether we can keep ownership of what we claim to understand. Follow along as each piece goes live.
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation/comments), [share it](https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation), and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---

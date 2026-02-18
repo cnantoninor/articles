@@ -1,8 +1,8 @@
 # MCP Server Setup Guide
 
-This guide covers configuration of the three MCP (Model Context Protocol) servers used for The AI Mirror publication workflow: **Substack** (draft creation), **Crosspost** (social media), and **Google Analytics 4** (analytics). The real config file `.mcp.json` and credentials are gitignored; use `.mcp.json.example` in the repo root as a template.
+This guide covers configuration of the MCP (Model Context Protocol) servers used for The AI Mirror workflow: **Substack** (draft creation), **Crosspost** (social media), **Google Analytics 4** (analytics), and **GitHub** (repos, issues, PRs). The real config file `.mcp.json` and credentials are gitignored; use `.mcp.json.example` in the repo root as a template.
 
-**Prerequisites**: Node.js and NPX for Substack and Crosspost; Python 3.10+ for GA4 MCP.
+**Prerequisites**: Node.js and NPX for Substack, Crosspost, and GitHub MCP; Python 3.10+ for GA4 MCP.
 
 ---
 
@@ -203,7 +203,56 @@ GA4 batch reporting can have a 24–48 hour delay. Real-time reports via the MCP
 
 ---
 
-## 4. Semi-Manual Data Collection
+## 4. GitHub MCP (official)
+
+GitHub’s official MCP server (`@modelcontextprotocol/server-github` / [github/github-mcp-server](https://github.com/github/github-mcp-server)) lets AI tools in Cursor (or other MCP hosts) interact with GitHub: list and create issues, list and manage pull requests, read repository content, search code, and more. Useful for drafting issues, checking PR status, and repo context without leaving the editor.
+
+### What it does
+
+- **Repository**: List repos, get file/content, search code
+- **Issues**: List, create, get, update issues
+- **Pull requests**: List PRs, get details, create PRs
+- **Branches**: List branches, compare
+- **Collaboration**: Comments, reviews (where supported)
+
+Tool access follows normal GitHub permissions; some features may require Copilot or GitHub plan features when used from Copilot. In Cursor with this setup, you use a Personal Access Token and get token-based access.
+
+### Prerequisites
+
+- Node.js and NPX
+- A GitHub Personal Access Token (PAT) with scopes for the actions you need (e.g. `repo`, `read:org` for private repos)
+
+### Creating a GitHub PAT
+
+1. GitHub → **Settings** → **Developer settings** → **Personal access tokens** (or [github.com/settings/tokens](https://github.com/settings/tokens)).
+2. Generate a token (classic or fine-grained). For full repo/PR/issue use: classic with **repo** (and **read:org** if you need org repos).
+3. Copy the token once; it is shown only at creation. Never commit it.
+
+### Security warning
+
+The PAT grants access to your GitHub account according to its scopes. **Never commit it.** Keep it only in `.mcp.json` (gitignored) or in environment variables. Rotate it if you suspect exposure.
+
+### Config block for `.mcp.json`
+
+```json
+"github": {
+  "command": "npx",
+  "args": ["-y", "@modelcontextprotocol/server-github"],
+  "env": {
+    "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_PAT"
+  }
+}
+```
+
+Use the same `mcpServers` key as the other servers; the block above is the value for the `"github"` entry.
+
+### Optional: remote GitHub MCP (VS Code / Copilot)
+
+GitHub also hosts a **remote** MCP server at `https://api.githubcopilot.com/mcp/`, used by VS Code with Copilot (OAuth or PAT). That setup is documented in [GitHub Docs – Set up the GitHub MCP Server](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/set-up-the-github-mcp-server). This guide uses the **stdio** (npx) server so it works in Cursor with a PAT and no Copilot subscription.
+
+---
+
+## 5. Semi-Manual Data Collection
 
 GA4 MCP and scripts cover a large share of analytics (page views, traffic sources, referrals, behavior). The following still need manual or semi-manual collection.
 

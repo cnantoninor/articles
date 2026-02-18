@@ -8,7 +8,7 @@ This document describes the end-to-end weekly process for publishing to **The AI
 
 ## Weekly Publishing Cycle
 
-1. **Write and finalize** the article under `topics/<name>/artifacts/articles/` (or drafts subfolder). Use the article template; keep front-matter and body in sync.
+1. **Write and finalize** the article under `topics/<name>/artifacts/articles/` (flat layout; no `published/` subdir). Use the article template; keep front-matter and body in sync. Publication state lives in frontmatter (`status`, `published_date`, `publication_url`).
 2. **Export** formats (e.g. HTML/Markdown for Substack) with:
    ```bash
    ./scripts/export-all.sh <topic_name>

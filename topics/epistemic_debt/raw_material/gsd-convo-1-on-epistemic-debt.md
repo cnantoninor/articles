@@ -382,7 +382,7 @@ I want to write a new substack article about the following topic:
   ---                                                                                                                                                           
   Title Ideas:                                                                                                                                                  
                                                                                                                                                                 
-  - "Epistemic Debt: The Hidden Cost of LLM-Generated Code"                                                                                                     
+  - "Epistemic Debt: When AI Generation Outpaces Human Comprehension"                                                                                                     
   - "From Construction to Curation: How LLMs Changed What Engineers Know"                                                                                       
   - "The Feeling of Knowing: Epistemic Risk in the Age of Code Generation"                                                                                      
                                                                                                                                                                 

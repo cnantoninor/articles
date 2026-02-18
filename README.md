@@ -43,7 +43,7 @@ Alternatively, you can install them manually:
 
 3. Create supporting directories:
    ```bash
-   mkdir -p topics/my_new_topic/{raw_material,references,assets,exports,artifacts/{articles/{drafts,published},presentation/{drafts,published}}}
+   mkdir -p topics/my_new_topic/{raw_material,references,assets,exports,artifacts/{articles,presentation}}
    ```
 
 4. Add a topic README:
@@ -86,9 +86,9 @@ ai-articles/
         ├── raw_material/        # Working notes, brainstorms
         ├── references/          # Literature, citations
         ├── assets/              # Images, diagrams
-        ├── artifacts/           # Polished outputs for distribution
-        │   ├── articles/        #   Article versions (drafts/, published/)
-        │   └── presentation/    #   Slide versions (drafts/, published/)
+        ├── artifacts/           # Polished outputs for distribution (flat; no drafts/published subdirs)
+        │   ├── articles/        #   Article artifacts; status in frontmatter
+        │   └── presentation/    #   Presentation artifacts; status in frontmatter
         └── exports/             # Generated DOCX, PPTX, PDF
 ```
 
@@ -133,9 +133,7 @@ See `.ai/rules/publication.md` for detailed teaser conventions and distribution 
 - **raw_material/**: Working notes, brainstorming sessions, conversation logs
 - **references/**: Literature reviews, citations, source material
 - **assets/**: Images, diagrams, and other media
-- **artifacts/**: Polished, distribution-ready versions of articles and presentations
-  - `articles/drafts/` and `articles/published/` for article versions
-  - `presentation/drafts/` and `presentation/published/` for slide versions
+- **artifacts/**: Polished, distribution-ready versions of articles and presentations; flat `articles/` and `presentation/` only (no `drafts/` or `published/` subdirs); version and publication state in frontmatter and git
 - **exports/**: Generated output files (DOCX, PPTX, PDF) from export scripts
 
 ## Current Topics

@@ -26,7 +26,7 @@
   - Raw material: `topics/<topic>/raw_material/`
   - References: `topics/<topic>/references/` (PDFs, Markdown notes)
   - Assets: `topics/<topic>/assets/` (diagrams, images)
-  - Artifacts: `topics/<topic>/artifacts/` (organized drafts and published versions)
+  - Artifacts: `topics/<topic>/artifacts/` (flat articles/ and presentation/ only, no published subdir; version/status in frontmatter and git)
 
 **Caching:**
 - None

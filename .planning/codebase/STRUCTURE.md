@@ -41,21 +41,16 @@ ai-articles/
 │       │   └── outline-v1-epistemic-debt.md        # Structured outline
 │       ├── references/         # Source material and literature
 │       │   ├── literature-review-on-epistemic-debt.md
-│       │   ├── Epistemic_debt_definition.md
-│       │   ├── epistemic-trade-off-triangle.md
+│       │   ├── epistemic-debt-definition.md
 │       │   ├── paper1.pdf ... paper5.pdf           # Academic papers
 │       │   ├── article1.pdf
-│       │   ├── Epistemic Debt Research Complete.pdf
-│       │   └── Triangle Interaction Table.pdf
+│       │   ├── epistemic-debt-research-complete.pdf
+│       │   └── triangle-interaction-table.pdf
 │       ├── assets/             # Images and diagrams
 │       │   └── epistemic-trade-off-triangle.md     # Diagram description
 │       ├── artifacts/          # Supplementary artifact storage
-│       │   ├── articles/
-│       │   │   ├── drafts/
-│       │   │   └── published/
-│       │   └── presentation/
-│       │       ├── drafts/
-│       │       └── published/
+│       │   ├── articles/       # Article markdown files (flat; no published subdir; state in frontmatter)
+│       │   └── presentation/   # Presentation markdown files (flat; no published subdir; state in frontmatter)
 │       └── exports/            # Generated outputs
 │           ├── export-pdf.js           # Node.js high-quality PDF exporter
 │           ├── pdf-export-styles.css   # Typographic styles for Puppeteer PDF
@@ -148,9 +143,8 @@ ai-articles/
 - Contains: Images, diagrams, chart descriptions
 
 **`topics/<topic_name>/artifacts/`:**
-- Purpose: Supplementary artifact organization with drafts/published lifecycle
-- Contains: Subdirectories `articles/{drafts,published}` and `presentation/{drafts,published}`
-- Note: Currently empty — used for lifecycle-stage organization of finished artifacts
+- Purpose: Supplementary artifact storage; version and status from frontmatter and git
+- Contains: Flat `articles/` and `presentation/` only (no `drafts/` or `published/` subdirs); version and publication state in frontmatter and git
 
 **`topics/<topic_name>/exports/`:**
 - Purpose: Generated distributable files — the output of the export pipeline
@@ -276,9 +270,9 @@ ai-articles/
 - Note: Should review what should be gitignored vs. committed
 
 **`topics/<topic>/artifacts/`:**
-- Purpose: Lifecycle-organized artifact storage (drafts → published)
+- Purpose: Flat artifact storage (articles/, presentation/ only; no published subdir); version and publication state in frontmatter and git
 - Generated: Mixed (manually organized)
-- Committed: Yes (directory structure committed, contents may be empty)
+- Committed: Yes
 
 **`.planning/`:**
 - Purpose: Project analysis, codebase mapping, and phase planning

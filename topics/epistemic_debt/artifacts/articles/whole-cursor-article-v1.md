@@ -1,5 +1,5 @@
 ---
-title: 'Epistemic Debt: The Hidden Cost of LLM-Generated Code'
+title: 'Epistemic Debt: When AI Generation Outpaces Human Comprehension'
 status: draft
 type: article
 audience:
@@ -10,12 +10,14 @@ audience:
 target_length: 6000-10000
 created: 2026-02-08
 last_updated: 2026-02-08
-current_length: 7465
-estimated_reading_time: 31 min
+current_length: 7507
+estimated_reading_time: 32 min
 ---
 
 
-# Epistemic Debt: The Hidden Cost of LLM-Generated Code
+
+
+# Epistemic Debt: When AI Generation Outpaces Human Comprehension
 
 ## Abstract
 
@@ -730,6 +732,13 @@ Epistemic debt, like technical debt, can be a deliberate trade-off. The question
 
 ---
 
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
 ## References
 
 ### Foundational Papers

@@ -2,6 +2,12 @@ node_modules
 .planning/phases
 tmp/
 
+# Generated exports (keep CSS/JS in topics/*/exports/ tracked)
+topics/*/exports/*.pdf
+topics/*/exports/*.pptx
+topics/*/exports/*.docx
+topics/*/exports/*.html
+
 # Secrets and credentials
 .mcp.json
 .env

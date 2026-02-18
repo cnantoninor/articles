@@ -1,0 +1,13 @@
+{
+  "name": "ai-articles",
+  "description": "Export tooling for AI-related articles and presentations",
+  "private": true,
+  "scripts": {
+    "export-pdf": "node scripts/styles/export-pdf.js"
+  },
+  "dependencies": {
+    "markdown-it": "^14.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "puppeteer": "^23.0.0"
+  }
+}

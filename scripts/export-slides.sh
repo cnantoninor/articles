@@ -7,6 +7,11 @@
 
 set -e
 
+if ! command -v marp &>/dev/null; then
+    echo "Error: marp not found. Run ./scripts/setup.sh first."
+    exit 1
+fi
+
 if [ -z "$1" ]; then
     echo "Usage: $0 <topic-directory> [md-file-path]"
     echo "Example: $0 epistemic_debt"

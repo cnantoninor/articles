@@ -99,10 +99,7 @@ last_updated: YYYY-MM-DD
 
 **Assessment:**
 - `topics/epistemic_debt/`: **Compliant** — lowercase with underscores.
-- File names: **Mostly compliant** — `article.md`, `slides.md`, `cursor-article.md`, `iris-learnings.md`, `outline-v1-epistemic-debt.md` all use lowercase with hyphens.
-- Exception: `references/Epistemic_debt_definition.md` — Uses uppercase first letter and underscores instead of hyphens. Should be `epistemic-debt-definition.md`.
-- Exception: `references/Epistemic Debt Research Complete.pdf` — Contains spaces and uppercase. Should be `epistemic-debt-research-complete.pdf`.
-- Exception: `references/Triangle Interaction Table.pdf` — Contains spaces and uppercase. Should be `triangle-interaction-table.pdf`.
+- File names: **Compliant** — `article.md`, `slides.md`, `cursor-article.md`, `iris-learnings.md`, `outline-v1-epistemic-debt.md` use lowercase with hyphens; reference files have been renamed to `epistemic-debt-definition.md`, `epistemic-debt-research-complete.pdf`, `triangle-interaction-table.pdf`.
 
 ## Script Conventions
 
@@ -181,7 +178,7 @@ social_teasers:
 13. E2E Integration Testing
 
 **Terms used prominently in articles but MISSING from GLOSSARY.md:**
-1. **Epistemic Credit** — Used in `article.md`, `cursor-article.md`, `iris-learnings.md`, and `references/Epistemic_debt_definition.md`. Has a formal mathematical definition. Should be in glossary.
+1. **Epistemic Credit** — Used in `article.md`, `cursor-article.md`, `iris-learnings.md`, and `references/epistemic-debt-definition.md`. Has a formal mathematical definition. Now in glossary.
 2. **Automation Bias** — Used extensively in both article versions. A well-documented cognitive bias concept.
 3. **Stochastic Spaghetti Effect** — Coined by Ngabang (2026), used in `article.md`. A specific concept worth defining.
 4. **Context Window Amnesia** — From Ngabang (2026), used in `cursor-article.md` and `iris-learnings.md`.

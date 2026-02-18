@@ -1,22 +1,26 @@
 ---
-title: "The Trade-off Triangle"
-subtitle: "A framework for conscious positioning in LLM-augmented development"
+title: The Trade-off Triangle
+subtitle: A framework for conscious positioning in LLM-augmented development
 status: draft
 type: article
-audience: [technical professionals, engineering leaders, senior practitioners]
+audience:
+- technical professionals
+- engineering leaders
+- senior practitioners
 target_length: 2090
-current_length: 2090
-estimated_reading_time: "9 min"
+current_length: 2132
+estimated_reading_time: 9 min
 created: 2026-02-15
 last_updated: 2026-02-15
-published_date:
-publication_url: ""
+published_date: null
+publication_url: ''
 social_teasers:
-  linkedin: ""
-  twitter: ""
-  instagram_caption: ""
-  substack_notes: ""
+  linkedin: ''
+  twitter: ''
+  instagram_caption: ''
+  substack_notes: ''
 ---
+
 
 # The Trade-off Triangle
 
@@ -24,7 +28,7 @@ social_teasers:
 
 ---
 
-*This is Part 5 of a 7-part series on epistemic debt — the hidden cost of LLM-generated code.*
+*This is Part 5 of a 7-part series on [epistemic debt — when AI generation outpaces human comprehension](https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation).*
 
 ---
 
@@ -222,6 +226,13 @@ Epistemic debt, like technical debt, can be a deliberate trade-off. The triangle
 
 ---
 
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
 **References**
 
 - IRIS-2 project (internal case study)

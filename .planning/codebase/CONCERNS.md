@@ -1,29 +1,20 @@
 # Codebase Concerns
 
-**Analysis Date:** 2026-02-15
+**Analysis Date:** 2026-02-15 | **Refreshed:** 2026-02-18
 
 ## 1. Directory Restructure Inconsistencies
 
 ### 1.1 Git Status Shows Deleted Files from Old Location
 
-- **Issue:** Git status shows many `D` (deleted) entries for files under `epistemic_debt/` (without the `topics/` prefix). This indicates the content was moved from a top-level `epistemic_debt/` directory to `topics/epistemic_debt/` but the deletion of the old files was never committed.
-- **Files affected:** All files previously at `epistemic_debt/*` are shown as deleted in git status — 30+ files including articles, exports, references, and raw material.
-- **Impact:** The working tree is cluttered with uncommitted changes. New contributors running `git status` will see confusing deletion noise. Risk of accidentally reverting the restructure.
-- **Fix approach:** Stage and commit the directory move: `git add -A && git commit -m "Move epistemic_debt/ to topics/epistemic_debt/"`. This is the most critical pending action.
+*(Historical; no content — was about pre-restructure state.)*
 
-### 1.2 Untracked `topics/` Directory
-
-- **Issue:** Git status shows `?? topics/` — the entire new directory structure is untracked.
-- **Impact:** All content in `topics/epistemic_debt/` is not version-controlled. Data loss risk if the working directory is cleaned or lost.
-- **Fix approach:** Add `topics/` to version control as part of the restructure commit above. Ensure `.gitignore` excludes only what should be excluded (exports, node_modules).
-
-### 1.3 Modified Scripts Not Committed
+### 1.2 Modified Scripts Not Committed
 
 - **Issue:** `scripts/export-all.sh`, `scripts/export-docx.sh`, `scripts/export-pdf.sh`, `scripts/export-slides.sh` are all modified but not committed. These were likely updated to reflect the new `topics/` path prefix.
 - **Impact:** Scripts in git HEAD may reference old paths, making them non-functional if someone checks out a clean copy.
 - **Fix approach:** Include in the restructure commit.
 
-### 1.4 Modified `CLAUDE.md` and `README.md` Not Committed
+### 1.3 Modified `CLAUDE.md` and `README.md` Not Committed
 
 - **Issue:** Both root files are modified, likely updated for the `topics/` restructure.
 - **Impact:** Documentation and AI context reference old paths in the committed version.
@@ -45,31 +36,19 @@
   - `topics/epistemic_debt/exports/iris-learnings-editable.pptx` (65 KB)
   - `topics/epistemic_debt/exports/iris-learnings.html` (169 KB)
 - **Impact:** Repository bloat. Binary files inflate git history. Each export regeneration creates a new large blob.
-- **Fix approach:** Add to `.gitignore`:
-  ```
-  topics/*/exports/*.pdf
-  topics/*/exports/*.pptx
-  topics/*/exports/*.docx
-  topics/*/exports/*.html
-  ```
-  Keep CSS and JS export tooling files tracked.
+- **Status:** Resolved — `.gitignore` now includes `topics/*/exports/*.pdf`, `*.pptx`, `*.docx`, `*.html`; CSS and JS in exports/ remain tracked.
 
 ### 2.2 tmp/ Directory Not Gitignored
 
 - **Issue:** `tmp/` directory at repository root contains 6 PNG files (259KB–585KB) and a DOCX file. These appear to be working/scratch files (triangle diagram iterations).
 - **Impact:** ~2.3MB of temporary binary files that will bloat git history if committed. Names with spaces (`01 simple triangle.png`) also suggest these are informal working assets, not final content.
-- **Fix approach:** Either:
-  - Add `tmp/` to `.gitignore` (if purely scratch)
-  - Move relevant files to `topics/epistemic_debt/assets/` and gitignore the rest
+- **Status:** Resolved — `tmp/` added to `.gitignore`.
 
 ### 2.3 node_modules/ Present but Minimal
 
 - **Issue:** `node_modules/` exists and is correctly gitignored. Contains markdown-it and footnote plugin for the custom `export-pdf.js` script. No `package.json` or `package-lock.json` in the repository root to track these dependencies.
 - **Impact:** Dependencies are installed but not declared. Running `npm install` would fail because there's no package.json. The custom `export-pdf.js` script also hardcodes an absolute path to puppeteer: `/home/arau6/.nvm/versions/node/v22.17.1/lib/node_modules/md-to-pdf/node_modules/puppeteer`.
-- **Fix approach:** Either:
-  - Add a `package.json` declaring `markdown-it` and `markdown-it-footnote` as dependencies
-  - Or document the manual install requirement in README
-  - Fix the hardcoded puppeteer path in `exports/export-pdf.js`
+- **Status:** Resolved — root `package.json` added with `markdown-it`, `markdown-it-footnote`, and `puppeteer`; `scripts/styles/export-pdf.js` now uses `require('puppeteer')`.
 
 ---
 
@@ -77,9 +56,9 @@
 
 ### 3.1 Duplicate Triangle Framework File
 
-- **Issue:** `topics/epistemic_debt/assets/epistemic-trade-off-triangle.md` and `topics/epistemic_debt/references/epistemic-trade-off-triangle.md` are identical files (verified via diff).
-- **Impact:** Maintenance burden — edits to one won't propagate to the other. Unclear which is canonical.
-- **Fix approach:** Keep one copy. The `assets/` location makes more sense (it's an authored asset, not a reference). Remove the `references/` copy, or vice versa.
+- **Issue:** `topics/epistemic_debt/assets/epistemic-trade-off-triangle.md` and `topics/epistemic_debt/references/epistemic-trade-off-triangle.md` were identical files (verified via diff).
+- **Impact:** Maintenance burden — edits to one wouldn't propagate to the other. Unclear which was canonical.
+- **Status:** Resolved — `references/` copy removed; `assets/epistemic-trade-off-triangle.md` is canonical.
 
 ### 3.2 Two Parallel Article Versions with Unclear Relationship
 
@@ -94,11 +73,9 @@
   - Rename/reorganize to make the relationship clear (e.g., `article-v1.md` and `article-v2.md`, or `article-academic.md` and `article-practitioner.md`)
   - Update README to document both files and their intended audiences
 
-### 3.3 Empty `artifacts/` Directory Structure
+### 3.3 Artifacts Directory Structure
 
-- **Issue:** `topics/epistemic_debt/artifacts/` contains subdirectories (`articles/drafts`, `articles/published`, `presentation/drafts`, `presentation/published`) but all are empty.
-- **Impact:** This structure doesn't appear in the documented topic directory structure (in `CLAUDE.md` or `README.md`). It's either an abandoned organizational experiment or an incomplete migration.
-- **Fix approach:** Either populate it with content (move final exports here?) or remove the empty structure. If kept, document it in `CLAUDE.md` topic directory structure.
+- **Status:** Resolved. `topics/<topic>/artifacts/` uses a flat layout: `articles/` and `presentation/` only (no `drafts/` or `published/` subdirs). Publication state is kept in the artifact's frontmatter (`published_date`, `status`) and git history.
 
 ### 3.4 Content Files Outside Topic Directory Structure
 
@@ -115,33 +92,24 @@
 
 ### 4.1 No Tool Availability Checks in Export Scripts
 
-- **Issue:** Export scripts (`export-docx.sh`, `export-slides.sh`, `export-pdf.sh`) assume `pandoc` and `marp` are installed but don't verify before attempting export.
-- **Impact:** Cryptic errors if tools are missing. Users see "command not found" instead of a helpful message pointing to `setup.sh`.
-- **Fix approach:** Add checks at script start:
-  ```bash
-  if ! command -v pandoc &>/dev/null; then
-      echo "Error: pandoc not found. Run ./scripts/setup.sh first."
-      exit 1
-  fi
-  ```
+- **Issue:** Export scripts (`export-docx.sh`, `export-slides.sh`, `export-pdf.sh`) assumed `pandoc` and `marp` were installed but didn't verify before attempting export.
+- **Impact:** Cryptic errors if tools were missing. Users would see "command not found" instead of a helpful message.
+- **Status:** Resolved — each export script now checks for required tools at start and exits with a message pointing to `./scripts/setup.sh` if missing.
 
 ### 4.2 export-pdf.js Has Hardcoded Absolute Path
 
-- **Issue:** `topics/epistemic_debt/exports/export-pdf.js` line 12 contains:
+- **Issue:** `scripts/styles/export-pdf.js` line 12 contains:
   ```javascript
   const puppeteer = require('/home/arau6/.nvm/versions/node/v22.17.1/lib/node_modules/md-to-pdf/node_modules/puppeteer');
   ```
-- **Impact:** This will fail on any other machine or if nvm version changes. The script is completely non-portable.
-- **Fix approach:** Either:
-  - Add `puppeteer` as a proper dependency
-  - Use a relative require path
-  - Document the manual puppeteer setup requirement
+- **Impact:** This would fail on any other machine or if nvm version changed. The script was completely non-portable.
+- **Status:** Resolved — `puppeteer` is now a dependency in `package.json`; script uses `require('puppeteer')`.
 
 ### 4.3 export-pdf.js Has Hardcoded Export Targets
 
-- **Issue:** The `main()` function in `export-pdf.js` hardcodes specific files to export (`article.md` → `claude-article-cc.pdf`, `cursor-article.md` → `cursor-article-cc.pdf`).
-- **Impact:** Adding new articles requires editing the JS file. The naming convention (`claude-article-cc.pdf`) doesn't follow any documented pattern and mixes tool-specific names with content names.
-- **Fix approach:** Accept input/output as command-line arguments, or make the script auto-discover markdown files in the topic directory.
+- **Issue:** The `main()` function in `scripts/styles/export-pdf.js` hardcodes specific files to export (`article.md` → `claude-article-cc.pdf`, `cursor-article.md` → `cursor-article-cc.pdf`). The script also resolves paths relative to `scripts/` (basedir = `__dirname/..`), so it looks for `article.md` under `scripts/`, not under a topic directory; it is broken for the current repo layout.
+- **Impact:** Adding new articles required editing the JS file. The naming convention (`claude-article-cc.pdf`) didn't follow any documented pattern.
+- **Status:** Resolved — script accepts topic name as first argument (e.g. `node scripts/styles/export-pdf.js epistemic_debt`), resolves paths from `topics/<topic>/`, writes PDFs to `topics/<topic>/exports/`; auto-discovers `article.md` and `cursor-article.md`.
 
 ### 4.4 setup.sh Platform Coverage Gaps
 
@@ -152,20 +120,20 @@
   - Only handles apt-get (line 52): `sudo apt-get install -y nodejs npm`
   - Missing: dnf, pacman fallbacks for Node.js (unlike pandoc which handles all three)
   - Missing: Windows/WSL detection (relevant since user is on WSL2)
-- **Impact:** On Fedora/Arch Linux, setup.sh will fail to install Node.js if npm isn't already present.
-- **Fix approach:** Add dnf/pacman fallbacks for Node.js installation, matching the pandoc pattern.
+- **Impact:** On Fedora/Arch Linux, setup.sh would fail to install Node.js if npm wasn't already present.
+- **Status:** Resolved — setup.sh now includes dnf and pacman fallbacks for Node.js installation.
 
 ### 4.5 setup.sh LaTeX Installation Incomplete on Some Platforms
 
 - **Issue:** LaTeX installation only handles apt-get on Linux and brew on macOS. Missing dnf/pacman fallbacks.
-- **Impact:** Users on Fedora/Arch won't get LaTeX installed automatically.
-- **Fix approach:** Add `dnf install texlive-scheme-basic` and `pacman -S texlive-basic` fallbacks.
+- **Impact:** Users on Fedora/Arch wouldn't get LaTeX installed automatically.
+- **Status:** Resolved — setup.sh now includes dnf (`texlive-scheme-basic`) and pacman (`texlive-bin`, `texlive-core`) fallbacks for LaTeX.
 
 ### 4.6 export-all.sh Unconditionally Calls export-pdf.sh with "both"
 
 - **Issue:** When no specific MD file is provided, `export-all.sh` (line 79) calls `export-pdf.sh "$TOPIC" both` regardless of whether `article.md` or `slides.md` exist. The `|| true` in `export-pdf.sh` handles the missing files gracefully, but it still prints confusing warning messages.
-- **Impact:** Minor — users see "Warning: No file found at..." messages during batch export even though the script continues.
-- **Fix approach:** Check for file existence before calling export-pdf.sh for each type.
+- **Impact:** Minor — users would see "Warning: No file found at..." messages during batch export.
+- **Status:** Resolved — `export-all.sh` now calls `export-pdf.sh` only when at least one of `article.md` or `slides.md` exists.
 
 ---
 
@@ -173,10 +141,10 @@
 
 ### 5.1 Ten+ Terms Missing from GLOSSARY.md
 
-- **Issue:** GLOSSARY.md has not been updated since article development added many new concepts. See CONVENTIONS.md §Glossary Consistency for full list.
+- **Issue:** GLOSSARY.md has not been updated since article development added many new concepts. See `.planning/codebase/CONVENTIONS.md` §Glossary Consistency for full list.
 - **Missing terms:** Epistemic Credit, Automation Bias, Stochastic Spaghetti Effect, Context Window Amnesia, Vibe Coding, Spec-Driven Development, Epistemia, Rubber-Stamp Culture, Trade-off Triangle, Bus Factor.
-- **Impact:** AI assistants referencing GLOSSARY.md for consistent terminology will miss key concepts. New article development may use inconsistent definitions.
-- **Fix approach:** Update GLOSSARY.md with definitions for all terms used in published content.
+- **Impact:** AI assistants referencing GLOSSARY.md for consistent terminology would miss key concepts. New article development might use inconsistent definitions.
+- **Status:** Resolved — GLOSSARY.md updated with Epistemic Credit, Automation Bias, Stochastic Spaghetti Effect, Context Window Amnesia, Vibe Coding, Spec-Driven Development, Epistemia, Rubber-Stamp Culture, Trade-off Triangle, Bus Factor.
 
 ---
 
@@ -184,14 +152,13 @@
 
 ### 6.1 Reference Files with Spaces and Mixed Case
 
-- **Issue:** Several reference files violate the naming convention (lowercase with hyphens):
-  - `references/Epistemic_debt_definition.md` → should be `epistemic-debt-definition.md`
-  - `references/Epistemic Debt Research Complete.pdf` → should be `epistemic-debt-research-complete.pdf`
-  - `references/Triangle Interaction Table.pdf` → should be `triangle-interaction-table.pdf`
-  - `tmp/01 simple triangle.png` → should use hyphens not spaces
-  - `tmp/Triangle Interaction Table.docx` → should use hyphens not spaces
+- **Issue:** Several reference files violated the naming convention (lowercase with hyphens):
+  - `references/Epistemic_debt_definition.md` → `epistemic-debt-definition.md`
+  - `references/Epistemic Debt Research Complete.pdf` → `epistemic-debt-research-complete.pdf`
+  - `references/Triangle Interaction Table.pdf` → `triangle-interaction-table.pdf`
+  - `tmp/` files (spaces in names) remain; `tmp/` is gitignored.
 - **Impact:** Inconsistency. Scripts that handle filenames with spaces need quoting. Git operations on files with spaces are error-prone.
-- **Fix approach:** Rename to follow convention. Update any references to these files.
+- **Status:** Resolved — reference files under `topics/epistemic_debt/references/` renamed to lowercase-with-hyphens; planning docs updated.
 
 ---
 
@@ -200,8 +167,8 @@
 ### 7.1 No package.json for Node.js Dependencies
 
 - **Issue:** `node_modules/` exists with `markdown-it`, `markdown-it-footnote`, and related packages, but there's no `package.json` or `package-lock.json` at the repository root.
-- **Impact:** Cannot reproduce the dependency installation. `npm install` in a fresh clone will fail. Dependencies are invisible to contributors.
-- **Fix approach:** Run `npm init -y` and `npm install markdown-it markdown-it-footnote` to create proper package management files.
+- **Impact:** Could not reproduce the dependency installation. `npm install` in a fresh clone would fail. Dependencies were invisible to contributors.
+- **Status:** Resolved — root `package.json` added with `markdown-it`, `markdown-it-footnote`, and `puppeteer`; run `npm install` to install.
 
 ---
 
@@ -213,16 +180,16 @@
   - `cursor-article.md` (second full article draft)
   - `iris-learnings.md` (IRIS presentation)
   - `assets/epistemic-trade-off-triangle.md` (triangle framework reference)
-  - `references/Epistemic_debt_definition.md`
-  - `exports/export-pdf.js` (custom export tool)
+  - `references/epistemic-debt-definition.md`
+  - `scripts/styles/export-pdf.js` (custom export tool)
 - **Impact:** Incomplete discoverability. Contributors won't know about all available content.
-- **Fix approach:** Update the table to include all significant files.
+- **Status:** Resolved — table now includes `cursor-article.md`, `iris-learnings.md`, `assets/epistemic-trade-off-triangle.md`, `artifacts/`, `exports/`.
 
 ### 8.2 README "Last Updated" Dates May Be Stale
 
 - **Issue:** `topics/epistemic_debt/README.md` shows `Last Updated: 2026-01-26` but content files have been modified through 2026-02-08.
 - **Impact:** Misleading freshness indicator.
-- **Fix approach:** Update to reflect actual last modification date.
+- **Status:** Resolved — topic README "Last Updated" set to 2026-02-18.
 
 ---
 
@@ -232,7 +199,7 @@
 
 - **Issue:** There are two PDF export paths:
   1. **Shell script** (`scripts/export-pdf.sh`): Uses pandoc/marp CLI tools. Part of the standard export workflow.
-  2. **Node.js script** (`topics/epistemic_debt/exports/export-pdf.js`): Uses markdown-it + puppeteer for higher-quality output with footnote support. Topic-specific, not integrated into the standard workflow.
+  2. **Node.js script** (`scripts/styles/export-pdf.js`): Uses markdown-it + puppeteer for higher-quality output with footnote support. Topic-specific, not integrated into the standard workflow.
 - **Impact:** Confusing. Which should be used? The Node.js script produces better output (proper footnote rendering) but is non-portable and topic-specific. The shell script is portable but may not handle footnotes well.
 - **Fix approach:** Either:
   - Integrate the Node.js approach into the standard export workflow
@@ -287,21 +254,22 @@
 | Priority | Issue | Impact | Effort |
 |----------|-------|--------|--------|
 | ~~**Critical**~~ | ~~§1: Uncommitted directory restructure~~ | ~~Data loss risk, broken git state~~ | ~~Resolved (baseline commit)~~ |
-| **High** | §2.1: Exports not gitignored | Repository bloat | Low |
+| ~~**High**~~ | ~~§2.1: Exports not gitignored~~ | ~~Repository bloat~~ | ~~Resolved (.gitignore)~~ |
 | **High** | §3.2: Two parallel article versions | Content confusion | Medium (editorial decision) |
-| **High** | §5: Glossary staleness | Inconsistent AI assistance | Medium |
-| **Medium** | §2.2: tmp/ not gitignored | Repository bloat | Low |
-| **Medium** | §4.2: Hardcoded path in export-pdf.js | Non-portable tooling | Low |
-| **Medium** | §7: No package.json | Non-reproducible setup | Low |
+| ~~**High**~~ | ~~§5: Glossary staleness~~ | ~~Inconsistent AI assistance~~ | ~~Resolved (GLOSSARY.md updated)~~ |
+| ~~**Medium**~~ | ~~§2.2: tmp/ not gitignored~~ | ~~Repository bloat~~ | ~~Resolved (.gitignore)~~ |
+| ~~**Medium**~~ | ~~§4.2: Hardcoded path in export-pdf.js~~ | ~~Non-portable tooling~~ | ~~Resolved (package.json + require)~~ |
+| ~~**Medium**~~ | ~~§7: No package.json~~ | ~~Non-reproducible setup~~ | ~~Resolved (package.json added)~~ |
 | ~~**Medium**~~ | ~~§10: Empty CLAUDE.md~~ | ~~Missing AI context~~ | ~~Resolved (.ai/context.md + symlink)~~ |
 | **Low** | §11: Distribution layer concerns | Token security, API fragility, analytics limits | Phase 2 |
-| **Low** | §3.1: Duplicate triangle file | Maintenance burden | Low |
-| **Low** | §3.3: Empty artifacts/ directory | Confusing structure | Low |
-| **Low** | §4.1: No tool checks in scripts | Poor error messages | Low |
-| **Low** | §6: File naming violations | Inconsistency | Low |
-| **Low** | §8: Stale README | Discoverability | Low |
+| ~~**Low**~~ | ~~§3.1: Duplicate triangle file~~ | ~~Maintenance burden~~ | ~~Resolved (references/ copy removed)~~ |
+| ~~**Low**~~ | ~~§3.3: Artifacts directory structure~~ | ~~Confusing structure~~ | ~~Resolved~~ |
+| ~~**Low**~~ | ~~§4.1: No tool checks in scripts~~ | ~~Poor error messages~~ | ~~Resolved (pandoc/marp checks)~~ |
+| ~~**Low**~~ | ~~§6.1: Reference file naming~~ | ~~Inconsistency~~ | ~~Resolved~~ |
+| ~~**Low**~~ | ~~§8.1: README table incomplete~~ | ~~Discoverability~~ | ~~Resolved~~ |
+| ~~**Low**~~ | ~~§8.2: Stale README "Last Updated"~~ | ~~Discoverability~~ | ~~Resolved~~ |
 | **Low** | §9: Export workflow fragmentation | Confusion | Medium |
 
 ---
 
-*Concerns audit: 2026-02-15*
+*Concerns audit: 2026-02-15 | Analysis refreshed: 2026-02-18*

@@ -62,7 +62,7 @@
 
 **Artifact Storage Layer:**
 - Purpose: Stores generated outputs and intermediate artifacts
-- Location: `topics/<topic_name>/exports/` (primary), `topics/<topic_name>/artifacts/` (supplementary with drafts/published structure)
+- Location: `topics/<topic_name>/exports/` (primary), `topics/<topic_name>/artifacts/` (supplementary; flat articles/ and presentation/ only, no published subdir; state in frontmatter)
 - Contains: DOCX, PPTX, PDF files; CSS stylesheets for PDF rendering
 - Depends on: Export Layer
 - Used by: Distribution Layer, sharing, external presentation tools

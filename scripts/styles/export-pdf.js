@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const markdownIt = require('markdown-it');
 const markdownItFootnote = require('markdown-it-footnote');
-const puppeteer = require('/home/arau6/.nvm/versions/node/v22.17.1/lib/node_modules/md-to-pdf/node_modules/puppeteer');
+const puppeteer = require('puppeteer');
 
 const md = markdownIt({
   html: true,
@@ -80,20 +80,42 @@ ${htmlBody}
 }
 
 async function main() {
-  const basedir = path.resolve(__dirname, '..');
+  const topic = process.argv[2];
+  if (!topic) {
+    console.error('Usage: node export-pdf.js <topic-directory>');
+    console.error('Example: node scripts/styles/export-pdf.js epistemic_debt');
+    process.exit(1);
+  }
 
-  const exports = [
-    {
-      input: path.join(basedir, 'article.md'),
-      output: path.join(__dirname, 'claude-article-cc.pdf'),
-    },
-    {
-      input: path.join(basedir, 'cursor-article.md'),
-      output: path.join(__dirname, 'cursor-article-cc.pdf'),
-    },
-  ];
+  const repoRoot = path.resolve(__dirname, '../..');
+  const topicDir = path.join(repoRoot, 'topics', topic);
+  const outDir = path.join(topicDir, 'exports');
 
-  for (const { input, output } of exports) {
+  if (!fs.existsSync(topicDir)) {
+    console.error(`Error: Topic directory not found: ${topicDir}`);
+    process.exit(1);
+  }
+  fs.mkdirSync(outDir, { recursive: true });
+
+  const candidates = ['article.md', 'cursor-article.md'];
+  const tasks = [];
+  for (const name of candidates) {
+    const inputPath = path.join(topicDir, name);
+    if (fs.existsSync(inputPath)) {
+      const base = name.replace(/\.md$/, '');
+      tasks.push({
+        input: inputPath,
+        output: path.join(outDir, `${base}-cc.pdf`),
+      });
+    }
+  }
+
+  if (tasks.length === 0) {
+    console.error(`Error: No article.md or cursor-article.md found in ${topicDir}`);
+    process.exit(1);
+  }
+
+  for (const { input, output } of tasks) {
     const name = path.basename(input);
     console.log(`Exporting ${name}...`);
     await exportPdf(input, output);

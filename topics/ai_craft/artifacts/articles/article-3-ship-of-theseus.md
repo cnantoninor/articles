@@ -4,31 +4,46 @@ subtitle: Identity, Memory, and Context in Domain-Driven Design
 status: published
 type: article
 audience:
-  - technical professionals
-  - software architects
-  - developers practicing DDD
+- technical professionals
+- software architects
+- developers practicing DDD
 target_length: 0
-current_length: 0
-estimated_reading_time: 12 min
+current_length: 2700
+estimated_reading_time: 11 min
 created: 2026-02-22
 last_updated: 2026-02-22
 published_date: 2025-08-24
 publication_url: https://antoninorau.substack.com/
 social_teasers:
-  linkedin: |
-    Every time you update a user's email address in your database, you're participating in a 2,500-year-old philosophical debate.
-    The Ship of Theseus paradox asks: if every plank is replaced, is it still the same ship?
-    In software, this translates to: Is a User entity defined by its current attributes, or by its entire history of changes?
-    Domain-Driven Design offers sophisticated answers—from simple Entities to Event Sourcing, where identity becomes a narrative of immutable facts.
-    The choice isn't just technical. It's about what stories our systems can tell.
+  linkedin: 'Every time you update a user''s email address in your database, you''re
+    participating in a 2,500-year-old philosophical debate.
+
+    The Ship of Theseus paradox asks: if every plank is replaced, is it still the
+    same ship?
+
+    In software, this translates to: Is a User entity defined by its current attributes,
+    or by its entire history of changes?
+
+    Domain-Driven Design offers sophisticated answers—from simple Entities to Event
+    Sourcing, where identity becomes a narrative of immutable facts.
+
+    The choice isn''t just technical. It''s about what stories our systems can tell.
+
+    '
   twitter: ''
   instagram_caption: ''
-  substack_notes: |
-    Starting the morning with an ancient question that's surprisingly modern:
+  substack_notes: 'Starting the morning with an ancient question that''s surprisingly
+    modern:
+
     If you replace every component of a system, is it still the same system?
-    This isn't just philosophy—it's the core challenge of software migration, refactoring, and system evolution.
-    Domain-Driven Design offers a sophisticated framework for thinking about identity, memory, and change in our digital systems.
+
+    This isn''t just philosophy—it''s the core challenge of software migration, refactoring,
+    and system evolution.
+
+    Domain-Driven Design offers a sophisticated framework for thinking about identity,
+    memory, and change in our digital systems.'
 ---
+
 
 # The Ship of Theseus & The Soul of Software
 
@@ -296,6 +311,13 @@ Leave a comment below and let's explore this together.
 
 ---
 
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/comments), [share it](https://antoninorau.substack.com), and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
 ## References
 
 - Plutarch. *Vita Thesei* (Life of Theseus), in *Vitae Parallelae*.

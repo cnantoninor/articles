@@ -4,12 +4,12 @@ subtitle: The impact of AI on software development practices
 status: published
 type: article
 audience:
-  - technical professionals
-  - engineering leaders
-  - developers using AI-assisted tools
+- technical professionals
+- engineering leaders
+- developers using AI-assisted tools
 target_length: 0
-current_length: 0
-estimated_reading_time: 5 min
+current_length: 102
+estimated_reading_time: 1 min
 created: 2026-02-22
 last_updated: 2026-02-22
 published_date: 2025-08-10
@@ -20,6 +20,7 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
 
 # AI Changed How I Delete Code—And That Changes Everything
 
@@ -43,6 +44,13 @@ social_teasers:
 
 ---
 
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/ai-changed-how-i-delete-codeand-that/comments), [share it](https://antoninorau.substack.com/p/ai-changed-how-i-delete-codeand-that), and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
 ## References
 
 [GAP: Add references when article is imported.]

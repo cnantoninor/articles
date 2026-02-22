@@ -49,3 +49,5 @@
 
 ## Current Topics
 - epistemic_debt -- Epistemic risks of LLM-based software engineering
+- philosophy_of_ai -- Metaphors, epistemology, and cognitive limits (TAM1, TAM2)
+- ai_craft -- Development practice, design, and identity (TAM3, TAM4, TAM5)

@@ -1,0 +1,68 @@
+====================================================================
+POST ITALIANO — corpo del post
+====================================================================
+Nota: le parole tra ** vanno evidenziate come grassetto
+nell'editor di LinkedIn dopo aver incollato.
+--------------------------------------------------------------------
+
+"Epistemia" e' entrata nel Vocabolario Treccani, grazie al lavoro del prof. @Walter Quattrociocchi: "La confortevole illusione di conoscenza prodotta dall’interazione con l’IA generativa dei grandi modelli linguistici (LLM), là dove la plausibilità simulativa del discorso fluente e la coerenza narrativa sostituiscono l’efficienza cognitiva e l’affidabilità dei dati".
+
+Da Software Engineer stagionato ci sono cascato anch'io: ho commesso quegli stessi errori, e proprio sbattendoci contro ho capito quanto questa illusione sia concreta. Ho provato a calare il concetto nel mio campo, dove l'Epistemia produce quello che si sta iniziando a chiamare **Debito Epistemico**: la divergenza tra la complessita' del sistema che stiamo sviluppando e la comprensione reale — non illusoria — che ne abbiamo.
+
+Il problema cresce su due fronti simultaneamente. Da un lato, l'AI generativa di codice genera sistemi in un tempo incredibilmente breve, aumentando in modo vertiginoso la possibilita' di accumulo del debito epistemico. Dall'altro, (alcuni) programmatori tendono ad affidarsi troppo — anche per puri motivi di produttivita' o di automation bias — sviluppando cosi' una conoscenza illusoria del sistema. La complessita' sale, la comprensione reale scende: il debito epistemico si accumula in modo esponenziale.
+
+Poi arriva il momento della verita': un bug in produzione, un comportamento inspiegabile, un disallineamento sull'intento del cliente, o semplicemente una grossa richiesta di modifica. E' li' che si paga il debito epistemico — e il conto e' tanto piu' salato quanto piu' a lungo lo si e' ignorato.
+
+Ho esplorato queste idee in una serie di articoli — link nel primo commento.
+
+#Epistemia #DebitoEpistemico #AI #SoftwareEngineering #IntelligenzaArtificiale #LLM
+
+
+====================================================================
+POST ITALIANO — primo commento (self-reply)
+====================================================================
+
+Il post originale del prof. Quattrociocchi: https://www.linkedin.com/posts/walterquattrociocchi_epistemia-entra-nel-vocabolario-treccani-share-7430913488019046400
+
+La voce nel vocabolario Treccani: https://www.treccani.it/vocabolario/neo-epistemia_(Neologismi)/ 
+
+I link alla serie:
+- Epistemic Debt — panoramica della serie: https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
+- The Epistemic Shift — Parte 1: https://antoninorau.substack.com/p/the-epistemic-shift
+
+E per chi vuole scavare nel rapporto filosofico tra AI generativa con Platone e Aristotele:
+- From Eikasia to Noesis — What Plato Can Teach AI: https://antoninorau.substack.com/p/from-eikasia-to-noesis-what-plato
+
+
+====================================================================
+POST INGLESE — corpo del post
+====================================================================
+Nota: le parole tra ** vanno evidenziate come grassetto
+nell'editor di LinkedIn dopo aver incollato.
+--------------------------------------------------------------------
+
+📖 "𝗘𝗽𝗶𝘀𝘁𝗲𝗺𝗶𝗮" has entered the Treccani dictionary — Italy's equivalent of the Oxford English Dictionary — thanks to the work of Prof. @Walter Quattrociocchi. The definition: the comfortable illusion of knowledge produced by interaction with generative AI (LLMs), where the simulative plausibility of fluent discourse and narrative coherence replace cognitive efficiency and data reliability.
+
+🤚 As a seasoned Software Engineer, I fell for it too: I made those same mistakes, and it was precisely by bumping into them that I understood how concrete this illusion is. I've tried to ground the concept in my field, where Epistemia produces what is starting to be called **Epistemic Debt**: the divergence between the complexity of the system we're building and our real — not illusory — understanding of it.
+
+⚠️ The problem grows on two fronts simultaneously. On one side, generative AI creates systems in incredibly short time, vastly increasing the potential for epistemic debt accumulation. On the other, (some) developers rely on it too heavily — often for pure productivity reasons or automation bias — developing an illusory understanding of their own systems. Complexity rises, real comprehension drops: epistemic debt accumulates exponentially.
+
+💥 Then the moment of truth arrives: a production bug, an unexplainable behavior, a misalignment on the client's intent, or simply a major change request. That's when you pay the epistemic debt — and the longer you've ignored it, the steeper the bill.
+
+I've been exploring these ideas in a series of articles — 👇 links in the first comment.
+
+#Epistemia #EpistemicDebt #AI #SoftwareEngineering #GenerativeAI #LLM
+
+
+====================================================================
+POST INGLESE — primo commento (self-reply)
+====================================================================
+
+Prof. @Quattrociocchi's original post: https://www.linkedin.com/posts/walterquattrociocchi_epistemia-entra-nel-vocabolario-treccani-share-7430913488019046400
+
+Links to the series:
+- Epistemic Debt — series overview: https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
+- Part 1 — The Epistemic Shift: https://antoninorau.substack.com/p/the-epistemic-shift
+
+And for those who want to dig deeper into the relationship between AI and human cognition, with Plato and Aristotle as guides:
+- From Eikasia to Noesis — What Plato Can Teach AI: https://antoninorau.substack.com/p/from-eikasia-to-noesis-what-plato

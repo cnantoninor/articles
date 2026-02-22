@@ -79,7 +79,10 @@ ai-articles/
 │   ├── slides.md                # Marp presentation template
 │   └── research.md              # Research/notes template
 └── topics/                      # All article topics live here
-    └── [topic_name]/            # Each topic follows this structure:
+    ├── epistemic_debt/          # Epistemic risks of LLM-based software engineering
+    ├── philosophy_of_ai/        # Metaphors, epistemology, Plato and AI (TAM1, TAM2)
+    ├── ai_craft/                # Deleting code, vibe designing, Ship of Theseus (TAM3–TAM5); includes code/
+    └── [topic_name]/            # New topics follow this structure:
         ├── README.md            # Topic overview, status, links
         ├── article.md           # Main article draft
         ├── slides.md            # Marp presentation

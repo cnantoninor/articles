@@ -64,6 +64,9 @@ The tendency to over-trust or over-rely on automated systems (e.g. LLM suggestio
 ### Vibe Coding
 (Karpathy, 2025.) Coding by iterating on LLM output until it "feels right" or passes tests, without necessarily establishing causal understanding of how the code works.
 
+### Vibe Designing
+Using AI as a cognitive lever for deeper problem modeling and intentional design rather than rapid code generation. Emphasizes pre-prompting (domain invariants, edge cases, entity lifecycles), Socratic questioning of assumptions, and design exploration; positions AI as a thinking partner rather than a replacement for judgment.
+
 ### Spec-Driven Development
 (Thoughtworks, 2025.) An approach where specifications are written and maintained as the source of truth, and code (including LLM-generated code) is validated against them to preserve epistemic boundaries.
 

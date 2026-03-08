@@ -21,7 +21,21 @@ social_teasers:
   substack_notes: ''
 ---
 
+TOADD:
 
+https://www.arxiv.org/pdf/2602.20206 and other from LMNotebook.
+
+[TODO: Add the "Stochastic Spaghetti Effect" (Ngabang, 2026) as a named failure mechanism — locally optimized AI-generated code that lacks global architectural coherence. Related concepts to weave in: "Context Window Amnesia" (AI can't reason about distant side effects leading to Heisenbugs) and "Mirage of Correctness" (teams warping architecture to accommodate AI hallucinations). These map to the L2-L3 abstraction layers from article 2. References: Ngabang (2026) viXra.org https://vixra.org/pdf/2601.0013v1.pdf; ICSE 2026 Panel https://conf.researchr.org/info/icse-2026/panels]
+
+[TODO: Reserve "Human Debt" concept for a future article — the accumulated psychological burden (impostor phenomenon, anxiety, burnout) from AI-assisted work. Distinct from both technical and epistemic debt but compounds with them. When developers can't understand their own code, the psychological toll deepens. Reference: "Impostor Phenomenon as Human Debt: A Challenge to the Future of Software Engineering." ICSE 2026. https://arxiv.org/abs/2602.13767]
+
+[TODO: Moved from Article 2 — consider incorporating the following material into this article:]
+
+[TODO: Add Pre-LLM vs Post-LLM shift as opening context for "what changed that makes defaults worse." Key content: Pre-LLM, epistemic gaps were rare and visible — copying a Stack Overflow snippet came with friction (integrating it, feeling cognitive dissonance, removing parts that didn't make sense). This friction was pedagogical. Post-LLM, entire modules and their relationships appear at higher abstraction levels (design, architecture, sometimes requirements). The code looks professional, tests pass, but nobody did the labour of knowing. The friction that once limited epistemic debt accumulation has been removed, and the level of abstraction at which debt is incurred has increased.]
+
+[TODO: Add Fragile Expert study data as case study evidence. Prather et al. (2026) experimental study (N=78): unrestricted AI users achieved ~300% productivity gains over manual coding but suffered 77% failure rate when asked to maintain or debug the same code without AI assistance. A scaffolded group — given deliberate metacognitive friction — achieved comparable productivity (+280%) with only 39% failure rate. Reference: Prather, J. et al. (2026). "Mitigating 'Epistemic Debt' in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts." arXiv. https://arxiv.org/html/2602.20206]
+
+[TODO: Add industry-scale statistics to "These Aren't Isolated Incidents" section. The scale of technical debt alone: the 2025 "Coding in the Red" report analyzed 10 billion lines of code across 47,000 applications and estimated the global burden at 61 billion workdays, with 45% of the world's code deemed "fragile" (CAST Software, 2025). Epistemic debt compounds this: the 2026 State of Software Security report found 82% of organizations carry significant security debt, with high-severity flaws up 36% year-over-year (Veracode, 2026). The connection is direct: code nobody understands is code nobody can audit for vulnerabilities. Security debt is, in many cases, the downstream consequence of epistemic debt. References: CAST Software (2025). "Coding in the Red." https://www.castsoftware.com/news/companies-worldwide-burdened-with-61-billion-workdays-of-tech-debt; Veracode (2026). "2026 State of Software Security." https://www.veracode.com/blog/2026-state-of-software-security-report-risky-security-debt/]
 
 # When Epistemic Debt Defaults
 
@@ -127,3 +141,6 @@ The question is: how do teams fall into this pattern? What are the mechanisms th
 - Veracode (2025). "GenAI Code Security Report."
 - Cortex (2026). "Software Engineering Benchmark Report."
 - GitClear (2025). "AI Copilot Code Quality: 2025 Data Suggests 4× Growth in Code Clones."
+- Prather, J. et al. (2026). "Mitigating 'Epistemic Debt' in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts." arXiv. https://arxiv.org/html/2602.20206
+- CAST Software (2025). "Coding in the Red: Companies Worldwide Burdened with 61 Billion Workdays of Tech Debt." https://www.castsoftware.com/news/companies-worldwide-burdened-with-61-billion-workdays-of-tech-debt
+- Veracode (2026). "2026 State of Software Security: Risky Debt Rising, Strategy Starts Here." https://www.veracode.com/blog/2026-state-of-software-security-report-risky-security-debt/

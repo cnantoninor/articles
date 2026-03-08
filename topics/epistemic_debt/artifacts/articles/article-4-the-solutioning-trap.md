@@ -84,6 +84,12 @@ This isn't a failure of the individual developers. It's a structural problem: th
 
 The solutioning trap doesn't operate in a vacuum. It has specific points in the software development lifecycle where it does the most damage — boundaries where meaning must be translated from one form to another. These are the points where understanding is most easily lost.
 
+[TODO: Moved from Article 2 — consider incorporating the following material into the discussion of why the solutioning trap goes unnoticed:]
+
+[TODO: Add the social invisibility of epistemic debt. Three key distinctions from technical debt that explain why engineers don't notice the trap: (1) Social dynamics differ — technical debt carries social stigma ("you cut corners"), but epistemic debt is normalized — it feels like collaboration. When you accept an LLM suggestion and ship it, there's no cognitive dissonance, no sense of risk. It feels like productivity. (2) Localization differs — technical debt is localized to specific files ("this function needs refactoring"), but epistemic debt is diffuse — it's in the gap between the codebase and the team's mental model. You can't grep for it. (3) When it manifests differs — technical debt shows up in code review (the reviewer flags the shortcut), but epistemic debt shows up in crisis — the production incident nobody can diagnose, the security vulnerability nobody knew existed.]
+
+[TODO: Connect translation boundaries to the t₀ concept from Article 2. Each boundary is a potential t₀ — a point where deterministic mechanisms (spec-driven development at Boundary 1, contract tests at Boundary 2, human-authored E2E tests at Boundary 3) can surface epistemic gaps early enough to keep Σ_k c_k · τ_k < δ. Without these mechanisms, t₀ defaults to production — where c_k is at its maximum.]
+
 ### Boundary 1: Intent → Specification
 
 **Risk:** Vibe-based requirements lead to vibe-based design.

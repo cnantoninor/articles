@@ -184,6 +184,8 @@ A structured workflow doesn't just add another arrow to the triangle — it make
 
 **Limitation:** Workflow overhead. Best suited for substantial features rather than quick fixes.
 
+[TODO: Connect each strategy force back to the t₀ and break-even formula from Article 2. DDD shifts t₀ leftward at L3-L4 (architectural/requirements gaps surface during domain modeling). Human-authored E2E tests shift t₀ leftward at L1-L2 (integration failures surface before production). Structured workflows create multiple t₀ checkpoints across all layers. Frame the strategies as deterministic mechanisms that keep Σ_k c_k · τ_k < δ — preserving AI speed advantage while bounding debt risk. Consider adding a column to the strategy summary table showing which abstraction layer (L1-L4) each strategy primarily guards.]
+
 ### The Strategy Forces Summary
 
 | Strategy | Primary Pull | Effect on Epistemic Debt | Risk/Trap |

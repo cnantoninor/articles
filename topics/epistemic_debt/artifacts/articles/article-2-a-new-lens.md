@@ -56,7 +56,7 @@ Where:
 - **Gc(t)** = Cognitive Grasp of the team at time *t*
 - **T** = Time period
 
-Epistemic debt accumulates when your system grows more complex faster than your team's understanding grows. Cs(t) is "how complicated is our system?" Gc(t) is "how well do we understand it?" The integral captures how this gap compounds over time. 
+Epistemic debt accumulates when your system grows more complex faster than your team's understanding grows. Cs(t) is "how complicated is our system?" Gc(t) is "how well do we understand it?" The integral — rather than a point-in-time snapshot — is deliberate: two teams can have the same gap today yet face radically different recovery costs depending on how long that gap has persisted. Code written during a period of low understanding becomes the foundation for subsequent code, depositing layers of opacity that compound silently. A punctual measure would treat a gap opened yesterday the same as one that has been accumulating for six months; the integral captures the total exposure, which is what actually determines the cost of closing it.
 
 This isn't just an abstraction. Think about the last six months on your team. How many features shipped? How much new code entered the codebase? Now ask: how much of that new code could your team explain, line by line, without investing time and effort reading it, and not a function but entire modules and sometime architecture and latent requirements injected by the AI? 
 The gap between those two numbers — that's your epistemic debt.

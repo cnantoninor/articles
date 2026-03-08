@@ -1,6 +1,7 @@
 ---
-title: "Epistemic Debt: The Math, The Cost, and Why It's Not Technical Debt"
-subtitle: A mathematical definition of epistemic debt, its economic cost, and why technical debt analogies break down
+title: 'Epistemic Debt: The Math, The Cost, and Why It''s Not Technical Debt'
+subtitle: A mathematical definition of epistemic debt, its economic cost, and why
+  technical debt analogies break down
 status: draft
 type: article
 audience:
@@ -8,8 +9,8 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 2200
-current_length: 2204
-estimated_reading_time: 9 min
+current_length: 2313
+estimated_reading_time: 10 min
 created: 2026-02-15
 last_updated: 2026-03-08
 published_date: null
@@ -20,6 +21,7 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
 
 
 # Epistemic Debt: The Math, The Cost, and Why It's Not Technical Debt

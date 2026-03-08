@@ -88,18 +88,27 @@ The total recovery time across all layers:
 
 **T_recovery = Σ_k τ_k = Σ_k (Cs_k - Gc_k(t₀)) / r_k**
 
-This formula assumes recovery proceeds top-down — from requirements (L4) down to implementation (L1) — so that by the time a team addresses a lower layer, the higher layers that give it meaning are already understood. Under that assumption, each τ_k reflects a genuine learning rate and the total is a simple sum. In practice, teams that attempt bottom-up recovery — debugging implementation before understanding the requirement behind it — find that r_k at lower layers is artificially depressed: you can't truly close an L1 gap if the L3 or L4 gap above it remains open. The effective cost in that case exceeds T_recovery because understanding must be reworked once the higher-layer gap is eventually addressed.
+**This formula assumes recovery proceeds top-down:** from requirements (L4) down to implementation (L1) for the scope and components the understanding is needed. So that by the time a team addresses a lower layer, the higher layers that give it meaning are already understood. 
 
-This ordering effect reinforces Boehm's Cost of Change Curve: r_k decreases as k increases — recovering understanding at the implementation level (L1) might take minutes; recovering a misaligned requirement (L4) might take days. Fix the higher layers first, or pay twice at the lower ones.
+Under that assumption, each τ_k reflects a genuine learning rate and the total is a simple sum. In practice, teams that attempt bottom-up recovery — debugging implementation before understanding the requirement behind it — find that r_k at lower layers is artificially depressed: you can't truly close an L1 gap if the L3 or L4 gap above it remains open. The effective cost in that case exceeds T_recovery because understanding must be reworked once the higher-layer gap is eventually addressed.
+
+This ordering effect reinforces Boehm's Cost of Change Curve: r_k decreases as k increases — recovering understanding at the implementation level (L1) might take minutes, given the higher layers are understood; recovering a misaligned requirement (L4) might take several hours to reverse engineer the code that was generated to implement it.
 
 ### When Recovery Outweighs AI Speed
 
-This is the critical economic question. Let:
+T_recovery tells us how long it takes to *learn* what we don't understand, but learning isn't the only cost. Recovering understanding at a higher layer often invalidates work already done at the layers below it. Discover a requirements misunderstanding (L4) and you don't just spend τ_4 relearning the requirement — you may also have to re-recover the architecture, design, and implementation that were built on the wrong assumption.
 
-- **δ** = development time saved by AI-assisted generation
-- **c_k** = cost multiplier at layer k, representing Boehm's escalation across abstraction levels
+This cascade gives us a cost multiplier that emerges directly from the recovery model. When closing a gap at layer k triggers re-recovery of all layers below it, the effective cost is not just τ_k but the sum of recovery times from L1 up to k:
 
-The cost multiplier c_k is a constant that captures how recovery effort escalates at higher abstraction layers. For example, c_1 = 1 (implementation), c_2 = 10 (design), c_3 = 100 (architecture), c_4 = 1000 (requirements) — each level roughly an order of magnitude more costly than the one below it.
+**C_k = Σ_{j=1}^{k} τ_j**
+
+The cost multiplier at each layer is therefore:
+
+**c_k = C_k / τ_k = (Σ_{j=1}^{k} τ_j) / τ_k**
+
+At L1, c_1 = 1 — recovery is local, no downstream rework. At higher layers, c_k grows because closing the gap forces re-recovery of every layer below. The exact values depend on the team's gap sizes and learning rates, but for typical projects — where r_k decreases sharply with abstraction — they approximate the order-of-magnitude escalation Boehm observed empirically.
+
+With this, we can state the critical economic question. Let **δ** be the development time saved by AI-assisted generation. The net benefit is:
 
 **Net benefit = δ - Σ_k c_k · τ_k**
 
@@ -107,7 +116,7 @@ AI speed is outweighed when:
 
 **Σ_k c_k · τ_k > δ**
 
-In plain language: *the time you saved generating code is consumed — and then exceeded — by the time needed to understand what was generated, especially when the gap sits at higher abstraction layers.* A team that generates 400 lines of implementation code (L1) and recovers understanding cheaply may still benefit. A team that accepts AI-generated architecture (L3) or discovers a requirements mismatch woven through the codebase (L4) may find that the recovery cost dwarfs the original time savings.
+In plain language: *the time you saved generating code is consumed — and then exceeded — by the time needed to understand what was generated, multiplied by the rework it triggers at every layer below.* A team that generates 400 lines of implementation code (L1) and recovers understanding cheaply may still benefit. A team that accepts AI-generated architecture (L3) or discovers a requirements mismatch woven through the codebase (L4) may find that the recovery cost dwarfs the original time savings.
 
 This is why the level of abstraction at which epistemic debt is incurred matters more than the volume of code generated.
 

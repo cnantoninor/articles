@@ -4,9 +4,12 @@ Seven interactive visualizations for **"Epistemic Debt: The Math, The Cost, and 
 
 ## Deploy to Vercel
 
+**Currently deployed at <https://articles-4d5hts7kg-cnantoninors-projects.vercel.app/>**
+
 ### Option A: One-click (fastest)
 
 1. Push this folder to a **GitHub repo**:
+
    ```bash
    cd epistemic-debt-infographics
    git init

@@ -19,9 +19,11 @@ Analyze an article's key concepts, formulas, and metaphors, then generate a comp
 Generate an interactive infographic project for the article at `topics/{{TOPIC}}/artifacts/articles/{{ARTICLE_PATH}}`.
 
 The output directory is auto-derived:
+
 ```
 topics/{{TOPIC}}/artifacts/infographics/<article-slug>/
 ```
+
 Where `<article-slug>` is the article filename with `.md` stripped (e.g., `article-2-a-new-lens`).
 
 ---
@@ -63,12 +65,14 @@ After user approval of the component list, generate a complete Next.js project w
 Follow these conventions exactly — they are derived from the existing `article-2` infographic project and ensure visual and structural consistency across all infographic deployments.
 
 #### package.json
+
 - Name: `<topic>-<article-slug>-infographics` (e.g., `epistemic-debt-article-2-infographics`). Use hyphens, not underscores.
 - Dependencies: `next ^14.2.0`, `react ^18.3.0`, `react-dom ^18.3.0`
 - Scripts: `dev`, `build`, `start`
 - Private: true
 
 #### next.config.js
+
 ```js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -80,6 +84,7 @@ module.exports = nextConfig;
 ```
 
 #### globals.css
+
 ```css
 * {
   box-sizing: border-box;
@@ -118,11 +123,13 @@ button:hover {
 ```
 
 #### layout.js
+
 - Google Fonts: JetBrains Mono, Space Grotesk, Inter
 - OpenGraph + Twitter Card metadata derived from the article title
 - Author attribution to Antonino Rau / The AI Mirror
 
 #### page.js
+
 ```js
 import Infographics from './Infographics';
 
@@ -155,6 +162,7 @@ const T = {
 ```
 
 Include these reusable utilities:
+
 - `useAnimatedValue(target, duration)` hook for smooth numeric transitions (ease-out cubic)
 - Reusable sub-components as needed: `Legend`, `Formula`, `Stat`, `MiniSparkline`
 
@@ -174,6 +182,7 @@ Include these reusable utilities:
 - Section styling: surface background, border, rounded corners, padding
 
 #### .gitignore
+
 ```
 node_modules/
 .next/
@@ -184,6 +193,7 @@ out/
 #### README.md
 
 Include:
+
 - Project title and description
 - Deploy to Vercel (GitHub push + one-click, or Vercel CLI)
 - Local development instructions (`npm install`, `npm run dev`)
@@ -194,20 +204,26 @@ Include:
 
 ## Phase 3: Deployment Instructions
 
-After generating all files, provide these instructions:
+After generating all files, provide these instructions:/clear
 
 1. Navigate to the output directory:
+
    ```bash
    cd topics/{{TOPIC}}/artifacts/infographics/<article-slug>/
    ```
+
 2. Install dependencies:
+
    ```bash
    npm install
    ```
+
 3. Preview locally:
+
    ```bash
    npm run dev
    ```
+
 4. Deploy to Vercel via CLI or GitHub import
 
 ---

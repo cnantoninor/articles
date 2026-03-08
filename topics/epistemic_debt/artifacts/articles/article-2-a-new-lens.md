@@ -82,7 +82,7 @@ Where r_k is the learning rate at layer k. The time needed to fully close the ga
 
 **τ_k = (Cs_k - Gc_k(t₀)) / r_k**
 
-The numerator is the gap (how much understanding is missing at t₀); the denominator is the learning rate (how fast the team closes it). Bigger gap or slower learning means more recovery time.
+The numerator is the gap (how much understanding is missing at t₀); the denominator is the learning rate (how fast the team closes it). Bigger gap or slower learning means more recovery time. Note that this assumes the gap must be fully closed — that Gc_k must reach Cs_k exactly. In practice, some subdomains tolerate a margin of ignorance: a team may not need to understand every detail of a generic CRUD module the way it needs to understand core business logic. We'll return to this tolerance factor and what determines it when we examine how domain boundaries shape recovery priorities using a Domain Driven Design approach.
 
 The total recovery time across all layers:
 

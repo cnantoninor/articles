@@ -198,6 +198,8 @@ A structured workflow doesn't just add another arrow to the triangle — it make
 
 ## Domain-Based Positioning
 
+[TODO: Introduce the tolerance factor ε_k here, connecting back to Article 2's recovery formula. In Article 2 we derived τ_k = (Cs_k - Gc_k(t₀)) / r_k assuming the gap must be fully closed. Here, with DDD subdomain classification providing the motivation, introduce ε_k as a tolerance threshold so the recovery target becomes Gc_k(τ) = Cs_k - ε_k, yielding τ_k = (Cs_k - Gc_k(t₀) - ε_k) / r_k. Core domains → ε_k ≈ 0 (full understanding required). Supporting domains → moderate ε_k. Generic domains → large ε_k (strategic ignorance is economically rational). This formalizes the "not all code deserves equal epistemic investment" argument mathematically and closes the seed planted in Article 2.]
+
 Not all code deserves equal epistemic investment. The triangle maps naturally to DDD's subdomain classification:
 
 **Core domains** (competitive advantage, security-sensitive, long-lived):

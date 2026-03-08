@@ -8,8 +8,8 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 2090
-current_length: 2132
-estimated_reading_time: 9 min
+current_length: 2333
+estimated_reading_time: 10 min
 created: 2026-02-15
 last_updated: 2026-02-15
 published_date: null
@@ -20,6 +20,8 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
+
 
 
 # The Trade-off Triangle
@@ -184,6 +186,8 @@ A structured workflow doesn't just add another arrow to the triangle — it make
 
 **Limitation:** Workflow overhead. Best suited for substantial features rather than quick fixes.
 
+[TODO: Connect each strategy force back to the t₀ and break-even formula from Article 2. DDD shifts t₀ leftward at L3-L4 (architectural/requirements gaps surface during domain modeling). Human-authored E2E tests shift t₀ leftward at L1-L2 (integration failures surface before production). Structured workflows create multiple t₀ checkpoints across all layers. Frame the strategies as deterministic mechanisms that keep Σ_k c_k · τ_k < δ — preserving AI speed advantage while bounding debt risk. Consider adding a column to the strategy summary table showing which abstraction layer (L1-L4) each strategy primarily guards.]
+
 ### The Strategy Forces Summary
 
 | Strategy | Primary Pull | Effect on Epistemic Debt | Risk/Trap |
@@ -194,6 +198,8 @@ A structured workflow doesn't just add another arrow to the triangle — it make
 | Structured Workflow | Amplifies all | Meta-strategy enabling sustainable AI use | Overhead for small tasks |
 
 ## Domain-Based Positioning
+
+[TODO: Introduce the tolerance factor ε_k here, connecting back to Article 2's recovery formula. In Article 2 we derived τ_k = (Cs_k - Gc_k(t₀)) / r_k assuming the gap must be fully closed. Here, with DDD subdomain classification providing the motivation, introduce ε_k as a tolerance threshold so the recovery target becomes Gc_k(τ) = Cs_k - ε_k, yielding τ_k = (Cs_k - Gc_k(t₀) - ε_k) / r_k. Core domains → ε_k ≈ 0 (full understanding required). Supporting domains → moderate ε_k. Generic domains → large ε_k (strategic ignorance is economically rational). This formalizes the "not all code deserves equal epistemic investment" argument mathematically and closes the seed planted in Article 2.]
 
 Not all code deserves equal epistemic investment. The triangle maps naturally to DDD's subdomain classification:
 

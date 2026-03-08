@@ -8,8 +8,8 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 1952
-current_length: 1994
-estimated_reading_time: 8 min
+current_length: 2224
+estimated_reading_time: 9 min
 created: 2026-02-15
 last_updated: 2026-02-15
 published_date: null
@@ -20,6 +20,7 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
 
 
 # The Solutioning Trap
@@ -83,6 +84,12 @@ This isn't a failure of the individual developers. It's a structural problem: th
 ## Where Debt Accumulates: The Translation Boundaries
 
 The solutioning trap doesn't operate in a vacuum. It has specific points in the software development lifecycle where it does the most damage — boundaries where meaning must be translated from one form to another. These are the points where understanding is most easily lost.
+
+[TODO: Moved from Article 2 — consider incorporating the following material into the discussion of why the solutioning trap goes unnoticed:]
+
+[TODO: Add the social invisibility of epistemic debt. Three key distinctions from technical debt that explain why engineers don't notice the trap: (1) Social dynamics differ — technical debt carries social stigma ("you cut corners"), but epistemic debt is normalized — it feels like collaboration. When you accept an LLM suggestion and ship it, there's no cognitive dissonance, no sense of risk. It feels like productivity. (2) Localization differs — technical debt is localized to specific files ("this function needs refactoring"), but epistemic debt is diffuse — it's in the gap between the codebase and the team's mental model. You can't grep for it. (3) When it manifests differs — technical debt shows up in code review (the reviewer flags the shortcut), but epistemic debt shows up in crisis — the production incident nobody can diagnose, the security vulnerability nobody knew existed.]
+
+[TODO: Connect translation boundaries to the t₀ concept from Article 2. Each boundary is a potential t₀ — a point where deterministic mechanisms (spec-driven development at Boundary 1, contract tests at Boundary 2, human-authored E2E tests at Boundary 3) can surface epistemic gaps early enough to keep Σ_k c_k · τ_k < δ. Without these mechanisms, t₀ defaults to production — where c_k is at its maximum.]
 
 ### Boundary 1: Intent → Specification
 

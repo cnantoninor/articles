@@ -8,8 +8,8 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 1381
-current_length: 1423
-estimated_reading_time: 6 min
+current_length: 1678
+estimated_reading_time: 7 min
 created: 2026-02-15
 last_updated: 2026-02-15
 published_date: null
@@ -21,6 +21,12 @@ social_teasers:
   substack_notes: ''
 ---
 
+ TO ADD: AI-ASSISTED ENGINEERING SHOULD TRACK THE EPISTEMIC STATUS AND TEMPORAL VALIDITY OF ARCHITECTURAL
+DECISIONS
+
+[TODO: Moved from Article 2 — consider incorporating the following material into the measurement discussion:]
+
+[TODO: Add the Senior Expertise Gap as a systemic measurement concern. The foundational tasks that AI now absorbs — writing basic code, debugging simple errors, drafting initial implementations — were historically the "cognitive scaffolding" through which junior developers built expertise. LinkedIn's 2026 Economic Graph insights report a significant slowdown in entry-level hiring in AI-exposed sectors (Emeritus, 2026). If the mechanisms by which engineers build understanding are themselves automated away, then the learning rate r_k in the recovery formula (Article 2) may degrade over time — not because current teams are less capable, but because the pipeline that produces deeply trained engineers is narrowing. The "Senior Expertise Gap" this creates is expected to peak in five to ten years. This has measurement implications: r_k is not a constant but a degrading variable, meaning recovery cost projections based on current team capabilities may underestimate future costs. Reference: Emeritus (2026). "The Hidden Cost of AI Adoption." https://emeritus.org/blog/lnd-the-hidden-cost-of-ai-adoption/]
 
 # Measuring the Unmeasurable
 
@@ -63,6 +69,8 @@ Most studies of AI-assisted development (2024-2026) suffer from these confoundin
 ## What We Can Measure Today
 
 Despite the paradox, several proxy indicators provide useful signal — not individually, but when triangulated.
+
+[TODO: Consider adding a team-level formulation of Gc here — decomposing cognitive grasp across team members (e.g., Gc_k,team = (1/m) Σ_j w_j · Gc_k,j or using min over critical members) to connect the bus factor discussion to the formula from Article 2. The min-based formulation — effective understanding bounded by the weakest critical member — makes the bus factor argument mathematical.]
 
 **Bus Factor Analysis.** The bus factor — how many team members must leave before critical knowledge is lost — has always been relevant, but LLM-assisted development changes its dynamics. Pre-LLM, bus factor tracked slowly because code was authored incrementally and knowledge distributed through pairing and review. Post-LLM, entire subsystems can be created by a single developer in a single session, creating knowledge silos faster than traditional development.
 
@@ -132,3 +140,4 @@ We couldn't precisely measure technical debt for decades, but we knew it when we
 - Documentation Quality Research (2025). Industry consensus on measurement challenges.
 - Ngabang, L.A. (2026). "The Illusion of Competence."
 - Sharafi, Z. et al. (2015). "A Systematic Literature Review on the Usage of Eye-Tracking in Software Engineering."
+- Emeritus (2026). "The Hidden Cost of AI Adoption." https://emeritus.org/blog/lnd-the-hidden-cost-of-ai-adoption/

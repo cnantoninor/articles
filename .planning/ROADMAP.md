@@ -47,7 +47,7 @@ Phases 9-12 are archived. See MILESTONES.md for details.
   2. The Amazon Kiro incident appears as a fully integrated fourth case study with the accountability-denial pattern named and each case study annotated with formula mapping (k layer, c_k, t₀)
   3. The industry data block includes Fragile Experts 77% failure rate and Sonar verification gap figures with footnoted citations; pre-LLM vs post-LLM framing precedes the case studies
   4. Social teasers are complete (LinkedIn, Twitter/X, Instagram, Substack Notes) and the article is live with series cross-links updated
-**Plans:** 3 plans
+**Plans:** 1/3 plans executed
 
 Plans:
 - [ ] 13-00-PLAN.md — Deep fact-check: online research verification of every claim, statistic, and data point
@@ -119,7 +119,7 @@ Plans:
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
-| 13. Article 3 — When Epistemic Debt Defaults | v3.0 | 0/2 | Planning complete | - |
+| 13. Article 3 — When Epistemic Debt Defaults | 1/3 | In Progress|  | - |
 | 14. Article 4 — The Solutioning Trap | v3.0 | 0/TBD | Not started | - |
 | 15. Article 5 — The Trade-off Triangle | v3.0 | 0/TBD | Not started | - |
 | 16. Article 6 — Measuring the Unmeasurable | v3.0 | 0/TBD | Not started | - |

@@ -14,3 +14,4 @@ topics/*/exports/*.html
 analytics/credentials/*
 !analytics/credentials/.gitkeep
 .cursor/plans
+.planning/STATE.md.bak-2026-03-14T17-42-10

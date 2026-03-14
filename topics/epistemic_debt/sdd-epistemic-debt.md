@@ -503,6 +503,190 @@ The worked example illustrates how different ceremony levels produce different e
 
 The core Story's discuss phase caught an architecture-level misunderstanding (L3) *before planning even began* — saving an estimated 10× rework multiplier. The verify phase caught a design-level gap (L2) *before merge* — saving a 4× multiplier. The spike deliberately accepted epistemic debt at upper-triangle, which is the correct trade-off for exploratory work that will be revisited when the findings feed into a groomed Story.
 
+#### Worked Example 2: Senior-Led Search Overhaul
+
+The first example showed a mixed-seniority team where the TL gates ceremony for junior and mid-level developers. This second example contrasts that dynamic: a senior developer who self-serves most GSD phases, with the TL involved only on the highest-criticality work. The domain is Bloomberg Law's core search infrastructure — the Boolean and natural-language search engine that underpins every product surface, from court opinion retrieval to legislative research and docket discovery.
+
+**The developer:**
+
+- **Daniel** (senior, 10 years) — Search infrastructure specialist. Wrote the original Boolean search parser 4 years ago. Deep expertise in information retrieval, Elasticsearch/Lucene internals, and legal citation graphs. Per the graduation model, Daniel self-serves all GSD phases on mid-triangle repos and self-serves discuss/plan on lower-triangle repos (TL verifies).
+
+**The TL:**
+
+- **Sarah** (same TL from Example 1) — Still gates verify on lower-triangle work. Reviews Daniel's PLAN.md artifacts async rather than co-authoring them.
+
+**Repo tags:**
+
+| Repo | Subdomain | Size | Codebase | Clarity | Triangle | Ceremony |
+|---|---|---|---|---|---|---|
+| `search-engine-core` | `core` | `large` | `brownfield` | `ambiguous` | **lower** | full |
+| `search-api-gateway` | `supporting` | `medium` | `brownfield` | `clear` | **mid** | standard |
+| `search-analytics-dashboard` | `generic` | `small` | `brownfield` | `clear` | **upper** | quick |
+
+##### The Epic
+
+**BLAW-1300: Hybrid Search — Boolean + Natural Language Fusion**
+> *As a legal researcher, I need search results that combine the precision of Boolean operators (terms & connectors) with the recall of natural language queries, so I can find relevant court opinions even when I don't know the exact statutory citation or legal term of art.*
+
+Bloomberg Law's search currently operates in two modes: a Boolean terms-and-connectors engine (precise but requires expertise — e.g., `"statute of limitations" /s "breach of contract" AND jurisdiction(NY)`) and a natural language engine (broader recall but noisier results). Attorneys frequently switch between both, losing context. The hybrid approach fuses them: the user writes a natural query, the system infers Boolean constraints from context, and results blend precision-ranked and semantically-ranked hits.
+
+Daniel creates the Epic in Jira and runs `/gsd:new-milestone "Hybrid Search v1"` on `search-engine-core`. Because Daniel has deep domain knowledge, his milestone artifacts are unusually rich — the PROJECT.md captures ranking algorithm trade-offs, citation graph weighting strategies, and failure modes he's seen over 4 years with the Boolean parser.
+
+##### The Tickets
+
+| Jira ID | Type | Summary | Repo | Triangle | Story Points |
+|---|---|---|---|---|---|
+| BLAW-1301 | **Story** | Implement query intent classifier (Boolean vs. NL vs. hybrid) | `search-engine-core` | lower | 8 |
+| BLAW-1302 | **Story** | Build hybrid ranking fusion algorithm (RRF + citation weighting) | `search-engine-core` | lower | 13 |
+| BLAW-1303 | **Task** | Expose hybrid search mode via API gateway | `search-api-gateway` | mid | 5 |
+| BLAW-1304 | **Task** | Add search mode toggle and result provenance badges to UI | `search-api-gateway` | mid | 3 |
+| BLAW-1305 | **Bug** | Boolean parser silently drops nested parenthetical groups beyond depth 4 | `search-engine-core` | lower | 5 |
+| BLAW-1306 | **Spike** | Benchmark latency impact of hybrid ranking on P95 response times | `search-analytics-dashboard` | upper | 2 |
+| BLAW-1307 | **Story** | Update analytics dashboard with hybrid-vs-legacy A/B metrics | `search-analytics-dashboard` | upper | 3 |
+
+##### How a Senior Operates Differently
+
+The key contrast with Example 1: **Daniel runs his own discuss and plan phases.** The TL's role shifts from co-authoring specs to async review and verification gating.
+
+**Spike first — same pattern, faster execution (BLAW-1306):**
+
+Daniel benchmarks latency before committing to an architecture. Upper-triangle, no ceremony needed:
+
+```
+Daniel runs: /gsd:quick
+"Benchmark hybrid ranking overhead: run 10k sample queries through
+Boolean-only, NL-only, and fused RRF pipeline. Measure P50/P95/P99
+latency delta. Output results to SUMMARY.md."
+```
+
+Results: hybrid adds ~35ms at P95 (within the 200ms SLA). Daniel links the SUMMARY.md from the Spike's Jira ticket and closes it. **Backlog → Todo → In Progress → Done** in half a day.
+
+**Core Story with self-served discuss (BLAW-1301):**
+
+Daniel runs the discuss phase himself — his domain expertise means the intent articulation is precise without TL scaffolding:
+
+```
+Daniel runs: /gsd:discuss-phase 1
+GSD asks: "What signals determine whether a query is Boolean, natural
+language, or should be treated as hybrid?"
+Daniel: "Three classifiers in sequence:
+  1. Lexical: presence of operators (/s, /p, AND, OR, NOT, quotes)
+     triggers Boolean mode.
+  2. Structural: parenthetical nesting + field constraints
+     (jurisdiction(), court()) trigger Boolean even without explicit
+     operators.
+  3. Fallback: everything else routes to hybrid. No pure-NL mode
+     in v1 — we always inject inferred Boolean constraints from
+     jurisdiction context and practice area filters."
+```
+
+CONTEXT.md captures not just *what* the classifier does, but *why* pure-NL is excluded in v1 — Daniel knows from experience that unstructured NL queries against the full corpus produce too much noise for attorneys who expect precision. This is the kind of L4 (requirements) clarity that a senior brings without TL mediation.
+
+Daniel then surfaces assumptions — and catches one of his own:
+
+```
+Daniel runs: /gsd:list-phase-assumptions 1
+GSD outputs: "I assume the lexical classifier runs before query parsing,
+operating on the raw input string."
+Daniel: "Wrong — it must run after tokenization but before parsing.
+The tokenizer normalizes citation formats (e.g., '42 U.S.C. § 1983'
+becomes a single token), and the classifier needs to see those
+normalized tokens to distinguish citations from Boolean operators."
+```
+
+Even a 10-year veteran catches assumptions. The discuss phase's value scales with domain complexity, not inversely with seniority.
+
+```
+Daniel runs: /gsd:plan-phase 1
+```
+
+GSD produces `01-01-PLAN.md` with 4 atomic tasks. Sarah reviews the plan async — she's not co-authoring, just confirming the approach doesn't conflict with the jurisdiction comparison work (Example 1) that shares the inference pipeline. She approves within hours, not days.
+
+**The critical difference at execution:**
+
+```
+Daniel runs: /gsd:execute-phase 1
+```
+
+Daniel's subtasks are tighter and more architecturally coherent than a junior's would be — each atomic commit represents a clean abstraction boundary. GSD's fresh 200k-token contexts per task matter *even for seniors*: the search engine codebase is 180k+ LOC, and context rot would degrade output quality regardless of who wrote the prompt.
+
+**Bug with deep historical context (BLAW-1305):**
+
+The Boolean parser bug — silently dropping nested parenthetical groups beyond depth 4 — is one Daniel introduced himself 3 years ago as a deliberate performance guardrail. It was documented nowhere. This is **epistemic debt that predates LLMs** — a human-authored decision whose rationale was lost.
+
+```
+Daniel runs: /gsd:debug "Boolean parser drops parenthetical groups at depth > 4"
+GSD gathers symptoms.
+Daniel: "I wrote this limit in 2023 as a perf guard — deeply nested
+Boolean queries caused exponential parse time. But the limit is wrong:
+it should be depth 6 (matching the most complex real-world queries
+in our usage logs), and it should return a parse error, not silently
+truncate."
+```
+
+Because this is `search-engine-core` (lower-triangle), even the fix gets ceremony. Daniel uses `/gsd:plan-phase` (not `/gsd:quick`) to ensure the fix includes updated parser tests and a documented depth constant. Sarah verifies:
+
+```
+Sarah runs: /gsd:verify-work 3
+GSD presents UAT:
+  ✓ Depth-5 nested query parses correctly
+  ✓ Depth-6 nested query parses correctly
+  ✓ Depth-7 query returns explicit parse error with message
+  ✓ Performance regression test: no P95 latency increase at depth 6
+```
+
+BLAW-1305 moves to **Done**. The debug session's `.planning/debug/boolean-parser-depth.md` preserves the *historical rationale* — converting undocumented epistemic debt into a recoverable artifact.
+
+**Mid-triangle work — full self-service (BLAW-1303, BLAW-1304):**
+
+The API gateway and UI tasks are `search-api-gateway`, mid-triangle. Daniel self-serves the entire flow:
+
+```
+Daniel runs: /gsd:discuss-phase 2 → /gsd:plan-phase 2 → /gsd:execute-phase 2 → /gsd:verify-work 2
+```
+
+No TL involvement at any stage. The governance model trusts seniors on mid-triangle work completely. Daniel's PRs include linked GSD artifacts, but Sarah only reviews them if she chooses to — no gate.
+
+**Upper-triangle work — minimal ceremony (BLAW-1307):**
+
+The analytics dashboard update is generic subdomain, small, clear. Daniel doesn't even run discuss:
+
+```
+Daniel runs: /gsd:quick
+"Add hybrid-vs-legacy conversion rate chart to search analytics
+dashboard. Data source: existing A/B experiment events table.
+Chart type: time series with confidence intervals."
+```
+
+Done in under two hours. **Backlog → Done** with one atomic commit.
+
+##### Sprint Flow: Senior vs. Mixed-Seniority Comparison
+
+| Dimension | Example 1 (Mixed Team) | Example 2 (Senior-Led) |
+|---|---|---|
+| **TL role in discuss** | Co-authors CONTEXT.md | Reviews async |
+| **TL role in plan** | Co-authors PLAN.md | Approves/rejects async |
+| **TL role in verify** | Runs UAT directly | Runs UAT on lower-triangle only |
+| **Developer self-service** | Juniors: execute only. Mids: quick + graduated discuss. | Full self-service on mid; discuss+plan self-service on lower |
+| **Ceremony overhead** | Higher — TL synchronous involvement | Lower — TL async checkpoints |
+| **Epistemic debt risk** | Lower — TL catches gaps juniors miss | Different — senior catches own gaps, but may have blind spots from over-familiarity |
+| **Throughput** | Constrained by TL availability | Constrained by review queue, not authoring |
+
+##### Epistemic Debt Trace
+
+| Ticket | Triangle | Ceremony Used | Epistemic Gaps Caught | When Caught | Cascade Cost Avoided |
+|---|---|---|---|---|---|
+| BLAW-1301 (Core Story) | Lower | Full (self-served discuss+plan, TL verify) | L3: classifier ordering (post-tokenization, not pre-parse) | Discuss phase (self-caught) | ~10× |
+| BLAW-1302 (Core Story) | Lower | Full | None — Daniel's domain expertise produced clean first-pass specs | — | — |
+| BLAW-1303 (Mid Task) | Mid | Standard (fully self-served) | None significant | — | — |
+| BLAW-1305 (Bug) | Lower | Debug + Plan + Verify | L4: recovered lost rationale from 2023; L2: silent truncation → explicit error | Debug phase; Verify phase | ~30× (L4 recovery), ~4× (L2) |
+| BLAW-1306 (Spike) | Upper | Quick only | Not measured (accepted) | — | N/A |
+| BLAW-1307 (Upper Task) | Upper | Quick only | Not measured (accepted) | — | N/A |
+
+The standout finding: **BLAW-1305's debug session recovered L4-level epistemic debt that was 3 years old and entirely human-authored.** The GSD debug artifact converted "a decision nobody remembered" into a documented, searchable rationale. This illustrates that epistemic debt is not exclusively an LLM-era problem — LLMs *accelerate* its accumulation, but structured workflows can *recover* pre-existing debt too.
+
+The senior's discuss phase on BLAW-1301 also demonstrates that even deep domain experts benefit from forced intent articulation. Daniel caught his own classifier-ordering assumption — a gap that, had it reached implementation, would have produced subtly wrong search results that passed all tests (circular validation at L3).
+
 ---
 
 ## TL-Led Workflow: Who Runs What

@@ -11,28 +11,51 @@
  0. DOMAIN GLOSSARY
 ══════════════════════════════════════════════════════════════════════════════
 
+  ── JIRA ↔ GSD QUICK REFERENCE ────────────────────────────────────────
+
+    Jira                GSD                 Notes
+    ──────────────────  ──────────────────  ──────────────────────────────
+    Project             PROJECT             One root entity per repo
+    Epic                MILESTONE           Versioned release boundary
+    Story / Task        PHASE               Assignable unit of work
+    Sub-task            PLAN                Executable step within a phase
+    Acceptance Criteria Success Criteria    Observable truths per phase
+    Definition of Done  VERIFICATION        Gate before merge / advance
+    Sprint              Wave of phases      Time-boxed parallel batch
+    Sprint Board        STATE + ROADMAP     Progress tracking
+    Backlog Item        TODO                Captured idea, not yet planned
+    Bug (investigation) DEBUG SESSION       Scientific-method diagnosis
+    Component / Label   Subsystem tag       In SUMMARY frontmatter
+
   ── ENTITIES ──────────────────────────────────────────────────────────────
 
   PROJECT        The root entity. Captures what is being built, why it
                  matters (core value), constraints, and key decisions.
                  One per repository. All other entities trace back here.
+                 Jira equivalent: Project
                  Artifact: .planning/PROJECT.md
 
   ROADMAP        The ordered sequence of phases that deliver the project.
                  Scoped to a single milestone at a time. Contains the
                  progress table that tracks overall completion.
+                 Jira equivalent: Board / Sprint plan (phase ordering)
                  Artifact: .planning/ROADMAP.md
 
   REQUIREMENTS   The full set of scoped requirements (v1 / v2 / out-of-
                  scope) with unique IDs (e.g. SECT2-01, CROSS-03). Each
                  requirement is mapped to one or more phases and marked
                  complete when its SUMMARY ships.
+                 Jira equivalent: Requirements linked to Epics/Stories
                  Artifact: .planning/REQUIREMENTS.md
 
   MILESTONE      A named, versioned release boundary (e.g. v1.0.0). When
                  completed, the current ROADMAP + REQUIREMENTS + phase
                  directories are archived, a git tag is created, and the
                  workspace resets for the next milestone.
+                 Constraint: Only ONE milestone is active at a time. For
+                 parallel Epics, either flatten them into one milestone
+                 or isolate via branches/worktrees (see Section 6).
+                 Jira equivalent: Epic (a group of stories toward a goal)
                  Artifact: .planning/MILESTONES.md (log of all completed)
 
   PHASE          A unit of deliverable work within a milestone. Identified
@@ -40,6 +63,7 @@
                  insertions like 5.1). Each phase has a goal, success
                  criteria, requirement mappings, and its own directory
                  containing all sub-artifacts (Context → Plan → Summary).
+                 Jira equivalent: Story / Task (assignable ticket)
                  Artifact: .planning/phases/NN-<name>/
 
   CONTEXT        The user's articulated vision for a phase — locked
@@ -47,11 +71,13 @@
                  ideas. Created through discussion before planning.
                  Locked decisions are MANDATORY: downstream planning and
                  research cannot override them.
+                 Jira equivalent: Story description / design doc linked
                  Artifact: .planning/phases/NN-<name>/NN-CONTEXT.md
 
   RESEARCH       Domain and ecosystem knowledge gathered before planning.
                  Covers standard stack, architecture patterns, pitfalls,
                  and alternatives. Bounded by CONTEXT locked decisions.
+                 Jira equivalent: Spike ticket output
                  Artifact: .planning/phases/NN-<name>/NN-RESEARCH.md
 
   PLAN           An executable, task-level specification for work within a
@@ -59,24 +85,28 @@
                  checks, and success criteria. Multiple plans per phase
                  are supported (NN-01, NN-02, ...) and grouped into
                  parallelization waves.
+                 Jira equivalent: Sub-task (concrete work item)
                  Artifact: .planning/phases/NN-<name>/NN-YY-PLAN.md
 
   SUMMARY        The record of what was actually built when a plan was
                  executed. Captures commits, decisions made, deviations
                  from plan, metrics, and requirement coverage. Triggers
                  STATE and REQUIREMENTS updates upon creation.
+                 Jira equivalent: Work log / PR description
                  Artifact: .planning/phases/NN-<name>/NN-YY-SUMMARY.md
 
   VERIFICATION   A goal-backward audit that checks whether the phase
                  actually achieved what it promised. Evaluates observable
                  truths, required artifacts, wiring between components,
                  and anti-patterns. Gates advancement to the next phase.
+                 Jira equivalent: Definition of Done / QA checklist
                  Artifact: .planning/phases/NN-<name>/NN-VERIFICATION.md
 
   UAT            User Acceptance Testing session. Created when VERIFICATION
                  flags items that require human judgment (subjective
                  quality, visual appearance, UX flow). Tracks individual
                  tests with pass/issue/skipped results and diagnoses gaps.
+                 Jira equivalent: QA test execution (manual testing)
                  Artifact: .planning/phases/NN-<name>/NN-UAT.md
 
   STATE          The single source of truth for where the project stands
@@ -84,28 +114,33 @@
                  velocity metrics, recent decisions, pending todos, and
                  session continuity. Updated after every significant action.
                  Kept under 100 lines — a digest, not an archive.
+                 Jira equivalent: Sprint board + velocity chart
                  Artifact: .planning/STATE.md
 
   CONFIG         Runtime settings that control GSD behavior: workflow mode
                  (interactive/yolo), model profile (quality/balanced/budget),
                  parallelization toggles, verification gates, and git
                  branching strategy.
+                 Jira equivalent: Project settings / workflow scheme
                  Artifact: .planning/config.json
 
   DEBUG SESSION  A persistent investigation record for systematic
                  debugging. Tracks symptoms, hypotheses, and evidence
                  using the scientific method. Survives /clear and is
                  archived to resolved/ when fixed.
+                 Jira equivalent: Bug ticket (investigation type)
                  Artifact: .planning/debug/<slug>.md
 
   CODEBASE MAP   A 7-document snapshot of an existing codebase created for
                  brownfield projects. Covers stack, architecture, structure,
                  conventions, testing, integrations, and known concerns.
+                 Jira equivalent: (no equivalent — architecture docs)
                  Artifact: .planning/codebase/*.md
 
   TODO           A lightweight captured idea or task, stored as a file in
                  pending/ and moved to done/ when work begins. Tracked
                  in STATE.md as a count.
+                 Jira equivalent: Backlog item (ungroomed)
                  Artifact: .planning/todos/pending/<slug>.md
 
   ── WORKFLOWS ─────────────────────────────────────────────────────────────
@@ -196,6 +231,7 @@
 ┌──────────────────────────┐         ┌──────────────────────────┐
 │        PROJECT            │         │         CONFIG            │
 │ .planning/PROJECT.md      │         │ .planning/config.json     │
+│ Jira: Project             │         │ Jira: Project Settings    │
 ├──────────────────────────┤         ├──────────────────────────┤
 │ - coreValue: string       │         │ - mode: interactive|yolo  │
 │ - whatThisIs: string      │         │ - modelProfile: string    │
@@ -214,6 +250,7 @@
 ┌──────────────────────────┐    maps to    ┌──────────────────────────┐
 │      REQUIREMENTS         │◄────────────►│        ROADMAP            │
 │ .planning/REQUIREMENTS.md │              │ .planning/ROADMAP.md      │
+│ Jira: Linked Requirements │              │ Jira: Board / Sprint Plan │
 ├──────────────────────────┤              ├──────────────────────────┤
 │ - coreValue: string       │              │ - overview: string        │
 │ - milestone: string       │              │ - progressTable: Row[]    │
@@ -229,6 +266,7 @@
                                  ┌──────────────────────────────────┐
                                  │          PHASE (directory)        │
                                  │  .planning/phases/NN-<name>/     │
+                                 │  Jira: Story / Task (ticket)     │
                                  ├──────────────────────────────────┤
                                  │ - number: int | decimal           │
                                  │ - name: string (slug)             │
@@ -250,6 +288,8 @@
 ┌─────────────────────┐  ┌─────────────────────┐  │  ┌─────────────────────┐  ┌──────────────┐
 │      CONTEXT         │  │      RESEARCH        │  │  │   VERIFICATION      │  │     UAT      │
 │  NN-CONTEXT.md       │  │  NN-RESEARCH.md      │  │  │  NN-VERIFICATION.md │  │  NN-UAT.md   │
+│  Jira: Story desc    │  │  Jira: Spike output  │  │  │  Jira: DoD / QA     │  │  Jira: QA    │
+│        / design doc  │  │        / tech note   │  │  │        checklist    │  │  test exec   │
 ├─────────────────────┤  ├─────────────────────┤  │  ├─────────────────────┤  ├──────────────┤
 │ - gathered: date     │  │ - researched: date   │  │  │ - verified: date    │  │ - status:    │
 │ - status: string     │  │ - domain: string     │  │  │ - status:           │  │   testing|   │
@@ -267,22 +307,24 @@
            └────────────►┌─────────────────────┐◄──┘  └──────────┬──────────┘         │
                          │        PLAN          │                 ▲                     │
                          │  NN-YY-PLAN.md       │                 │ verifies             │
+                         │  Jira: Sub-task      │                 │                     │
                          ├─────────────────────┤                 │                     │
                          │ - phase: string      │     ┌──────────┴──────────┐          │
                          │ - plan: string (YY)  │     │      SUMMARY         │          │
                          │ - type: PlanType     │     │  NN-YY-SUMMARY.md    │          │
-                         │ - wave: int          │     ├─────────────────────┤          │
-                         │ - dependsOn: Plan[]  │     │ - phase: string      │          │
-                         │ - filesModified: []  │     │ - plan: string       │          │
-                         │ - autonomous: bool   │     │ - subsystem: string  │          │
-                         │ - requirements: []   │     │ - status:            │          │
-                         │ - mustHaves: {}      │     │   complete|partial|  │          │
-                         │ - tasks: Task[]      │     │   blocked            │          │
-                         │ - verification: []   │     │ - completed: date    │          │
-                         │ - successCriteria:[] │     │ - techStack: {}      │          │
-                         ├─────────────────────┤     │ - keyFiles: {}       │          │
-                         │ + execute() → Summary│     │ - decisions: []      │          │
-                         └──────────┬──────────┘     │ - metrics: {}        │          │
+                         │ - wave: int          │     │  Jira: Work log / PR │          │
+                         │ - dependsOn: Plan[]  │     ├─────────────────────┤          │
+                         │ - filesModified: []  │     │ - phase: string      │          │
+                         │ - autonomous: bool   │     │ - plan: string       │          │
+                         │ - requirements: []   │     │ - subsystem: string  │          │
+                         │ - mustHaves: {}      │     │ - status:            │          │
+                         │ - tasks: Task[]      │     │   complete|partial|  │          │
+                         │ - verification: []   │     │   blocked            │          │
+                         │ - successCriteria:[] │     │ - completed: date    │          │
+                         ├─────────────────────┤     │ - techStack: {}      │          │
+                         │ + execute() → Summary│     │ - keyFiles: {}       │          │
+                         └──────────┬──────────┘     │ - decisions: []      │          │
+                                    │                 │ - metrics: {}        │          │
                                     │                 │ - deviations: []     │          │
                                     │ produces        ├─────────────────────┤          │
                                     └────────────────►│ Updates STATE &      │          │
@@ -294,6 +336,7 @@
 ┌──────────────────────────┐         ┌──────────────────────────┐
 │         STATE             │         │       MILESTONE           │
 │ .planning/STATE.md        │         │ .planning/MILESTONES.md   │
+│ Jira: Board + Velocity    │         │ Jira: Epic               │
 ├──────────────────────────┤         ├──────────────────────────┤
 │ - currentPhase: int       │         │ - version: string         │
 │ - currentPlan: int        │         │ - name: string            │
@@ -318,8 +361,9 @@
         │     DEBUG SESSION     │             │ - STRUCTURE.md    │
         │ .planning/debug/     │             │ - CONVENTIONS.md  │
         │       <slug>.md      │             │ - TESTING.md      │
-        ├──────────────────────┤             │ - INTEGRATIONS.md │
-        │ - symptoms: []        │             │ - CONCERNS.md     │
+        │ Jira: Bug (investig.)│             │ - INTEGRATIONS.md │
+        ├──────────────────────┤             │ - CONCERNS.md     │
+        │ - symptoms: []        │             │ (no Jira equiv.)  │
         │ - hypotheses: []      │             ├──────────────────┤
         │ - evidence: []        │             │ Brownfield only   │
         │ - resolution: string  │             │ Created by        │
@@ -724,4 +768,155 @@
     not cross-phase             phases merge to catch integration
                                 gaps. Add a dedicated integration
                                 phase at the end.
+
+  ── PARALLEL EPICS (MULTIPLE MILESTONES AT ONCE) ─────────────────────
+
+    GSD natively supports only ONE active milestone at a time. A single
+    ROADMAP.md, a single STATE.md, a single current position. When a
+    milestone completes, it archives before the next one starts.
+
+    For teams that need multiple Epics in flight simultaneously, three
+    strategies exist — each with different trade-offs:
+
+    ┌─────────────────────────────────────────────────────────────────┐
+    │  STRATEGY A — FLATTEN EPICS INTO ONE MILESTONE (recommended)   │
+    ├─────────────────────────────────────────────────────────────────┤
+    │                                                                 │
+    │  Treat the milestone as a "Release" or "Sprint" that contains  │
+    │  phases from multiple Epics. Tag each phase with its Epic:     │
+    │                                                                 │
+    │    ROADMAP.md:                                                  │
+    │      ## Phase 1: User Auth        (EPIC-A, @alice)             │
+    │      ## Phase 2: Payment Flow     (EPIC-B, @bob)               │
+    │      ## Phase 3: Auth Roles       (EPIC-A, @alice)             │
+    │      ## Phase 4: Checkout UI      (EPIC-B, @dave)              │
+    │      ## Phase 5: Search Index     (EPIC-C, @carol)             │
+    │      ## Phase 6: Integration      (ALL, @alice)                │
+    │                                                                 │
+    │  Phases from different Epics interleave freely. Dependencies   │
+    │  are expressed via the dependsOn field as usual.               │
+    │                                                                 │
+    │  Pros: Single ROADMAP, single STATE, no tooling workarounds.   │
+    │        Cross-Epic dependencies are visible and enforced.       │
+    │        /gsd:progress shows true overall status.                │
+    │        /gsd:audit-milestone catches gaps across all Epics.     │
+    │                                                                 │
+    │  Cons: ROADMAP grows large with many Epics.                    │
+    │        Epic-level progress requires filtering by tag.          │
+    │        Completing one Epic doesn't trigger milestone archive — │
+    │        you wait until the full release ships.                  │
+    │                                                                 │
+    │  Best for: Teams shipping a single release with multiple       │
+    │  feature tracks. Most common real-world scenario.              │
+    └─────────────────────────────────────────────────────────────────┘
+
+    ┌─────────────────────────────────────────────────────────────────┐
+    │  STRATEGY B — EPIC-PER-BRANCH (isolated .planning/ per Epic)   │
+    ├─────────────────────────────────────────────────────────────────┤
+    │                                                                 │
+    │  Each Epic lives on its own long-lived branch with its own     │
+    │  independent .planning/ state:                                 │
+    │                                                                 │
+    │    main                                                        │
+    │     ├── epic/user-auth       ← own ROADMAP, STATE, phases/    │
+    │     ├── epic/payments        ← own ROADMAP, STATE, phases/    │
+    │     └── epic/search          ← own ROADMAP, STATE, phases/    │
+    │                                                                 │
+    │  Each developer checks out their Epic branch, runs the full   │
+    │  GSD lifecycle independently (/gsd:plan-phase, execute, etc). │
+    │  On completion, the Epic branch merges to main — source code  │
+    │  merges, but .planning/ can be gitignored or discarded.       │
+    │                                                                 │
+    │  Setup per Epic branch:                                        │
+    │    git checkout -b epic/user-auth                              │
+    │    /gsd:new-project          ← scoped to this Epic only       │
+    │    /gsd:plan-phase 1                                           │
+    │    /gsd:execute-phase 1                                        │
+    │    ...                                                         │
+    │    /gsd:complete-milestone 1.0.0                               │
+    │    git merge epic/user-auth → main (source code only)         │
+    │                                                                 │
+    │  Pros: Full GSD lifecycle per Epic (plan, execute, verify,    │
+    │        audit, complete). Clean isolation — no conflicts.       │
+    │        Each Epic has its own progress, velocity, state.        │
+    │                                                                 │
+    │  Cons: Cross-Epic dependencies are invisible to GSD.           │
+    │        No unified progress view across Epics.                  │
+    │        Integration gaps only surface on merge to main.         │
+    │        Requires discipline: rebase Epic branches regularly.    │
+    │                                                                 │
+    │  Best for: Truly independent feature tracks with minimal      │
+    │  shared code. Open-source projects with parallel workstreams.  │
+    └─────────────────────────────────────────────────────────────────┘
+
+    ┌─────────────────────────────────────────────────────────────────┐
+    │  STRATEGY C — GIT WORKTREES (parallel directories, same repo)  │
+    ├─────────────────────────────────────────────────────────────────┤
+    │                                                                 │
+    │  Use git worktrees to have multiple checkouts of the same repo │
+    │  on disk, each with its own .planning/ and branch:             │
+    │                                                                 │
+    │    ~/project/              ← main worktree (integration)       │
+    │    ~/project-auth/         ← worktree for Epic A               │
+    │    ~/project-payments/     ← worktree for Epic B               │
+    │    ~/project-search/       ← worktree for Epic C               │
+    │                                                                 │
+    │  Setup:                                                        │
+    │    git worktree add ../project-auth epic/user-auth             │
+    │    git worktree add ../project-payments epic/payments          │
+    │    cd ../project-auth && /gsd:new-project                     │
+    │                                                                 │
+    │  Each developer opens Claude Code in their worktree directory. │
+    │  Full GSD lifecycle runs independently per worktree.           │
+    │                                                                 │
+    │  Pros: Physical isolation — no accidental cross-contamination. │
+    │        Each dev has their own terminal, own Claude session.    │
+    │        Same repo, shared git history, easy cherry-picks.       │
+    │                                                                 │
+    │  Cons: Same drawbacks as Strategy B (no cross-Epic visibility).│
+    │        Disk space: full checkout per worktree.                  │
+    │        Worktree management adds operational overhead.          │
+    │                                                                 │
+    │  Best for: Large codebases where devs need full isolation.    │
+    │  Teams already using worktrees in their git workflow.          │
+    └─────────────────────────────────────────────────────────────────┘
+
+    ── DECISION GUIDE ──────────────────────────────────────────────
+
+    Are your Epics          ──YES──►  Strategy A: Flatten
+    shipping in the                   One milestone, phases tagged
+    same release?                     by Epic. Simplest path.
+         │
+         NO
+         │
+    Do Epics share          ──YES──►  Strategy A: Flatten
+    code (models,                     You need cross-Epic dependency
+    APIs, schemas)?                   tracking. Flatten is safest.
+         │
+         NO
+         │
+    Do you already          ──YES──►  Strategy C: Worktrees
+    use git worktrees?                Familiar workflow, add GSD.
+         │
+         NO
+         │
+         └──────────────────────────► Strategy B: Epic-per-branch
+                                      Lightweight, branch-based.
+
+    ── HYBRID APPROACH ─────────────────────────────────────────────
+
+    In practice, most teams land on a hybrid:
+
+    - Use Strategy A (flatten) for the CURRENT release — all Epics
+      that will ship together live in one milestone.
+    - Use Strategy B (epic-per-branch) for FUTURE Epics that are in
+      early exploration/research but not yet committed to a release.
+    - When a future Epic is ready, merge its phases into the active
+      milestone via /gsd:add-phase.
+
+    Timeline:
+      Sprint N:    Milestone "v2.0" contains Epics A + B (flattened)
+                   Epic C explored on separate branch (Strategy B)
+      Sprint N+1:  Epic C phases added to "v2.0" via /gsd:add-phase
+                   All three Epics now in one milestone (Strategy A)
 ```

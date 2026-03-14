@@ -13,5 +13,5 @@ Shared stylesheets and helper scripts used by the PDF/HTML export pipeline.
 ## Usage
 
 These assets are consumed by:
-- The `ar-export-pdf` prompt command (`.ai/commands/ar-export-pdf.md`)
+- The `ar-export-pdf` skill (invoked via `/ar-export-pdf` in Claude Code or Cursor)
 - The `scripts/export-pdf.sh` shell script (pandoc path)

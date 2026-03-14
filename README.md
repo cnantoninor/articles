@@ -35,23 +35,18 @@ Alternatively, you can install them manually:
    mkdir topics/my_new_topic
    ```
 
-2. Copy templates to get started:
-   ```bash
-   cp templates/article.md topics/my_new_topic/article.md
-   cp templates/slides.md topics/my_new_topic/slides.md
-   ```
-
-3. Create supporting directories:
+2. Create supporting directories:
    ```bash
    mkdir -p topics/my_new_topic/{raw_material,references,assets,exports,artifacts/{articles,presentation}}
    ```
 
-4. Add a topic README:
+3. Add a topic README and first article:
    ```bash
    cp templates/research.md topics/my_new_topic/README.md
+   cp templates/article.md topics/my_new_topic/artifacts/articles/my-article.md
    ```
 
-5. Start writing!
+4. Start writing!
 
 ## Repository Structure
 
@@ -61,31 +56,49 @@ ai-articles/
 ├── CLAUDE.md -> .ai/context.md  # AI context (symlink, always-applied)
 ├── GLOSSARY.md                  # Domain terms across all topics
 ├── .gitignore                   # Git ignore rules
+├── Makefile                     # Build/dev convenience targets
+├── .mcp.json.example            # MCP config template (real .mcp.json is gitignored)
 ├── .ai/                         # Centralized AI context (source of truth)
 │   ├── context.md               # Concise rulebook (always-applied)
+│   ├── commands/                # AI prompt commands (ar-export-pdf, ar-humanize, etc.)
 │   ├── rules/                   # Glob-activated rules
 │   │   ├── writing-style.md     # Writing style & content structure
 │   │   ├── publication.md       # Publication workflow & social teasers
+│   │   ├── python.md            # Python coding conventions
 │   │   └── terminology.md       # Domain terminology & key concepts
 │   └── sync-rules.sh            # Creates/updates symlinks for all tools
+├── analytics/                   # GA4 + manual analytics pipeline
+│   ├── scripts/                 # fetch_ga4.py, ingest.py, merge.py, report.py, analyze.py
+│   ├── data/                    # Raw and combined CSV data
+│   ├── reports/                 # Generated weekly reports
+│   ├── prompts/                 # Claude Chrome plugin extraction prompts
+│   ├── credentials/             # GA4 service account keys (gitignored)
+│   └── COLLECTION-CHECKLIST.md  # Weekly analytics checklist
+├── docs/                        # Project documentation
+│   ├── mcp-setup.md             # MCP server setup guide
+│   └── publishing-workflow.md   # End-to-end publishing workflow
 ├── scripts/
 │   ├── setup.sh                 # Install prerequisites (Pandoc, Marp, LaTeX)
 │   ├── export-docx.sh           # Markdown → DOCX (for Google Docs)
 │   ├── export-slides.sh         # Marp → PPTX (for Google Slides)
 │   ├── export-pdf.sh            # Markdown → PDF
-│   └── export-all.sh            # Batch export for a topic
+│   ├── export-all.sh            # Batch export for a topic
+│   ├── run-analytics.sh         # Full analytics pipeline
+│   ├── check-cta.py             # Validate article CTAs
+│   ├── validate-frontmatter.py  # Validate YAML front-matter
+│   ├── refresh-frontmatter.py   # Refresh front-matter fields
+│   └── styles/                  # CSS and JS for PDF/HTML export
 ├── templates/
 │   ├── article.md               # Article template with front-matter
 │   ├── slides.md                # Marp presentation template
-│   └── research.md              # Research/notes template
+│   ├── research.md              # Research/notes template
+│   └── social-teasers.md        # Social teaser drafting template
 └── topics/                      # All article topics live here
     ├── epistemic_debt/          # Epistemic risks of LLM-based software engineering
     ├── philosophy_of_ai/        # Metaphors, epistemology, Plato and AI (TAM1, TAM2)
     ├── ai_craft/                # Deleting code, vibe designing, Ship of Theseus (TAM3–TAM5); includes code/
     └── [topic_name]/            # New topics follow this structure:
         ├── README.md            # Topic overview, status, links
-        ├── article.md           # Main article draft
-        ├── slides.md            # Marp presentation
         ├── raw_material/        # Working notes, brainstorms
         ├── references/          # Literature, citations
         ├── assets/              # Images, diagrams
@@ -142,6 +155,8 @@ See `.ai/rules/publication.md` for detailed teaser conventions and distribution 
 ## Current Topics
 
 - **[epistemic_debt](topics/epistemic_debt/)** - Exploring epistemic risks of LLM-based software engineering
+- **[philosophy_of_ai](topics/philosophy_of_ai/)** - Metaphors, epistemology, and cognitive limits (TAM1, TAM2)
+- **[ai_craft](topics/ai_craft/)** - Development practice, design, and identity (TAM3, TAM4, TAM5)
 
 ## AI Authoring
 

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v3.0
 milestone_name: "Epistemic Debt Series: Articles 3-7"
 status: planning
-stopped_at: Completed 13-01-PLAN.md — Article 3 body restructured and publication-ready
-last_updated: "2026-03-14T21:02:14.219Z"
+stopped_at: Completed 13-00-PLAN.md (fact-check report)
+last_updated: "2026-03-14T21:07:03.599Z"
 last_activity: 2026-03-14 — Roadmap created for v3.0 (phases 13-17)
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 3
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -49,6 +49,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 13 P01 | 3 | 2 tasks | 1 files |
+| Phase 13 P00 | 8 | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -64,6 +65,9 @@ Recent decisions affecting v3.0 work:
 - [Phase 13]: Healthcare case study demoted to 2-sentence mention in The Pattern section; integrates naturally into taxonomy paragraph
 - [Phase 13]: Failure taxonomy stable: system boundary gap, defensive coding gap, edge case reasoning gap, Stochastic Spaghetti Effect — semantic contract for Articles 4-7
 - [Phase 13]: Ngabang (2026) viXra preprint cited with explicit disclosure (not peer-reviewed) in both reference and footnote
+- [Phase 13]: Sankaranarayanan (2026) is single-author; article incorrectly credits Prather et al.
+- [Phase 13]: GitClear 2025 measures code clones (4x), not churn — metric conflation in article needs correction
+- [Phase 13]: Replit incident is 9 days (July 12-20), not 12 days as stated in article
 
 ### Pre-Phase 13 Check
 
@@ -76,6 +80,6 @@ Verify Article 2 publication status before scheduling Article 3 — PROJECT.md s
 
 ## Session Continuity
 
-Last session: 2026-03-14T21:02:14.217Z
-Stopped at: Completed 13-01-PLAN.md — Article 3 body restructured and publication-ready
+Last session: 2026-03-14T21:07:03.598Z
+Stopped at: Completed 13-00-PLAN.md (fact-check report)
 Resume file: None

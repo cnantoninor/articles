@@ -47,10 +47,11 @@ Phases 9-12 are archived. See MILESTONES.md for details.
   2. The Amazon Kiro incident appears as a fully integrated fourth case study with the accountability-denial pattern named and each case study annotated with formula mapping (k layer, c_k, t₀)
   3. The industry data block includes Fragile Experts 77% failure rate and Sonar verification gap figures with footnoted citations; pre-LLM vs post-LLM framing precedes the case studies
   4. Social teasers are complete (LinkedIn, Twitter/X, Instagram, Substack Notes) and the article is live with series cross-links updated
-**Plans:** 2 plans
+**Plans:** 3 plans
 
 Plans:
-- [ ] 13-01-PLAN.md — Restructure article body: pre-LLM opening, case studies with formula sidenotes, industry data, TODO resolution
+- [ ] 13-00-PLAN.md — Deep fact-check: online research verification of every claim, statistic, and data point
+- [ ] 13-01-PLAN.md — Restructure article body (uses fact-check report): pre-LLM opening, case studies with formula sidenotes, industry data, TODO resolution
 - [ ] 13-02-PLAN.md — Social teasers and publication readiness review
 
 ### Phase 14: Article 4 — The Solutioning Trap

@@ -1,7 +1,7 @@
 ---
 marp: true
 paginate: true
-title: 'SDD Governance Framework: Managing Epistemic Debt at Scale'
+title: 'SDD (Spec-Driven Development) Governance Framework: Managing Epistemic Debt at Scale'
 status: draft
 type: slides
 audience:
@@ -179,13 +179,15 @@ style: |
 
 # SDD Governance Framework
 
-## Managing Epistemic Debt at Scale
+## Spec-Driven Development: Managing Epistemic Debt at Scale
 
 <br>
 
 **Tag → Triangle → Ceremony**
 
 A proposal for structured AI-assisted development governance
+
+*SDD = Spec-Driven Development*
 
 <!-- Speaker notes: 30-minute presentation. Goal: get approval for a 3-phase pilot of the governance framework. The audience is technical, somewhat familiar with epistemic debt, comfortable with math. -->
 
@@ -243,15 +245,15 @@ Understanding must be **actively established**.
 | Works but hard to **change** | Works but nobody **understands** |
 | Future maintenance cost | Future comprehension cost |
 | Visible in code structure | **Invisible until crisis** |
-| Linear accumulation | **Exponential** with LLM velocity |
+| Linear accumulation | **Accelerating** with LLM velocity ¹ |
 
 <br>
 
-Formally: $E_d = \sum_k \int_0^T \bigl(C_{s,k}(t) - G_{c,k}(t)\bigr)\, dt$
+Formally (Ngabang 2026 ³, extended by Rau 2026): $E_d = \sum_k \int_0^T \bigl(C_{s,k}(t) - G_{c,k}(t)\bigr)\, dt$
 
 Where $C_{s,k}(t)$ = system complexity at layer $k$, $G_{c,k}(t)$ = cognitive grasp at layer $k$
 
-<!-- Speaker notes: Ed is the integral of the gap between system complexity and team understanding, summed across abstraction layers. When LLMs generate faster than teams comprehend, this integral grows — silently. -->
+<!-- Speaker notes: Ed is the integral of the gap between system complexity and team understanding, summed across abstraction layers. When LLMs generate faster than teams comprehend, this integral grows — silently. ³ Base formula from Ngabang (2026, viXra preprint — not peer-reviewed). Layer decomposition is Rau's extension. The concept of epistemic debt originates from Ionescu et al. (2020, Springer — peer-reviewed), originally applied to smart manufacturing. ¹ The "accelerating" characterization is a model prediction, not an empirically measured rate. The directional claim — that LLMs widen the gap faster than manual coding — is supported by multiple independent sources (Sankaranarayanan 2026 / ACM, Chroma Research 2025), but no study has directly measured accumulation rates. -->
 
 ---
 
@@ -260,7 +262,7 @@ Where $C_{s,k}(t)$ = system complexity at layer $k$, $G_{c,k}(t)$ = cognitive gr
 | Layer | What Goes Wrong | Recovery Cost |
 |---|---|---|
 | **L4** Requirements | Intent misalignment — built the wrong thing | **30–70×** |
-| **L3** Architecture | Structural misfit — wrong abstractions | **~10×** |
+| **L3** Architecture | Structural misfit — wrong abstractions | **~10×** ² |
 | **L2** Design | Implementation approach — wrong patterns | **3–6×** |
 | **L1** Implementation | Code-level gaps — bugs, edge cases | **~1×** |
 
@@ -270,7 +272,7 @@ Recovery at layer $k$ triggers rework at **all underlying layers**.
 
 An L4 gap caught after release costs **30–70×** more than catching it during requirements.
 
-<!-- Speaker notes: These multipliers come from Boehm's Cost of Change Curve, validated across decades of software projects. The key insight: LLMs accelerate L1 work but do nothing for L4–L3 comprehension. -->
+<!-- Speaker notes: ² These multipliers are adapted from Boehm's Cost of Change Curve (Software Engineering Economics, 1981; validated by NASA JSC 2010). Boehm's original data measured temporal phases (when a defect is found), not abstraction layers — our L1–L4 mapping is an adaptation. Modern practices (CI/CD, TDD, AI tooling) may flatten the curve (Bossavit 2012, Mountain Goat Software 2026), but the directional principle — upstream gaps cost more to fix downstream — remains broadly supported. The ~10× for L3 is interpolated; Boehm didn't separate architecture from design. -->
 
 ---
 
@@ -419,16 +421,16 @@ Fully untagged repo → `supporting + medium + brownfield + ambiguous` → **mid
 
 <br>
 
-**The decisive question:** Which tool can *modulate ceremony*?
+**The decisive question:** Which tool can *modulate ceremony based on policy*?
 
 | Tool | Can it modulate? | How? |
 |---|---|---|
-| **GSD** | **Yes** | `/quick` (upper) ↔ full workflow (lower) |
-| Spec-Kit | Poorly | Same ~800-line ceremony for everything |
-| OpenSpec | Somewhat | Lightweight default, no heavy mode |
-| BMAD | Poorly | Always heavy, no lightweight mode |
+| **GSD** | **Yes** | `/quick` (upper) ↔ full workflow (lower), policy-driven |
+| Spec-Kit | Poorly | Same ~800-line ceremony for everything (lightweight mode proposed but unshipped) |
+| OpenSpec | Partially | Lightweight default + expanded profile, but no policy-driven enforcement |
+| BMAD | Partially | Quick Flow (lightweight) ↔ full Agile + Enterprise tracks, scale-adaptive routing |
 
-<!-- Speaker notes: GSD is the only tool that explicitly scales ceremony up AND down. This maps directly to our governance model. The others are either always light or always heavy — they can't modulate across the triangle. -->
+<!-- Speaker notes: All four tools offer some degree of ceremony variation. GSD's advantage is not unique modulation ability but tighter integration with governance policy — repo tags drive ceremony automatically. BMAD's Quick Flow and scale-adaptive routing are sophisticated; OpenSpec's expanded profile adds heavier workflow. The decisive differentiator is policy-driven enforcement, not the existence of light/heavy modes. -->
 
 ---
 
@@ -497,7 +499,7 @@ Step 4  Full self-service on mid-triangle repos
 - **Wave-based parallelism** — independent tasks execute simultaneously
 - **Artifact trail** — CONTEXT.md, PLAN.md, SUMMARY.md, VERIFICATION.md
 
-<!-- Speaker notes: The fresh context per task is the most underappreciated feature. Context rot — where the LLM's output degrades as its context window fills — is the #1 quality killer in long AI sessions. GSD solves this by spawning fresh 200k-token agents per task. -->
+<!-- Speaker notes: The fresh context per task is the most underappreciated feature. Context rot — a well-established phenomenon where LLM output degrades as context length increases (Chroma Research 2025 confirmed this across 18 frontier models) — is a major quality risk in long AI sessions. GSD solves this by spawning fresh 200k-token agents per task. -->
 
 ---
 
@@ -526,6 +528,8 @@ Step 4  Full self-service on mid-triangle repos
 ## Worked Examples
 
 ### Bloomberg Law: Two Teams, Two Dynamics
+
+*These examples are fictional scenarios designed to illustrate framework dynamics. Names, teams, and tickets are illustrative, not based on real projects.*
 
 ---
 
@@ -819,7 +823,7 @@ A **commit-time understanding gate** — scaled by triangle position:
 
 <br>
 
-**The ratchet prevents the Circular Validation Trap:**
+**The ratchet prevents the Circular Validation Trap** (a widely recognized phenomenon; IBM Research 2025)**:**
 
 ```
     LLM Code ──→ LLM Tests ──→ "Verified" ──→ ← Ratchet breaks this
@@ -828,7 +832,7 @@ A **commit-time understanding gate** — scaled by triangle position:
          Same blind spots
 ```
 
-<!-- Speaker notes: The cognitive ratchet is GSD's defense against circular validation — where LLMs test LLM code and everything looks green. The verify phase forces a human to explain the implementation, not just check boxes. This only applies to lower-triangle repos where the stakes justify the overhead. -->
+<!-- Speaker notes: "Circular validation" is our term for a well-documented phenomenon — IBM Research (2025, "Beyond Blind Spots") showed evaluator LLMs failed to detect quality drops in 50%+ of cases. The cognitive ratchet concept is from Ngabang (2026, viXra — not peer-reviewed). The verify phase forces a human to explain the implementation, not just check boxes. This only applies to lower-triangle repos where the stakes justify the overhead. -->
 
 ---
 

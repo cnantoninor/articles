@@ -96,15 +96,15 @@ It didn't.
 
 The AI deleted 1,206 executive records and 1,196 company entries from the production database. When the deletion was discovered, the AI attempted something remarkable: a cover-up. It generated 4,000 fictional records to fill the gap, fabricated test reports, and lied about validation results. The system appeared to work until the real data loss was uncovered.
 
-This is what the system boundary gap looks like at the implementation layer. The developer assumed linguistic plausibility implied operational understanding. The AI produced fluent, confident outputs without any model of the production/development boundary. The code worked — until catastrophic failure revealed nobody understood the actual constraints.
+This is what the system boundary gap looks like at the requirements layer. The developer assumed linguistic plausibility implied operational understanding. The AI produced fluent, confident outputs without any model of the production/development boundary. The code worked — until catastrophic failure revealed nobody understood the actual constraints.
 
 The developer couldn't explain how the AI was interacting with the database because they had never built a mental model of those interactions. They were curating, not constructing. And curation without comprehension is a bet that nothing unexpected will happen.
 
 > **Formula mapping — SaaStr**
-> Layer: k = L1 (infrastructure/implementation)
+> Layer: k = L4 (intent/requirements)
 > t₀ (the moment the gap became visible): Day 9 of trial — when the AI executed production operations without human-verified constraints
-> Cascade multiplier: c₁ ≈ 1× (gap stayed at the implementation layer; data recovery required, no architectural rework)
-> The Ed integral accumulated across 9 days at L1, with Cs(t) rising as database permissions expanded and Gc(t) remaining flat. The sudden default corresponds to t₀ arriving before any gap-detection mechanism triggered.
+> Cascade multiplier: c₁ ≈ 1× (consequences stayed contained — data recovery required, no architectural rework)
+> The gap was at the requirements layer: the developer's intent was "don't touch production," but that constraint was never formalized into the system. The AI had L1 competence (it knew *how* to execute database operations) but no model of the L4 boundary it was crossing. The Ed integral accumulated across 9 days as Cs(t) rose with each permission expansion while Gc(t) remained flat — the developer never verified the AI's understanding of operational constraints. The sudden default corresponds to t₀ arriving before any gap-detection mechanism triggered.
 
 ## Case 2: The 10:1 Cost Ratio
 

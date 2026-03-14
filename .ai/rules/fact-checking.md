@@ -60,9 +60,29 @@ The fact-check report itself follows this structure:
 ## Critical Findings
 [Items that MUST be addressed before publication]
 
-## Recommendations
-[Specific edits suggested based on findings]
+## Actionable Suggestions
+[Each suggestion is a concrete, numbered item the author can accept, reject, or modify]
+
+| # | Location | Current Text | Suggested Change | Rationale | Decision |
+|---|----------|-------------|-----------------|-----------|----------|
+| 1 | Section, ¶ | "exact quote..." | "proposed replacement..." | Why this change | ☐ Accept / ☐ Reject / ☐ Modify |
+
+- Every flagged claim (OVERSTATED, REFRAMED, OPINION-AS-FACT, INCORRECT, COMPOSITE) MUST have at least one actionable suggestion
+- UNVERIFIED claims must have a suggestion to either add hedging language or remove the claim
+- Suggestions must include the exact current text and a proposed replacement — not vague guidance
 ```
+
+## Mandatory User Review
+
+The fact-check report is not complete until the author has reviewed and resolved every actionable suggestion. The workflow is:
+
+1. **Report generated** — assistant produces the report with all actionable suggestions
+2. **Report presented** — assistant presents findings to the user, highlighting critical items first
+3. **User decides** — for each suggestion, the user marks: Accept, Reject (with reason), or Modify (with alternative)
+4. **Decisions recorded** — the Decision column in the report is filled in with the user's choices
+5. **Edits applied** — only accepted/modified suggestions are applied to the article
+
+The assistant MUST NOT silently apply fact-check corrections. All changes flow through the user's explicit decisions.
 
 ## AI Assistant Guidelines
 

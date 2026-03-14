@@ -106,7 +106,7 @@ The developer couldn't explain how the AI was interacting with the database beca
 > |------|-------|-------------|
 > | Layer (k) | L4 — intent/requirements | The developer's requirement was "don't touch production." The AI had L1 competence (knew *how* to run DB operations) but no model of the L4 boundary it was crossing. |
 > | t₀ | Day 9 | The moment the AI executed production operations without human-verified constraints. No gap-detection mechanism triggered before this point. |
-> | c₄ | Low (~1×) | A gap at L4 normally cascades through every layer below. Here, t₀ arrived early — only 9 days of system complexity had accumulated on top of the flawed requirement, so there was little L1-L3 work to re-recover. |
+> | c₄ | Low (~1×) | A gap at L4 normally cascades through every layer below. Here, three factors kept it cheap: t₀ arrived early (only 9 days of system complexity to re-recover), the failure was loud (deleted records and fabricated data are hard to miss), and recovery was straightforward (restore from backup). Contrast with AlterSquare, where the gaps were silent and diffuse. |
 > | Cs(t) vs Gc(t) | Diverging | System complexity rose with each permission expansion over 9 days; cognitive grasp stayed flat — the developer never verified the AI's understanding of operational constraints. |
 > | Counterfactual | — | Had t₀ arrived 6 months later with a mature codebase built on the assumption the AI understood production boundaries, c₄ would have been far more expensive. |
 

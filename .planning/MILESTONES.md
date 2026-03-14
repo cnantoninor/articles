@@ -2,7 +2,7 @@
 
 ## v2.0 Article Completion (Shipped: 2026-03-14)
 
-**Delivered:** Section II (Epistemic Debt: A New Lens) of the epistemic debt article series, plus series overview (Article 0) published on Substack.
+**Delivered:** Section II (Epistemic Debt: The Math, The Cost, and Why It's Not Technical Debt) of the epistemic debt article series, plus series overview (Article 0) published on Substack.
 
 **Phases completed:** 4 phases (9-12), 4 plans
 

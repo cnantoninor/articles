@@ -90,7 +90,7 @@ We ask the same question — "Why this approach?" — but we get radically diffe
 
 ---
 
-## 2. Epistemic Debt: A New Lens — [Coming Soon]
+## 2. Epistemic Debt: The Math, The Cost, and Why It's Not Technical Debt — [Coming Soon]
 
 *A framework for the understanding gap in AI-assisted work*
 

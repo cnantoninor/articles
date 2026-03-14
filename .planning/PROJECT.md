@@ -13,7 +13,7 @@ Show practitioners how to consciously position their LLM-assisted work on the Sp
 **Published articles:**
 - Article 0: Series overview — https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
 - Article 1: The Epistemic Shift (Section I) — published
-- Article 2: Epistemic Debt: A New Lens (Section II) — published
+- Article 2: Epistemic Debt: The Math, The Cost, and Why It's Not Technical Debt (Section II) — published
 
 **Remaining articles (3-7):**
 - Article 3: When Epistemic Debt Defaults (case studies + industry data)
@@ -42,7 +42,16 @@ Show practitioners how to consciously position their LLM-assisted work on the Sp
 
 ### Active
 
-(To be defined in next milestone — articles 3-7)
+## Current Milestone: v3.0 Epistemic Debt Series: Articles 3–7
+
+**Goal:** Write and publish articles 3-7 of the epistemic debt series, completing the full 7-part series on Substack.
+
+**Target features:**
+- Article 3: When Epistemic Debt Defaults (case studies + industry data)
+- Article 4: The Solutioning Trap (vibe coding, automation bias, SDLC boundaries)
+- Article 5: The Trade-off Triangle (framework + IRIS-2 practices)
+- Article 6: Measuring the Unmeasurable (proxy indicators, honest caveats)
+- Article 7: Beyond Software (generalization to other domains)
 
 ### Out of Scope
 

@@ -102,7 +102,7 @@ The question isn't whether to use LLMs. It's whether we can maintain the good-en
 
 ---
 
-*Next in the series: **Epistemic Debt: A New Lens** — a precise definition, a mathematical foundation, and why this isn't just technical debt by another name.*
+*Next in the series: **Epistemic Debt: The Math, The Cost, and Why It's Not Technical Debt** — a precise definition, a mathematical foundation, and why this isn't just technical debt by another name.*
 
 ---
 

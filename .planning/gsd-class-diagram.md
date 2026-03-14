@@ -921,6 +921,153 @@
                    All three Epics now in one milestone (Strategy A)
 
 
+  ── STRATEGY D — gsd-teams PLUGIN (shared team visibility) ───────────
+
+    github.com/ianwsperber/gsd-teams (v0.1.2, MIT, 2026-02-06)
+
+    A Claude Code plugin that adds a shared layer on top of GSD's
+    local-only .planning/. It does NOT replace Strategies A–C — it
+    complements them by making each developer's planning state
+    visible to the rest of the team.
+
+    Problem it solves: .planning/ is gitignored and local. When 4
+    developers each run GSD independently (per-branch or per-
+    worktree), there is no way to see each other's progress,
+    milestones, or status without asking.
+
+    Architecture — two directories:
+
+      .planning/           ← local, gitignored (each dev's private state)
+      .planning-shared/    ← committed to git (shared team state)
+
+    .planning-shared/ structure:
+
+      .planning-shared/
+      ├── CHANGELOG.md              ← audit log of all share operations
+      ├── MILESTONES.md             ← consolidated milestones (all devs)
+      ├── STATUS.md                 ← consolidated status table
+      ├── last_consolidated.json    ← version tracking (incremental)
+      └── team/
+          ├── alice/                ← flat snapshot of Alice's .planning/
+          ├── bob/                  ← flat snapshot of Bob's .planning/
+          └── ian/sessions/
+              └── green/            ← parallel session (worktree support)
+
+    Three commands:
+
+      /gsd-teams:init
+        Configures member identity and sync preferences.
+        Sets member name and sync mode (full or shallow) in
+        .planning/config.json under a "team" key.
+
+      /gsd-teams:share
+        Copies local .planning/ → .planning-shared/team/<member>/.
+        Supports slash notation for parallel sessions:
+          member "ian/green" → team/ian/sessions/green/
+        Maintains audit trail in CHANGELOG.md.
+        Same-day re-shares replace previous entry (no duplicates).
+
+      /gsd-teams:consolidate
+        Reads all member directories under .planning-shared/team/.
+        Generates unified MILESTONES.md and STATUS.md.
+        Incremental extraction (only new milestones since last run).
+        Cleans stale sessions based on max_session_age_days config.
+
+    Sync modes:
+      full    — all planning files (default)
+      shallow — summaries only (excludes codebase/, research/, debug/)
+
+    Installation:
+
+      /plugin marketplace add ianwsperber/gsd-teams
+      /plugin install gsd-teams@gsd-teams
+
+    How it fits with the strategies:
+
+      Strategy A (flatten) + gsd-teams:
+        All devs share one milestone, but each dev's branch-local
+        .planning/ state is synced to .planning-shared/ for visibility.
+        /gsd-teams:consolidate produces a unified STATUS.md.
+
+      Strategy B/C (branch or worktree) + gsd-teams:
+        Each dev has independent .planning/ per Epic. After each
+        significant milestone, /gsd-teams:share pushes a snapshot.
+        The consolidated view shows cross-Epic progress.
+
+    Limitations:
+      - Very young (all versions released on the same day)
+      - Read-only consolidation — no conflict resolution
+      - No bidirectional sync (share is one-way: local → shared)
+      - No Jira integration (traceability via branch naming only)
+
+  ── STRATEGY E — WORKSTREAM NAMESPACING (not yet shipped) ────────────
+
+    Status: NOT AVAILABLE in GSD v1.22.4 (current installed version).
+
+    Workstream namespacing (.planning/workstreams/) has been discussed
+    as a potential GSD feature that would allow parallel milestones
+    natively — each workstream maintaining its own ROADMAP.md,
+    STATE.md, and phases/ under a namespace:
+
+      .planning/
+      ├── workstreams/
+      │   ├── auth/
+      │   │   ├── ROADMAP.md        ← independent milestone
+      │   │   ├── STATE.md          ← independent progress
+      │   │   └── phases/           ← independent phases
+      │   ├── payments/
+      │   │   ├── ROADMAP.md
+      │   │   ├── STATE.md
+      │   │   └── phases/
+      │   └── search/
+      │       ├── ROADMAP.md
+      │       ├── STATE.md
+      │       └── phases/
+      ├── PROJECT.md                ← shared across workstreams
+      ├── REQUIREMENTS.md           ← shared or per-workstream
+      └── config.json               ← shared settings
+
+    If/when shipped, this would eliminate the "one active milestone"
+    constraint and make Strategies B/C unnecessary for most teams.
+    Each /gsd:* command would accept a --workstream flag or infer
+    the active workstream from the current working context.
+
+    Until this ships, use Strategies A–D above.
+
+    Check for availability:
+      npx get-shit-done-cc@latest    ← update GSD
+      /gsd:help                      ← look for workstream commands
+
+  ── UPDATED DECISION GUIDE (with D and E) ────────────────────────────
+
+    Are your Epics          ──YES──►  Strategy A: Flatten
+    shipping in the                   One milestone, phases tagged
+    same release?                     by Epic. Simplest path.
+         │
+         NO
+         │
+    Do Epics share          ──YES──►  Strategy A: Flatten
+    code (models,                     Cross-Epic dependencies need
+    APIs, schemas)?                   a single ROADMAP.
+         │
+         NO
+         │
+    Do you need team        ──YES──►  Add Strategy D: gsd-teams
+    visibility across                 Install the plugin. Use with
+    developers?                       any of A/B/C below.
+         │
+         │ (always consider D as an add-on, not a replacement)
+         │
+    Do you already          ──YES──►  Strategy C: Worktrees + D
+    use git worktrees?                Familiar workflow, add GSD
+         │                            + gsd-teams for visibility.
+         NO
+         │
+         └──────────────────────────► Strategy B: Epic-per-branch + D
+                                      Lightweight, branch-based,
+                                      share snapshots via gsd-teams.
+
+
 ══════════════════════════════════════════════════════════════════════════════
  7. MID-SPRINT CHANGES: HANDLING NEW WORK IN AN AGILE WAY
 ══════════════════════════════════════════════════════════════════════════════

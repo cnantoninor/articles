@@ -1,275 +1,160 @@
 # Codebase Concerns
 
-**Analysis Date:** 2026-02-15 | **Refreshed:** 2026-02-18
+**Analysis Date:** 2026-03-14
 
-## 1. Directory Restructure Inconsistencies
+## Tech Debt
 
-### 1.1 Git Status Shows Deleted Files from Old Location
+**Fragmented Article Architecture:**
+- Issue: Seven article variants exist across epistemic_debt topic, all in draft status, with no clear single source of truth. Files include `article-0.md` through `article-7.md` plus `whole-cc-article-v1.md` and `whole-cursor-article-v1.md`, creating merge/navigation difficulty.
+- Files: `topics/epistemic_debt/artifacts/articles/article-{0-7}.md`, `whole-cc-article-v1.md`, `whole-cursor-article-v1.md`
+- Impact: Content maintenance becomes complex; unclear which draft is canonical; risk of conflicting updates; publishing requires explicit version selection without clear criteria.
+- Fix approach: Define single publication draft file with version tracking in front-matter. Archive earlier variants to `raw_material/archive/` if needed. Use Roadmap (ROADMAP.md) to guide which section takes priority at each phase.
 
-*(Historical; no content — was about pre-restructure state.)*
+**Unfinished Content Scaffolding:**
+- Issue: Articles contain extensive [TODO:] and [TODO MOVED FROM] markers indicating content is partially developed across multiple files. Article 3 has 7+ TODOs; Article 4 has 2+ TODOs; Article 6 has research notes mixed with draft text.
+- Files: `article-3-when-debt-defaults.md` (lines 25-39), `article-4-the-solutioning-trap.md` (lines 88-92), `article-6-measuring-the-unmeasurable.md` (lines 27, 73)
+- Impact: Articles cannot be published as-is; content gaps block phase execution; TODO items track research work needed but aren't linked to phase plans.
+- Fix approach: Convert all [TODO:] markers to GitHub Issues with links in relevant phase plans. Link research documents (.planning/research/*.md) to specific TODOs. Complete research documents before articles reference them.
 
-### 1.2 Modified Scripts Not Committed
+**Missing CSS for PDF Export:**
+- Issue: `scripts/styles/export-pdf.js` references `pdf-export-styles.css` (line 37) but file does not exist in repository.
+- Files: `scripts/styles/export-pdf.js`, missing `scripts/styles/pdf-export-styles.css`
+- Impact: PDF export fails at runtime with file not found error; export feature unusable despite being documented.
+- Fix approach: Create `scripts/styles/pdf-export-styles.css` with base styles (margins, fonts, footnote formatting). Test with actual article export before committing.
 
-- **Issue:** `scripts/export-all.sh`, `scripts/export-docx.sh`, `scripts/export-pdf.sh`, `scripts/export-slides.sh` are all modified but not committed. These were likely updated to reflect the new `topics/` path prefix.
-- **Impact:** Scripts in git HEAD may reference old paths, making them non-functional if someone checks out a clean copy.
-- **Fix approach:** Include in the restructure commit.
+## Failing Features
 
-### 1.3 Modified `CLAUDE.md` and `README.md` Not Committed
+**PDF Export Not Functional:**
+- Symptoms: `npm run export-pdf <topic>` fails due to missing CSS file
+- Files: `scripts/styles/export-pdf.js` line 37
+- Current mitigation: None; feature listed in package.json scripts but blocked
+- Recommendation: Restore or recreate `pdf-export-styles.css` with proper styling for article export.
 
-- **Issue:** Both root files are modified, likely updated for the `topics/` restructure.
-- **Impact:** Documentation and AI context reference old paths in the committed version.
-- **Fix approach:** Include in the restructure commit.
+## Known Gaps
 
----
+**Content Research-Implementation Mismatch:**
+- Problem: Research documents (.planning/research/) document findings but articles don't directly cite or integrate them. CONTENT-GAPS.md lists 3+ concrete findings (SaaStr incident, AlterSquare case, Veracode 2026 data) that should appear in Article 3 but don't yet.
+- Files: `.planning/research/CONTENT-GAPS.md` lines 24-79 vs `article-3-when-debt-defaults.md` lines 51-59 (only partial integration of SaaStr incident)
+- Current mitigation: TODO markers in articles signal where content belongs
+- Recommendations: Create explicit content mapping in phase plans linking each TODO to corresponding research document section. Update article drafts to pull from research documents during phase execution.
 
-## 2. Incomplete .gitignore
+**Incomplete Phase Definitions:**
+- Problem: Phases 13-17 in ROADMAP.md show "TBD during planning" for all plans. Phase descriptions exist but detailed execution steps missing.
+- Files: `.planning/ROADMAP.md` lines 64, 77, 92, 107, 122
+- Current mitigation: STATE.md indicates Phase 12 complete; next step is `/gsd:plan-phase 13`
+- Recommendations: Run full phase planning for 13-17 before execution to surface content gaps earlier.
 
-### 2.1 Generated Exports Not Gitignored
+## Security Considerations
 
-- **Issue:** `.gitignore` contains only `node_modules` and `.planning/phases`. The `topics/*/exports/` directories contain generated binary files (PDFs: 292KB–5.2MB, PPTX: 65KB–5.2MB, HTML, CSS) that should not be version-controlled.
-- **Files affected:**
-  - `topics/epistemic_debt/exports/claude-article-cc.pdf` (393 KB)
-  - `topics/epistemic_debt/exports/claude-article.pdf` (292 KB)
-  - `topics/epistemic_debt/exports/cursor-article-cc.pdf` (431 KB)
-  - `topics/epistemic_debt/exports/cursor-article.pdf` (328 KB)
-  - `topics/epistemic_debt/exports/iris-learnings.pptx` (5.2 MB)
-  - `topics/epistemic_debt/exports/iris-learnings-editable.pptx` (65 KB)
-  - `topics/epistemic_debt/exports/iris-learnings.html` (169 KB)
-- **Impact:** Repository bloat. Binary files inflate git history. Each export regeneration creates a new large blob.
-- **Status:** Resolved — `.gitignore` now includes `topics/*/exports/*.pdf`, `*.pptx`, `*.docx`, `*.html`; CSS and JS in exports/ remain tracked.
+**Environment Configuration Incomplete:**
+- Risk: `.mcp.json` listed in .gitignore but not documented; analytics credentials expected in `analytics/credentials/` but structure undefined; potential for secrets to leak if credentials accidentally committed.
+- Files: `.gitignore` lines 12-14, `analytics/` directory structure undefined
+- Current mitigation: .gitignore files present; .gitkeep preventing empty directory commit
+- Recommendations: Document .env template with required keys. Create `analytics/credentials/.example.json` showing required structure (without actual values). Add pre-commit hook to verify no credentials files in commits.
 
-### 2.2 tmp/ Directory Not Gitignored
+**Dependency Chain Risk - Puppeteer:**
+- Risk: Puppeteer 23.x used for PDF export launches browser process with `--no-sandbox` flag (export-pdf.js line 55), disabling security sandbox in some environments.
+- Files: `scripts/styles/export-pdf.js` line 55, `package.json` line 11
+- Current mitigation: Sandbox disabled intentionally (comment suggests CI/container usage)
+- Recommendations: Document when sandbox must be disabled. Consider splitting into environment-specific export scripts (local with sandbox vs. CI without). Add security note to export documentation.
 
-- **Issue:** `tmp/` directory at repository root contains 6 PNG files (259KB–585KB) and a DOCX file. These appear to be working/scratch files (triangle diagram iterations).
-- **Impact:** ~2.3MB of temporary binary files that will bloat git history if committed. Names with spaces (`01 simple triangle.png`) also suggest these are informal working assets, not final content.
-- **Status:** Resolved — `tmp/` added to `.gitignore`.
+## Performance Bottlenecks
 
-### 2.3 node_modules/ Present but Minimal
+**Node.js Nested Infographic Project:**
+- Problem: `topics/epistemic_debt/artifacts/infographics/article-2/` contains full Next.js app with node_modules (14MB+) inside topic directory. Creates large nested git tree; npm install duplicates dependencies from parent package.json; build/dev workflow requires two separate package management contexts.
+- Files: `topics/epistemic_debt/artifacts/infographics/article-2/package.json`, `package.json`, `node_modules/` (estimated 22901 total lines in tree)
+- Cause: Infographics app developed independently before integration; separate npm context created to isolate React/Next.js dependencies from parent markdown tooling.
+- Improvement path: Evaluate whether infographic app should be separate repository or monorepo structure. If keeping local, document build workflow clearly. Consider .gitignore for infographic node_modules or use git submodule.
 
-- **Issue:** `node_modules/` exists and is correctly gitignored. Contains markdown-it and footnote plugin for the custom `export-pdf.js` script. No `package.json` or `package-lock.json` in the repository root to track these dependencies.
-- **Impact:** Dependencies are installed but not declared. Running `npm install` would fail because there's no package.json. The custom `export-pdf.js` script also hardcodes an absolute path to puppeteer: `/home/arau6/.nvm/versions/node/v22.17.1/lib/node_modules/md-to-pdf/node_modules/puppeteer`.
-- **Status:** Resolved — root `package.json` added with `markdown-it`, `markdown-it-footnote`, and `puppeteer`; `scripts/styles/export-pdf.js` now uses `require('puppeteer')`.
+**Large Untracked Planning Documents:**
+- Problem: `.cursor/plans/` contains 9 plan files (335-531 lines each) tracked in git but not part of publication pipeline. These are internal planning artifacts that could be moved to separate branch or archived.
+- Files: `.cursor/plans/*.plan.md`
+- Current mitigation: .gitignore currently excludes `.cursor/plans` (line 16)
+- Improvement path: Verify exclusion is working; these files inflate repository size without supporting publication.
 
----
+## Fragile Areas
 
-## 3. Content Organization Issues
+**Export Pipeline Single Point of Failure:**
+- Files: `scripts/styles/export-pdf.js`, missing `pdf-export-styles.css`
+- Why fragile: PDF export depends on external CSS file that doesn't exist. No fallback styling. Puppeteer browser context requires manual resource cleanup (line 77 `browser.close()` — if error thrown before this, browser process orphaned).
+- Safe modification: Add try-catch wrapping browser.close(). Create CSS file with defensive defaults. Add logging to track resource cleanup.
+- Test coverage: No tests for export-pdf.js; manually testing only. Add test that verifies CSS file exists before export attempt.
 
-### 3.1 Duplicate Triangle Framework File
+**Article Dependency Chain:**
+- Files: Phase 12 (Section II) complete → Phases 13-17 pending. Articles reference each other across files (article-3 references article-2 concept; article-5 builds on article-3's framework).
+- Why fragile: Phase execution depends on content in prior articles being finalized. If article-3 TODOs not resolved, article-4 and article-5 can't reference concrete examples accurately.
+- Safe modification: Complete and publish each article before starting subsequent phase. Add final review checklist to verify all TODOs and GAPs resolved.
+- Test coverage: Verification documents exist (.planning/phases/*/VERIFICATION.md) but don't explicitly test cross-article coherence.
 
-- **Issue:** `topics/epistemic_debt/assets/epistemic-trade-off-triangle.md` and `topics/epistemic_debt/references/epistemic-trade-off-triangle.md` were identical files (verified via diff).
-- **Impact:** Maintenance burden — edits to one wouldn't propagate to the other. Unclear which was canonical.
-- **Status:** Resolved — `references/` copy removed; `assets/epistemic-trade-off-triangle.md` is canonical.
+**Infographic App Build State Unknown:**
+- Files: `topics/epistemic_debt/artifacts/infographics/article-2/app/Infographics.js` (1024 lines), app/layout.js, app/page.js
+- Why fragile: React/Next.js app embedded in article repo; unclear if it's actively maintained or frozen. Package.json shows next@14.2.0 but no recent commit history visible. No documentation of build/deployment process.
+- Safe modification: Document whether app is production-ready. If needed, add explicit build/test steps. If frozen, move to separate archived repo or branch.
+- Test coverage: No test files found in infographics directory; app untested.
 
-### 3.2 Two Parallel Article Versions with Unclear Relationship
+## Test Coverage Gaps
 
-- **Issue:** `topics/epistemic_debt/article.md` (7,912 words) and `topics/epistemic_debt/cursor-article.md` (7,493 words) are both full article drafts covering the same topic with the same structure, same title, same abstract, and many shared passages.
-- **Differences:** 
-  - `article.md` has more polished prose and a "Beyond Software" generalization section
-  - `cursor-article.md` has more practitioner-focused content, vibe coding details, additional references, and a spec-driven development section
-  - Both are dated differently (article.md: created 2026-01-25, cursor-article.md: created 2026-02-08)
-- **Impact:** Unclear which is the "canonical" article. Risk of divergent editing. README lists only `article.md` as the "Main article draft" — `cursor-article.md` is not mentioned.
-- **Fix approach:** Either:
-  - Merge the best content from both into one canonical article
-  - Rename/reorganize to make the relationship clear (e.g., `article-v1.md` and `article-v2.md`, or `article-academic.md` and `article-practitioner.md`)
-  - Update README to document both files and their intended audiences
+**No Tests for Export Scripts:**
+- What's not tested: `scripts/styles/export-pdf.js` has no test file. Cannot verify CSS file dependency exists, Puppeteer integration works, or malformed markdown is handled gracefully.
+- Files: `scripts/styles/export-pdf.js`, no `.test.js` or `.spec.js` counterpart
+- Risk: Broken export feature only discovered when user runs `npm run export-pdf`. CSS missing not caught during development.
+- Priority: High — export pipeline is user-facing feature
 
-### 3.3 Artifacts Directory Structure
+**No Tests for Phase Execution:**
+- What's not tested: Phase plan completion criteria (success_criteria in ROADMAP.md) have no automated verification. Phases mark complete by manual attestation.
+- Files: `.planning/phases/*/VERIFICATION.md` documents manual checks but no automated test suite
+- Risk: Phase success criteria missed silently; content gaps discovered post-publication.
+- Priority: Medium — mitigated by manual verification docs, but automatable
 
-- **Status:** Resolved. `topics/<topic>/artifacts/` uses a flat layout: `articles/` and `presentation/` only (no `drafts/` or `published/` subdirs). Publication state is kept in the artifact's frontmatter (`published_date`, `status`) and git history.
+**No Content Validation Tests:**
+- What's not tested: Article front-matter consistency (title, subtitle, status fields), reference link validity, citation accuracy
+- Files: All `topics/*/artifacts/articles/*.md`
+- Risk: Broken links in exported PDFs, inconsistent metadata, unpublished articles marked as published
+- Priority: Medium — catch-able with document linter
 
-### 3.4 Content Files Outside Topic Directory Structure
+## Missing Critical Features
 
-- **Issue:** `iris-learnings.md` is a standalone Marp presentation in the topic root. It's not `slides.md` (the convention) and not mentioned in the README's "Files in This Topic" table.
-- **Impact:** New contributors won't discover it. It breaks the convention of one `slides.md` per topic.
-- **Fix approach:** Either:
-  - Mention it in README
-  - Rename to something like `iris-presentation.md` and update README
-  - Keep `slides.md` as the general-audience presentation and `iris-learnings.md` as a specialized internal one, but document this in README
+**MCP Server Integration Incomplete:**
+- Feature gap: Docs mention MCP servers for Substack drafting, social cross-posting, and GA4 analytics (docs/mcp-setup.md) but no actual MCP server code or configuration templates found in repository.
+- Blocks: Publishing workflow automation; cannot systematically cross-post to LinkedIn, Twitter, Instagram as described
+- Files: `docs/mcp-setup.md` (documents workflow but no implementation), `.mcp.json` referenced but not tracked
+- Recommendation: Either implement MCP servers documented in Phase 2 setup or remove documentation about them if out of scope.
 
----
+**Measurement Framework Absent:**
+- Feature gap: Epistemic debt article requires measurement approaches (Section VI) but research is incomplete. MEASUREMENT.md exists but content is partial research notes, not integrated into article structure.
+- Blocks: Phase 16 (Measurement & Conclusion) cannot start until measurement framework documented
+- Files: `.planning/research/MEASUREMENT.md` (554 lines but framework incomplete), `article-6-measuring-the-unmeasurable.md` (draft, 2600+ words but unfinished)
+- Recommendation: Define measurement framework in research document first. Link framework to article-6 during phase execution.
 
-## 4. Script Robustness Issues
+## Scaling Limits
 
-### 4.1 No Tool Availability Checks in Export Scripts
+**Infographic App Deployment Target Unknown:**
+- Current capacity: Next.js app in `topics/epistemic_debt/artifacts/infographics/article-2/` ready to build, unclear deployment target
+- Limit: Where does built app run? No vercel.json, netlify.toml, or Docker config found (except mentioned in git log "added vercel deploy")
+- Scaling path: Document deployment target (Vercel vs. Netlify vs. self-hosted). Add deployment config to repository with environment setup.
 
-- **Issue:** Export scripts (`export-docx.sh`, `export-slides.sh`, `export-pdf.sh`) assumed `pandoc` and `marp` were installed but didn't verify before attempting export.
-- **Impact:** Cryptic errors if tools were missing. Users would see "command not found" instead of a helpful message.
-- **Status:** Resolved — each export script now checks for required tools at start and exits with a message pointing to `./scripts/setup.sh` if missing.
+**Single Author Publication Pipeline:**
+- Current capacity: All content authored by single person (Antonino Rau). Publication workflow entirely manual (Substack UI + manual social cross-posting).
+- Limit: Cannot scale to multiple writers; publication frequency limited to author's availability
+- Scaling path: Implement MCP servers for Substack/social integration. Define collaborative editing workflow (shared Google Doc → markdown → git).
 
-### 4.2 export-pdf.js Has Hardcoded Absolute Path
+## Dependencies at Risk
 
-- **Issue:** `scripts/styles/export-pdf.js` line 12 contains:
-  ```javascript
-  const puppeteer = require('/home/arau6/.nvm/versions/node/v22.17.1/lib/node_modules/md-to-pdf/node_modules/puppeteer');
-  ```
-- **Impact:** This would fail on any other machine or if nvm version changed. The script was completely non-portable.
-- **Status:** Resolved — `puppeteer` is now a dependency in `package.json`; script uses `require('puppeteer')`.
+**Puppeteer Sandbox Bypass:**
+- Risk: Puppeteer ^23.0.0 with --no-sandbox flag disables browser security features in PDF export
+- Impact: If used in production with untrusted input, malicious PDF content could escape sandbox
+- Migration plan: Review whether sandbox actually needed (is PDF export in container/CI environment?). If so, document explicitly. Consider using headless: 'new' strategy instead of sandbox bypass.
 
-### 4.3 export-pdf.js Has Hardcoded Export Targets
+**Old Next.js Version in Infographics:**
+- Risk: Next.js 14.2.0 (from Feb 2024) used in infographics app; security patches after release date uncertain
+- Impact: Potential unpatched vulnerabilities if app serves public traffic
+- Migration plan: Test upgrading to latest Next.js LTS. Verify React 18.3.0 compatibility. Document version lock reason if specific version required.
 
-- **Issue:** The `main()` function in `scripts/styles/export-pdf.js` hardcodes specific files to export (`article.md` → `claude-article-cc.pdf`, `cursor-article.md` → `cursor-article-cc.pdf`). The script also resolves paths relative to `scripts/` (basedir = `__dirname/..`), so it looks for `article.md` under `scripts/`, not under a topic directory; it is broken for the current repo layout.
-- **Impact:** Adding new articles required editing the JS file. The naming convention (`claude-article-cc.pdf`) didn't follow any documented pattern.
-- **Status:** Resolved — script accepts topic name as first argument (e.g. `node scripts/styles/export-pdf.js epistemic_debt`), resolves paths from `topics/<topic>/`, writes PDFs to `topics/<topic>/exports/`; auto-discovers `article.md` and `cursor-article.md`.
-
-### 4.4 setup.sh Platform Coverage Gaps
-
-- **Issue:** `setup.sh` handles:
-  - Linux: apt-get, dnf, pacman
-  - macOS: brew
-  But for Node.js installation on Linux:
-  - Only handles apt-get (line 52): `sudo apt-get install -y nodejs npm`
-  - Missing: dnf, pacman fallbacks for Node.js (unlike pandoc which handles all three)
-  - Missing: Windows/WSL detection (relevant since user is on WSL2)
-- **Impact:** On Fedora/Arch Linux, setup.sh would fail to install Node.js if npm wasn't already present.
-- **Status:** Resolved — setup.sh now includes dnf and pacman fallbacks for Node.js installation.
-
-### 4.5 setup.sh LaTeX Installation Incomplete on Some Platforms
-
-- **Issue:** LaTeX installation only handles apt-get on Linux and brew on macOS. Missing dnf/pacman fallbacks.
-- **Impact:** Users on Fedora/Arch wouldn't get LaTeX installed automatically.
-- **Status:** Resolved — setup.sh now includes dnf (`texlive-scheme-basic`) and pacman (`texlive-bin`, `texlive-core`) fallbacks for LaTeX.
-
-### 4.6 export-all.sh Unconditionally Calls export-pdf.sh with "both"
-
-- **Issue:** When no specific MD file is provided, `export-all.sh` (line 79) calls `export-pdf.sh "$TOPIC" both` regardless of whether `article.md` or `slides.md` exist. The `|| true` in `export-pdf.sh` handles the missing files gracefully, but it still prints confusing warning messages.
-- **Impact:** Minor — users would see "Warning: No file found at..." messages during batch export.
-- **Status:** Resolved — `export-all.sh` now calls `export-pdf.sh` only when at least one of `article.md` or `slides.md` exists.
-
----
-
-## 5. Glossary Staleness
-
-### 5.1 Ten+ Terms Missing from GLOSSARY.md
-
-- **Issue:** GLOSSARY.md has not been updated since article development added many new concepts. See `.planning/codebase/CONVENTIONS.md` §Glossary Consistency for full list.
-- **Missing terms:** Epistemic Credit, Automation Bias, Stochastic Spaghetti Effect, Context Window Amnesia, Vibe Coding, Spec-Driven Development, Epistemia, Rubber-Stamp Culture, Trade-off Triangle, Bus Factor.
-- **Impact:** AI assistants referencing GLOSSARY.md for consistent terminology would miss key concepts. New article development might use inconsistent definitions.
-- **Status:** Resolved — GLOSSARY.md updated with Epistemic Credit, Automation Bias, Stochastic Spaghetti Effect, Context Window Amnesia, Vibe Coding, Spec-Driven Development, Epistemia, Rubber-Stamp Culture, Trade-off Triangle, Bus Factor.
-
----
-
-## 6. File Naming Violations
-
-### 6.1 Reference Files with Spaces and Mixed Case
-
-- **Issue:** Several reference files violated the naming convention (lowercase with hyphens):
-  - `references/Epistemic_debt_definition.md` → `epistemic-debt-definition.md`
-  - `references/Epistemic Debt Research Complete.pdf` → `epistemic-debt-research-complete.pdf`
-  - `references/Triangle Interaction Table.pdf` → `triangle-interaction-table.pdf`
-  - `tmp/` files (spaces in names) remain; `tmp/` is gitignored.
-- **Impact:** Inconsistency. Scripts that handle filenames with spaces need quoting. Git operations on files with spaces are error-prone.
-- **Status:** Resolved — reference files under `topics/epistemic_debt/references/` renamed to lowercase-with-hyphens; planning docs updated.
+**Markdown-it Footnote Pinned:**
+- Risk: markdown-it-footnote@4.0.0 pinned exact version; check for security advisories
+- Impact: If vulnerability found, must manually update and test
+- Migration plan: Review package advisories (`npm audit`). Consider allowing minor version updates (^4.0.0 to ^4.1.0 range if safe).
 
 ---
 
-## 7. Missing Package Management
-
-### 7.1 No package.json for Node.js Dependencies
-
-- **Issue:** `node_modules/` exists with `markdown-it`, `markdown-it-footnote`, and related packages, but there's no `package.json` or `package-lock.json` at the repository root.
-- **Impact:** Could not reproduce the dependency installation. `npm install` in a fresh clone would fail. Dependencies were invisible to contributors.
-- **Status:** Resolved — root `package.json` added with `markdown-it`, `markdown-it-footnote`, and `puppeteer`; run `npm install` to install.
-
----
-
-## 8. Orphaned/Outdated Content References
-
-### 8.1 README "Files in This Topic" Table Incomplete
-
-- **Issue:** `topics/epistemic_debt/README.md` lists only 5 files in its table. Missing:
-  - `cursor-article.md` (second full article draft)
-  - `iris-learnings.md` (IRIS presentation)
-  - `assets/epistemic-trade-off-triangle.md` (triangle framework reference)
-  - `references/epistemic-debt-definition.md`
-  - `scripts/styles/export-pdf.js` (custom export tool)
-- **Impact:** Incomplete discoverability. Contributors won't know about all available content.
-- **Status:** Resolved — table now includes `cursor-article.md`, `iris-learnings.md`, `assets/epistemic-trade-off-triangle.md`, `artifacts/`, `exports/`.
-
-### 8.2 README "Last Updated" Dates May Be Stale
-
-- **Issue:** `topics/epistemic_debt/README.md` shows `Last Updated: 2026-01-26` but content files have been modified through 2026-02-08.
-- **Impact:** Misleading freshness indicator.
-- **Status:** Resolved — topic README "Last Updated" set to 2026-02-18.
-
----
-
-## 9. Export Workflow Fragmentation
-
-### 9.1 Two Competing PDF Export Mechanisms
-
-- **Issue:** There are two PDF export paths:
-  1. **Shell script** (`scripts/export-pdf.sh`): Uses pandoc/marp CLI tools. Part of the standard export workflow.
-  2. **Node.js script** (`scripts/styles/export-pdf.js`): Uses markdown-it + puppeteer for higher-quality output with footnote support. Topic-specific, not integrated into the standard workflow.
-- **Impact:** Confusing. Which should be used? The Node.js script produces better output (proper footnote rendering) but is non-portable and topic-specific. The shell script is portable but may not handle footnotes well.
-- **Fix approach:** Either:
-  - Integrate the Node.js approach into the standard export workflow
-  - Document when to use which tool
-  - Consolidate into one approach
-
-### 9.2 Export File Naming Inconsistency
-
-- **Issue:** Export files use mixed naming patterns:
-  - Shell scripts produce: `article-YYYYMMDD.pdf`, `article.pdf` (latest)
-  - Node.js script produces: `claude-article-cc.pdf`, `cursor-article-cc.pdf`
-  - Manually created: `iris-learnings.pptx`, `iris-learnings-editable.pptx`
-- **Impact:** Unclear provenance. Hard to tell which export was generated by which tool, or which article it corresponds to.
-- **Fix approach:** Standardize export naming to `{source-filename}-{format}.{ext}` or similar.
-
----
-
-## 10. CLAUDE.md is Empty
-
-### 10.1 No Project Context for Claude Code
-
-- **Issue:** `CLAUDE.md` previously existed at the repository root but was empty.
-- **Impact:** Claude Code (terminal-based) sessions had no project context.
-- **Status:** Resolved — `CLAUDE.md` is now a symlink to `.ai/context.md`, providing always-applied context for both Cursor and Claude Code. The legacy `.cursorrules` symlink has been removed to avoid duplicating context tokens.
-
----
-
-## 11. Distribution Layer Concerns (Phase 2 Prep)
-
-### 11.1 Token and API Key Security
-
-- **Issue:** Phase 2 will introduce MCP servers for Substack publishing and social media cross-posting, requiring API tokens and credentials.
-- **Impact:** Accidental commit of `.mcp.json`, `.env`, or analytics credentials could expose tokens.
-- **Mitigation:** `.gitignore` updated to exclude `.mcp.json`, `.env`, and `analytics/credentials/`. Documented in `.ai/rules/publication.md`.
-
-### 11.2 API Fragility
-
-- **Issue:** Social media APIs (Twitter/X, LinkedIn, Instagram) are notoriously unstable — rate limits, breaking changes, deprecation.
-- **Impact:** MCP servers may need frequent maintenance. Cross-posting workflow should not depend on all platforms being available.
-- **Mitigation:** Manual workflow documented as fallback. MCP integrations planned as progressive enhancement, not hard dependency.
-
-### 11.3 Analytics Limitations
-
-- **Issue:** Substack provides limited analytics. Cross-platform analytics (LinkedIn impressions, Twitter engagement) require separate tracking.
-- **Impact:** Difficult to measure content reach and optimize distribution strategy.
-- **Mitigation:** Marked as Phase 2 scope. Initial focus on manual observation and simple metrics.
-
----
-
-## Priority Summary
-
-| Priority | Issue | Impact | Effort |
-|----------|-------|--------|--------|
-| ~~**Critical**~~ | ~~§1: Uncommitted directory restructure~~ | ~~Data loss risk, broken git state~~ | ~~Resolved (baseline commit)~~ |
-| ~~**High**~~ | ~~§2.1: Exports not gitignored~~ | ~~Repository bloat~~ | ~~Resolved (.gitignore)~~ |
-| **High** | §3.2: Two parallel article versions | Content confusion | Medium (editorial decision) |
-| ~~**High**~~ | ~~§5: Glossary staleness~~ | ~~Inconsistent AI assistance~~ | ~~Resolved (GLOSSARY.md updated)~~ |
-| ~~**Medium**~~ | ~~§2.2: tmp/ not gitignored~~ | ~~Repository bloat~~ | ~~Resolved (.gitignore)~~ |
-| ~~**Medium**~~ | ~~§4.2: Hardcoded path in export-pdf.js~~ | ~~Non-portable tooling~~ | ~~Resolved (package.json + require)~~ |
-| ~~**Medium**~~ | ~~§7: No package.json~~ | ~~Non-reproducible setup~~ | ~~Resolved (package.json added)~~ |
-| ~~**Medium**~~ | ~~§10: Empty CLAUDE.md~~ | ~~Missing AI context~~ | ~~Resolved (.ai/context.md + symlink)~~ |
-| **Low** | §11: Distribution layer concerns | Token security, API fragility, analytics limits | Phase 2 |
-| ~~**Low**~~ | ~~§3.1: Duplicate triangle file~~ | ~~Maintenance burden~~ | ~~Resolved (references/ copy removed)~~ |
-| ~~**Low**~~ | ~~§3.3: Artifacts directory structure~~ | ~~Confusing structure~~ | ~~Resolved~~ |
-| ~~**Low**~~ | ~~§4.1: No tool checks in scripts~~ | ~~Poor error messages~~ | ~~Resolved (pandoc/marp checks)~~ |
-| ~~**Low**~~ | ~~§6.1: Reference file naming~~ | ~~Inconsistency~~ | ~~Resolved~~ |
-| ~~**Low**~~ | ~~§8.1: README table incomplete~~ | ~~Discoverability~~ | ~~Resolved~~ |
-| ~~**Low**~~ | ~~§8.2: Stale README "Last Updated"~~ | ~~Discoverability~~ | ~~Resolved~~ |
-| **Low** | §9: Export workflow fragmentation | Confusion | Medium |
-
----
-
-*Concerns audit: 2026-02-15 | Analysis refreshed: 2026-02-18*
+*Concerns audit: 2026-03-14*

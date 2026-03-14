@@ -1,213 +1,339 @@
 # Coding Conventions
 
-**Analysis Date:** 2026-02-15
+**Analysis Date:** 2026-03-14
 
-## Writing Conventions (Primary Codebase Output)
+## Languages & Scope
 
-This is primarily a content authoring repository, not a software project. "Coding conventions" map to writing conventions, template adherence, and script consistency.
+This repository contains two distinct language ecosystems:
 
-### Front-Matter Format
+**Python (Primary):** Domain modeling and design frameworks in `topics/ai_craft/code/`
+**JavaScript/JSX (Secondary):** Interactive infographics in `topics/epistemic_debt/artifacts/infographics/article-2/`
 
-**Convention (from `CLAUDE.md`):**
-All articles must include YAML front-matter with these fields:
-```yaml
----
-title: "Article Title"
-subtitle: "A short tagline or secondary description"
-status: draft | review | published
-type: article | slides | research
-audience: [list of target readers]
-target_length: word count target
-estimated_reading_time: "X min"
-created: YYYY-MM-DD
-last_updated: YYYY-MM-DD
----
+## Naming Patterns
+
+### Python Files
+- **Modules:** snake_case with descriptive names
+  - Examples: `basic_entity_model.py`, `event_sourced_model.py`, `assumption_tracking.py`, `socratic_prompting.py`
+  - Test files: `test_*.py` prefix (e.g., `test_domain_modeling.py`)
+- **Classes:** PascalCase
+  - Examples: `DomainInvariant`, `EntityLifecycle`, `ShipAggregate`, `AssumptionStatus`, `ValidationMethod`
+  - Value Objects (frozen dataclasses) named directly: `Plank`, `Evidence`, `SocraticQuestion`
+  - Builder classes: `DomainModelBuilder`
+- **Functions & Methods:** snake_case
+  - Examples: `add_invariant()`, `can_transition()`, `risk_score()`, `from_events()`, `_apply()`
+  - Private methods: Prefix with underscore (`_apply()`, `_changes`)
+- **Constants:** UPPERCASE_WITH_UNDERSCORES for module-level constants
+  - Examples: `ASSUMPTION_TEMPLATES`, `ALTERNATIVE_TEMPLATES`, `EDGE_CASE_TEMPLATES`
+  - Class attributes (Enum members): lowercase with underscores
+    - Examples: `CREATED = "created"`, `ACTIVE = "active"`
+- **Variables:** snake_case
+  - Type hints always included in function signatures: `name: str`, `likelihood: int`
+  - Field defaults in dataclasses clearly specified: `priority: int = 1`
+
+### JavaScript Files
+- **Files:** camelCase or PascalCase
+  - Components: PascalCase (e.g., `Infographics.js`, `layout.js`)
+  - Configuration: lowercase (e.g., `next.config.js`)
+- **Functions:** camelCase
+  - Examples: `useAnimatedValue()`, `WideningGap()` (component), `useCallback()` hooks
+- **Constants:** camelCase (module-level design tokens in objects)
+  - Object: `const T = { bg: "...", accent: "..." }` — short keys with semantic meaning
+- **React Components:** PascalCase function names
+  - Examples: `WideningGap()`, `Infographics`
+
+## Code Style
+
+### Formatting
+
+**Python:**
+- No explicit formatter configured (no `.black` or `.pylint` files present)
+- Convention: Follow PEP 8 implicitly
+  - 4-space indentation (observed in all files)
+  - Maximum line length: implicit ~100 characters (observed in docstrings and code)
+  - Docstrings: Module-level docstrings on all files with content
+- No trailing commas enforced (dataclass definitions vary)
+
+**JavaScript:**
+- No explicit `.prettierrc` or `.eslintrc` configured
+- Convention: Observed style is modern ES6+
+  - Arrow functions preferred
+  - Const-first for variable declarations
+  - Semicolons present but not enforced
+
+### Linting & Type Checking
+
+**Python:**
+- No linter configuration present (no `.flake8`, `pylint.rc`, `pyproject.toml` with tool sections)
+- Type hints are used throughout (PEP 484 annotations)
+  - All function parameters type-hinted
+  - Return types sometimes omitted (especially for void methods)
+  - Union types used: `Event = Union[ShipLaunched, PlankReplaced]`
+
+**JavaScript:**
+- No linting configuration present
+- JSDoc comments minimal (only observed in `next.config.js`)
+
+## Docstrings & Comments
+
+### Python Docstring Pattern
+- Module-level docstrings: Always present, triple-quoted, usually 1-2 lines
+  - Example: `"""Tests for domain modeling framework"""`
+  - TAM reference docstrings: Longer, multi-line
+    - Example: `"""Domain Modeling Framework for Vibe Designing\n\nThis module implements the core concepts..."""`
+
+- Class docstrings: Present for major classes, one-line summary
+  - Example: `"""A business rule or constraint that must always hold true"""`
+
+- Method docstrings: Present for complex methods, especially public APIs
+  - Example from `ShipAggregate.from_events()`:
+    ```python
+    """Reconstitute the ship's state by replaying its entire history."""
+    ```
+
+- Inline comments: Sparse but clear when present
+  - Used for non-obvious logic: `# Convert UUID to string for JSON serialization`
+  - Section markers: `# --- Define Immutable Events ---`
+
+### Python Comment Conventions
+- Comments explain WHY, not WHAT
+  - Bad (not found): `# Set ship_id to uuid4()`
+  - Good (observed): `# Convert string back to UUID` (explains purpose)
+- Comments on complex domain concepts are more detailed
+  - Example: `"""A Value Object: defined by its attributes, interchangeable."""` (class docstring)
+
+### JavaScript Comments
+- Minimal use observed
+- Section headers use commented delimiters:
+  ```javascript
+  // ─── Shared Design Tokens ───
+  // ═══════════════════════════════════════════
+  // 1. THE WIDENING GAP
+  // ═══════════════════════════════════════════
+  ```
+
+## Import Organization
+
+### Python Import Order
+1. Standard library imports (dataclasses, typing, uuid, enum, json, datetime)
+2. Third-party imports (none observed in test code; pytest imported by tests)
+3. Local/relative imports (from module, try-except for flexibility)
+
+Examples observed:
+```python
+# test_basic_entity_model.py
+import pytest
+from uuid import uuid4
+from .basic_entity_model import Ship, Plank
+
+# event_serialization.py
+from dataclasses import asdict
+import json
+from datetime import datetime
+from typing import Dict, Any
+
+try:
+    from .event_sourced_model import Event, ShipLaunched, PlankReplaced, Plank, ShipAggregate
+except ImportError:
+    from event_sourced_model import Event, ShipLaunched, PlankReplaced, Plank, ShipAggregate
 ```
 
-**Adherence in existing content:**
+### Python Path Aliases
+- No aliases observed (no `pyproject.toml` path configuration)
+- Relative imports preferred for same-package code: `from .module import Class`
+- Fallback imports (try-except) for dual import compatibility:
+  ```python
+  try:
+      from .event_sourced_model import ...
+  except ImportError:
+      from event_sourced_model import ...
+  ```
 
-| File | title | subtitle | status | type | audience | target_length | created | last_updated | Verdict |
-|------|-------|----------|--------|------|----------|---------------|---------|--------------|---------|
-| `topics/epistemic_debt/article.md` | ✓ | — | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | **Missing subtitle** |
-| `topics/epistemic_debt/cursor-article.md` | ✓ | — | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | **Missing subtitle** |
-| `topics/epistemic_debt/slides.md` | ✓ (Marp) | — | — | — | — | — | — | — | **Marp format (expected)** |
-| `topics/epistemic_debt/iris-learnings.md` | ✓ (Marp) | — | — | — | — | — | — | — | **Marp format (expected)** |
-| `topics/epistemic_debt/README.md` | — | — | — | — | — | — | — | — | — | **No front-matter (acceptable for README)** |
+### JavaScript Import Order
+```javascript
+// React/framework imports first
+import { useState, useEffect, useRef, useCallback } from "react";
 
-**Assessment:** Article files follow front-matter convention well. Marp slides use Marp-specific front-matter (marp: true, theme, paginate, title) which is correct for their format. README uses plain markdown headings per the research template.
+// Component imports
+import Infographics from './Infographics';
 
-### Template Adherence
-
-**Article template** (`templates/article.md`):
-- Requires: Abstract, Introduction, Section headings, Conclusion, References
-- `topics/epistemic_debt/article.md`: **Mostly compliant** — Uses Roman numeral sections (I-VII) instead of descriptive section titles. Has Abstract, Introduction-equivalent (Section I), and Conclusion (Section VII). Uses `---` horizontal rules between sections as template suggests.
-- `topics/epistemic_debt/cursor-article.md`: **Mostly compliant** — Same structure, slightly different section naming.
-
-**Research template** (`templates/research.md`):
-- Requires: Overview (with Status, Created, Last Updated), Key Questions, Source Tracking table, Key Quotes, Working Notes, Gaps, Connections, Next Steps
-- `topics/epistemic_debt/README.md`: **Partially compliant** — Has Overview with Status/Created/Last Updated, Key Questions, Central Concepts (custom section), Files in This Topic (custom section), Current Gaps, Next Steps. Missing: Source Tracking table, Key Quotes, Working Notes, Connections to Other Topics.
-
-**Slides template** (`templates/slides.md`):
-- Requires: Marp front-matter, title slide, agenda, content slides with speaker notes, Q&A
-- `topics/epistemic_debt/slides.md`: **Compliant** — Has Marp front-matter, title slide, content slides with speaker notes, Q&A. Missing: explicit Agenda slide.
-- `topics/epistemic_debt/iris-learnings.md`: **Compliant** — Full Marp presentation with speaker notes throughout.
-
-### Section Heading Hierarchy
-
-**Convention:**
-- H1 (`#`) for article title only
-- H2 (`##`) for major sections
-- H3 (`###`) for subsections
-- Avoid deeper than H4
-
-**Assessment:**
-- `article.md`: **Compliant** — H1 for title, H2 for major sections (I-VII), H3 for subsections, H4 for specific examples. One H4 level used (`#### The Database Deletion`) — acceptable.
-- `cursor-article.md`: **Compliant** — Same pattern.
-- Slides: N/A (Marp uses headings differently for slide separation).
-
-### Gap/TODO Marking
-
-**Convention:**
-- `[GAP: description]` — Content to write
-- `[TODO: task]` — Task to complete
-- `[QUESTION: question]` — Open question
-- `[EXAMPLE NEEDED]` — Needs concrete example
-
-**Assessment:**
-- Only one remaining `[GAP:]` marker found in active content: `slides.md` line 271: `[GAP: Add contact information and resources]`
-- The outline file (`raw_material/outline-v1-epistemic-debt.md`) uses `🔴 GAP:` markers extensively — deviates from convention but is in raw material, so acceptable.
-- Both article versions have filled in all major gaps identified in the outline.
-
-### Citation Format
-
-**Convention:**
-- Inline: Author (Year) or footnotes
-- Reference list: `Author. "Title." *Publication*, Year. [URL]`
-
-**Assessment:**
-- `article.md`: **Compliant** — Uses markdown footnotes (`[^1]`, `[^2]`, etc.) with full citations. Reference list at end follows convention. Strong citation practice with URLs included.
-- `cursor-article.md`: **Compliant** — Same footnote pattern, slightly different reference formatting in the endnotes (numbered list instead of bullet list), but consistent internally.
-- `slides.md`: Minimal citations (appropriate for slides format).
-- `iris-learnings.md`: Has References slide with proper formatting.
-
-### Naming Conventions
-
-**Convention:**
-- Topic directories: lowercase with underscores (`topics/topic_name/`)
-- Files: lowercase with hyphens (`file-name.md`)
-- Descriptive names: `outline-v1.md` not `notes.md`
-
-**Assessment:**
-- `topics/epistemic_debt/`: **Compliant** — lowercase with underscores.
-- File names: **Compliant** — `article.md`, `slides.md`, `cursor-article.md`, `iris-learnings.md`, `outline-v1-epistemic-debt.md` use lowercase with hyphens; reference files have been renamed to `epistemic-debt-definition.md`, `epistemic-debt-research-complete.pdf`, `triangle-interaction-table.pdf`.
-
-## Script Conventions
-
-### Shell Script Pattern
-
-All export scripts follow a consistent pattern:
-1. `#!/bin/bash` shebang
-2. Comment block with description and usage
-3. `set -e` for error-on-failure
-4. Argument validation with usage message
-5. `SCRIPT_DIR` / `REPO_ROOT` / `TOPIC_DIR` derivation
-6. Topic directory existence check
-7. `mkdir -p` for exports directory
-8. Timestamp generation
-9. Export operation
-10. Timestamped + latest copy output
-
-**Assessment:** Highly consistent across all four scripts (`export-docx.sh`, `export-slides.sh`, `export-pdf.sh`, `export-all.sh`). Good practice.
-
-### Script Error Handling
-
-- All scripts use `set -e`
-- Input validation present (check for arguments, check directory exists, check file exists)
-- `export-pdf.sh` uses `|| true` for "both" mode to continue even if one export fails
-- `export-all.sh` tracks whether anything was exported
-
-**Gaps:**
-- No tool availability checks (scripts don't verify `pandoc`, `marp` are installed before attempting to use them)
-- No shellcheck compliance verification
-- `setup.sh` uses `set -e` but some installation sections could fail silently on unsupported platforms (e.g., Linux without apt/dnf/pacman for Node.js installation)
-
-## Publishing Conventions
-
-### Publication Workflow
-- **Primary platform**: Substack (The AI Mirror) — weekly cadence
-- **Distribution**: LinkedIn (professional framing), Twitter/X (hook+insight), Instagram (visual+caption), Substack Notes (organic discovery)
-- **Teaser tone**: Must match the exploratory writing style — no clickbait, no prescriptive claims
-- **Workflow**: Publish on Substack → create platform-specific teasers → cross-post to social channels
-- **Rules file**: `.ai/rules/publication.md` (glob-activated on `topics/**/artifacts/**`)
-
-### Article Front-Matter (Publication Fields)
-New articles should include `subtitle` (used as Substack subtitle and social teaser hook), `estimated_reading_time`, and publication fields in YAML front-matter:
-```yaml
-subtitle: "A short tagline or secondary description"
-estimated_reading_time: "X min"
-published_date:
-publication_url: ""
-social_teasers:
-  linkedin: ""
-  twitter: ""
-  instagram_caption: ""
-  substack_notes: ""
+// Default exports for Next.js pages
+export default function Home() { ... }
 ```
 
-**Assessment:** Template updated. Existing articles not retroactively updated (acceptable for pre-publication content).
+## Error Handling
+
+### Python Patterns
+
+**Validation in `__post_init__` (dataclass patterns):**
+```python
+def __post_init__(self):
+    if not self.name:
+        raise ValueError("Invariant name cannot be empty")
+    if not self.description:
+        raise ValueError("Invariant description cannot be empty")
+```
+
+- Used in: `DomainInvariant`, `EntityLifecycle`, `Evidence`, `Assumption`, `SocraticQuestion`, `DesignAlternative`
+- Raises: `ValueError` with descriptive messages
+
+**Range validation:**
+```python
+if self.confidence not in range(1, 6):
+    raise ValueError("Confidence must be 1-5")
+```
+
+**Explicit type checking:**
+```python
+if not isinstance(invariant, DomainInvariant):
+    raise TypeError
+```
+
+**Custom error types:**
+```python
+raise IndexError("Plank not found at this position in the hull.")
+```
+
+**Try-except for import compatibility:**
+```python
+try:
+    from .event_sourced_model import Event, ShipLaunched, PlankReplaced
+except ImportError:
+    from event_sourced_model import Event, ShipLaunched, PlankReplaced
+```
+
+**Graceful degradation with defaults:**
+```python
+impact_levels = {"critical": 5, "high": 4, "medium": 3, "low": 2, "minimal": 1}
+severity = impact_levels.get(self.impact.lower(), 3)  # defaults to "medium"=3
+```
+
+### JavaScript Patterns
+- Minimal error handling observed in provided JS samples
+- Uses optional chaining and property access guards:
+  ```javascript
+  const canvas = canvasRef.current;
+  if (!canvas) return;
+  ```
+
+## Function Design
+
+### Python Function Size & Responsibility
+- **Aggregate methods:** Single responsibility, often 5-15 lines
+  - Examples: `replace_plank()`, `add_invariant()`, `can_transition()`
+- **Factory methods:** Explicit creation patterns
+  - `@classmethod` for named constructors: `ShipAggregate.launch()`, `ShipAggregate.from_events()`
+  - Example: `create_authentication_model()` factory function
+
+### Python Parameter Patterns
+- **Positional parameters:** Always explicitly typed
+  ```python
+  def replace_plank(self, index_to_replace: int, new_plank: Plank) -> None:
+  ```
+- **Optional parameters with defaults:** Named, sensible defaults
+  ```python
+  priority: int = 1
+  validation_function: Optional[Callable] = None
+  mitigation: Optional[str] = None
+  ```
+- **Enum parameters:** Type-hinted with enum class
+  ```python
+  def add_transition(self, from_state: EntityLifecycleState, to_state: EntityLifecycleState):
+  ```
+
+### Python Return Patterns
+- **Void/None methods:** Often omitted return type in observed code, but `-> None` is used in some methods
+- **Chainable builders:** Return `self` for fluent interface
+  ```python
+  def with_assumption(self, assumption: str) -> "DomainModelBuilder":
+      # ... implementation
+      return self
+  ```
+- **Type unions:** Explicitly declared
+  ```python
+  Event = Union[ShipLaunched, PlankReplaced]
+  ```
+
+## Module Design
+
+### Python Module Structure
+- **Dataclass-heavy:** All domain models use `@dataclass` decorator
+  - Frozen dataclasses for Value Objects: `@dataclass(frozen=True)`
+  - Mutable for Entities: `@dataclass` (no frozen)
+  - Field factories for collections: `field(default_factory=list)`, `field(default_factory=set)`
+
+- **Enum definitions:** Explicit Enum classes for controlled vocabularies
+  - Examples: `EntityLifecycleState`, `AssumptionStatus`, `ValidationMethod`, `QuestionType`
+  - Values: lowercase strings matching names (`CREATED = "created"`)
+
+- **Builder pattern:** Fluent API with method chaining
+  - Example: `DomainModelBuilder` class with `.with_invariant()`, `.with_edge_case()`, `.build()`
+  - Sub-builders: `.with_entity()` returns entity builder, `.and_model()` returns to parent builder
+
+- **Service/utility functions:** Module-level functions for operations
+  - Serialization: `serialize_event()`, `deserialize_event()`, `save_events()`, `load_ship_from_file()`
+  - Factories: `create_authentication_model()`
+
+### Barrel Files / Re-exports
+- Not observed (no `__init__.py` files with explicit exports)
+
+### Initialization Pattern
+- Files with runnable examples use:
+  ```python
+  if __name__ == "__main__":
+      # Example usage
+  ```
+
+## JavaScript/React Patterns
+
+### Component Structure
+- **Functional components:** Arrow functions with hooks
+  ```javascript
+  export default function Home() {
+    return <Infographics />;
+  }
+  ```
+
+- **Hooks:** Standard React hooks used
+  - `useState` for state
+  - `useEffect` for side effects
+  - `useRef` for DOM references
+  - `useCallback` for memoized callbacks
+
+- **Design token pattern:** Centralized object for theme/styling
+  ```javascript
+  const T = {
+    bg: "#0c0e13",
+    surface: "#14171e",
+    accent: "#f97316",
+    font: "'JetBrains Mono', ...",
+  };
+  ```
+
+- **Next.js metadata:** Exported as constants in layout files
+  ```javascript
+  export const metadata = { title: '...', description: '...' };
+  ```
+
+## Special Patterns
+
+### Dataclass Field Management
+- **Private fields:** Underscore prefix with `repr=False` to hide from output
+  ```python
+  _changes: List[Event] = field(default_factory=list, repr=False)
+  ```
+
+### Event Sourcing Pattern Conventions
+- Events: Frozen dataclasses with timestamps
+- Aggregates: Mutable dataclasses with event tracking
+- Replay: `from_events()` classmethod rebuilds state
+- Apply: `_apply()` private method mutates state
+
+### Domain-Driven Design Conventions
+- Value Objects vs. Entities clearly separated
+- Domain invariants explicitly modeled as classes
+- Business events reified as dataclasses
+- Builder pattern for complex object construction
 
 ---
 
-## Glossary Consistency
-
-### GLOSSARY.md Coverage
-
-**Terms defined in GLOSSARY.md:**
-1. Epistemic (general)
-2. Epistemic Warrant
-3. Epistemic Opacity
-4. Epistemic Debt
-5. Solutioning Trap
-6. Construction Paradigm
-7. Curation Paradigm
-8. Epistemic Boundary
-9. Circular Validation
-10. Velocity Trap
-11. Domain-Driven Design (DDD)
-12. Ubiquitous Language
-13. E2E Integration Testing
-
-**Terms used prominently in articles but MISSING from GLOSSARY.md:**
-1. **Epistemic Credit** — Used in `article.md`, `cursor-article.md`, `iris-learnings.md`, and `references/epistemic-debt-definition.md`. Has a formal mathematical definition. Now in glossary.
-2. **Automation Bias** — Used extensively in both article versions. A well-documented cognitive bias concept.
-3. **Stochastic Spaghetti Effect** — Coined by Ngabang (2026), used in `article.md`. A specific concept worth defining.
-4. **Context Window Amnesia** — From Ngabang (2026), used in `cursor-article.md` and `iris-learnings.md`.
-5. **Vibe Coding** — Coined by Karpathy (2025), central concept in both articles.
-6. **Spec-Driven Development** — From Thoughtworks (2025), used in `cursor-article.md`.
-7. **Epistemia** — From Quattrociocchi et al. (2025), used in `article.md`.
-8. **Rubber-Stamp Culture** — Used in both article versions.
-9. **Trade-off Triangle** — The central framework of the article. Deserves a glossary entry.
-10. **Bus Factor** — Used in measurement discussions. Common term but worth defining in context.
-
-**Assessment:** GLOSSARY.md covers foundational terms well but has not been updated to reflect the many concepts introduced during article development. Approximately 10 significant terms used in published content are missing.
-
-## Tone and Style Compliance
-
-### CLAUDE.md Tone Requirements
-
-| Requirement | article.md | cursor-article.md |
-|-------------|-----------|-------------------|
-| Exploratory, not prescriptive | ✓ Explicitly frames guardrails as "practices worth examining" | ✓ Same framing |
-| Thoughtful and nuanced | ✓ Acknowledges trade-offs, counter-arguments | ✓ Same pattern |
-| Accessible but rigorous | ✓ Defines terms, uses concrete examples | ✓ Same approach |
-| Honest about limitations | ✓ Section VI explicitly about measurement uncertainty | ✓ Same section |
-| Define terms on first use | ✓ Most terms defined; "epistemic" defined in opening | ✓ Same |
-| Concrete examples | ✓ Multiple scenarios (database deletion, 10:1 ratio, healthcare) | ✓ Same examples + additional ones |
-| Prefer "understanding" over "knowledge" | ✓ Consistently uses "understanding" | ✓ Same |
-| Active voice | ✓ Predominantly active | ✓ Same |
-
-**Assessment:** Both article versions demonstrate excellent adherence to the tone and style guidelines in `CLAUDE.md`. The articles practice what they preach — they're exploratory, acknowledge uncertainty, and provide concrete examples.
-
----
-
-*Convention analysis: 2026-02-15*
+*Convention analysis: 2026-03-14*

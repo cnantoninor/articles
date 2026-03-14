@@ -1,156 +1,96 @@
 # Technology Stack
 
-**Analysis Date:** 2026-02-15
+**Analysis Date:** 2026-03-14
 
 ## Languages
 
 **Primary:**
-- Markdown — All content authoring (articles, slides, templates, glossary, research notes)
-- Bash Shell Script — Export automation and setup (`scripts/*.sh`)
+- Python 3.13 - Analytics, content validation, PDF export tooling
+- JavaScript (Node.js) - PDF export engine, MCP servers, Vercel deployment
+- Markdown - Article content, slides (Marp format)
 
 **Secondary:**
-- JavaScript (Node.js) — Custom high-quality PDF export pipeline (`topics/epistemic_debt/exports/export-pdf.js`)
-- CSS — PDF export styling (`topics/epistemic_debt/exports/pdf-export-styles.css`, `topics/epistemic_debt/exports/pdf-styles.css`)
-- YAML — Front-matter metadata in every Markdown content file
+- YAML - Front-matter metadata for articles
+- CSS - PDF styling for exported documents
+- HTML - PDF generation via Puppeteer
 
 ## Runtime
 
 **Environment:**
-- Node.js v22.17.1 (via nvm)
-- Bash (Linux shell)
-- Linux 6.6.87.2-microsoft-standard-WSL2 (WSL2 environment)
+- Python 3.13 (specified in `pyproject.toml` and `.python-version`)
+- Node.js (via npm packages)
 
 **Package Manager:**
-- npm 10.9.2 (for local Node.js dependencies and Marp CLI)
-- No `package.json` at repo root — dependencies installed directly into `node_modules/`
-- Lockfile: `.package-lock.json` inside `node_modules/` (auto-generated, no root lockfile)
+- npm (for Node.js dependencies)
+  - Lockfile: `package-lock.json` present
+- pip (for Python dependencies)
+  - Requirements: `requirements.txt` and `requirements-dev.txt`
 
-## Frameworks & Tools
+## Frameworks
 
-**Content Authoring:**
-- Marp — Markdown-based presentation framework
-  - Configured via YAML front-matter in slide `.md` files:
-    ```yaml
-    marp: true
-    theme: default
-    paginate: true
-    ```
-  - Expected installation: `@marp-team/marp-cli` via npm (global or local)
-  - Used by: `scripts/export-slides.sh`, `scripts/export-pdf.sh`
-
-**Document Conversion:**
-- Pandoc — Universal document converter
-  - Installed version: 3.1.3 (at `/usr/bin/pandoc` — not currently installed in this environment)
-  - Converts: Markdown → DOCX, Markdown → PDF
-  - PDF engine: pdflatex via `--pdf-engine=pdflatex`
-  - Used by: `scripts/export-docx.sh`, `scripts/export-pdf.sh`
-
-**PDF Rendering:**
-- pdflatex (TeX Live 2023/Debian) — PDF rendering engine for Pandoc
-  - Installed at: `/usr/bin/pdflatex`
-  - LaTeX packages: texlive-latex-base, texlive-fonts-recommended, texlive-fonts-extra, texlive-latex-extra
-  - Used by: `scripts/export-pdf.sh` (article mode)
-
-**Custom PDF Pipeline:**
-- markdown-it 14.1.0 + markdown-it-footnote 4.0.0 — Markdown-to-HTML rendering with footnote support
-- Puppeteer (borrowed from system-level `md-to-pdf` package at `/home/arau6/.nvm/versions/node/v22.17.1/lib/node_modules/md-to-pdf/node_modules/puppeteer`) — Headless Chrome for HTML-to-PDF
-- Used in: `topics/epistemic_debt/exports/export-pdf.js`
-- Purpose: Higher-quality PDF output with custom CSS styling, proper footnote rendering, A4 format with page numbers
+**Core:**
+- No web framework (primarily content and tooling focused)
+- Next.js (v13+) - For interactive infographics deployment to Vercel (optional, article-2 infographics only)
 
 **Testing:**
-- None detected — no test framework or test files
+- pytest - Python testing framework
+- Test location: `topics/ai_craft/code/vibe_designing` and `topics/ai_craft/code/ship_of_theseus`
+- Config: `pytest.ini`
+
+**Build/Dev:**
+- Puppeteer - Headless browser for PDF generation from HTML
+- markdown-it - Markdown parser and renderer
+- markdown-it-footnote - Footnote support for markdown rendering
 
 ## Key Dependencies
 
-**Local Node.js Packages (in `node_modules/`):**
-- `markdown-it` 14.1.0 — Markdown parsing and HTML rendering
-- `markdown-it-footnote` 4.0.0 — Footnote syntax extension for markdown-it
-- `argparse` 2.0.1 — Argument parsing (transitive dep of markdown-it)
-- `entities` 4.5.0 — HTML entity encoding (transitive dep)
-- `linkify-it` 5.0.0 — URL auto-linking (transitive dep)
-- `mdurl` 2.0.0 — URL utilities (transitive dep)
-- `punycode.js` 2.3.1 — Punycode encoding (transitive dep)
-- `uc.micro` 2.1.0 — Unicode character classes (transitive dep)
+**Critical:**
+- `puppeteer` (v23.0.0) - High-quality PDF export from HTML with footnote support
+- `markdown-it` (v14.0.0) - Core markdown rendering for PDF export
+- `markdown-it-footnote` (v4.0.0) - Enables footnote syntax in exported content
+- `google-analytics-data` (v0.20.0) - GA4 API client for analytics collection
 
-**System-level Dependencies:**
-- `pandoc` 3.x — Document conversion (installed via system package manager)
-- `pdflatex` (TeX Live) — PDF rendering engine
-- `@marp-team/marp-cli` — Slide export (installed via npm globally or locally)
-- `md-to-pdf` — System-level npm package providing Puppeteer (referenced by `export-pdf.js`)
-
-**Binary available in `node_modules/.bin/`:**
-- `markdown-it` — CLI for markdown-it (not actively used in workflows)
-
-## Content Formats
-
-**Input Formats:**
-- Markdown with YAML front-matter (articles): Standard CommonMark with extensions
-  - Front-matter fields: `title`, `subtitle`, `status`, `type`, `audience`, `target_length`, `created`, `last_updated`
-  - Footnote syntax: `[^n]` / `[^n]: text` (markdown-it-footnote format)
-- Marp Markdown (slides): Markdown with `---` slide separators and HTML speaker notes
-  - Front-matter: `marp: true`, `theme`, `paginate`, `title`
-  - Speaker notes: `<!-- Speaker notes: ... -->`
-
-**Output Formats:**
-- DOCX — Microsoft Word Open XML (for Google Docs import)
-- PPTX — Microsoft PowerPoint Open XML (for Google Slides import)
-- PDF — Portable Document Format (standalone distribution)
-  - Two pipelines: pandoc+pdflatex (standard) and markdown-it+Puppeteer (high-quality with custom CSS)
-- HTML — Generated as intermediate format by Marp and export-pdf.js
-
-**Styling:**
-- `topics/epistemic_debt/exports/pdf-export-styles.css` (287 lines) — High-quality PDF styles (Georgia/serif font, A4 format, footnote styling, print-optimized)
-- `topics/epistemic_debt/exports/pdf-styles.css` (180 lines) — Simpler PDF styles (alternate stylesheet)
-- Both CSS files handle: typography, tables, code blocks, footnotes, blockquotes, page break control, print media
+**Infrastructure:**
+- `pyyaml` (v6.0.3) - YAML parsing for front-matter validation and refresh
+- `pandas` (v3.0.0+) - Data analysis for analytics pipeline
+- `numpy` (v2.4.2) - Numerical computing for analytics
+- `scipy` (v1.17.0) - Scientific computing for analytics
+- `matplotlib` (v3.10.8) - Data visualization for analytics reports
 
 ## Configuration
 
 **Environment:**
-- No environment variables required
-- No secrets or API keys
-- No `.env` files
+- Credentials: `analytics/credentials/ga4-service-account.json` (GCP service account for Google Analytics)
+- Environment variables (optional):
+  - `GOOGLE_APPLICATION_CREDENTIALS` - Path to GA4 service account JSON
+  - `GA4_PROPERTY_ID` - GA4 property ID (default: 361268692)
+- MCP servers configured in `.mcp.json` (example template: `.mcp.json.example`)
 
-**Build Configuration:**
-- No build config files (no `Makefile`, no `*.config.*`)
-- Export parameters controlled via shell script arguments
-- Marp configuration inline in Markdown front-matter
-- Pandoc options hardcoded in shell scripts
-
-**AI Authoring Configuration:**
-- `.ai/context.md` — Concise rulebook (symlinked to `CLAUDE.md`)
-- `.ai/rules/` — Glob-activated rules: writing-style, publication, terminology
-- `.ai/sync-rules.sh` — Creates/updates symlinks for Cursor and Claude Code
-- `GLOSSARY.md` — Shared domain terminology definitions
-- `templates/` — Content scaffolding templates (article, slides, research)
-- `.planning/config.json` — GSD planning tool configuration
-
-**Planned Tools (Phase 2):**
-- Substack MCP server — Drafting and publishing from editor
-- Social media MCP server — Cross-posting teasers to LinkedIn, Twitter/X, Instagram
-- Analytics integration — Tracking reach and engagement
+**Build:**
+- `Makefile` - Installation, pre-push checks, validation
+- `.github/workflows/python-tests.yml` - Python test automation on push/PR
+- `scripts/styles/export-pdf.js` - PDF export entry point
+- Script locations:
+  - `scripts/styles/export-pdf.js` - PDF generation
+  - `scripts/validate-frontmatter.py` - Front-matter validation
+  - `scripts/refresh-frontmatter.py` - Front-matter updates
+  - `scripts/check-cta.py` - Content validation
+  - `analytics/scripts/fetch_ga4.py` - GA4 data collection
+  - `analytics/scripts/report.py` - Analytics reporting
 
 ## Platform Requirements
 
 **Development:**
-- Linux/Unix-like environment (bash scripts required)
-- Node.js 22.x + npm (for Marp CLI and markdown-it dependencies)
-- pandoc 3.x (for DOCX and standard PDF export)
-- pdflatex / TeX Live (for PDF rendering via Pandoc)
-- @marp-team/marp-cli (for PPTX and slide PDF export)
-- Cursor AI editor (optional but optimized for AI-assisted authoring)
-
-**Setup:**
-- Run `scripts/setup.sh` to install all dependencies automatically
-- Detects OS (Linux/macOS) and uses appropriate package manager
-- Installs: Pandoc, Node.js/npm, Marp CLI (global, falls back to local), LaTeX (texlive)
+- Python 3.13
+- Node.js (version unspecified, but npm required)
+- Git for version control
+- Pre-push hook support for validation
 
 **Production:**
-- Primary publication: Substack (The AI Mirror)
-- Promotion: LinkedIn, Twitter/X, Instagram, Substack Notes
-- Manual export workflow to Google Workspace (Docs/Slides)
-- Exports stored locally in `topics/<topic>/exports/` directories
-- Git-based version control
+- Vercel - Deployment target for interactive infographics (Next.js applications)
+- GitHub Actions - Runs Python tests on push/PR to main branch
+- Google Cloud Platform - GA4 service account for analytics data access
 
 ---
 
-*Stack analysis: 2026-02-15*
+*Stack analysis: 2026-03-14*

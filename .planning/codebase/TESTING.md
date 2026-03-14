@@ -1,233 +1,420 @@
 # Testing Patterns
 
-**Analysis Date:** 2026-01-26
+**Analysis Date:** 2026-03-14
 
 ## Test Framework
 
-**Runner:**
-- Not applicable - This is a content repository, not a software project
+### Runner
+- **Framework:** pytest
+- **Version:** Implied from imports (python >= 3.13 required, see `pyproject.toml`)
+- **Config:** `.planning/codebase/pytest.ini`
 
-**Assertion Library:**
-- Not applicable
+### Configuration
+```ini
+[pytest]
+testpaths =
+    topics/ai_craft/code/vibe_designing
+    topics/ai_craft/code/ship_of_theseus
+python_files = test_*.py
+python_functions = test_*
+python_classes = Test*
+addopts = -v --tb=short
+pythonpath =
+    topics/ai_craft/code/vibe_designing
+    topics/ai_craft/code/ship_of_theseus
+```
 
-**Run Commands:**
-Not applicable - No automated tests detected
+Key settings:
+- **Test discovery:** Files matching `test_*.py`, functions matching `test_*`, classes matching `Test*`
+- **Verbosity:** `-v` flag (verbose output)
+- **Traceback:** `--tb=short` (shorter error messages)
+- **Python path:** Direct imports from vibe_designing and ship_of_theseus modules
+
+### Assertion Library
+- **Standard:** Python's built-in `assert` keyword with `pytest.raises()` for exception testing
+- **No external library:** No additional assertion library observed
+
+### Run Commands
+```bash
+# Run all tests in configured paths
+pytest
+
+# Run specific test file
+pytest topics/ai_craft/code/vibe_designing/test_domain_modeling.py
+
+# Run specific test class
+pytest topics/ai_craft/code/vibe_designing/test_domain_modeling.py::TestDomainModel
+
+# Run specific test function
+pytest topics/ai_craft/code/vibe_designing/test_domain_modeling.py::TestDomainModel::test_add_invariant
+
+# Watch mode (requires pytest-watch plugin, not observed in current setup)
+# No watch mode configured
+
+# Coverage (no coverage config observed)
+# Not currently set up
+```
 
 ## Test File Organization
 
-**Location:**
-- No test files found
+### Location Pattern
+- **Co-located:** Test files are in the same directory as source code
+  - Source: `topics/ai_craft/code/ship_of_theseus/basic_entity_model.py`
+  - Test: `topics/ai_craft/code/ship_of_theseus/test_basic_entity_model.py`
 
-**Naming:**
-- No test naming conventions (no tests present)
+- **Paths tested:**
+  ```
+  topics/ai_craft/code/vibe_designing/
+  ├── domain_modeling.py
+  ├── test_domain_modeling.py
+  ├── assumption_tracking.py
+  ├── test_assumption_tracking.py
+  ├── socratic_prompting.py
+  ├── test_socratic_prompting.py
+  ├── design_exploration.py
+  ├── test_design_exploration.py
+  └── [demo files]
 
-**Structure:**
-Not applicable
+  topics/ai_craft/code/ship_of_theseus/
+  ├── basic_entity_model.py
+  ├── test_basic_entity_model.py
+  ├── event_sourced_model.py
+  ├── test_event_sourced_model.py
+  ├── event_serialization.py
+  ├── test_event_serialization.py
+  ├── bounded_context_models.py
+  ├── test_bounded_context_models.py
+  └── [demo files]
+  ```
 
-## Content Validation Strategy
+### Naming Convention
+- **Pattern:** `test_<module_name>.py`
+- All test files use this pattern consistently
 
-This repository does not contain traditional software tests. Instead, validation occurs through:
+## Test Structure
 
-**Manual review workflows:**
-- Draft → Review → Published status progression (tracked in YAML front-matter)
-- Gap markers (`[GAP: ...]`, `[TODO: ...]`) indicate incomplete sections
-- Audience field in front-matter defines target reviewers
+### Test Class Organization
+```python
+class TestEntityName:
+    """Test class for entity/module"""
 
-**Export validation:**
-- Scripts use `set -e` to fail fast on export errors
-- File existence checks before export attempts
-- Both timestamped and "latest" versions created for comparison
+    def test_operation_or_scenario(self):
+        # Arrange
+        input_data = ...
 
-## Export Scripts as "Tests"
+        # Act
+        result = operation(input_data)
 
-The export scripts in `scripts/` serve as a form of integration testing for content:
-
-**Export validation pattern:**
-```bash
-# Validate inputs
-if [ ! -d "$TOPIC_DIR" ]; then
-    echo "Error: Topic directory '$TOPIC_DIR' does not exist"
-    exit 1
-fi
-
-if [ ! -f "$TOPIC_DIR/article.md" ]; then
-    echo "Error: No article.md found in '$TOPIC_DIR'"
-    exit 1
-fi
-
-# Execute export
-pandoc "$TOPIC_DIR/article.md" -o "$OUTPUT_FILE" ...
-
-# Confirm success
-echo "Created: $OUTPUT_FILE"
+        # Assert
+        assert result == expected
 ```
 
-**What these "tests" verify:**
-- Content exists (`article.md`, `slides.md`)
-- Directory structure is valid
-- Markdown can be parsed by pandoc/marp
-- YAML front-matter is well-formed (implicitly, via successful export)
+### Observed Structure Pattern
+- **Setup:** Arrange phase creates test data inline or with minimal fixtures
+- **Execution:** Act phase calls methods under test
+- **Verification:** Assert phase uses simple assertions
 
-## Quality Assurance Patterns
+**Example from `test_basic_entity_model.py`:**
+```python
+class TestShip:
+    def test_ship_creation(self):
+        ship_id = uuid4()
+        hull = [Plank("oak", 300, 30), Plank("oak", 300, 30)]
+        ship = Ship(ship_id, "Test Ship", hull)
 
-**Content quality checks:**
-1. YAML front-matter completeness (all required fields present)
-2. Gap markers track incomplete sections explicitly
-3. GLOSSARY.md ensures terminology consistency
-4. Templates provide starting structure to prevent format drift
+        assert ship.ship_id == ship_id
+        assert ship.name == "Test Ship"
+        assert len(ship.hull) == 2
+```
 
-**Script quality checks:**
-1. Input validation before execution
-2. Path existence verification
-3. Clear error messages with examples
-4. Exit on first error (`set -e`)
+### Multi-Assertion Tests
+- Multiple assertions in single test method (not separated into individual methods)
+- Example from `test_domain_modeling.py`:
+```python
+def test_add_invariant(self):
+    model = DomainModel("Test", "Test")
+    invariant = DomainInvariant("test", "test desc", "test rule")
 
-## Fixture Patterns
+    model.add_invariant(invariant)
+    assert len(model.invariants) == 1
+    assert model.invariants[0] == invariant
+```
 
-**Templates serve as fixtures:**
-- `templates/article.md` - Standard article structure
-- `templates/slides.md` - Standard presentation structure
-- `templates/research.md` - Research notes structure
+### Docstring Usage
+- Test methods sometimes have docstrings explaining scenario
+- **Example from `test_event_sourced_model.py`:**
+```python
+def test_event_reconstruction(self):
+    """Test that ship can be reconstructed from events."""
+    hull = [Plank("oak", 300, 30), Plank("oak", 300, 30)]
+    original_ship = ShipAggregate.launch("Theseus", hull)
+    # ... test logic
+```
 
-**Example "fixture" from `templates/article.md`:**
-```yaml
----
-title: ""
-subtitle: ""
-status: draft
-type: article
-audience: []
-target_length: 0
-created: YYYY-MM-DD
-last_updated: YYYY-MM-DD
----
+## Mocking
+
+### Framework
+- **No mocking observed:** No unittest.mock, pytest-mock, or similar imports in test files
+- Tests use real objects (domain models, dataclasses, enums)
+
+### Approach
+- **Immutable test doubles:** Frozen dataclasses used as value objects
+  - Example: `Plank("oak", 300, 30)` directly instantiated, reused across tests
+- **Real aggregates:** Event sourcing tests use actual `ShipAggregate` with real events
+- **No patching:** No observed use of `@patch`, `MagicMock`, or `Mock`
+
+### What NOT to Mock (Observed Pattern)
+- Domain entities (test with real objects)
+- Value objects (immutable, safe to reuse)
+- Event streams (test serialization/deserialization with real data)
+- State transitions (test actual state machine behavior)
+
+### Test Data
+- Inline creation: Most tests create simple test data directly
+  ```python
+  ship_id = uuid4()
+  hull = [Plank("oak", 300, 30), Plank("oak", 300, 30)]
+  ship = Ship(ship_id, "Test Ship", hull)
+  ```
+
+## Fixtures and Factories
+
+### Factory Functions
+- **Observed:** `create_authentication_model()` in `test_domain_modeling.py`
+  - Returns fully-configured domain model with invariants, edge cases, entities, assumptions
+  - Used as test precondition rather than as a fixture
+
+- **Builder usage:** `DomainModelBuilder` used within tests to construct complex models
+  ```python
+  model = (DomainModelBuilder("Test", "Test")
+          .with_assumption("Test assumption")
+          .build())
+  ```
+
+### Test Fixtures
+- **No pytest fixtures observed:** No `@pytest.fixture` decorators found
+- **Inline setup:** All test data created in test methods
+- **Reuse pattern:** Simple immutable objects reused (e.g., `Plank` instances)
+
+### Example Precondition Setup
+From `test_domain_modeling.py`:
+```python
+def test_builder_with_invariant(self):
+    model = (DomainModelBuilder("Test", "Test")
+            .with_invariant("test_inv", "test desc", "test rule", priority=2)
+            .build())
+
+    assert len(model.invariants) == 1
+    assert model.invariants[0].name == "test_inv"
+    assert model.invariants[0].priority == 2
 ```
 
 ## Coverage
 
-**Requirements:** Not applicable (no code coverage)
+### Coverage Requirements
+- **Not enforced:** No pytest-cov configuration or coverage threshold observed
+- **Not measured:** No `.coveragerc` or coverage settings in `pytest.ini`
 
-**Content coverage approach:**
-- Gap markers (`[GAP: ...]`) explicitly mark missing content
-- Status field tracks completion: `draft`, `review`, `published`
-- Front-matter `target_length` provides completeness metric
-
-**Current coverage assessment (epistemic_debt topic):**
-- `article.md`: 187 lines, status: draft, contains 11 gap markers
-- `slides.md`: 195 lines, contains 1 gap marker
-- References: 34 lines (literature review outline)
-
-## Dependency Testing
-
-**External tools required:**
-- `pandoc` - For Markdown → DOCX/PDF conversion
-- `marp-cli` - For Markdown → PPTX/PDF slides
-- `pdflatex` - PDF rendering backend for pandoc
-
-**Validation approach:**
-- README.md documents prerequisites
-- Scripts fail with clear errors if tools missing
-- No automated dependency checks
-
-## Content Integration Testing
-
-**Export workflow serves as integration test:**
+### View Coverage
+Not configured. To add coverage:
 ```bash
-./scripts/export-all.sh epistemic_debt
+# Install pytest-cov
+pip install pytest-cov
+
+# Run with coverage
+pytest --cov=topics/ai_craft/code/vibe_designing --cov=topics/ai_craft/code/ship_of_theseus --cov-report=term-missing
+
+# Or configure in pytest.ini
+# [pytest]
+# addopts = --cov=... --cov-report=html
 ```
 
-**What this tests:**
-1. All required files exist
-2. Markdown is well-formed
-3. YAML front-matter is valid
-4. Pandoc can parse content
-5. Marp can render slides
-6. Output directory is writable
+## Test Types
 
-**Test output:**
-- Timestamped files in `exports/`: `article-20260126.docx`, `slides-20260126.pdf`
-- "Latest" versions: `article.docx`, `slides.pdf`
+### Unit Tests (Primary)
+- **Scope:** Individual classes and methods
+- **Approach:** Dataclass instantiation, method calls, assertion of results
+- **Examples:**
+  - `test_plank_creation()` — tests `Plank` value object construction
+  - `test_ship_replace_plank()` — tests single method behavior
+  - `test_invariant_validation()` — tests validation logic in `__post_init__`
 
-## Manual Testing Pattern
+### Integration Tests (Secondary)
+- **Scope:** Workflows spanning multiple classes or subsystems
+- **Approach:** Build complex objects, test state transitions, verify side effects
+- **Examples:**
+  - `test_complete_plank_replacement()` — full ship lifecycle with multiple replacements
+  - `test_event_reconstruction()` — event sourcing round-trip (save → load → verify)
+  - `test_builder_with_entity()` — builder fluent API chaining
 
-**Human review checklist (implicit in content workflow):**
-1. Check YAML front-matter completeness
-2. Verify terminology against GLOSSARY.md
-3. Ensure heading hierarchy (H1 for title only, H2 for sections)
-4. Validate citation format
-5. Test export scripts produce readable outputs
-6. Review gap markers for completeness tracking
+### Behavior Tests (Domain-Focused)
+- **Scope:** Business logic and domain invariants
+- **Approach:** Assert business rules hold true
+- **Examples:**
+  - `test_ship_identity_persistence()` — ship ID unchanged after plank replacement
+  - `test_identity_is_narrative()` — same final state but different event histories
+  - `test_risk_score_calculation()` — business formula for risk scoring
 
-## Continuous Integration
+### E2E Tests
+- **Not observed:** No end-to-end or system integration tests present
+- **Not applicable:** This is a library/framework codebase, not an application
 
-**CI Pipeline:** Not detected (no GitHub Actions, no `.gitlab-ci.yml`, etc.)
+## Common Patterns
 
-**Current workflow:**
-- Local development and editing
-- Manual export script execution
-- Manual review of generated outputs
+### Exception Testing
+**Pattern using `pytest.raises()`:**
+```python
+def test_plank_immutability(self):
+    plank = Plank("oak", 300, 30)
+    with pytest.raises(AttributeError):
+        plank.material = "teak"
 
-## Test Data
+def test_replace_plank_invalid_index(self):
+    ship_id = uuid4()
+    hull = [Plank("oak", 300, 30)]
+    ship = Ship(ship_id, "Test Ship", hull)
 
-**Sample content:**
-- `epistemic_debt/` topic serves as working example
-- Templates provide minimal valid structure
-- No synthetic test data fixtures
+    new_plank = Plank("teak", 300, 30)
 
-## Error Testing Patterns
-
-**Scripts test error conditions:**
-```bash
-# Missing argument
-if [ -z "$1" ]; then
-    echo "Usage: $0 <topic-directory>"
-    exit 1
-fi
-
-# Invalid directory
-if [ ! -d "$TOPIC_DIR" ]; then
-    echo "Error: Topic directory '$TOPIC_DIR' does not exist"
-    exit 1
-fi
-
-# Missing file (with graceful degradation)
-if [ ! -f "$TOPIC_DIR/slides.md" ]; then
-    echo "Warning: No slides.md found in '$TOPIC_DIR', skipping slides PDF"
-    return 1
-fi
+    with pytest.raises(IndexError, match="Plank not found at this position in the hull"):
+        ship.replace_plank(1, new_plank)
 ```
 
-**Failure modes tested:**
-- Missing required arguments
-- Non-existent directories
-- Missing input files
-- Export tool failures (via `set -e`)
+- `pytest.raises()` context manager for exception assertion
+- Optional `match=` parameter for exception message regex matching
+- Exceptions tested in methods with explicit error handling
 
-## Testing Anti-Patterns Avoided
+### Error Message Validation
+```python
+def test_invariant_validation(self):
+    with pytest.raises(ValueError, match="name cannot be empty"):
+        DomainInvariant("", "desc", "rule")
 
-**No automated tests, but content validation principles:**
-- Gap markers prevent silent incompleteness
-- Templates prevent format drift
-- Export scripts catch structural errors early
-- GLOSSARY.md prevents terminology inconsistency
-- Front-matter status tracking prevents premature publishing
+    with pytest.raises(ValueError, match="description cannot be empty"):
+        DomainInvariant("name", "", "rule")
+```
 
-## Quality Metrics
+- Regex matching on exception message
+- Tests that validation errors have descriptive messages
 
-**Measurable quality indicators:**
-- Number of gap markers (lower is better)
-- Status field progression (draft → review → published)
-- Target length vs. actual length (from front-matter)
-- Export script success/failure
-- Consistency with GLOSSARY.md terms
+### Type Checking Tests
+```python
+def test_add_invalid_invariant(self):
+    model = DomainModel("Test", "Test")
 
-**Current metrics (epistemic_debt topic):**
-- Gap markers: 11 in article.md, 1 in slides.md
-- Status: draft
-- Target: 4000 words
-- Actual: ~187 lines in article (estimated 2000-2500 words)
-- Export: Not yet tested in this analysis
+    with pytest.raises(TypeError):
+        model.add_invariant("not an invariant")
+```
+
+### Async Testing
+- **Not observed:** No async/await patterns in tested code
+- **Not applicable:** Synchronous domain models
+
+### Time-Based Testing
+- **Minimal:** One test uses `time.sleep()` for timestamp ordering
+  ```python
+  def test_events_maintain_order(self):
+      """Test that events are processed in chronological order."""
+      import time
+
+      time.sleep(0.001)
+      ship.replace_plank(0, Plank("teak", 300, 30))
+      time.sleep(0.001)
+      ship.replace_plank(1, Plank("mahogany", 300, 30))
+
+      # Verify events are in chronological order
+      events = ship._changes
+      for i in range(1, len(events)):
+          assert events[i - 1].occurred_at <= events[i].occurred_at
+  ```
+
+### State Machine Testing
+```python
+def test_add_transition(self):
+    entity = EntityLifecycle("Order")
+    entity.add_transition(EntityLifecycleState.CREATED, EntityLifecycleState.ACTIVE)
+
+    assert entity.can_transition(EntityLifecycleState.CREATED, EntityLifecycleState.ACTIVE)
+    assert not entity.can_transition(EntityLifecycleState.ACTIVE, EntityLifecycleState.CREATED)
+```
+
+- Tests valid transitions exist
+- Tests invalid transitions are rejected
+
+### Enumeration Testing
+```python
+def test_create_entity(self):
+    entity = EntityLifecycle("User")
+    assert entity.entity_name == "User"
+    assert EntityLifecycleState.CREATED in entity.states
+    assert EntityLifecycleState.ACTIVE in entity.states
+```
+
+- Verifies enum values are in collections
+- Tests default state sets
+
+### Serialization Testing
+From `test_event_serialization.py`:
+- Serialization round-trip (object → dict → json → dict → object)
+- UUID conversion (object UUID → string → object UUID)
+- DateTime serialization (datetime → ISO string → datetime)
+
+### Factory Testing
+```python
+def test_auth_model_has_critical_invariants(self):
+    model = create_authentication_model()
+    critical = model.get_critical_invariants()
+
+    assert len(critical) >= 2
+    invariant_names = [inv.name for inv in critical]
+    assert "unique_email" in invariant_names
+    assert "password_strength" in invariant_names
+```
+
+- Tests that factory creates correctly configured objects
+- Verifies invariants, entities, assumptions are populated
+
+## Test Data Patterns
+
+### Immutable Value Objects
+Reused across tests due to immutability:
+```python
+# Widely reused in ship_of_theseus tests
+Plank("oak", 300, 30)
+Plank("teak", 300, 30)
+Plank("mahogany", 200, 25)
+```
+
+### Random IDs
+Uses Python's `uuid4()` for unique identifiers:
+```python
+from uuid import uuid4
+ship_id = uuid4()
+```
+
+### Hardcoded UUIDs
+For deterministic testing:
+```python
+ship_id = UUID("12345678-1234-5678-1234-567812345678")
+```
+
+### Default Values in Tests
+Builder pattern provides sensible defaults:
+```python
+model = DomainModel("Test System", "Test description")
+# Automatically gets empty lists for invariants, edge_cases, entities, assumptions
+```
+
+## Testing Philosophy Observed
+
+1. **Test behavior, not implementation:** Tests verify what objects do, not how
+2. **Clear test names:** Method names clearly describe what is being tested
+3. **Single responsibility:** Each test exercises one assertion focus
+4. **Real objects:** No mocking; domain objects are simple enough to instantiate
+5. **Explicit setup:** Test data created inline, not hidden in fixtures
+6. **Domain-driven:** Tests verify business rules and invariants
+7. **Deterministic:** No randomness; same test always produces same result
 
 ---
 
-*Testing analysis: 2026-01-26*
+*Testing analysis: 2026-03-14*

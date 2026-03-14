@@ -1,165 +1,134 @@
 # External Integrations
 
-**Analysis Date:** 2026-02-15
+**Analysis Date:** 2026-03-14
 
 ## APIs & External Services
 
-**Current:**
-- No API clients or SDKs in use
-- Content is self-contained Markdown files processed by local CLI tools
+**Content Publishing:**
+- Substack - Publishing platform for articles
+  - SDK/Client: `substack-mcp` (via MCP server)
+  - Auth: `SUBSTACK_SESSION_TOKEN` (SID cookie), `SUBSTACK_USER_ID`
+  - Configuration: `.mcp.json` (example: `.mcp.json.example`)
+  - Usage: Draft post creation via `create_draft_post()` MCP tool
+  - Entry point: `analytics/scripts/fetch_ga4.py` references Substack property 361268692
 
-**Planned (Phase 2):**
-- **Substack MCP Server**: Drafting and publishing articles directly from the editor
-- **Social Media MCP Server**: Cross-posting teasers to LinkedIn, Twitter/X, Instagram, Substack Notes
-- **Analytics Integration**: Tracking reach and engagement across platforms
+**Social Media Distribution:**
+- LinkedIn - Professional network sharing
+  - SDK/Client: `@humanwhocodes/crosspost` (via MCP server)
+  - Auth: Token in `CROSSPOST_DOTENV` environment file
+  - Usage: Cross-posting via MCP; manual fallback available
+
+- Twitter/X - Microblogging and engagement
+  - SDK/Client: `@humanwhocodes/crosspost` (via MCP server)
+  - Auth: Token in `CROSSPOST_DOTENV` environment file
+  - Usage: Cross-posting via MCP; manual fallback available
+
+- Instagram - Visual content sharing
+  - Integration: Manual only (no MCP support)
+  - Auth: Browser-based login
+  - Usage: Direct post creation with captions and hashtags
+
+**Analytics & Measurement:**
+- Google Analytics 4 - Web analytics and user behavior tracking
+  - SDK/Client: `google-analytics-data` (BetaAnalyticsDataClient)
+  - Auth: GCP service account JSON at `analytics/credentials/ga4-service-account.json`
+  - Property ID: 361268692 (configured in `GA4_PROPERTY_ID`)
+  - Usage: `analytics/scripts/fetch_ga4.py` fetches:
+    - Page views, sessions, average session duration per article
+    - Traffic sources (session source/medium), new/returning users, bounce rate
+    - Referral paths and full page URLs
+    - User behavior metrics (bounce rate, average session duration)
+  - Output: CSV files in `analytics/data/ga4/` (pageviews.csv, traffic_sources.csv, referrals.csv, user_behavior.csv)
 
 ## Data Storage
 
 **Databases:**
-- None — Local filesystem only
+- None configured (stateless content and analytics collection system)
 
 **File Storage:**
-- Local filesystem with structured topic directories:
-  - Articles: `topics/<topic>/article.md`
-  - Slides: `topics/<topic>/slides.md`
-  - Exports: `topics/<topic>/exports/` (DOCX, PPTX, PDF, HTML)
-  - Raw material: `topics/<topic>/raw_material/`
-  - References: `topics/<topic>/references/` (PDFs, Markdown notes)
-  - Assets: `topics/<topic>/assets/` (diagrams, images)
-  - Artifacts: `topics/<topic>/artifacts/` (flat articles/ and presentation/ only, no published subdir; version/status in frontmatter and git)
+- Local filesystem only
+  - Analytics data: CSV files in `analytics/data/ga4/`
+  - Article content: Markdown files in `topics/<topic_name>/`
+  - Exported artifacts: PDF, HTML in `topics/<topic_name>/exports/`
 
 **Caching:**
-- None
+- None configured
 
 ## Authentication & Identity
 
-**Auth Provider:**
-- None — Local content repository with no authentication layer
+**Auth Providers:**
+- GCP Service Account - For Google Analytics API access
+  - Implementation: File-based credential at `analytics/credentials/ga4-service-account.json`
+  - Configured via `GOOGLE_APPLICATION_CREDENTIALS` environment variable
+  - Used by: `google.analytics.data_v1beta.BetaAnalyticsDataClient`
 
-**Access Control:**
-- Filesystem permissions only
-- Git-based collaboration (if shared)
+- Substack Session Token - For Substack API integration
+  - Implementation: Browser session cookie (SID)
+  - Configured in `.mcp.json` via `SUBSTACK_SESSION_TOKEN`
+  - Used by: `substack-mcp` MCP server for draft creation
+
+- Crosspost Token - For LinkedIn/Twitter cross-posting
+  - Implementation: API token file reference
+  - Configured in `.mcp.json` via `CROSSPOST_DOTENV`
+  - Used by: `@humanwhocodes/crosspost` MCP server
+
+- GitHub Personal Access Token - For GitHub API integration
+  - Implementation: PAT token
+  - Configured in `.mcp.json` via `GITHUB_PERSONAL_ACCESS_TOKEN`
+  - Used by: `@modelcontextprotocol/server-github` MCP server
 
 ## Monitoring & Observability
 
 **Error Tracking:**
-- None — Shell scripts use `set -e` for fail-fast error handling
+- None detected
 
 **Logs:**
-- Shell script stdout/stderr only
-- Echo-based progress messages in export scripts
-- No structured logging or log aggregation
+- Console output from Python scripts and Node.js utilities
+- Analytics collection logs: `analytics/scripts/fetch_ga4.py` prints status to stdout
+- Export progress: `scripts/styles/export-pdf.js` prints file size and status to stdout
 
 ## CI/CD & Deployment
 
 **Hosting:**
-- Primary publication: Substack (The AI Mirror — https://antoninorau.substack.com/)
-- Exports shared via Google Docs/Slides for collaboration
+- Vercel - Deployment platform for Next.js infographics
+  - Current deployment: `https://articles-4d5hts7kg-cnantoninors-projects.vercel.app/` (article-2 infographics)
+  - Configuration: Vercel auto-detects Next.js; supports one-click deploy from GitHub or Vercel CLI
 
 **CI Pipeline:**
-- None detected
-- No GitHub Actions, GitLab CI, or other CI/CD configuration
-
-**Version Control:**
-- Git repository at `/home/arau6/projects/ai-articles`
-- Branch: `main`
-- `.gitignore` excludes: `node_modules`, `.planning/phases`
+- GitHub Actions - Python test automation
+  - Workflow file: `.github/workflows/python-tests.yml`
+  - Trigger: Push to main branch, pull requests to main
+  - Actions:
+    - Checkout code
+    - Setup Python 3.12 (GA uses 3.12; local development uses 3.13)
+    - Install dependencies from `requirements-dev.txt`
+    - Run pytest on test paths defined in `pytest.ini`
 
 ## Environment Configuration
 
 **Required env vars:**
-- None
+- `GOOGLE_APPLICATION_CREDENTIALS` - Path to GCP service account JSON (default: `analytics/credentials/ga4-service-account.json`)
+- `GA4_PROPERTY_ID` - GA4 property ID (default: 361268692)
+- `SUBSTACK_PUBLICATION_URL` - Substack publication URL (e.g., https://antoninorau.substack.com)
+- `SUBSTACK_SESSION_TOKEN` - Substack SID cookie from authenticated session
+- `SUBSTACK_USER_ID` - Substack user ID (numeric)
+- `CROSSPOST_DOTENV` - Absolute path to .env file with crosspost credentials
+- `GITHUB_PERSONAL_ACCESS_TOKEN` - GitHub PAT for GitHub API access
 
 **Secrets location:**
-- Not applicable — No secrets required
-
-**Configuration files:**
-- `.ai/context.md` — Concise AI rulebook (symlinked to `CLAUDE.md`)
-- `.ai/rules/` — Glob-activated rules (writing-style, publication, terminology)
-- `GLOSSARY.md` — Shared terminology definitions
-- `.planning/config.json` — GSD planning tool settings
+- GCP credentials: `analytics/credentials/ga4-service-account.json` (git-ignored)
+- Substack/Crosspost tokens: In `.mcp.json` (git-ignored; example template in `.mcp.json.example`)
+- All secrets are listed in `.gitignore`
 
 ## Webhooks & Callbacks
 
 **Incoming:**
-- None
+- None detected
 
 **Outgoing:**
-- None
-
-## Export Pipelines (Primary Integration Surface)
-
-This repository's main "integrations" are its export pipelines — local CLI tools that transform Markdown content into distributable formats.
-
-### Pipeline 1: Article → DOCX (Google Docs)
-
-- **Script:** `scripts/export-docx.sh`
-- **Tool:** Pandoc
-- **Command:** `pandoc <input>.md -o <output>.docx --from=markdown --to=docx --standalone`
-- **Output:** `topics/<topic>/exports/<name>-<YYYYMMDD>.docx` + latest copy without timestamp
-- **Target:** Import into Google Docs for collaboration and sharing
-
-### Pipeline 2: Article → PDF (Standard)
-
-- **Script:** `scripts/export-pdf.sh` (article mode)
-- **Tool:** Pandoc + pdflatex
-- **Command:** `pandoc <input>.md -o <output>.pdf --from=markdown --to=pdf --pdf-engine=pdflatex --standalone`
-- **Output:** `topics/<topic>/exports/<name>-<YYYYMMDD>.pdf` + latest copy
-- **Target:** Standalone PDF distribution
-
-### Pipeline 3: Article → PDF (High-Quality Custom)
-
-- **Script:** `topics/epistemic_debt/exports/export-pdf.js` (topic-specific)
-- **Tools:** markdown-it + markdown-it-footnote → HTML → Puppeteer (headless Chrome) → PDF
-- **Features:** Custom CSS styling, proper footnote rendering, A4 with page numbers, Georgia serif typography
-- **Styles:** `topics/epistemic_debt/exports/pdf-export-styles.css`
-- **Output:** `topics/epistemic_debt/exports/claude-article-cc.pdf`, `cursor-article-cc.pdf`
-- **Target:** Publication-quality PDF with polished formatting
-
-### Pipeline 4: Slides → PPTX (Google Slides)
-
-- **Script:** `scripts/export-slides.sh`
-- **Tool:** Marp CLI
-- **Command:** `marp <input>.md -o <output>.pptx --allow-local-files`
-- **Output:** `topics/<topic>/exports/<name>-<YYYYMMDD>.pptx` + latest copy
-- **Target:** Import into Google Slides for presentations
-
-### Pipeline 5: Slides → PDF
-
-- **Script:** `scripts/export-pdf.sh` (slides mode)
-- **Tool:** Marp CLI
-- **Command:** `marp <input>.md -o <output>.pdf --allow-local-files --pdf`
-- **Output:** `topics/<topic>/exports/slides-<YYYYMMDD>.pdf` + latest copy
-- **Target:** Standalone slide deck PDF
-
-### Pipeline 6: Batch Export
-
-- **Script:** `scripts/export-all.sh`
-- **Orchestrates:** Pipelines 1, 2, 4, 5 for a given topic
-- **Usage:** `./scripts/export-all.sh <topic>` or `./scripts/export-all.sh <topic> <specific-file.md>`
-- **Behavior:** Auto-detects article.md and slides.md; routes slide files to Marp, article files to Pandoc
-
-## AI Tools
-
-**Cursor AI Editor:**
-- Primary authoring environment
-- Configuration: `.ai/context.md` (via `CLAUDE.md` symlink) + `.cursor/rules/*.mdc` (glob-activated symlinks)
-- Integration: File-based context loading (no API integration)
-- Key files:
-  - `.ai/context.md` → `CLAUDE.md` — Always-applied concise rulebook
-  - `.ai/rules/` → `.cursor/rules/` — Writing style, publication, terminology rules
-  - `GLOSSARY.md` — Domain terminology
-  - `templates/` — Content scaffolding (article, slides, research)
-
-**Claude Code:**
-- Context file: `.ai/context.md` (via `CLAUDE.md` symlink)
-- Glob-activated rules: `.claude/rules/*.md` (symlinked from `.ai/rules/`)
-- Planning infrastructure: `.planning/` directory with project docs
-
-**No LLM APIs:**
-- No OpenAI, Anthropic, or other LLM API integrations in scripts
-- AI usage is editor-based (Cursor) and CLI-based (Claude Code), not programmatic
+- Substack draft creation - Called by `substack-mcp` MCP server when publishing workflow creates drafts
+- GitHub webhook - Triggered by push/PR events to run CI tests
 
 ---
 
-*Integration audit: 2026-02-15*
+*Integration audit: 2026-03-14*

@@ -93,7 +93,7 @@ The critical insight: **you cannot maximize all three simultaneously.** Every LL
 
 Before discussing the strategies that pull you toward understanding and reliability, we need to address a failure mode that masquerades as verification. This is the third SDLC boundary from Article 4 — Implementation → Validation — and it deserves special attention because it's so deceptive.
 
-When LLMs generate both code and tests, the tests inherit the same blind spots as the code. The system *appears* verified — coverage is high, tests pass — but the reliability is illusory. The tests validate that the code matches itself, not that the code matches intent.
+When LLMs generate both code and tests, the tests inherit the same blind spots as the code. The system *appears* verified — coverage is high, tests pass — but the reliability is illusory. The tests validate that the code matches itself, not that the code matches intent. IBM Research has identified the broader version of this problem — what IBM Fellow Kush Varshney calls "validating validators": in any feedback system where AI evaluates its own output, errors get amplified rather than corrected. What I'm calling *circular validation* is a specific manifestation in code testing: the closed loop between generated code and generated tests.
 
 A developer generates an API endpoint using an LLM. They then ask the same LLM: "Write tests for this endpoint." The LLM produces unit tests that achieve 95% coverage. Every test passes. The developer, seeing high coverage and green checks, gains confidence the code is correct.
 
@@ -245,5 +245,7 @@ Epistemic debt, like technical debt, can be a deliberate trade-off. The triangle
 - Thoughtworks (2025). "Spec-Driven Development."
 - Evans, E. Domain-Driven Design references.
 - Yang, E. "Code Review as Human Alignment in the Era of LLMs."
+- Pan, Q., Ashktorab, Z., Desmond, M., et al. (2024). "Human-Centered Design Recommendations for LLM-as-a-Judge." IBM Research. arXiv:2407.03479. https://arxiv.org/abs/2407.03479
+- IBM Think (2025). "Who watches the AI watchers? The challenge of self-evaluating AI." https://www.ibm.com/think/news/ai-testing-advances
 - GSD framework documentation.
 - Ngabang, L.A. (2026). "The Illusion of Competence."

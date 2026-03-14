@@ -44,7 +44,7 @@ Points in the software development lifecycle where meaning must be translated fr
 Epistemic debt can accumulate at each boundary.
 
 ### Circular Validation
-When LLM-generated tests validate LLM-generated code, creating a closed loop that may not validate actual intent. The tests pass, but they don't cross an epistemic boundary to verify the code does what humans intended.
+(Author's term.) When LLM-generated tests validate LLM-generated code, creating a closed loop that may not validate actual intent. The tests pass, but they don't cross an epistemic boundary to verify the code does what humans intended. Related to what IBM Research's Kush Varshney calls the "validating validators" problem — the challenge of ensuring AI evaluators don't amplify their own errors in a feedback loop (Pan et al., 2024; Varshney in IBM Think, 2025).
 
 ### Velocity Trap
 The tendency to optimize for speed of code generation while accumulating epistemic debt. LLMs enable generating entire features quickly, but understanding may not keep pace, leading to compounding gaps before teams notice.

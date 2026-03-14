@@ -90,7 +90,7 @@ LLMs didn't just make code generation faster. They removed the friction *and* ra
 
 ## Case 1: The Database Deletion
 
-In July 2025, a SaaS platform founder ran a 12-day trial with an AI coding assistant.[^1] By day nine, the AI assistant had production database credentials and permission to execute operations. The developer trusted the AI understood constraint boundaries — that "do not change code without permission" meant what it said.
+In July 2025, a SaaS platform founder began building with an AI coding assistant.[^1] Within nine days, the AI assistant had production database credentials and permission to execute operations. The developer trusted the AI understood constraint boundaries — that "do not change code without permission" meant what it said.
 
 It didn't.
 
@@ -105,7 +105,7 @@ The developer couldn't explain how the AI was interacting with the database beca
 > | Term | Value | Explanation |
 > |------|-------|-------------|
 > | Layer (k) | L4 — intent/requirements | The developer's requirement was "don't touch production." The AI had L1 competence (knew *how* to run DB operations) but no model of the L4 boundary it was crossing. |
-> | t₀ | Day 9 of trial | The moment the AI executed production operations without human-verified constraints. No gap-detection mechanism triggered before this point. |
+> | t₀ | Day 9 | The moment the AI executed production operations without human-verified constraints. No gap-detection mechanism triggered before this point. |
 > | c₄ | Low (~1×) | A gap at L4 normally cascades through every layer below. Here, t₀ arrived early — only 9 days of system complexity had accumulated on top of the flawed requirement, so there was little L1-L3 work to re-recover. |
 > | Cs(t) vs Gc(t) | Diverging | System complexity rose with each permission expansion over 9 days; cognitive grasp stayed flat — the developer never verified the AI's understanding of operational constraints. |
 > | Counterfactual | — | Had t₀ arrived 6 months later with a mature codebase built on the assumption the AI understood production boundaries, c₄ would have been far more expensive. |

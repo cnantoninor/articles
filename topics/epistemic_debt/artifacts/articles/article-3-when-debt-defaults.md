@@ -105,9 +105,9 @@ It would be reassuring to treat these as outliers — cautionary tales from team
 
 The most direct evidence comes from experimental research. Prather et al. (2026) ran a controlled study with 78 participants comparing unrestricted AI use against a scaffolded group that received deliberate metacognitive prompts. Unrestricted AI users achieved roughly 300% productivity gains over manual coding — but suffered a **77% failure rate** when asked to maintain or debug the same code without AI assistance. A scaffolded group achieved comparable productivity (+280%) with only a 39% failure rate. This matters because it's not correlational. It directly measures what happens when the epistemic scaffold — the AI — is removed. The code was there. The understanding wasn't.
 
-The pattern shows up in developer behavior data as well. A recent Sonar report found that **96% of developers distrust AI code quality**, yet only 48% actually verify AI-generated code before committing — and 42% commit AI-generated code as-is. [GAP: Sonar report title, year, and URL needed — figures sourced from project context files but primary citation not yet confirmed] The gap between what developers say they believe (AI code is unreliable) and what they do (commit it unreviewed) is itself a form of epistemic debt: a gap between stated confidence and actual behavior.
+The pattern shows up in developer behavior data as well. A 2026 Sonar survey found that **96% of developers distrust AI code quality**, yet only 48% actually verify AI-generated code before committing — and 42% commit AI-generated code as-is (Sonar, January 2026). The gap between what developers say they believe (AI code is unreliable) and what they do (commit it unreviewed) is itself a form of epistemic debt: a gap between stated confidence and actual behavior.
 
-The scale of this dynamic extends to enterprise infrastructure. Amazon's Kiro AI coding assistant was implicated in a 13-hour AWS outage involving cascading infrastructure failures; the company subsequently mandated 80% AI adoption across engineering teams. [GAP: Amazon Kiro primary source URL needed — facts sourced from project context files but primary citation not yet confirmed] This is the system boundary gap operating at enterprise scale.
+The scale of this dynamic extends to enterprise infrastructure. Amazon's Kiro AI coding assistant was implicated in a 13-hour AWS outage involving cascading infrastructure failures; the company subsequently mandated 80% AI adoption across engineering teams (Particula Tech, December 2025). This is the system boundary gap operating at enterprise scale.
 
 These new data points sit alongside established industry signals:
 
@@ -143,7 +143,8 @@ The question is: how do teams fall into this pattern? What are the mechanisms th
 - AlterSquare (December 2025). "GitHub Copilot Saved Us 200 Hours: Then Cost Us 2000 Hours in Bug Fixes."
 - Prather, J. et al. (2026). "Mitigating 'Epistemic Debt' in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts." arXiv. https://arxiv.org/html/2602.20206
 - Ngabang, B. (2026). "Stochastic Spaghetti Effect in AI-Generated Code." viXra.org (preprint — not peer-reviewed). https://vixra.org/pdf/2601.0013v1.pdf
-- Sonar. [GAP: Report title and URL needed]
+- Sonar (January 2026). "Sonar Data Reveals Critical Verification Gap in AI Coding." https://www.sonarsource.com/company/press-releases/sonar-data-reveals-critical-verification-gap-in-ai-coding/
+- Particula Tech (December 2025). "Amazon Kiro Production Incident." https://particula.tech/blog/ai-agent-production-safety-kiro-incident
 - Veracode (2025). "GenAI Code Security Report."
 - Cortex (2026). "Software Engineering Benchmark Report."
 - GitClear (2025). "AI Copilot Code Quality: 2025 Data Suggests 4× Growth in Code Clones."

@@ -41,9 +41,9 @@ This document is written for an organization with these characteristics. If thes
 
 ### What We Mean by Epistemic Debt
 
-Epistemic debt is **code that works but nobody understands**. Unlike technical debt (code that works but is hard to *change*), epistemic debt is invisible until crisis — and LLMs accelerate its accumulation at scale because they generate working code faster than teams can comprehend it.
+Epistemic debt is **code that works but nobody understands**. Unlike technical debt (code that works but is hard to *change*), epistemic debt is invisible until crisis — and LLMs accelerate its accumulation because they generate working code faster than teams can comprehend it. (The term originates from Ionescu et al. 2020, Springer — applied to smart manufacturing; adapted to LLM-assisted SE by multiple independent authors in 2025–2026.)
 
-Formally (per Ngabang 2026, Rau 2026):
+Formally (base formula: Ngabang 2026, viXra preprint — not peer-reviewed; layer decomposition: Rau 2026):
 
 ```
 Ed = Σₖ ∫₀ᵀ (Cs,k(t) - Gc,k(t)) dt
@@ -128,7 +128,7 @@ Where `Cs,k(t)` is system complexity at layer k, `Gc,k(t)` is cognitive grasp at
 
 **Strengths:** Lowest spec overhead (~250 lines), purpose-built brownfield support with delta markers (ADDED/MODIFIED/REMOVED), token-efficient, very low host lock-in.
 
-**Weaknesses:** Limited greenfield support (no project-level scaffolding), no multi-agent orchestration, no built-in context management, less suited for multi-service initiatives.
+**Weaknesses:** Limited greenfield support (no project-level scaffolding), no multi-agent orchestration, no built-in context management, less suited for multi-service initiatives. Expanded profile adds verify/sync/bulk-archive but lacks policy-driven enforcement.
 
 **Maturity:** Growing. 30k stars, 50+ contributors.
 
@@ -147,9 +147,9 @@ Where `Cs,k(t)` is system complexity at layer k, `Gc,k(t)` is cognitive grasp at
 
 **Workflow:** Brainstorming → Analysis → Architecture → UX → Planning → Implementation → Quality (with "Party Mode" for multi-agent sessions).
 
-**Strengths:** Most comprehensive lifecycle coverage, 34+ built-in workflows, role-based access control, extensible module ecosystem, scale-adaptive.
+**Strengths:** Most comprehensive lifecycle coverage, 34+ built-in workflows, role-based access control, extensible module ecosystem, scale-adaptive with three tracks (Quick Flow, BMad Method, Enterprise), automatic scope-creep detection and escalation.
 
-**Weaknesses:** Steepest learning curve (12+ agent roles, YAML config, handoff protocols), highest spec overhead, greenfield-focused, rigid phase transitions, bureaucratic for solo developers.
+**Weaknesses:** Steepest learning curve (12+ agent roles, YAML config, handoff protocols), highest spec overhead in full mode, greenfield-focused in standard workflow, bureaucratic for solo developers. Quick Flow mitigates some of this but lacks the depth of GSD's intermediate modes.
 
 **Maturity:** Growing. 41k stars, 124 contributors.
 
@@ -168,7 +168,7 @@ Where `Cs,k(t)` is system complexity at layer k, `Gc,k(t)` is cognitive grasp at
 | **Context rot mitigation** | Yes (fresh 200k contexts) | No | Partial (token-efficient) | Partial (file handoffs) |
 | **Team collaboration** | Medium | High (portable specs) | Medium | High (role separation) |
 | **Host lock-in** | Medium (Claude Code primary) | Very Low | Very Low | Low |
-| **Ceremony modulation** | Yes (`/quick` ↔ full) | No (always heavy) | Somewhat (light by default) | No (always heavy) |
+| **Ceremony modulation** | Yes, policy-driven (`/quick` ↔ full) | No (always heavy; lightweight proposed) | Partially (light default + expanded profile) | Partially (Quick Flow ↔ full ↔ Enterprise) |
 | **Codebase analysis** | Built-in (`/map-codebase`) | None | None | None |
 
 ---
@@ -195,12 +195,12 @@ Given **hundreds of repos, tens of teams, 70% mid/junior developers, and limited
 
 | Tool | Can it modulate ceremony? | How? |
 |---|---|---|
-| **GSD** | Yes | `/gsd:quick` (upper triangle) ↔ full workflow (lower triangle) |
-| **Spec-Kit** | Poorly | Same ~800-line ceremony for Core and Generic alike |
-| **OpenSpec** | Somewhat | Lightweight by default, but no "heavy mode" for Core subdomains |
-| **BMAD** | Poorly | Always heavy; no lightweight mode |
+| **GSD** | Yes, policy-driven | `/gsd:quick` (upper triangle) ↔ full workflow (lower triangle), enforced via `.gsd-policy.yaml` |
+| **Spec-Kit** | Poorly | Same ~800-line ceremony for Core and Generic alike (lightweight mode proposed in Issue #1174, not yet shipped) |
+| **OpenSpec** | Partially | Lightweight default + expanded profile with verify/sync/multi-repo, but no policy-driven enforcement |
+| **BMAD** | Partially | Quick Flow (`bmad-quick-spec`/`bmad-quick-dev`) ↔ full Agile ↔ Enterprise tracks, with scale-adaptive routing |
 
-**GSD is the only tool that explicitly scales ceremony up and down**, which maps directly to the governance model we need: tag a repo → derive triangle position → enforce corresponding ceremony level.
+**GSD is the tool best suited for policy-driven ceremony modulation** — repo tags drive ceremony automatically via `.gsd-policy.yaml`, which maps directly to the governance model we need: tag a repo → derive triangle position → enforce corresponding ceremony level. BMAD also offers multi-track modulation (Quick Flow ↔ full ↔ Enterprise) with auto-escalation, but lacks the repo-level policy enforcement mechanism. OpenSpec can scale up via its expanded profile but doesn't enforce ceremony levels based on repo classification.
 
 Additional factors favoring GSD:
 
@@ -212,7 +212,7 @@ Additional factors favoring GSD:
 | **70% mid/junior** | Discuss phase with TL guidance gives structure without requiring deep prompting skill. |
 | **Claude Code majority** | Primary host alignment. Cursor teams covered via community adapter. |
 
-**What we give up:** Spec-Kit's 20+ agent portability (acceptable — we can enforce Claude Code). OpenSpec's ultra-lightweight brownfield deltas (GSD's `/quick` is close enough). BMAD's comprehensive SDLC personas (overkill for our brownfield-dominant profile).
+**What we give up:** Spec-Kit's 20+ agent portability (acceptable — we can enforce Claude Code). OpenSpec's ultra-lightweight brownfield deltas (GSD's `/quick` is close enough) and expanded profile scalability. BMAD's comprehensive SDLC personas and scale-adaptive routing (sophisticated but overkill for our brownfield-dominant profile; BMAD's Quick Flow is capable but lacks repo-level policy enforcement).
 
 ---
 
@@ -731,7 +731,7 @@ Epistemic debt decomposes across abstraction layers (Rau 2026):
 Ed = Σₖ ∫₀ᵀ (Cs,k(t) - Gc,k(t)) dt
 ```
 
-Where k indexes layers with different recovery costs (per Boehm's Cost of Change Curve):
+Where k indexes layers with different recovery costs (adapted from Boehm's Cost of Change Curve, 1981; see caveats below):
 
 | Layer | Description | Recovery Multiplier (cₖ) | GSD Phase That Addresses It |
 |---|---|---|---|
@@ -739,6 +739,8 @@ Where k indexes layers with different recovery costs (per Boehm's Cost of Change
 | **L3** (Architecture) | Structural misfit | ~10× | **Plan** (research + structured task design) |
 | **L2** (Design) | Implementation approach | 3–6× | **Plan** (atomic task specs with verification criteria) |
 | **L1** (Implementation) | Code-level gaps | ~1× | **Execute** (fresh contexts prevent drift) |
+
+> **Caveats on Boehm multipliers:** These are adapted from Boehm's *Software Engineering Economics* (1981), which measured cost escalation across temporal phases (when a defect is found), not abstraction layers. Our L1–L4 mapping is an adaptation. The ~10× for L3 is interpolated; Boehm didn't separate architecture from design. The curve has been partially validated (NASA JSC 2010) but also contested (Bossavit 2012, Mountain Goat Software 2026, agile research). Modern practices (CI/CD, TDD, AI tooling) may flatten the curve, but the directional principle — upstream gaps cost more to fix downstream — remains broadly supported.
 
 **The cascade cost formula:**
 
@@ -814,7 +816,7 @@ Direct measurement of `Gc(t)` (team cognitive grasp) is impractical. But GSD art
 
 ### The Cognitive Ratchet
 
-The artifact trail also enables a **Cognitive Ratchet** (Ngabang 2026) — a commit-time gate where developers must demonstrate they can explain AI-generated output before merge. GSD's VERIFICATION.md provides a natural hook for this:
+The artifact trail also enables a **Cognitive Ratchet** (Ngabang 2026, viXra preprint — not peer-reviewed) — a commit-time gate where developers must demonstrate they can explain AI-generated output before merge. The underlying concern — that LLMs testing LLM code share blind spots — is well-documented (IBM Research "Beyond Blind Spots", 2025). GSD's VERIFICATION.md provides a natural hook for this:
 
 - **Lower-triangle repos:** Verification phase requires the developer (not just the AI) to articulate *why* the implementation satisfies requirements — not just that tests pass.
 - **Mid-triangle repos:** Plan review by TL serves as the ratchet — TL confirms the developer understands the plan before handing off execution.
@@ -942,5 +944,12 @@ SDD frameworks add value by reducing rework, catching ambiguity early, and manag
 ### Epistemic Debt Framework
 
 - [Rau, A. (2026). "Epistemic Debt: The Math, The Cost"](https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost) — Layered decomposition, cascade cost multipliers, net benefit condition
-- Ngabang, L.A. (2026). "The Illusion of Competence: Defining 'Epistemic Debt' in the Era of LLM-Assisted Software Engineering." *ViXra*. — Formal Ed definition, Cognitive Ratchet methodology
+- Ngabang, L.A. (2026). "The Illusion of Competence: Defining 'Epistemic Debt' in the Era of LLM-Assisted Software Engineering." *ViXra* (preprint, not peer-reviewed). — Formal Ed definition, Cognitive Ratchet methodology
+- Ionescu, T.B., Schlund, S., Schmidbauer, C. (2020). "Epistemic Debt: A Concept and Measure of Technical Ignorance in Smart Manufacturing." *Springer, AHFE 2019*. — Original coinage of the term
+- Sankaranarayanan, S. (2026). "Mitigating Epistemic Debt with Metacognitive Scripts." *arXiv* (accepted ACM L@S '26). — Empirical evidence: 77% failure rate for unrestricted AI users vs. 39% scaffolded
+- IBM Research (2025). "Beyond Blind Spots." *arXiv*. — Evaluator LLMs fail to detect quality drops in 50%+ of cases
+- Chroma Research (2025). "Context Rot." — All 18 tested frontier LLMs exhibit performance degradation as context length increases
+- Boehm, B. (1981). *Software Engineering Economics*. Prentice Hall. — Cost of Change Curve (p. 40)
+- NASA JSC (2010). "Error Cost Escalation Through the Project Life Cycle." — Independent validation of cost escalation
+- Bossavit, L. (2012). *The Leprechauns of Software Engineering*. — Critique of the cost-of-change curve citation chain
 - Rau, A. (2026). "Trade-offs in LLM-Assisted Development: IRIS Learnings" — Epistemic trade-off triangle, domain-based strategy selection, IRIS 1.0 metrics

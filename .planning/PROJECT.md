@@ -2,50 +2,47 @@
 
 ## What This Is
 
-A practitioner-focused article exploring the epistemological risks of integrating LLMs into workflows. The core thesis: LLMs create "epistemic debt"—outputs that work but nobody understands. The article presents the Speed/Understanding/Reliability trade-off triangle as a framework for conscious positioning, with concrete examples from software engineering (IRIS-2 case study) and generalized applications to other LLM-assisted tasks.
+A 7-part practitioner-focused article series exploring the epistemological risks of integrating LLMs into workflows. Published on Substack (The AI Mirror). The core thesis: LLMs create "epistemic debt" — outputs that work but nobody understands. The series presents the Speed/Understanding/Reliability trade-off triangle as a framework for conscious positioning, with concrete examples from software engineering and generalized applications to other LLM-assisted tasks.
 
 ## Core Value
 
-Show practitioners how to consciously position their LLM-assisted development on the Speed/Understanding/Reliability trade-off triangle.
+Show practitioners how to consciously position their LLM-assisted work on the Speed/Understanding/Reliability trade-off triangle.
 
-## Current Milestone: v2.0 Article Completion
+## Current State
 
-**Goal:** Complete the full epistemic debt article (Sections II-VII), filling content gaps with research and concrete examples, while generalizing the Trade-off Triangle framework beyond software engineering.
+**Published articles:**
+- Article 0: Series overview — https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation
+- Article 1: The Epistemic Shift (Section I) — published
+- Article 2: Epistemic Debt: A New Lens (Section II) — published
 
-**Target sections:**
-- Section II: Epistemic Debt: A New Lens (comparison table, default events)
-- Section III: The Solutioning Trap (jumping to solutions without epistemic clarity)
-- Section IV: Epistemic Debt in the SDLC (Intent→Spec, Spec→Impl, Impl→Validation boundaries)
-- Section V: The Trade-off Triangle (adapt from IRIS-2 slides + generalize to any LLM task)
-- Section VI: The Measurement Problem (empirical indicators)
-- Section VII: Conclusion
+**Remaining articles (3-7):**
+- Article 3: When Epistemic Debt Defaults (case studies + industry data)
+- Article 4: The Solutioning Trap (vibe coding, automation bias, velocity trap)
+- Article 5: The Trade-off Triangle (universal framework + domain generalizations)
+- Article 6: Measuring the Unmeasurable (proxy indicators, honest caveats)
+- Article 7: Beyond Software (generalization to content, research, decision support)
 
-**Shipped in v1.0:**
-- 9-slide IRIS-2 Learnings Presentation (2026-02-07)
-- Section I: The Epistemic Shift (Phase 1, 2026-01-26)
+**Content on disk:** ~9,460 lines across topics/epistemic_debt/
 
 ## Requirements
 
 ### Validated
 
 **v1.0 IRIS-2 Learnings Presentation** — shipped 2026-02-07
-- ✓ 5-10 slides in Marp format — v1.0 (delivered 9 slides)
-- ✓ Trade-off Triangle as central visual — v1.0
-- ✓ Concrete IRIS-2 examples for each triangle vertex — v1.0 (DDD, E2E, workflow, meta)
-- ✓ Actionable takeaways for Bloomberg colleagues — v1.0 (4 takeaways with file paths)
+- ✓ 9-slide Marp presentation with Trade-off Triangle framework — v1.0
+- ✓ Concrete IRIS-2 examples for each triangle vertex — v1.0
+- ✓ Actionable takeaways for Bloomberg colleagues — v1.0
+
+**v2.0 Article Completion** — shipped 2026-03-14 (partial)
+- ✓ Section II: Mathematical definition (Ed integral), 6-dimension comparison table — v2.0
+- ✓ Section II: 3 dramatic default-event examples (SaaStr, AlterSquare, healthcare) — v2.0
+- ✓ Section II: Industry failure statistics with footnoted citations — v2.0
+- ✓ Article 0: Series overview published on Substack — v2.0
+- ✓ Article 2: Section II published on Substack — v2.0
 
 ### Active
 
-**v2.0 Article Completion** — In progress
-- Section II: Epistemic debt definition with tech debt comparison table and failure examples
-- Section III: Solutioning trap analysis with concrete scenarios
-- Section IV: SDLC boundary analysis (3 boundaries with examples)
-- Section V: Trade-off Triangle framework adapted from IRIS-2 + generalized applications
-- Section VI: Measurement approaches (empirical indicators, challenges)
-- Section VII: Conclusion with practitioner takeaways
-- Research-backed examples filling [GAP] markers
-- Practitioner-focused tone with minimal academic citations
-
+(To be defined in next milestone — articles 3-7)
 
 ### Out of Scope
 
@@ -58,46 +55,41 @@ Show practitioners how to consciously position their LLM-assisted development on
 
 **Origin:** Initial thesis explored in conversation on 2026-01-25.
 
+**Publication:** The AI Mirror (Substack) — weekly cadence
+
 **IRIS-2 as case study:** Real project where Trade-off Triangle practices were developed:
-- 5 bounded contexts with glob-activated Cursor rules (`.cursor/rules/*.mdc`)
-- Centralized ubiquitous language (`constants.py`)
-- Human-authored E2E test (`test_user_journey_e2e.py` — 972 lines)
-- 5 custom workflow commands (`.cursor/commands/`)
-- Multi-AI context sync script (`sync-ai-instructions.sh`)
-- LOC metrics in PR descriptions ("Pure Code Added" column)
+- 5 bounded contexts with glob-activated Cursor rules
+- Human-authored E2E test (972 lines)
+- Custom workflow commands and LOC metrics
 
-**Existing work:**
-- `epistemic_debt/slides.md` — General presentation with Trade-off Triangle (slides 8-14)
-- `epistemic_debt/article.md` — Draft article (paused)
-- `epistemic_debt/assets/trade-off-triangle.md` — Triangle visualization framework
-
-**Key IRIS-2 practices to feature:**
-- DDD → Understanding: bounded contexts, business rules in context files
-- E2E → Reliability: human-authored integration tests break circular validation
-- Workflow → Speed: structured commands, LOC tracking, verification-before-fix
-- GSD → Meta: obsoletes custom commands with systematic workflow
+**Existing content artifacts:**
+- `topics/epistemic_debt/artifacts/articles/` — published articles
+- `topics/epistemic_debt/article.md` — draft article with Sections I-III+ (gaps remain)
+- `topics/epistemic_debt/slides.md` — general presentation
+- `topics/epistemic_debt/iris2-learnings.md` — IRIS-2 presentation (v1.0)
 
 ## Constraints
 
-- **Audience**: Practitioners (engineering leaders, senior engineers, architects) — use accessible language
-- **Length**: 4000-6000 words target (from article.md metadata)
-- **Format**: Markdown article format
-- **Tone**: Practical, experience-based, balanced — "here's what I've found worth examining"
-- **Citations**: Practitioner-focused — minimize academic sources, emphasize concrete examples and industry experience
-- **Triangle Scope**: Software engineering (IRIS-2) as primary + generalized applications (article writing, LLM-as-Judge, etc.)
+- **Audience**: Practitioners (engineering leaders, senior engineers, content/research professionals)
+- **Format**: Markdown → Substack
+- **Tone**: Exploratory, not prescriptive — "here's what I've found worth examining"
+- **Citations**: Practitioner-focused — minimize academic sources, emphasize concrete examples
+- **Triangle Scope**: Universal framework, not software-only
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Trade-off Triangle as central framework | Visual, memorable, actionable | ✓ Good — Framework resonated, grounded abstract concepts |
-| IRIS-2 as sole case study | Concrete > abstract; internal audience knows context | ✓ Good — File-path specificity made practices verifiable |
+| Trade-off Triangle as central framework | Visual, memorable, actionable | ✓ Good — Framework resonated |
+| IRIS-2 as sole case study (v1.0) | Concrete > abstract | ✓ Good — File-path specificity made practices verifiable |
 | Pause article for focused presentation | Ship smaller deliverable first | ✓ Good — Shipped v1.0 in single day |
-| "Trade-offs are real" core message | Not prescriptive; emphasizes conscious choice | ✓ Good — Non-prescriptive tone maintained throughout |
-| Four takeaways structure (one per vertex + meta) | Maps to presentation structure, reinforces framework | ✓ Good — Clear synthesis of vertex learnings |
-| Meta practices as amplifiers, not vertices | GSD/multi-AI sync enable positioning, don't pick it | ✓ Good — Avoided confusing workflow with solution |
-
-| Resume article work from Phase 1 | v2.0 completes full article; v1.0 shipped presentation gave triangle validation | ✓ Good — Presentation validated framework resonates; ready to expand |
+| "Trade-offs are real" core message | Not prescriptive; conscious choice | ✓ Good — Non-prescriptive tone maintained |
+| Meta practices as amplifiers, not vertices | Enable positioning, don't pick it | ✓ Good — Avoided workflow/solution confusion |
+| 7-part series format | Break long article into digestible weekly posts | ✓ Good — Allows iterative publication |
+| Mathematical definition + practitioner translation | Rigor + accessibility | ✓ Good — Ed integral formula bridges academic/practitioner |
+| SaaStr incident with direct attribution | Public, well-documented, credible | ✓ Good — Concrete evidence > composite |
+| Healthcare example as composite | No public incident, real pattern exists | ✓ Good — Shows universality without attribution risk |
+| Close v2.0 with known gaps | Articles 1-2 published, articles 3-7 need fresh scope | — Pending (v3.0 will address) |
 
 ---
-*Last updated: 2026-02-07 after v2.0 milestone start*
+*Last updated: 2026-03-14 after v2.0 milestone completion*

@@ -919,4 +919,271 @@
                    Epic C explored on separate branch (Strategy B)
       Sprint N+1:  Epic C phases added to "v2.0" via /gsd:add-phase
                    All three Epics now in one milestone (Strategy A)
+
+
+══════════════════════════════════════════════════════════════════════════════
+ 7. MID-SPRINT CHANGES: HANDLING NEW WORK IN AN AGILE WAY
+══════════════════════════════════════════════════════════════════════════════
+
+  Agile accepts that new work arrives mid-sprint. The question is never
+  "can we prevent interruptions?" but "how do we triage, absorb, and
+  track them without losing momentum on committed work?"
+
+  GSD provides a different command for each type of arrival:
+
+  ── TRIAGE DECISION TREE ─────────────────────────────────────────────
+
+    New work arrives
+         │
+         ▼
+    Is it urgent?  ──NO──►  Can it wait     ──YES──►  /gsd:add-todo
+    (blocks users,          for next sprint?           Capture & park.
+     security, SLA)                                    Review at sprint
+         │                       │                     planning.
+        YES                      NO
+         │                       │
+         ▼                       ▼
+    Is it a bug    ──YES──► /gsd:debug
+    requiring                Start investigation.
+    investigation?           If fix is small → /gsd:quick
+         │                   If fix is large → /gsd:insert-phase
+         NO
+         │
+         ▼
+    How big is     ──SMALL──► /gsd:quick
+    the work?                 (< half day, well-understood)
+         │
+       MEDIUM                 A new phase within
+         │                    current milestone.
+         ▼
+    Does it block  ──YES──► /gsd:insert-phase N "description"
+    current work?            Creates Phase N.1 (urgent,
+         │                   runs before Phase N+1)
+         NO
+         │
+         ▼
+    /gsd:add-phase "description"
+    Appends to end of ROADMAP.
+    Picked up after current work.
+
+  ── PATTERN 1: CAPTURE & PARK (backlog grooming) ─────────────────────
+
+    Most mid-sprint arrivals should NOT disrupt the current sprint.
+    The Agile response: acknowledge, capture, defer.
+
+    GSD command: /gsd:add-todo
+
+    Scenario: Product owner reports a new feature request mid-sprint.
+
+      Developer:  /gsd:add-todo "Add CSV export to reports (PM request)"
+      Later:      /gsd:check-todos           ← during sprint planning
+                  → Select todo → route to /gsd:add-phase or discard
+
+    The todo is captured in .planning/todos/pending/ with context from
+    the current conversation. STATE.md todo count increments. No sprint
+    disruption.
+
+    Jira parallel: Move ticket to backlog, tag for next sprint review.
+
+  ── PATTERN 2: QUICK FIX (small, well-understood) ────────────────────
+
+    For work that is clearly small (< half day) and doesn't need
+    research, planning verification, or cross-phase coordination.
+
+    GSD command: /gsd:quick
+
+    Scenario: A typo in the API error message. A missing env variable
+    in the deploy config. A CSS fix for mobile.
+
+      Developer:  /gsd:quick
+                  → Describe the task
+                  → GSD creates a plan in .planning/quick/NNN-slug/
+                  → Executes immediately with atomic commits
+                  → Updates STATE.md
+
+    Quick tasks live in .planning/quick/, separate from milestone
+    phases. They don't touch ROADMAP.md or REQUIREMENTS.md.
+
+    Jira parallel: Sub-task or Bug with "Quick Fix" label, done
+    within the sprint without formal sprint scope change.
+
+  ── PATTERN 3: URGENT INSERTION (blocks current sprint) ──────────────
+
+    For work that MUST happen before the next planned phase — security
+    patches, critical bugs, compliance fixes, production incidents.
+
+    GSD command: /gsd:insert-phase <after> "description"
+
+    Scenario: Security audit reveals an auth vulnerability. The team
+    is mid-sprint, currently executing Phase 5. This must be fixed
+    before Phase 6 (which depends on auth being solid).
+
+      Tech lead:  /gsd:insert-phase 5 "Fix auth token validation (SEC-42)"
+                  → Creates Phase 5.1 in ROADMAP
+                  → Directory: .planning/phases/5.1-fix-auth-token/
+
+      Developer:  /gsd:plan-phase 5.1
+                  /gsd:execute-phase 5.1
+                  → Phase 6 now depends on 5 AND 5.1
+
+    ROADMAP after insertion:
+
+      Phase 5:   API Endpoints          [x] complete
+      Phase 5.1: Fix Auth Token (SEC-42) [ ] ← INSERTED, URGENT
+      Phase 6:   Integration Tests       [ ] depends on: 5, 5.1
+
+    The decimal numbering (5.1) preserves the existing phase order
+    without renumbering. Multiple insertions stack: 5.1, 5.2, etc.
+
+    Jira parallel: Add ticket to current sprint, flag as blocker,
+    re-prioritize sprint backlog.
+
+  ── PATTERN 4: NEW EPIC ARRIVES (scope expansion) ────────────────────
+
+    A new Epic surfaces mid-sprint. Too large for a quick fix, but
+    the business wants it in the current release.
+
+    GSD commands: /gsd:add-phase (multiple times) + tag with Epic
+
+    Scenario: Sales closes a deal contingent on a "Single Sign-On"
+    feature. The team is mid-milestone with 3 phases remaining.
+
+      Step 1 — Capture without disrupting:
+        /gsd:add-todo "SSO Epic: SAML + OAuth integration (DEAL-99)"
+
+      Step 2 — At next standup/planning, scope it:
+        /gsd:add-phase "SSO: SAML Provider Setup (EPIC-D, @alice)"
+        /gsd:add-phase "SSO: OAuth Flow (EPIC-D, @bob)"
+        /gsd:add-phase "SSO: Account Linking (EPIC-D, @carol)"
+
+      Step 3 — ROADMAP now shows existing + new phases:
+        Phase 7:  Search Indexing     (EPIC-C, @carol)   [current]
+        Phase 8:  Admin Dashboard     (EPIC-C, @dave)
+        Phase 9:  SSO: SAML Setup     (EPIC-D, @alice)   ← NEW
+        Phase 10: SSO: OAuth Flow     (EPIC-D, @bob)     ← NEW
+        Phase 11: SSO: Account Link   (EPIC-D, @carol)   ← NEW
+        Phase 12: Integration Tests   (ALL, @alice)
+
+      Step 4 — If SSO is more urgent than remaining EPIC-C work,
+      use /gsd:insert-phase to prioritize it higher, or simply
+      re-order phases in ROADMAP.md manually.
+
+    Jira parallel: Create new Epic with Stories, add to current
+    sprint or plan for next sprint depending on priority.
+
+  ── PATTERN 5: BUG INVESTIGATION (unknown scope) ─────────────────────
+
+    A bug is reported but the root cause is unclear. The fix might be
+    a one-liner or might require a phase of rework.
+
+    GSD command: /gsd:debug "description"
+
+    Scenario: Users report intermittent 500 errors on checkout.
+
+      Step 1 — Start investigation:
+        /gsd:debug "Intermittent 500 on checkout flow"
+        → Creates .planning/debug/intermittent-500-checkout.md
+        → GSD gathers symptoms, forms hypotheses, tests them
+
+      Step 2 — Investigation reveals the scope:
+
+        IF small fix:
+          /gsd:quick                    ← fix inline, atomic commit
+          Debug session archived to .planning/debug/resolved/
+
+        IF medium fix (affects one phase's code):
+          /gsd:insert-phase 5 "Fix checkout race condition"
+          /gsd:plan-phase 5.1
+          /gsd:execute-phase 5.1
+
+        IF large fix (cross-cutting, needs rearchitecting):
+          /gsd:add-phase "Refactor checkout state management"
+          /gsd:add-phase "Checkout integration tests"
+          → Plan and execute as regular phases
+
+    Debug sessions persist across /clear — if context fills up,
+    run /gsd:debug with no args to resume from where you left off.
+
+    Jira parallel: Bug ticket starts as investigation, then spawns
+    sub-tasks or new stories depending on discovered scope.
+
+  ── TEAM COORDINATION: WHO HANDLES WHAT? ─────────────────────────────
+
+    Arrival Type        Who Decides         Who Executes
+    ──────────────────  ──────────────────  ──────────────────────────
+    Todo (park it)      Any developer       Deferred to sprint planning
+    Quick fix           Developer + lead    Developer on current branch
+    Urgent insertion    Tech lead / PO      Developer with capacity
+    New Epic            PO + tech lead      Planned at team level
+    Bug investigation   Developer who       Same dev, escalate if large
+                        encounters it
+
+    Sprint ceremonies that map to GSD:
+
+    Daily standup:
+      Each dev runs /gsd:progress on their branch to report status.
+      Blocked devs surface blockers from STATE.md.
+
+    Mid-sprint review (if scope changes):
+      Tech lead reviews ROADMAP.md with new insertions/additions.
+      Team agrees on re-prioritization.
+      Update phase assignments (tags in ROADMAP.md).
+
+    Sprint planning:
+      /gsd:check-todos to review captured ideas.
+      Promote todos → phases via /gsd:add-phase.
+      Assign phases to developers, set dependencies.
+
+    Sprint retrospective:
+      Review .planning/quick/ — were too many quick fixes needed?
+      Review .planning/debug/resolved/ — recurring bug patterns?
+      Check decimal phases (5.1, 7.1) — too many urgent insertions
+      suggests upstream planning gaps.
+
+  ── PROTECTING SPRINT COMMITMENTS ────────────────────────────────────
+
+    The Agile principle: the team commits to sprint scope, and scope
+    changes require explicit trade-offs. GSD enforces this through
+    separation of mechanisms:
+
+    ┌────────────────────┬────────────────────┬────────────────────┐
+    │ Mechanism          │ Touches ROADMAP?   │ Disrupts sprint?   │
+    ├────────────────────┼────────────────────┼────────────────────┤
+    │ /gsd:add-todo      │ No                 │ No — just captures │
+    │ /gsd:quick         │ No                 │ Minimal — small    │
+    │ /gsd:insert-phase  │ Yes (adds N.1)     │ Yes — explicit     │
+    │ /gsd:add-phase     │ Yes (appends)      │ No — future work   │
+    │ /gsd:debug         │ No (until scoped)  │ Depends on outcome │
+    └────────────────────┴────────────────────┴────────────────────┘
+
+    Rule of thumb:
+    - If it doesn't touch ROADMAP.md, it's not a sprint scope change.
+    - If it inserts a decimal phase, it IS a scope change — requires
+      tech lead / PO sign-off.
+    - If it appends to the end, it's future work — discuss at next
+      sprint planning.
+
+  ── VELOCITY IMPACT TRACKING ─────────────────────────────────────────
+
+    To measure how much mid-sprint work affects velocity:
+
+    1. Planned phases:  Integer-numbered (1, 2, 3, ...)
+       → Count toward sprint commitment velocity.
+
+    2. Inserted phases: Decimal-numbered (5.1, 7.2, ...)
+       → Track separately as "unplanned work."
+
+    3. Quick tasks:     In .planning/quick/
+       → Track separately as "interrupt-driven work."
+
+    Sprint health metric:
+      planned_phases_completed / total_phases_completed
+
+    If this ratio drops below 0.7, the team is spending more than
+    30% of capacity on unplanned work — a signal to improve upstream
+    planning, backlog grooming, or production stability.
+
+    STATE.md velocity section tracks per-phase duration. Compare:
+    - Average duration of planned phases vs. inserted phases
+    - Trend over sprints: is unplanned work increasing?
 ```

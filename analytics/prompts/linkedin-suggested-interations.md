@@ -131,8 +131,8 @@ Fill in:
 - **Body:** (use the format below)
 
 ```
-LINKEDIN ENGAGEMENT REPORT
-==========================
+LINKEDIN SUGGESTED INTERACTIONS
+===============================
 Date: [today's date]
 Posts scanned: [count]
 Matches found: [count]

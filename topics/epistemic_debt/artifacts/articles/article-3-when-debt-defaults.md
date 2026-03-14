@@ -101,10 +101,14 @@ This is what the system boundary gap looks like at the requirements layer. The d
 The developer couldn't explain how the AI was interacting with the database because they had never built a mental model of those interactions. They were curating, not constructing. And curation without comprehension is a bet that nothing unexpected will happen.
 
 > **Formula mapping — SaaStr**
-> Layer: k = L4 (intent/requirements)
-> t₀ (the moment the gap became visible): Day 9 of trial — when the AI executed production operations without human-verified constraints
-> Cascade multiplier: c₄ ≈ low (gap was at L4, but t₀ arrived early — only 9 days of accumulated system complexity to re-recover)
-> The gap was at the requirements layer: the developer's intent was "don't touch production," but that constraint was never formalized into the system. The AI had L1 competence (it knew *how* to execute database operations) but no model of the L4 boundary it was crossing. A gap at L4 normally cascades through every layer below — re-recovery of architecture, design, and implementation built on the wrong assumption. Here, t₀ arrived on day 9 of a trial: the system was young enough that little L1-L3 work had accumulated on top of the flawed requirement. That's why c₄ stayed low despite the gap sitting at the highest abstraction layer. Had t₀ arrived six months later, with a mature codebase built on the assumption that the AI understood production boundaries, the cascade would have been far more expensive. The Ed integral accumulated across 9 days as Cs(t) rose with each permission expansion while Gc(t) remained flat — the developer never verified the AI's understanding of operational constraints.
+>
+> | Term | Value | Explanation |
+> |------|-------|-------------|
+> | Layer (k) | L4 — intent/requirements | The developer's requirement was "don't touch production." The AI had L1 competence (knew *how* to run DB operations) but no model of the L4 boundary it was crossing. |
+> | t₀ | Day 9 of trial | The moment the AI executed production operations without human-verified constraints. No gap-detection mechanism triggered before this point. |
+> | c₄ | Low (~1×) | A gap at L4 normally cascades through every layer below. Here, t₀ arrived early — only 9 days of system complexity had accumulated on top of the flawed requirement, so there was little L1-L3 work to re-recover. |
+> | Cs(t) vs Gc(t) | Diverging | System complexity rose with each permission expansion over 9 days; cognitive grasp stayed flat — the developer never verified the AI's understanding of operational constraints. |
+> | Counterfactual | — | Had t₀ arrived 6 months later with a mature codebase built on the assumption the AI understood production boundaries, c₄ would have been far more expensive. |
 
 The aftermath reinforces the low c₄. The platform's CEO responded within 48 hours — public apology, full refund, one-hour Zoom postmortem with the affected founder. Technical safeguards (automatic dev/prod database separation, one-click rollback, pre-deployment security scanning) shipped within weeks. The incident was catalogued in the AI Incident Database as Incident 1152 and generated coverage across Fortune, Fast Company, and a dozen other outlets. But within five months, the same founder who had publicly said "I will never trust [the platform] again" had built seven production applications on it — and the platform published him as a customer success story. The reputational recovery was as fast as the technical one. Whether the platform's subsequent growth would have been even larger without the incident is unknowable — but the default didn't leave a lasting scar on either party.
 
@@ -123,10 +127,14 @@ This is the defensive coding gap in action. Code generated faster than understan
 The 200-to-2,000 ratio is striking, but the real story is the mechanism. The team didn't know what they didn't know. The code *looked* like code written by someone who understood the domain — the right patterns, the right names, the right structure. The absence of error handling wasn't visible. It was a gap in what was generated, not a flaw in what was present. You can't review what isn't there.
 
 > **Formula mapping — AlterSquare**
-> Layer: k = L1-L2 (implementation through design)
-> t₀: Post-MVP — the moment bugs emerged in production and the team could not explain the generated code's behavior
-> Cascade multiplier: c_k ≈ 10× (the 200h-to-2000h ratio IS the cascade multiplier made visible)
-> This is the Ed integral in action: debt accumulated during the 200-hour sprint as Cs(t) grew with each generated module while Gc(t) stayed near zero. The 10:1 cost ratio is the compound interest on that accumulated gap.
+>
+> | Term | Value | Explanation |
+> |------|-------|-------------|
+> | Layer (k) | L1-L2 — implementation through design | Error handling gaps, missing validation, security antipatterns — the debt spanned from code-level (L1) through design decisions (L2). |
+> | t₀ | Post-MVP, in production | The moment bugs emerged and the team could not explain the generated code's behavior. By then, debt had compounded across the entire codebase. |
+> | c_k | ≈ 10× | The 200h-to-2000h ratio *is* the cascade multiplier made visible. Closing gaps at L1-L2 required re-understanding every generated module. |
+> | Cs(t) vs Gc(t) | Diverging across sprint | System complexity grew with each generated module during the 200-hour sprint; cognitive grasp stayed near zero. The 10:1 cost ratio is the compound interest on that accumulated gap. |
+> | Counterfactual | — | Had t₀ arrived during the sprint (code review, integration testing), the gap would have been narrower and c_k far smaller than 10×. |
 
 ## The Pattern
 

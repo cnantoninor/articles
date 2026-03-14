@@ -1,6 +1,7 @@
 ---
 title: When Epistemic Debt Defaults
-subtitle: Two case studies, industry data, and the failure taxonomy that says they aren't outliers
+subtitle: Two case studies, industry data, and the failure taxonomy that says they
+  aren't outliers
 status: review
 type: article
 audience:
@@ -8,34 +9,60 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 1278
-current_length: 2200
+current_length: 2234
 estimated_reading_time: 9 min
 created: 2026-02-15
 last_updated: 2026-03-14
 published_date: null
 publication_url: ''
 social_teasers:
-  linkedin: |
-    AI-assisted development is supposed to save time. A tech startup saved 200 hours using GitHub Copilot during their MVP sprint. Then spent 2,000 hours fixing what they couldn't explain.
+  linkedin: 'AI-assisted development is supposed to save time. A tech startup saved
+    200 hours using GitHub Copilot during their MVP sprint. Then spent 2,000 hours
+    fixing what they couldn''t explain.
 
-    That 10:1 ratio isn't bad luck — it's the mechanism. When code arrives whole from an AI, the integration friction that once forced comprehension disappears. Velocity outpaces understanding. And understanding is what you need when things go wrong.
 
-    In Part 3 of my Epistemic Debt series, I look at two case studies and the industry data that says they aren't outliers — including a controlled study where 77% of developers couldn't maintain code they'd generated with unrestricted AI assistance.
+    That 10:1 ratio isn''t bad luck — it''s the mechanism. When code arrives whole
+    from an AI, the integration friction that once forced comprehension disappears.
+    Velocity outpaces understanding. And understanding is what you need when things
+    go wrong.
+
+
+    In Part 3 of my Epistemic Debt series, I look at two case studies and the industry
+    data that says they aren''t outliers — including a controlled study where 77%
+    of developers couldn''t maintain code they''d generated with unrestricted AI assistance.
+
 
     What happens when the bill comes due? [ARTICLE_URL]
 
-    #EpistemicDebt #AIAssistedDevelopment #SoftwareEngineering #EngineeringLeadership
-  twitter: |
-    A team saved 200 hours with AI coding assistance. Then spent 2,000 hours on remediation.
 
-    That 10:1 ratio isn't an outlier. A controlled study found 77% of developers couldn't maintain code they'd generated with AI — when the AI was removed. The code was there. The understanding wasn't. [ARTICLE_URL]
-  instagram_caption: |
-    AI coding tools make it possible to generate entire modules — with architecture, error handling, even tests — without anyone doing the work of understanding them. In my latest piece, I look at two real cases where that gap became the point of failure, and the industry data that says they're not exceptions.
+    #EpistemicDebt #AIAssistedDevelopment #SoftwareEngineering #EngineeringLeadership
+
+    '
+  twitter: 'A team saved 200 hours with AI coding assistance. Then spent 2,000 hours
+    on remediation.
+
+
+    That 10:1 ratio isn''t an outlier. A controlled study found 77% of developers
+    couldn''t maintain code they''d generated with AI — when the AI was removed. The
+    code was there. The understanding wasn''t. [ARTICLE_URL]
+
+    '
+  instagram_caption: 'AI coding tools make it possible to generate entire modules
+    — with architecture, error handling, even tests — without anyone doing the work
+    of understanding them. In my latest piece, I look at two real cases where that
+    gap became the point of failure, and the industry data that says they''re not
+    exceptions.
+
 
     Full piece in my Substack — link in bio.
-  substack_notes: |
-    A team saved 200 hours using AI coding assistance. Then spent 2,000 hours on remediation they couldn't avoid, for code they couldn't explain. Part 3 of the Epistemic Debt series looks at two case studies, the 77% failure rate from a controlled study, and the failure taxonomy that connects them. [ARTICLE_URL]
+
+    '
+  substack_notes: A team saved 200 hours using AI coding assistance. Then spent 2,000
+    hours on remediation they couldn't avoid, for code they couldn't explain. Part
+    3 of the Epistemic Debt series looks at two case studies, the 77% failure rate
+    from a controlled study, and the failure taxonomy that connects them. [ARTICLE_URL]
 ---
+
 
 # When Epistemic Debt Defaults
 

@@ -1,27 +1,32 @@
 ---
 phase: XX-PHASE-SLUG
-plan: 00
+plan: 0
 type: execute
 wave: 0
 depends_on: []
 files_modified:
-  - topics/TOPIC/artifacts/articles/ARTICLE-SLUG-fact-check-report.md
+- topics/TOPIC/artifacts/articles/ARTICLE-SLUG-fact-check-report.md
 autonomous: true
 requirements: []
-
 must_haves:
   truths:
-    - "Every factual claim, statistic, and data point in the article draft is individually verified against primary sources via online research"
-    - "Claims that cannot be verified are flagged with a confidence rating and explanation"
-    - "Opinions or interpretations presented as facts are identified and flagged"
-    - "Overstated claims (stronger than the source supports) are identified with the actual source language"
-    - "Data points that are incorrect, misinterpreted, or taken out of context are flagged with corrections"
-    - "A structured fact-check report is produced that subsequent plans use during editing"
+  - Every factual claim, statistic, and data point in the article draft is individually
+    verified against primary sources via online research
+  - Claims that cannot be verified are flagged with a confidence rating and explanation
+  - Opinions or interpretations presented as facts are identified and flagged
+  - Overstated claims (stronger than the source supports) are identified with the
+    actual source language
+  - Data points that are incorrect, misinterpreted, or taken out of context are flagged
+    with corrections
+  - A structured fact-check report is produced that subsequent plans use during editing
   artifacts:
-    - path: "topics/TOPIC/artifacts/articles/ARTICLE-SLUG-fact-check-report.md"
-      provides: "Comprehensive fact-check report"
-      contains: "Verification status for every claim"
+  - path: topics/TOPIC/artifacts/articles/ARTICLE-SLUG-fact-check-report.md
+    provides: Comprehensive fact-check report
+    contains: Verification status for every claim
+current_length: 648
+estimated_reading_time: 3 min
 ---
+
 
 <objective>
 Deep online research fact-check of every factual claim, statistic, case study detail, and data point in ARTICLE_TITLE's draft. Produce a structured report that categorizes each claim using the classification framework. This report feeds into Plan 01's content editing.

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDD Governance Playground</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0c0e13;--bg-light:#141720;--bg-card:#1a1d28;--bg-hover:#222536;
+    --text:#e2e8f0;--text-dim:#94a3b8;--text-muted:#64748b;
+    --orange:#f97316;--blue:#3b82f6;--green:#22c55e;--red:#ef4444;--yellow:#eab308;--purple:#a855f7;
+    --border:#2a2d38;--radius:8px;
+  }
+  html{font-size:15px}
+  body{background:var(--bg);color:var(--text);font-family:'Inter','Segoe UI',system-ui,sans-serif;min-height:100vh}
+
+  /* HEADER */
+  header{background:var(--bg-light);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  header h1{font-size:1.25rem;font-weight:700;color:var(--orange)}
+  header h1 span{color:var(--text-dim);font-weight:400;font-size:0.85em}
+
+  /* TABS (mobile) */
+  .tab-bar{display:none;background:var(--bg-light);border-bottom:1px solid var(--border)}
+  .tab-bar button{flex:1;padding:12px;background:none;border:none;color:var(--text-dim);font-size:0.9rem;cursor:pointer;border-bottom:2px solid transparent;font-family:inherit}
+  .tab-bar button.active{color:var(--orange);border-bottom-color:var(--orange)}
+
+  /* LAYOUT */
+  .panels{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 60px)}
+  .panel{padding:24px;overflow-y:auto}
+  .panel-left{border-right:1px solid var(--border)}
+  .panel-title{font-size:1.1rem;font-weight:600;color:var(--orange);margin-bottom:20px;display:flex;align-items:center;gap:8px}
+  .panel-title .icon{font-size:1.3em}
+
+  /* CARDS */
+  .card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+  .card-header{font-weight:600;color:var(--blue);margin-bottom:12px;font-size:0.95rem}
+
+  /* TAG INPUTS */
+  .tag-group{margin-bottom:16px}
+  .tag-label{font-size:0.8rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px}
+  .tag-options{display:flex;flex-wrap:wrap;gap:6px}
+  .tag-btn{padding:7px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-light);color:var(--text-dim);cursor:pointer;font-size:0.82rem;font-family:inherit;transition:all 0.15s}
+  .tag-btn:hover{border-color:var(--text-dim);color:var(--text)}
+  .tag-btn.active{background:var(--orange);color:#fff;border-color:var(--orange)}
+  .tag-btn.default-marker::after{content:" ●";font-size:0.5em;vertical-align:super;color:var(--text-muted)}
+  .tag-btn.active.default-marker::after{color:rgba(255,255,255,0.5)}
+
+  /* RESULT CARDS */
+  .result-section{margin-top:20px}
+  .result-row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-radius:var(--radius);margin-bottom:8px;background:var(--bg-light);border:1px solid var(--border)}
+  .result-label{font-size:0.82rem;color:var(--text-dim)}
+  .result-value{font-weight:600;font-size:0.95rem}
+  .result-value.upper{color:var(--green)}
+  .result-value.mid{color:var(--yellow)}
+  .result-value.lower{color:var(--red)}
+
+  /* TRIANGLE SVG */
+  .triangle-container{display:flex;justify-content:center;margin:20px 0}
+  .triangle-container svg{width:280px;height:260px}
+  .tri-label{fill:var(--text-dim);font-size:11px;font-family:inherit}
+  .tri-vertex{fill:var(--text);font-size:12px;font-weight:600;font-family:inherit}
+  .tri-dot{transition:all 0.4s cubic-bezier(0.4,0,0.2,1)}
+
+  /* CEREMONY PHASES */
+  .phase-flow{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:8px 0}
+  .phase-chip{padding:5px 10px;border-radius:4px;font-size:0.78rem;font-weight:500}
+  .phase-chip.active{background:var(--orange);color:#fff}
+  .phase-chip.skipped{background:var(--bg-light);color:var(--text-muted);text-decoration:line-through}
+  .phase-arrow{color:var(--text-muted);font-size:0.7rem}
+
+  /* OWNERSHIP TABLE */
+  .ownership-table{width:100%;font-size:0.82rem;border-collapse:collapse;margin-top:8px}
+  .ownership-table th{text-align:left;color:var(--orange);padding:6px 10px;border-bottom:1px solid var(--border);font-weight:600}
+  .ownership-table td{padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim)}
+  .ownership-table td.highlight{color:var(--text);font-weight:500}
+
+  /* GRADUATION */
+  .grad-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;padding:8px 12px;border-radius:var(--radius);border:1px solid var(--border);background:var(--bg-light)}
+  .grad-step.current{border-color:var(--orange);background:rgba(249,115,22,0.08)}
+  .grad-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;background:var(--bg-card);color:var(--text-dim);border:1px solid var(--border)}
+  .grad-step.current .grad-num{background:var(--orange);color:#fff;border-color:var(--orange)}
+  .grad-text{font-size:0.8rem;color:var(--text-dim);line-height:1.4}
+  .grad-step.current .grad-text{color:var(--text)}
+
+  /* FORMULA TOGGLE */
+  .formula-toggle{background:none;border:1px solid var(--border);color:var(--blue);padding:6px 14px;border-radius:var(--radius);cursor:pointer;font-size:0.8rem;font-family:inherit;margin:8px 0;transition:all 0.15s}
+  .formula-toggle:hover{border-color:var(--blue);background:rgba(59,130,246,0.08)}
+  .formula-box{display:none;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:10px 0;font-size:0.85rem;line-height:1.6}
+  .formula-box.show{display:block}
+  .formula-box code{background:var(--bg-light);padding:2px 6px;border-radius:3px;color:var(--green);font-size:0.85em}
+
+  /* OBSERVATORY PANEL */
+  .sprint-selector{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+  .sprint-selector button{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);background:var(--bg-card);color:var(--text);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.15s;font-family:inherit}
+  .sprint-selector button:hover{border-color:var(--orange);color:var(--orange)}
+  .sprint-selector .sprint-label{font-size:0.95rem;font-weight:600;min-width:90px;text-align:center}
+
+  /* METRICS */
+  .metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+  .metric{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+  .metric.full-width{grid-column:1/-1}
+  .metric-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--text-dim);margin-bottom:6px}
+  .metric-value{font-size:1.4rem;font-weight:700}
+  .metric-target{font-size:0.72rem;color:var(--text-muted);margin-top:2px}
+  .metric-bar{height:6px;border-radius:3px;background:var(--bg-light);margin-top:8px;overflow:hidden}
+  .metric-bar-fill{height:100%;border-radius:3px;transition:width 0.5s ease}
+
+  /* INDICATOR SECTIONS */
+  .indicator-section{margin-bottom:20px}
+  .indicator-section .section-title{font-size:0.85rem;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px}
+  .indicator-section .section-title.leading{color:var(--blue)}
+  .indicator-section .section-title.lagging{color:var(--purple)}
+  .dot-leading{width:8px;height:8px;border-radius:50%;background:var(--blue)}
+  .dot-lagging{width:8px;height:8px;border-radius:50%;background:var(--purple)}
+
+  /* DEPTH BARS */
+  .depth-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .depth-label{width:70px;font-size:0.78rem;color:var(--text-dim);text-align:right}
+  .depth-bar-track{flex:1;height:10px;background:var(--bg-light);border-radius:5px;overflow:hidden}
+  .depth-bar-val{height:100%;border-radius:5px;transition:width 0.5s ease}
+  .depth-num{width:35px;font-size:0.78rem;color:var(--text-dim);text-align:right}
+
+  /* RECOVERY COST TABLE */
+  .recovery-table{width:100%;font-size:0.82rem;border-collapse:collapse}
+  .recovery-table th{text-align:left;color:var(--text-dim);padding:6px 10px;border-bottom:1px solid var(--border);font-weight:500}
+  .recovery-table td{padding:6px 10px;border-bottom:1px solid var(--border)}
+  .recovery-table .layer{font-weight:600}
+  .recovery-table .cost{text-align:right;font-weight:600}
+  .recovery-expandable{cursor:pointer;user-select:none}
+  .recovery-expandable:hover{background:var(--bg-hover)}
+  .recovery-detail{display:none;padding:8px 10px;font-size:0.78rem;color:var(--text-dim);background:var(--bg-light)}
+  .recovery-detail.show{display:table-row}
+
+  /* WARNING PULSE */
+  .warning{color:var(--red);font-weight:600}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+  .pulse{animation:pulse 2s infinite}
+
+  /* COMPLIANCE BARS */
+  .compliance-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .compliance-label{width:55px;font-size:0.78rem;color:var(--text-dim)}
+  .compliance-bar{flex:1;height:8px;background:var(--bg-light);border-radius:4px;overflow:hidden}
+  .compliance-fill{height:100%;border-radius:4px;transition:width 0.5s ease}
+  .compliance-pct{width:40px;font-size:0.78rem;text-align:right}
+
+  /* TOOLTIP */
+  .has-tooltip{position:relative;cursor:help;border-bottom:1px dotted var(--text-muted)}
+  .tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;font-size:0.78rem;color:var(--text);width:260px;z-index:100;display:none;line-height:1.5;box-shadow:0 4px 16px rgba(0,0,0,0.4)}
+  .has-tooltip:hover .tooltip{display:block}
+
+  /* MOBILE */
+  @media(max-width:1024px){
+    .tab-bar{display:flex}
+    .panels{grid-template-columns:1fr}
+    .panel-left{border-right:none}
+    .panel.hidden{display:none}
+    .metric-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SDD Governance Playground <span>| Tag → Triangle → Ceremony</span></h1>
+</header>
+
+<div class="tab-bar">
+  <button class="active" onclick="switchTab('configurator')">Configurator</button>
+  <button onclick="switchTab('observatory')">Observatory</button>
+</div>
+
+<div class="panels">
+  <!-- PANEL 1: CONFIGURATOR -->
+  <div class="panel panel-left" id="panel-configurator">
+    <div class="panel-title"><span class="icon">&#9881;</span> Governance Configurator</div>
+
+    <div class="card">
+      <div class="card-header">Repo Tags</div>
+
+      <div class="tag-group">
+        <div class="tag-label">Subdomain</div>
+        <div class="tag-options" data-tag="subdomain">
+          <button class="tag-btn" data-value="spike">spike</button>
+          <button class="tag-btn" data-value="generic">generic</button>
+          <button class="tag-btn active default-marker" data-value="supporting">supporting</button>
+          <button class="tag-btn" data-value="core">core</button>
+        </div>
+      </div>
+
+      <div class="tag-group">
+        <div class="tag-label">Size</div>
+        <div class="tag-options" data-tag="size">
+          <button class="tag-btn" data-value="small">small</button>
+          <button class="tag-btn active default-marker" data-value="medium">medium</button>
+          <button class="tag-btn" data-value="large">large</button>
+        </div>
+      </div>
+
+      <div class="tag-group">
+        <div class="tag-label">Codebase</div>
+        <div class="tag-options" data-tag="codebase">
+          <button class="tag-btn" data-value="greenfield">greenfield</button>
+          <button class="tag-btn active default-marker" data-value="brownfield">brownfield</button>
+        </div>
+      </div>
+
+      <div class="tag-group">
+        <div class="tag-label">Clarity</div>
+        <div class="tag-options" data-tag="clarity">
+          <button class="tag-btn" data-value="clear">clear</button>
+          <button class="tag-btn active default-marker" data-value="ambiguous">ambiguous</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="result-section">
+      <div class="result-row">
+        <span class="result-label">Triangle Position</span>
+        <span class="result-value" id="res-triangle">mid</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Ceremony Level</span>
+        <span class="result-value" id="res-ceremony">standard</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Max Cascade Cost</span>
+        <span class="result-value" id="res-cascade">3-10x</span>
+      </div>
+    </div>
+
+    <!-- TRIANGLE -->
+    <div class="triangle-container">
+      <svg viewBox="0 0 280 260">
+        <defs>
+          <linearGradient id="triGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="rgba(59,130,246,0.12)"/>
+            <stop offset="100%" stop-color="rgba(249,115,22,0.12)"/>
+          </linearGradient>
+        </defs>
+        <polygon points="140,20 20,230 260,230" fill="url(#triGrad)" stroke="#2a2d38" stroke-width="1.5"/>
+        <!-- zone lines -->
+        <line x1="80" y1="125" x2="200" y2="125" stroke="#2a2d38" stroke-width="0.8" stroke-dasharray="4"/>
+        <line x1="100" y1="160" x2="180" y2="160" stroke="#2a2d38" stroke-width="0.8" stroke-dasharray="4"/>
+        <!-- zone labels -->
+        <text x="140" y="90" text-anchor="middle" class="tri-label">upper</text>
+        <text x="140" y="148" text-anchor="middle" class="tri-label">mid</text>
+        <text x="140" y="205" text-anchor="middle" class="tri-label">lower</text>
+        <!-- vertices -->
+        <text x="140" y="14" text-anchor="middle" class="tri-vertex">SPEED</text>
+        <text x="10" y="248" text-anchor="start" class="tri-vertex">UNDERSTANDING</text>
+        <text x="270" y="248" text-anchor="end" class="tri-vertex">RELIABILITY</text>
+        <!-- position dot -->
+        <circle id="tri-dot" class="tri-dot" cx="140" cy="145" r="8" fill="var(--yellow)" opacity="0.9"/>
+        <circle id="tri-dot-pulse" class="tri-dot" cx="140" cy="145" r="8" fill="var(--yellow)" opacity="0.3">
+          <animate attributeName="r" values="8;18;8" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+
+    <!-- CEREMONY PHASES -->
+    <div class="card">
+      <div class="card-header">Required Phases</div>
+      <div class="phase-flow" id="phase-flow">
+        <!-- populated by JS -->
+      </div>
+    </div>
+
+    <!-- OWNERSHIP -->
+    <div class="card">
+      <div class="card-header">Who Leads What</div>
+      <table class="ownership-table" id="ownership-table">
+        <thead><tr><th>Phase</th><th>Junior</th><th>Mid</th><th>Senior</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- GRADUATION -->
+    <div class="card">
+      <div class="card-header">Graduation Status by Seniority</div>
+      <div id="graduation-display"></div>
+    </div>
+
+    <!-- FORMULA -->
+    <button class="formula-toggle" id="formula-btn" onclick="toggleFormula()">What does this mean? (Ed formula)</button>
+    <div class="formula-box" id="formula-box">
+      <p><strong style="color:var(--orange)">Epistemic Debt Formula:</strong></p>
+      <p style="margin:8px 0"><code>Ed = Sigma_k integral_0^T (Cs,k(t) - Gc,k(t)) dt</code></p>
+      <p style="margin:8px 0">Where:</p>
+      <ul style="margin-left:18px;line-height:2">
+        <li><code>Cs,k(t)</code> = system complexity at layer k</li>
+        <li><code>Gc,k(t)</code> = cognitive grasp at layer k</li>
+        <li>k indexes: L4 (requirements), L3 (architecture), L2 (design), L1 (implementation)</li>
+      </ul>
+      <p style="margin-top:12px"><strong style="color:var(--orange)">Net benefit condition:</strong></p>
+      <p style="margin:8px 0"><code>Net benefit = delta (AI speed) - Sigma_k c_k * tau_k (recovery costs)</code></p>
+      <p style="margin:8px 0">When recovery costs exceed speed gains, epistemic debt makes AI-assisted development a <strong style="color:var(--red)">net negative</strong>.</p>
+      <p style="margin-top:12px"><strong style="color:var(--orange)">Recovery cost multipliers (Boehm):</strong></p>
+      <ul style="margin-left:18px;line-height:2">
+        <li>L4 (Requirements): <strong style="color:var(--red)">30-70x</strong></li>
+        <li>L3 (Architecture): <strong style="color:var(--red)">~10x</strong></li>
+        <li>L2 (Design): <strong style="color:var(--yellow)">3-6x</strong></li>
+        <li>L1 (Implementation): <strong style="color:var(--green)">~1x</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PANEL 2: OBSERVATORY -->
+  <div class="panel panel-right hidden" id="panel-observatory">
+    <div class="panel-title"><span class="icon">&#9678;</span> Epistemic Debt Observatory</div>
+
+    <div class="sprint-selector">
+      <button onclick="changeSprint(-1)">&#8592;</button>
+      <span class="sprint-label" id="sprint-label">Sprint 14</span>
+      <button onclick="changeSprint(1)">&#8594;</button>
+    </div>
+
+    <!-- LEADING INDICATORS -->
+    <div class="indicator-section">
+      <div class="section-title leading"><span class="dot-leading"></span> Leading Indicators (Preventive)</div>
+
+      <div class="card">
+        <div class="card-header has-tooltip">
+          Discuss Depth by Subdomain
+          <span class="tooltip">CONTEXT.md lines / total feature LOC. Higher ratio = better intent articulation. Low ratio on Core repos is a warning sign — L4 gaps may be forming.</span>
+        </div>
+        <div id="discuss-depth">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="metric-label has-tooltip">
+            Plan Rejections
+            <span class="tooltip">Number of PLAN.md iterations rejected by the plan-checker before approval. Higher is healthy — it means ambiguity is being caught at design time (L3-L2) rather than at execution time (L1).</span>
+          </div>
+          <div class="metric-value" id="m-plan-rej" style="color:var(--blue)">12</div>
+          <div class="metric-target">healthy: &gt;0</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label has-tooltip">
+            Phase Compliance
+            <span class="tooltip">Percentage of phases executed out of phases required by policy. Low compliance on lower-triangle repos means teams are bypassing ceremony on high-criticality code.</span>
+          </div>
+          <div id="compliance-bars">
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <div class="metric-grid">
+        <div class="metric full-width" id="policy-violations-card">
+          <div class="metric-label">Policy Violations</div>
+          <div id="policy-violations">
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAGGING INDICATORS -->
+    <div class="indicator-section">
+      <div class="section-title lagging"><span class="dot-lagging"></span> Lagging Indicators (Detective)</div>
+
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="metric-label has-tooltip">
+            Rework Ratio
+            <span class="tooltip">Rework commits / total commits. Measures first-pass understanding quality. High rework = L1-L2 gaps manifested during execution. Target: below 20%.</span>
+          </div>
+          <div class="metric-value" id="m-rework">34%</div>
+          <div class="metric-target">target: &lt;20%</div>
+          <div class="metric-bar"><div class="metric-bar-fill" id="bar-rework" style="width:34%;background:var(--red)"></div></div>
+        </div>
+        <div class="metric">
+          <div class="metric-label has-tooltip">
+            UAT Pass Rate
+            <span class="tooltip">VERIFICATION.md passes / total verifications. Low pass rate despite green CI indicates circular validation — LLM tests passing LLM code without catching real gaps. Target: above 85%.</span>
+          </div>
+          <div class="metric-value" id="m-uat">71%</div>
+          <div class="metric-target">target: &gt;85%</div>
+          <div class="metric-bar"><div class="metric-bar-fill" id="bar-uat" style="width:71%;background:var(--yellow)"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header has-tooltip">
+          Recovery Cost by Layer
+          <span class="tooltip">Estimated recovery cost = c_k * tau_k for each layer. c_k is the Boehm multiplier (L4=30-70x, L3=~10x, L2=3-6x, L1=~1x). tau_k is observed recovery time. Click rows to expand.</span>
+        </div>
+        <table class="recovery-table" id="recovery-table">
+          <thead><tr><th>Layer</th><th>Events</th><th style="text-align:right">Est. Cost (hours)</th></tr></thead>
+          <tbody>
+            <!-- populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STATE ──
+const state = {
+  subdomain: 'supporting',
+  size: 'medium',
+  codebase: 'brownfield',
+  clarity: 'ambiguous',
+  sprint: 2
+};
+
+// ── DERIVATION MATRIX ──
+// subdomain → sizeClarity → triangle
+const triangleMatrix = {
+  spike:      { sc: 'upper', ma: 'upper', la: 'mid'   },
+  generic:    { sc: 'upper', ma: 'mid',   la: 'mid'   },
+  supporting: { sc: 'mid',   ma: 'mid',   la: 'lower' },
+  core:       { sc: 'mid',   ma: 'lower', la: 'lower' }
+};
+
+function getSizeClarity(size, clarity) {
+  if (size === 'small' && clarity === 'clear') return 'sc';
+  if (size === 'large' && clarity === 'ambiguous') return 'la';
+  return 'ma';
+}
+
+function deriveTriangle() {
+  const sc = getSizeClarity(state.size, state.clarity);
+  return triangleMatrix[state.subdomain][sc];
+}
+
+function getCeremony(tri) {
+  return { upper: 'quick', mid: 'standard', lower: 'full' }[tri];
+}
+
+function getCascade(tri) {
+  return { upper: '~1x', mid: '3-10x', lower: '10-70x' }[tri];
+}
+
+function getTriColor(tri) {
+  return { upper: 'var(--green)', mid: 'var(--yellow)', lower: 'var(--red)' }[tri];
+}
+
+function getTriDotY(tri) {
+  return { upper: 75, mid: 145, lower: 200 }[tri];
+}
+
+// ── PHASES ──
+const allPhases = ['Discuss', 'Plan', 'Execute', 'Verify'];
+const phasesByTri = {
+  upper:  [false, false, true, false],
+  mid:    [true,  true,  true, false],
+  lower:  [true,  true,  true, true]
+};
+
+// ── OWNERSHIP ──
+function getOwnership(tri) {
+  const o = {
+    upper: {
+      Discuss:  ['—', '—', '—'],
+      Plan:     ['—', '—', '—'],
+      Execute:  ['Self', 'Self', 'Self'],
+      Verify:   ['—', '—', '—']
+    },
+    mid: {
+      Discuss:  ['TL leads', 'Graduated / TL', 'Self'],
+      Plan:     ['TL leads', 'Graduated / TL', 'Self'],
+      Execute:  ['Self', 'Self', 'Self'],
+      Verify:   ['—', '—', '—']
+    },
+    lower: {
+      Discuss:  ['TL leads', 'TL leads', 'Self (TL reviews)'],
+      Plan:     ['TL leads', 'TL leads', 'Self (TL reviews)'],
+      Execute:  ['Self', 'Self', 'Self'],
+      Verify:   ['TL leads', 'TL leads', 'TL verifies']
+    }
+  };
+  return o[tri];
+}
+
+// ── GRADUATION STEPS ──
+const gradSteps = [
+  { step: 1, text: 'Execute-only on TL-prepared plans (all repos)' },
+  { step: 2, text: 'Self-serve /gsd:quick on upper-triangle repos (after 3 TL-guided cycles)' },
+  { step: 3, text: 'Self-serve Discuss + Plan on mid-triangle repos (after 5 TL-guided cycles, TL reviews async)' },
+  { step: 4, text: 'Full self-service on mid-triangle repos (after 10 cycles, <20% rework rate)' }
+];
+
+function getCurrentGradStep(tri) {
+  // Show which step a junior would be at for this triangle position
+  if (tri === 'upper') return 2;
+  if (tri === 'mid') return 3;
+  return 1;
+}
+
+// ── SPRINT DATA (extracted from worked examples) ──
+const sprintData = [
+  {
+    label: 'Sprint 12',
+    discuss: { core: 82, supporting: 55, generic: 20 },
+    planRej: 8,
+    compliance: { lower: 88, mid: 78, upper: null },
+    violations: { quickOnLower: 5, phaseSkipsMid: 11 },
+    rework: 42,
+    uat: 62,
+    recovery: [
+      { layer: 'L4', mult: '30-70x', events: 1, cost: 140, detail: 'Intent misalignment on jurisdiction comparison — built text diff instead of structured field-by-field. Caught post-implementation.' },
+      { layer: 'L3', mult: '~10x', events: 3, cost: 45, detail: 'Wrong data model (CourtOpinion extended instead of new StatuteProvision). Three cases across two teams.' },
+      { layer: 'L2', mult: '3-6x', events: 12, cost: 36, detail: 'Chart text overflow, dedup key incomplete, parser depth limit. Design assumptions not validated.' },
+      { layer: 'L1', mult: '~1x', events: 28, cost: 28, detail: 'Standard bugs, edge cases, test fixes. Normal development noise.' }
+    ]
+  },
+  {
+    label: 'Sprint 13',
+    discuss: { core: 85, supporting: 60, generic: 22 },
+    planRej: 10,
+    compliance: { lower: 91, mid: 82, upper: null },
+    violations: { quickOnLower: 4, phaseSkipsMid: 9 },
+    rework: 38,
+    uat: 67,
+    recovery: [
+      { layer: 'L4', mult: '30-70x', events: 0, cost: 0, detail: 'No requirements-level gaps detected. Discuss phases catching intent early.' },
+      { layer: 'L3', mult: '~10x', events: 3, cost: 30, detail: 'Classifier ordering assumption (post-tokenization vs pre-parse). Caught in discuss by senior self-review.' },
+      { layer: 'L2', mult: '3-6x', events: 10, cost: 30, detail: 'API gateway schema mismatches, UI state management gaps. Standard mid-triangle findings.' },
+      { layer: 'L1', mult: '~1x', events: 30, cost: 30, detail: 'Code-level bugs and edge cases. Slightly elevated due to new hybrid search work.' }
+    ]
+  },
+  {
+    label: 'Sprint 14',
+    discuss: { core: 90, supporting: 65, generic: 18 },
+    planRej: 12,
+    compliance: { lower: 94, mid: 87, upper: null },
+    violations: { quickOnLower: 3, phaseSkipsMid: 7 },
+    rework: 34,
+    uat: 71,
+    recovery: [
+      { layer: 'L4', mult: '30-70x', events: 0, cost: 0, detail: 'No requirements-level gaps. Framework adoption improving L4 catch rate.' },
+      { layer: 'L3', mult: '~10x', events: 2, cost: 20, detail: 'Boolean parser depth limit (3yr-old human debt recovered via /gsd:debug). One new architecture gap on search fusion.' },
+      { layer: 'L2', mult: '3-6x', events: 8, cost: 24, detail: 'Chart text overflow caught in verify phase (~4x avoided). Provision text assumption fixed pre-merge.' },
+      { layer: 'L1', mult: '~1x', events: 31, cost: 31, detail: 'Standard implementation-level fixes. Trending down from Sprint 12.' }
+    ]
+  },
+  {
+    label: 'Sprint 15',
+    discuss: { core: 93, supporting: 70, generic: 15 },
+    planRej: 14,
+    compliance: { lower: 97, mid: 91, upper: null },
+    violations: { quickOnLower: 1, phaseSkipsMid: 4 },
+    rework: 26,
+    uat: 79,
+    recovery: [
+      { layer: 'L4', mult: '30-70x', events: 0, cost: 0, detail: 'Zero L4 events for 3 consecutive sprints. Discuss phase has eliminated requirements-level surprises.' },
+      { layer: 'L3', mult: '~10x', events: 1, cost: 10, detail: 'Minor architecture assumption on search analytics pipeline. Caught in plan review.' },
+      { layer: 'L2', mult: '3-6x', events: 5, cost: 15, detail: 'Design gaps trending down. Verify phase catching remaining issues pre-merge.' },
+      { layer: 'L1', mult: '~1x', events: 25, cost: 25, detail: 'Implementation bugs at normal levels. Context rot mitigation showing effect.' }
+    ]
+  },
+  {
+    label: 'Sprint 16',
+    discuss: { core: 95, supporting: 72, generic: 12 },
+    planRej: 15,
+    compliance: { lower: 98, mid: 93, upper: null },
+    violations: { quickOnLower: 0, phaseSkipsMid: 2 },
+    rework: 19,
+    uat: 86,
+    recovery: [
+      { layer: 'L4', mult: '30-70x', events: 0, cost: 0, detail: 'Zero L4 events. Framework fully adopted on core repos.' },
+      { layer: 'L3', mult: '~10x', events: 1, cost: 10, detail: 'One architecture assumption caught in discuss phase. Recovery cost minimal due to early detection.' },
+      { layer: 'L2', mult: '3-6x', events: 3, cost: 9, detail: 'Design gaps at target levels. Rework ratio now below 20% threshold.' },
+      { layer: 'L1', mult: '~1x', events: 22, cost: 22, detail: 'Normal implementation churn. Team velocity stable.' }
+    ]
+  }
+];
+
+// ── TAG CLICK HANDLERS ──
+document.querySelectorAll('.tag-options').forEach(group => {
+  const tag = group.dataset.tag;
+  group.querySelectorAll('.tag-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      group.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state[tag] = btn.dataset.value;
+      updateConfigurator();
+    });
+  });
+});
+
+// ── UPDATE CONFIGURATOR ──
+function updateConfigurator() {
+  const tri = deriveTriangle();
+  const ceremony = getCeremony(tri);
+  const cascade = getCascade(tri);
+  const color = getTriColor(tri);
+
+  // Result values
+  const resTri = document.getElementById('res-triangle');
+  const resCer = document.getElementById('res-ceremony');
+  const resCas = document.getElementById('res-cascade');
+  resTri.textContent = tri;
+  resTri.className = 'result-value ' + tri;
+  resCer.textContent = ceremony;
+  resCer.className = 'result-value ' + tri;
+  resCas.textContent = cascade;
+  resCas.className = 'result-value ' + tri;
+
+  // Triangle dot
+  const dotY = getTriDotY(tri);
+  document.getElementById('tri-dot').setAttribute('cy', dotY);
+  document.getElementById('tri-dot').setAttribute('fill', color);
+  document.getElementById('tri-dot-pulse').setAttribute('cy', dotY);
+  document.getElementById('tri-dot-pulse').setAttribute('fill', color);
+
+  // Phases
+  const flow = document.getElementById('phase-flow');
+  const active = phasesByTri[tri];
+  flow.innerHTML = allPhases.map((p, i) => {
+    const cls = active[i] ? 'phase-chip active' : 'phase-chip skipped';
+    const arrow = i < allPhases.length - 1 ? '<span class="phase-arrow">→</span>' : '';
+    return `<span class="${cls}">${p}</span>${arrow}`;
+  }).join('');
+
+  // Ownership table
+  const ownership = getOwnership(tri);
+  const tbody = document.querySelector('#ownership-table tbody');
+  tbody.innerHTML = allPhases.filter((_, i) => active[i]).map(phase => {
+    const [jr, mid, sr] = ownership[phase];
+    return `<tr><td class="highlight">${phase}</td><td>${jr}</td><td>${mid}</td><td>${sr}</td></tr>`;
+  }).join('');
+
+  // Graduation
+  const currentStep = getCurrentGradStep(tri);
+  const gradDiv = document.getElementById('graduation-display');
+  gradDiv.innerHTML = gradSteps.map(g => {
+    const isCurrent = g.step === currentStep;
+    return `<div class="grad-step ${isCurrent ? 'current' : ''}">
+      <div class="grad-num">${g.step}</div>
+      <div class="grad-text">${g.text}${isCurrent ? ' <strong style="color:var(--orange)">← relevant for this position</strong>' : ''}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── UPDATE OBSERVATORY ──
+function updateObservatory() {
+  const d = sprintData[state.sprint];
+  document.getElementById('sprint-label').textContent = d.label;
+
+  // Discuss depth bars
+  const ddDiv = document.getElementById('discuss-depth');
+  ddDiv.innerHTML = ['core', 'supporting', 'generic'].map(sub => {
+    const val = d.discuss[sub];
+    const color = sub === 'core' ? 'var(--orange)' : sub === 'supporting' ? 'var(--blue)' : 'var(--text-muted)';
+    return `<div class="depth-row">
+      <span class="depth-label">${sub}</span>
+      <div class="depth-bar-track"><div class="depth-bar-val" style="width:${val}%;background:${color}"></div></div>
+      <span class="depth-num">${val}%</span>
+    </div>`;
+  }).join('');
+
+  // Plan rejections
+  document.getElementById('m-plan-rej').textContent = d.planRej;
+
+  // Compliance
+  const compDiv = document.getElementById('compliance-bars');
+  compDiv.innerHTML = ['lower', 'mid'].map(level => {
+    const val = d.compliance[level];
+    const color = val >= 90 ? 'var(--green)' : val >= 80 ? 'var(--yellow)' : 'var(--red)';
+    return `<div class="compliance-row">
+      <span class="compliance-label">${level}</span>
+      <div class="compliance-bar"><div class="compliance-fill" style="width:${val}%;background:${color}"></div></div>
+      <span class="compliance-pct" style="color:${color}">${val}%</span>
+    </div>`;
+  }).join('');
+
+  // Policy violations
+  const pvDiv = document.getElementById('policy-violations');
+  const ql = d.violations.quickOnLower;
+  const ps = d.violations.phaseSkipsMid;
+  pvDiv.innerHTML = `
+    <div style="margin:6px 0;font-size:0.88rem" class="${ql > 0 ? 'warning pulse' : ''}">
+      /quick on lower-triangle: <strong>${ql} repo${ql !== 1 ? 's' : ''}</strong> ${ql > 0 ? '&#9888;' : '&#10003;'}
+    </div>
+    <div style="margin:6px 0;font-size:0.88rem" class="${ps > 3 ? 'warning' : ''}">
+      Phase skips on mid: <strong>${ps} instance${ps !== 1 ? 's' : ''}</strong> ${ps > 3 ? '&#9888;' : '&#10003;'}
+    </div>
+  `;
+
+  // Rework
+  const rw = d.rework;
+  const rwColor = rw <= 20 ? 'var(--green)' : rw <= 30 ? 'var(--yellow)' : 'var(--red)';
+  document.getElementById('m-rework').textContent = rw + '%';
+  document.getElementById('m-rework').style.color = rwColor;
+  document.getElementById('bar-rework').style.width = rw + '%';
+  document.getElementById('bar-rework').style.background = rwColor;
+
+  // UAT
+  const uat = d.uat;
+  const uatColor = uat >= 85 ? 'var(--green)' : uat >= 70 ? 'var(--yellow)' : 'var(--red)';
+  document.getElementById('m-uat').textContent = uat + '%';
+  document.getElementById('m-uat').style.color = uatColor;
+  document.getElementById('bar-uat').style.width = uat + '%';
+  document.getElementById('bar-uat').style.background = uatColor;
+
+  // Recovery table
+  const rtBody = document.querySelector('#recovery-table tbody');
+  rtBody.innerHTML = d.recovery.map((r, i) => {
+    const costColor = r.cost === 0 ? 'var(--green)' : r.layer === 'L4' ? 'var(--red)' : r.layer === 'L3' ? 'var(--red)' : r.layer === 'L2' ? 'var(--yellow)' : 'var(--text)';
+    return `<tr class="recovery-expandable" onclick="toggleRecovery(${i})">
+      <td><span class="layer" style="color:${costColor}">${r.layer}</span> <span style="color:var(--text-muted);font-size:0.78rem">(${r.mult})</span></td>
+      <td>${r.events}</td>
+      <td class="cost" style="color:${costColor}">${r.cost > 0 ? '~' + r.cost + 'h' : '0'}</td>
+    </tr>
+    <tr class="recovery-detail" id="recovery-detail-${i}"><td colspan="3">${r.detail}</td></tr>`;
+  }).join('');
+}
+
+function changeSprint(delta) {
+  state.sprint = Math.max(0, Math.min(sprintData.length - 1, state.sprint + delta));
+  updateObservatory();
+}
+
+function toggleRecovery(idx) {
+  document.getElementById('recovery-detail-' + idx).classList.toggle('show');
+}
+
+function toggleFormula() {
+  document.getElementById('formula-box').classList.toggle('show');
+}
+
+// ── MOBILE TABS ──
+function switchTab(panel) {
+  const btns = document.querySelectorAll('.tab-bar button');
+  btns.forEach(b => b.classList.remove('active'));
+  if (panel === 'configurator') {
+    btns[0].classList.add('active');
+    document.getElementById('panel-configurator').classList.remove('hidden');
+    document.getElementById('panel-observatory').classList.add('hidden');
+  } else {
+    btns[1].classList.add('active');
+    document.getElementById('panel-configurator').classList.add('hidden');
+    document.getElementById('panel-observatory').classList.remove('hidden');
+  }
+}
+
+// ── DESKTOP: show both panels ──
+function handleResize() {
+  if (window.innerWidth > 1024) {
+    document.getElementById('panel-configurator').classList.remove('hidden');
+    document.getElementById('panel-observatory').classList.remove('hidden');
+  }
+}
+window.addEventListener('resize', handleResize);
+
+// ── INIT ──
+updateConfigurator();
+updateObservatory();
+handleResize();
+</script>
+</body>
+</html>

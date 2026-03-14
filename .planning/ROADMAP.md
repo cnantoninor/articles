@@ -30,7 +30,7 @@ Phases 9-12 are archived. See MILESTONES.md for details.
 
 **Milestone Goal:** Publish articles 3-7 on Substack, completing the full epistemic debt series. Each article polishes an existing draft by integrating targeted research, resolving open TODOs, and shipping with social teasers.
 
-- [ ] **Phase 13: Article 3 — When Epistemic Debt Defaults** - Polish and publish the evidence article that establishes the failure taxonomy for the rest of the series
+- [x] **Phase 13: Article 3 — When Epistemic Debt Defaults** - Polish and publish the evidence article that establishes the failure taxonomy for the rest of the series (completed 2026-03-14)
 - [ ] **Phase 14: Article 4 — The Solutioning Trap** - Polish and publish the mechanism article introducing SDLC boundaries 1 and 2
 - [ ] **Phase 15: Article 5 — The Trade-off Triangle** - Polish and publish the framework pivot article fulfilling two mathematical promises from Article 2
 - [ ] **Phase 16: Article 6 — Measuring the Unmeasurable** - Polish and publish the measurement article with honest-caveat posture preserved
@@ -47,7 +47,7 @@ Phases 9-12 are archived. See MILESTONES.md for details.
   2. The Amazon Kiro incident appears as a fully integrated fourth case study with the accountability-denial pattern named and each case study annotated with formula mapping (k layer, c_k, t₀)
   3. The industry data block includes Fragile Experts 77% failure rate and Sonar verification gap figures with footnoted citations; pre-LLM vs post-LLM framing precedes the case studies
   4. Social teasers are complete (LinkedIn, Twitter/X, Instagram, Substack Notes) and the article is live with series cross-links updated
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 13-00-PLAN.md — Deep fact-check: online research verification of every claim, statistic, and data point
@@ -119,7 +119,7 @@ Plans:
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
-| 13. Article 3 — When Epistemic Debt Defaults | 2/3 | In Progress|  | - |
+| 13. Article 3 — When Epistemic Debt Defaults | 3/3 | Complete   | 2026-03-14 | - |
 | 14. Article 4 — The Solutioning Trap | v3.0 | 0/TBD | Not started | - |
 | 15. Article 5 — The Trade-off Triangle | v3.0 | 0/TBD | Not started | - |
 | 16. Article 6 — Measuring the Unmeasurable | v3.0 | 0/TBD | Not started | - |

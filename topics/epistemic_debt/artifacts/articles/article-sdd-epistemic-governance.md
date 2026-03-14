@@ -1,6 +1,8 @@
 ---
-title: 'From Triangle to Governance: Operationalizing Epistemic Debt Management with Structured Workflows'
-subtitle: How spec-driven development tools turn the epistemic trade-off triangle into an actionable governance model
+title: 'From Triangle to Governance: Operationalizing Epistemic Debt Management with
+  Structured Workflows'
+subtitle: How spec-driven development tools turn the epistemic trade-off triangle
+  into an actionable governance model
 status: draft
 type: article
 audience:
@@ -8,18 +10,18 @@ audience:
 - senior practitioners
 - technical professionals
 target_length: 3500
-current_length: 0
-estimated_reading_time: 15 min
+current_length: 1573
+estimated_reading_time: 7 min
 created: 2026-03-14
 last_updated: 2026-03-14
 published_date: null
 publication_url: ''
-series_relation: >
-  Standalone companion to the Epistemic Debt series
-  (https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation).
-  Assumes familiarity with: the epistemic debt concept (Article 2),
-  the trade-off triangle (Article 5), and measurement challenges (Article 6).
-  Can be read independently with the brief recap in the introduction.
+series_relation: 'Standalone companion to the Epistemic Debt series (https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation).
+  Assumes familiarity with: the epistemic debt concept (Article 2), the trade-off
+  triangle (Article 5), and measurement challenges (Article 6). Can be read independently
+  with the brief recap in the introduction.
+
+  '
 social_teasers:
   linkedin: ''
   twitter: ''
@@ -29,6 +31,7 @@ raw_material:
 - topics/epistemic_debt/sdd-epistemic-debt.md
 - .planning/gsd-class-diagram.md
 ---
+
 
 
 # From Triangle to Governance: Operationalizing Epistemic Debt Management with Structured Workflows
@@ -161,6 +164,13 @@ raw_material:
 
 ---
 
+
+
+---
+
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
 ## References
 
 - Ngabang, L.A. (2026). "The Illusion of Competence: Defining 'Epistemic Debt' in the Era of LLM-Assisted Software Engineering." *ViXra*. [https://vixra.org/pdf/2601.0013v1.pdf](https://vixra.org/pdf/2601.0013v1.pdf)

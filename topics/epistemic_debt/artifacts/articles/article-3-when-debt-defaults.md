@@ -87,7 +87,11 @@ Now let's see what happens when the bill comes due.
 
 There's a particular kind of friction that used to come with copying a Stack Overflow snippet. You had to integrate it — move it from a generic answer to your specific context, delete the parts that didn't apply, reconcile it with the code around it. Even when you pasted without reading closely, the integration step created cognitive dissonance. Something that didn't fit would surface. You'd have to think about it, at least briefly. That friction was annoying. It was also pedagogical.
 
-Pre-LLM, epistemic gaps were mostly local. A developer might not fully understand a sorting algorithm they borrowed, or a regex they copied. But the scope of the gap was bounded — a function, a snippet, a call signature. The rest of the mental model stayed intact. You knew what you didn't know, approximately.
+Pre-LLM, epistemic gaps were mostly local. A developer might not fully understand a sorting algorithm they borrowed, or a regex they copied. But the scope of the gap was bounded — a function, a snippet, a call signature. In the language of our formula: the debt lived at L1, where cascade cost c₁ is just τ₁ — recovery stays local, no downstream rework. The rest of the mental model stayed intact. You knew what you didn't know, approximately.
+
+Human review reinforced this containment. Code arrived in smaller increments, so PRs had less surface area to cover — a reviewer could actually read what changed. Human-authored tests encoded the developer's *intent*, catching correctness misalignment before it compounded.
+
+Epistemic debt existed before LLMs. But the rate of accumulation was bounded by human typing speed and integration effort — the friction was a natural throttle. What LLMs changed isn't the existence of the problem — it's the *velocity* and *plausibility*. Code arrives faster than review processes can absorb, and it arrives looking correct. The speed removes the throttle; the plausibility disarms the instinct to question.
 
 Post-LLM, something different is happening. Entire modules appear — with their relationships, their interfaces, their error handling, sometimes their tests. The code looks professional. The architecture is idiomatic. Tests pass. But nobody did the labour of knowing. Nobody integrated anything, because there was nothing to integrate. The code arrived whole. The friction that once limited how fast epistemic debt could accumulate has been removed, and the level at which debt is incurred has shifted from code to design, from implementation to architecture.
 

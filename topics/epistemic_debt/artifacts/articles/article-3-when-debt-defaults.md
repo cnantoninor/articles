@@ -1,6 +1,6 @@
 ---
 title: When Epistemic Debt Defaults
-subtitle: Two case studies, industry data, and the failure taxonomy that says they
+subtitle: Two case studies, industry data, and the failure patterns that say they
   aren't outliers
 status: review
 type: article
@@ -60,7 +60,7 @@ social_teasers:
   substack_notes: A team saved 200 hours using AI coding assistance. Then spent 2,000
     hours on remediation they couldn't avoid, for code they couldn't explain. Part
     3 of the Epistemic Debt series looks at two case studies, the 77% failure rate
-    from a controlled study, and the failure taxonomy that connects them. [ARTICLE_URL]
+    from a controlled study, and the failure patterns that connect them. [ARTICLE_URL]
 ---
 
 
@@ -68,7 +68,7 @@ social_teasers:
 
 # When Epistemic Debt Defaults
 
-*Two case studies, industry data, and the failure taxonomy that says they aren't outliers*
+*Two case studies, industry data, and the failure patterns that say they aren't outliers*
 
 ---
 
@@ -148,13 +148,11 @@ The database deletion: the gap was in *system boundaries* — understanding what
 
 The 10:1 cost ratio: the gap was in *defensive coding* — understanding what error handling and validation the generated code was missing. This is the **defensive coding gap**.
 
-A third failure mode appears at the design and architecture level, in domains where edge cases carry the highest stakes. Consider healthcare data systems: an AI-generated validation routine might handle standard HL7 messages correctly while silently mishandling encoding edge cases — malformed patient identifiers dropped instead of flagged, data loss going undetected for weeks. This is the **edge case reasoning gap**: the team can verify the happy path, but can't reason about the unhappy path. In healthcare, the unhappy path is where people get hurt.
+A third pattern appears at the design and architecture level, in domains where edge cases carry the highest stakes. Consider healthcare data systems: an AI-generated validation routine might handle standard HL7 messages correctly while silently mishandling encoding edge cases — malformed patient identifiers dropped instead of flagged, data loss going undetected for weeks. This is the **edge case reasoning gap**: the team can verify the happy path, but can't reason about the unhappy path. In healthcare, the unhappy path is where people get hurt.
 
-Each failure was invisible until it wasn't. Each was preceded by passing tests and successful deployments. Each would have been caught by a team that understood its own code.
+These aren't the only ways epistemic debt surfaces — they're generalizations drawn from specific cases. In my own experience, I've encountered also another pattern: AI-generated tests that validate AI-generated code, creating a closed loop where everything passes but nothing is verified against actual intent. That circular validation pattern will be explored in a later article. The point here is that each gap follows the same shape: code that works until someone needs to understand it, preceded by passing tests and successful deployments, and catchable by a team that understood its own code.
 
-Underlying all three gaps is a mechanism that Ngabang (2026, preprint) calls the **Stochastic Spaghetti Effect**: AI-generated code that is locally optimized — each function passes its tests, each module looks coherent in isolation — but lacks global architectural coherence. The effect explains why the edge case reasoning gap appears so reliably: the AI generates L1 code that satisfies local constraints but encodes no L2/L3 coherence about how the system behaves at its edges.[^2]
-
-(The psychological toll of this dynamic — what some researchers are calling "Human Debt," the accumulated burden of working with code you cannot fully understand — is a thread we'll pick up in the final article.)
+Underlying all three gaps is a mechanism that Ngabang (2026, preprint) calls the **Stochastic Spaghetti Effect**: AI-generated code that is locally optimized — each function passes its tests, each module looks coherent in isolation — but lacks global architectural coherence or requirement intent alignment. The effect explains why the edge case reasoning gap appears so reliably: the AI generates L1 code that satisfies local constraints but encodes no L2/L3 coherence about how the system behaves at its edges.[^2]
 
 ## These Aren't Isolated Incidents
 
@@ -200,17 +198,17 @@ The question is: how do teams fall into this pattern? What are the mechanisms th
 
 - The Register (July 2025). "Vibe coding service Replit deleted production database, faked results to cover bugs."
 - AlterSquare (December 2025). "GitHub Copilot Saved Us 200 Hours: Then Cost Us 2000 Hours in Bug Fixes." (Company self-report; figures not independently verified.)
-- Sankaranarayanan, S. (2026). "Mitigating 'Epistemic Debt' in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts." arXiv:2602.20206. https://arxiv.org/abs/2602.20206
-- Ngabang, B. (2026). "Stochastic Spaghetti Effect in AI-Generated Code." viXra.org (preprint — not peer-reviewed). https://vixra.org/pdf/2601.0013v1.pdf
-- Sonar (January 2026). "Sonar Data Reveals Critical Verification Gap in AI Coding." https://www.sonarsource.com/company/press-releases/sonar-data-reveals-critical-verification-gap-in-ai-coding/
+- Sankaranarayanan, S. (2026). "Mitigating 'Epistemic Debt' in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts." arXiv:2602.20206. <https://arxiv.org/abs/2602.20206>
+- Ngabang, B. (2026). "Stochastic Spaghetti Effect in AI-Generated Code." viXra.org (preprint — not peer-reviewed). <https://vixra.org/pdf/2601.0013v1.pdf>
+- Sonar (January 2026). "Sonar Data Reveals Critical Verification Gap in AI Coding." <https://www.sonarsource.com/company/press-releases/sonar-data-reveals-critical-verification-gap-in-ai-coding/>
 - Financial Times (February 2026). "Amazon AI bot caused 13-hour AWS outage." (Primary reporting; four sources cited.)
-- Particula Tech (March 2026). "When AI Agents Delete Production: The Kiro Incident." https://particula.tech/blog/ai-agent-production-safety-kiro-incident (Secondary analysis; adds unverified specifics beyond FT reporting.)
-- Veracode (2025). "GenAI Code Security Report." https://www.veracode.com/genai-code-security-report (Public summary confirms 45% failure rate and language breakdowns; multipliers and 12% secure-code rate are from the full report behind registration wall.)
-- Cortex (2026). "Engineering in the Age of AI: 2026 Benchmark Report." https://www.cortex.io/post/ai-is-making-engineering-faster-but-not-better-state-of-ai-benchmark-2026
+- Particula Tech (March 2026). "When AI Agents Delete Production: The Kiro Incident." <https://particula.tech/blog/ai-agent-production-safety-kiro-incident> (Secondary analysis; adds unverified specifics beyond FT reporting.)
+- Veracode (2025). "GenAI Code Security Report." <https://www.veracode.com/genai-code-security-report> (Public summary confirms 45% failure rate and language breakdowns; multipliers and 12% secure-code rate are from the full report behind registration wall.)
+- Cortex (2026). "Engineering in the Age of AI: 2026 Benchmark Report." <https://www.cortex.io/post/ai-is-making-engineering-faster-but-not-better-state-of-ai-benchmark-2026>
 - GitClear (2025). "AI Copilot Code Quality: 2025 Data Suggests 4× Growth in Code Clones."
-- CAST Software (2025). "Coding in the Red: Companies Worldwide Burdened with 61 Billion Workdays of Tech Debt." https://www.castsoftware.com/news/companies-worldwide-burdened-with-61-billion-workdays-of-tech-debt [^3]
-- CodeRabbit (December 2025). "State of AI vs Human Code Generation Report." https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report
-- Veracode (2026). "2026 State of Software Security: Risky Debt Rising, Strategy Starts Here." https://www.veracode.com/blog/2026-state-of-software-security-report-risky-security-debt/ [^3]
+- CAST Software (2025). "Coding in the Red: Companies Worldwide Burdened with 61 Billion Workdays of Tech Debt." <https://www.castsoftware.com/news/companies-worldwide-burdened-with-61-billion-workdays-of-tech-debt> [^3]
+- CodeRabbit (December 2025). "State of AI vs Human Code Generation Report." <https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report>
+- Veracode (2026). "2026 State of Software Security: Risky Debt Rising, Strategy Starts Here." <https://www.veracode.com/blog/2026-state-of-software-security-report-risky-security-debt/> [^3]
 
 ---
 

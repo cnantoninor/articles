@@ -30,7 +30,7 @@ Phases 9-12 are archived. See MILESTONES.md for details.
 
 **Milestone Goal:** Publish articles 3-7 on Substack, completing the full epistemic debt series. Each article polishes an existing draft by integrating targeted research, resolving open TODOs, and shipping with social teasers.
 
-- [x] **Phase 13: Article 3 — When Epistemic Debt Defaults** - Polish and publish the evidence article that establishes the failure taxonomy for the rest of the series (completed 2026-03-14)
+- [x] **Phase 13: Article 3 — When Epistemic Debt Defaults** - Polish and publish the evidence article that establishes the failure patterns for the rest of the series (completed 2026-03-14)
 - [ ] **Phase 14: Article 4 — The Solutioning Trap** - Polish and publish the mechanism article introducing SDLC boundaries 1 and 2
 - [ ] **Phase 15: Article 5 — The Trade-off Triangle** - Polish and publish the framework pivot article fulfilling two mathematical promises from Article 2
 - [ ] **Phase 16: Article 6 — Measuring the Unmeasurable** - Polish and publish the measurement article with honest-caveat posture preserved
@@ -39,7 +39,7 @@ Phases 9-12 are archived. See MILESTONES.md for details.
 ## Phase Details
 
 ### Phase 13: Article 3 — When Epistemic Debt Defaults
-**Goal**: Article 3 is live on Substack with four case studies (including Amazon Kiro), formula annotations, updated industry data, and all TODOs resolved — establishing the failure taxonomy that articles 4-7 reference by name
+**Goal**: Article 3 is live on Substack with four case studies (including Amazon Kiro), formula annotations, updated industry data, and all TODOs resolved — establishing the failure patterns that articles 4-7 reference by name
 **Depends on**: Verify Article 2 publication status (pre-phase check before scheduling)
 **Requirements**: ART3-01, ART3-02, ART3-03, ART3-04, ART3-05, ART3-06, ART3-07
 **Success Criteria** (what must be TRUE):

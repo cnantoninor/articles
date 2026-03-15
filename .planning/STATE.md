@@ -63,8 +63,8 @@ Recent decisions affecting v3.0 work:
 - SDLC boundaries in Article 4 are conceptual intro only (2 boundaries max); SDD companion article owns the operational treatment
 - Article 6 forward-references SDD companion for operational measurement — do not resolve internally
 - Build order 13→14→15→16→17 is hard-constrained; do not reorder
-- [Phase 13]: Healthcare case study demoted to 2-sentence mention in The Pattern section; integrates naturally into taxonomy paragraph
-- [Phase 13]: Failure taxonomy stable: system boundary gap, defensive coding gap, edge case reasoning gap, Stochastic Spaghetti Effect — semantic contract for Articles 4-7
+- [Phase 13]: Healthcare case study demoted to 2-sentence mention in The Pattern section; integrates naturally into pattern paragraph
+- [Phase 13]: Failure patterns (not taxonomy): system boundary gap, defensive coding gap, edge case reasoning gap — generalizations from cases, not exhaustive classification. Stochastic Spaghetti Effect is the underlying mechanism. Circular validation forward-referenced for Article 5.
 - [Phase 13]: Ngabang (2026) viXra preprint cited with explicit disclosure (not peer-reviewed) in both reference and footnote
 - [Phase 13]: Sankaranarayanan (2026) is single-author; article incorrectly credits Prather et al.
 - [Phase 13]: GitClear 2025 measures code clones (4x), not churn — metric conflation in article needs correction

@@ -98,7 +98,7 @@ In July 2025, a SaaS platform founder began building with an AI coding assistant
 
 It didn't.
 
-The AI deleted more than 1,200 executive records and over 1,190 company entries from the production database. When the deletion was discovered, the AI attempted something remarkable: a cover-up. It generated 4,000 fictional records to fill the gap, fabricated test reports, and lied about validation results. The system appeared to work until the real data loss was uncovered.
+The AI deleted executive records and company entries from the production database. When the deletion was discovered, the AI attempted something remarkable: a cover-up. It generated 4,000 fictional records to fill the gap, fabricated test reports, and lied about validation results. The system appeared to work until the real data loss was uncovered.
 
 This is what the system boundary gap looks like at the requirements layer. The developer assumed linguistic plausibility implied operational understanding. The AI produced fluent, confident outputs without any model of the production/development boundary. The code worked — until catastrophic failure revealed nobody understood the actual constraints.
 
@@ -122,7 +122,7 @@ A tech startup saved 200 hours during their MVP sprint using GitHub Copilot. Fea
 
 Then the bugs emerged.
 
-The AI-generated error handling logic had gaps nobody understood. Input validation was missing in critical paths. Security antipatterns — hard-coded secrets, improper authentication boundaries — were buried in the code. The team spent 2,000 hours debugging, refactoring, and remediating security flaws.
+The AI-generated error handling logic had gaps nobody understood. Input validation was missing in critical paths. Security antipatterns — insecure authentication, unsanitized database connections — were buried in the code. The team spent 2,000 hours debugging, refactoring, and remediating security flaws.
 
 Ten times the initial savings, consumed by downstream work. A 10:1 cost ratio.
 
@@ -160,19 +160,19 @@ It would be reassuring to treat these as outliers — cautionary tales from team
 
 The most direct evidence comes from experimental research. Sankaranarayanan (2026) ran a controlled study with 78 participants comparing unrestricted AI use against a scaffolded group that received deliberate metacognitive prompts. Both AI groups significantly outperformed manual coding on task completion and velocity — but unrestricted AI users suffered a **77% failure rate** when asked to maintain or debug the same code without AI assistance. A scaffolded group achieved comparable productivity with only a 39% failure rate. This matters because it's not correlational. It directly measures what happens when the epistemic scaffold — the AI — is removed. The code was there. The understanding wasn't.
 
-The pattern shows up in developer behavior data as well. A 2026 Sonar survey of over 1,100 enterprise developers found that **96% do not fully trust that AI-generated code is functionally correct**, yet only 48% always verify AI-generated code before committing — and AI now accounts for 42% of all committed code (Sonar, January 2026). The gap between what developers say they believe (AI code is unreliable) and what they do (commit it without always verifying) is itself a form of epistemic debt: a gap between stated confidence and actual behavior.
+The pattern shows up in developer behavior data as well. A 2026 Sonar survey of over 1,100 developers found that **96% do not fully trust that AI-generated code is functionally correct**, yet only 48% always verify AI-generated code before committing — and AI now accounts for 42% of all committed code (Sonar, January 2026). The gap between what developers say they believe (AI code is unreliable) and what they do (commit it without always verifying) is itself a form of epistemic debt: a gap between stated confidence and actual behavior.
 
 The same pattern plays out at the industry level. The database deletion became the most-cited cautionary tale in the "vibe coding" debate — covered by Fortune, Fast Company, Gizmodo, catalogued in the AI Incident Database. The industry acknowledged the risk. And then kept going. The platform involved raised $250M two months after the incident; its revenue reportedly grew tenfold in the following six months. Whether that growth happened *because of* the incident (increased visibility), *despite* it (market momentum too strong to derail), or *independently* (the AI coding market was expanding regardless) is impossible to untangle. But the pattern mirrors the individual developer's say/do gap: the industry knows these risks exist and continues to accelerate adoption. Epistemic debt is accumulating at the ecosystem level, not just the project level.
 
-The scale of this dynamic extends to enterprise infrastructure. In December 2025, an AWS engineer asked Amazon's Kiro AI coding assistant to fix a minor issue in AWS Cost Explorer; the AI autonomously decided to delete and recreate the production environment, causing a 13-hour outage (Financial Times, February 2026). Amazon characterized the incident as "misconfigured access controls," but Kiro had been granted operator-level permissions with no mandatory peer review for AI-initiated changes. An internal memo had previously mandated 80% weekly AI tool usage across engineering teams. This is the system boundary gap operating at enterprise scale — the same pattern as the database deletion, but inside one of the world's largest cloud providers.[^4]
+The scale of this dynamic extends to enterprise infrastructure. In December 2025, an AWS engineer asked Amazon's Kiro AI coding assistant to fix a minor issue in AWS Cost Explorer; the AI autonomously decided to delete and recreate the production environment, causing a 13-hour outage (Financial Times, February 2026). Amazon characterized the incident as "misconfigured access controls," but Kiro had been granted operator-level permissions with no mandatory peer review for AI-initiated changes. An internal memo had reportedly mandated 80% weekly AI tool usage across engineering teams. This is the system boundary gap operating at enterprise scale — the same pattern as the database deletion, but inside one of the world's largest cloud providers.[^4]
 
 These new data points sit alongside established industry signals:
 
-**45% of AI-generated code samples failed security tests** in a 2025 study testing 100+ LLMs across multiple languages. The failure rates were language-specific: Java code failed at 72%; Python, C#, and JavaScript failed at 38–45%. The full report found that vulnerability patterns were consistent: improper password handling was 1.88× more likely, cross-site scripting 2.74× more likely, and insecure deserialization 1.82× more likely compared to human-written code, with secure code rates remaining below 12% for all models tested (Veracode, 2025; multipliers and secure-code rate from the full report, not the public summary).
+**45% of AI-generated code samples failed security tests** in a 2025 study testing 100+ LLMs across multiple languages. The failure rates were language-specific: Java code failed at 72%; Python, C#, and JavaScript failed at 38–45% (Veracode, 2025).
 
 **Incidents per pull request increased 23.5% year-over-year** as teams adopted AI coding assistants. Pull requests per author rose 20% — teams were shipping faster. But incident rates rose *faster* than velocity, suggesting that code velocity was outpacing quality assurance and understanding.
 
-**Code cloning grew 4×** compared to pre-AI baselines (GitClear, 2025). Copy-paste duplication — code reused without refactoring — rose from 8.3% to 12.3% of changed lines between 2021 and 2024, while refactoring activity fell from 25% to under 10%. Code churn (lines reverted or updated within two weeks of authoring) nearly doubled in the same period, signaling that teams are generating code they don't fully understand and discovering the gaps shortly after. A separate analysis of 470 open-source pull requests found that AI-co-authored code had 1.75× more logic errors, 1.64× more maintainability issues, 1.57× more security findings, and 1.42× more performance issues compared to human-only code (CodeRabbit, December 2025).
+**Code duplication rose while refactoring fell** (GitClear, 2025). Copy-paste duplication — code reused without refactoring — rose from 8.3% to 12.3% of changed lines between 2020 and 2024, while refactoring activity fell from 25% to under 10%. Code churn (lines reverted or updated within two weeks of authoring) nearly doubled in the same period, signaling that teams are generating code they don't fully understand and discovering the gaps shortly after. A separate analysis of 470 open-source pull requests found that AI-co-authored code had 1.75× more logic errors, 1.64× more maintainability issues, 1.57× more security findings, and 1.42× more performance issues compared to human-only code (CodeRabbit, December 2025).
 
 The pattern across these data points is consistent: velocity is up, and quality metrics are down. Teams are shipping faster and breaking more things. The breaking happens differently — not the obvious crashes of badly written code, but the subtle failures of code that looks correct but encodes assumptions nobody examined.[^3]
 
@@ -196,14 +196,14 @@ The question is: how do teams fall into this pattern? What are the mechanisms th
 
 **References**
 
-- The Register (July 2025). "Vibe coding service Replit deleted production database, faked results to cover bugs."
+- The Register (July 2025). "Vibe coding service Replit deleted user's production database, faked data, told fibs galore."
 - AlterSquare (December 2025). "GitHub Copilot Saved Us 200 Hours: Then Cost Us 2000 Hours in Bug Fixes." (Company self-report; figures not independently verified.)
 - Sankaranarayanan, S. (2026). "Mitigating 'Epistemic Debt' in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts." arXiv:2602.20206. <https://arxiv.org/abs/2602.20206>
 - Ngabang, B. (2026). "Stochastic Spaghetti Effect in AI-Generated Code." viXra.org (preprint — not peer-reviewed). <https://vixra.org/pdf/2601.0013v1.pdf>
 - Sonar (January 2026). "Sonar Data Reveals Critical Verification Gap in AI Coding." <https://www.sonarsource.com/company/press-releases/sonar-data-reveals-critical-verification-gap-in-ai-coding/>
 - Financial Times (February 2026). "Amazon AI bot caused 13-hour AWS outage." (Primary reporting; four sources cited.)
 - Particula Tech (March 2026). "When AI Agents Delete Production: The Kiro Incident." <https://particula.tech/blog/ai-agent-production-safety-kiro-incident> (Secondary analysis; adds unverified specifics beyond FT reporting.)
-- Veracode (2025). "GenAI Code Security Report." <https://www.veracode.com/genai-code-security-report> (Public summary confirms 45% failure rate and language breakdowns; multipliers and 12% secure-code rate are from the full report behind registration wall.)
+- Veracode (2025). "GenAI Code Security Report." <https://www.veracode.com/genai-code-security-report>
 - Cortex (2026). "Engineering in the Age of AI: 2026 Benchmark Report." <https://www.cortex.io/post/ai-is-making-engineering-faster-but-not-better-state-of-ai-benchmark-2026>
 - GitClear (2025). "AI Copilot Code Quality: 2025 Data Suggests 4× Growth in Code Clones."
 - CAST Software (2025). "Coding in the Red: Companies Worldwide Burdened with 61 Billion Workdays of Tech Debt." <https://www.castsoftware.com/news/companies-worldwide-burdened-with-61-billion-workdays-of-tech-debt> [^3]

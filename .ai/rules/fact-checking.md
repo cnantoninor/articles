@@ -84,6 +84,18 @@ The fact-check report is not complete until the author has reviewed and resolved
 
 The assistant MUST NOT silently apply fact-check corrections. All changes flow through the user's explicit decisions.
 
+## Author's Prudence Principle
+
+The author prefers to **omit data or soften language rather than overstate or risk stating something false**. When in doubt:
+
+- **Remove** unverifiable claims rather than hedging them — absence is better than a hedged falsehood
+- **Soften** language to match what the source actually says, not what secondary coverage implies
+- **Never** attribute figures to a source without confirming they appear in that source (including full/gated reports)
+- **Prefer** verified absolute figures over unverified relative comparisons (e.g., "72% failure rate" over "X× more likely than human code" if the baseline isn't confirmed)
+- **Flag** when a claim relies on a single unverified or non-peer-reviewed source — let the author decide whether to keep, hedge, or remove
+
+This principle overrides the instinct to preserve dramatic statistics. A smaller, verified claim is always preferable to a larger, unverified one.
+
 ## AI Assistant Guidelines
 
 When editing or reviewing articles:
@@ -93,3 +105,5 @@ When editing or reviewing articles:
 3. Flag new claims introduced during editing that were not in the original fact-check
 4. Do not weaken verified claims — only adjust flagged ones
 5. Preserve the author's exploratory tone when hedging unverified claims
+6. Apply the Prudence Principle: when a claim is unverified, default to removal or softening rather than creative hedging
+7. Never invent parenthetical disclaimers (e.g., "from the full report") to justify unverified figures — if the figure can't be confirmed, remove it

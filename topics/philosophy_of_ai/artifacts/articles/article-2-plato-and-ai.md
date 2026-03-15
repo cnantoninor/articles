@@ -7,8 +7,8 @@ audience:
 - technical professionals
 - readers interested in epistemology and AI
 target_length: 0
-current_length: 2150
-estimated_reading_time: 9 min
+current_length: 94
+estimated_reading_time: 1 min
 created: 2026-02-22
 last_updated: 2026-02-22
 published_date: 2025-07-29
@@ -19,6 +19,7 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
 
 
 # From Eikasia to Noesis

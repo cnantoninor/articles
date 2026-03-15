@@ -10,7 +10,7 @@ audience:
 - senior practitioners
 - content and research professionals
 target_length: 800
-current_length: 1042
+current_length: 1124
 estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-02-15
@@ -51,6 +51,7 @@ social_teasers:
     construction to curation, how the debt compounds, and a framework to balance AI-speed
     vs understanding vs dependability. https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation'
 ---
+
 
 
 

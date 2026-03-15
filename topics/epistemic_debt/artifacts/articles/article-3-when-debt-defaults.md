@@ -9,7 +9,7 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 1278
-current_length: 3197
+current_length: 2920
 estimated_reading_time: 13 min
 created: 2026-02-15
 last_updated: 2026-03-15
@@ -100,7 +100,7 @@ LLMs didn't just make code generation faster. They removed the friction *and* ra
 
 ## Case 1: The Database Deletion
 
-In July 2025, a SaaS platform founder began building with an AI coding assistant.[^1] Within nine days, the AI assistant had production database credentials and permission to execute operations. The developer trusted the AI understood constraint boundaries — that "do not change code without permission" meant what it said.
+In July 2025, a SaaS platform founder began building with an AI coding assistant.[^1] Within days, the AI assistant had production database credentials and permission to execute operations. The developer trusted the AI understood constraint boundaries — that "do not change code without permission" meant what it said.
 
 It didn't.
 
@@ -115,20 +115,20 @@ The developer couldn't explain how the AI was interacting with the database beca
 > | Term | Value | Explanation |
 > |------|-------|-------------|
 > | Layer (k) | L4 — intent/requirements | The developer's requirement was "don't touch production." The AI had L1 competence (knew *how* to run DB operations) but no model of the L4 boundary it was crossing. |
-> | t₀ | Day 9 | The moment the AI executed production operations without human-verified constraints. No gap-detection mechanism triggered before this point. |
-> | c₄ | Low (~1×) | A gap at L4 normally cascades through every layer below. Here, three factors kept it cheap: t₀ arrived early (only 9 days of system complexity to re-recover), the failure was loud (deleted records and fabricated data are hard to miss), and recovery was straightforward (restore from backup). Contrast with AlterSquare, where the gaps were silent and diffuse. |
-> | Cs(t) vs Gc(t) | Diverging | System complexity rose with each permission expansion over 9 days; cognitive grasp stayed flat — the developer never verified the AI's understanding of operational constraints. |
+> | t₀ | ~Day 6-7 | The moment the AI executed production operations without human-verified constraints. No gap-detection mechanism triggered before this point. |
+> | c₄ | Low (~1×) | A gap at L4 normally cascades through every layer below. Here, three factors kept it cheap: t₀ arrived early (only days of system complexity to re-recover), the failure was loud (deleted records and fabricated data are hard to miss), and recovery was straightforward (restore from backup). Contrast with AlterSquare, where the gaps were silent and diffuse. |
+> | Cs(t) vs Gc(t) | Diverging | System complexity rose with each permission expansion over several days; cognitive grasp stayed flat — the developer never verified the AI's understanding of operational constraints. |
 > | Counterfactual | — | Had t₀ arrived 6 months later with a mature codebase built on the assumption the AI understood production boundaries, c₄ would have been far more expensive. |
 
-The aftermath reinforces the low c₄. The platform's CEO responded within 48 hours — public apology, full refund, one-hour Zoom postmortem with the affected founder. Technical safeguards (automatic dev/prod database separation, one-click rollback, pre-deployment security scanning) shipped within weeks. The incident was catalogued in the AI Incident Database as Incident 1152 and generated coverage across Fortune, Fast Company, and a dozen other outlets. But within five months, the same founder who had publicly said "I will never trust [the platform] again" had built seven production applications on it — and the platform published him as a customer success story. The reputational recovery was as fast as the technical one. Whether the platform's subsequent growth would have been even larger without the incident is unknowable — but the default didn't leave a lasting scar on either party.
+The aftermath reinforces the low c₄. The platform's CEO acknowledged the failure within 48 hours — promising a full refund and a postmortem with the affected founder. Technical safeguards — automatic dev/prod database separation, improved rollback, and a planning-only mode for AI collaboration — were announced within days. The incident was catalogued in the AI Incident Database as Incident 1152 and generated coverage across Fortune, Fast Company, and a dozen other outlets. But within five months, the same founder who had publicly said "I will never trust [the platform] again" had built seven production applications on it — and the platform published him as a customer success story. The reputational recovery was as fast as the technical one. Whether the platform's subsequent growth would have been even larger without the incident is unknowable — but the default didn't leave a lasting scar on either party.
 
 ## Case 2: The 10:1 Cost Ratio
 
-A tech startup saved 200 hours during their MVP sprint using GitHub Copilot. Features appeared in hours instead of days. The team shipped fast. Investors were impressed.
+A software development firm reported saving 200 hours during their MVP sprint using GitHub Copilot. Features appeared in hours instead of days. The team shipped fast. Investors were impressed.
 
 Then the bugs emerged.
 
-The AI-generated error handling logic had gaps nobody understood. Input validation was missing in critical paths. Security antipatterns — insecure authentication, unsanitized database connections — were buried in the code. The team spent 2,000 hours debugging, refactoring, and remediating security flaws.
+The AI-generated error handling logic was missing or inadequate in ways the team hadn't caught. Input validation was missing in critical paths. Security antipatterns — insecure authentication, unsanitized database connections — were buried in the code. The team spent 2,000 hours debugging, refactoring, and remediating security flaws.
 
 Ten times the initial savings, consumed by downstream work. A 10:1 cost ratio.
 
@@ -158,29 +158,27 @@ A third pattern appears at the design and architecture level, in domains where e
 
 These aren't the only ways epistemic debt surfaces — they're generalizations drawn from specific cases. In my own experience, I've encountered also another pattern: AI-generated tests that validate AI-generated code, creating a closed loop where everything passes but nothing is verified against actual intent. That circular validation pattern will be explored in a later article. The point here is that each gap follows the same shape: code that works until someone needs to understand it, preceded by passing tests and successful deployments, and catchable by a team that understood its own code.
 
-Underlying all three gaps is a mechanism that Ngabang (2026, preprint) calls the **Stochastic Spaghetti Effect**: AI-generated code that is locally optimized — each function passes its tests, each module looks coherent in isolation — but lacks global architectural coherence or requirement intent alignment. The effect explains why the edge case reasoning gap appears so reliably: the AI generates L1 code that satisfies local constraints but encodes no L2/L3 coherence about how the system behaves at its edges.[^2]
-
 ## These Aren't Isolated Incidents
 
 It would be reassuring to treat these as outliers — cautionary tales from teams that were careless or inexperienced. The industry data says otherwise.
 
-The most direct evidence comes from experimental research. Sankaranarayanan (2026) ran a controlled study with 78 participants comparing unrestricted AI use against a scaffolded group that received deliberate metacognitive prompts. Both AI groups significantly outperformed manual coding on task completion and velocity — but unrestricted AI users suffered a **77% failure rate** when asked to maintain or debug the same code without AI assistance. A scaffolded group achieved comparable productivity with only a 39% failure rate. This matters because it's not correlational. It directly measures what happens when the epistemic scaffold — the AI — is removed. The code was there. The understanding wasn't.
+The most direct evidence comes from experimental research. Sankaranarayanan (2026) ran a between-subjects experiment with 78 participants comparing unrestricted AI use against a scaffolded group with metacognitive friction built into the workflow. Both AI groups significantly outperformed manual coding on functional utility and velocity — but unrestricted AI users suffered a **77% failure rate** when asked to maintain or debug the same code without AI assistance. A scaffolded group achieved comparable productivity with only a 39% failure rate. This matters because it's not correlational. It directly measures what happens when the epistemic scaffold — the AI — is removed. The code was there. The understanding wasn't.
 
 The pattern shows up in developer behavior data as well. A 2026 Sonar survey of over 1,100 developers found that **96% do not fully trust that AI-generated code is functionally correct**, yet only 48% always verify AI-generated code before committing — and AI now accounts for 42% of all committed code (Sonar, January 2026). The gap between what developers say they believe (AI code is unreliable) and what they do (commit it without always verifying) is itself a form of epistemic debt: a gap between stated confidence and actual behavior.
 
-The same pattern plays out at the industry level. The database deletion became the most-cited cautionary tale in the "vibe coding" debate — covered by Fortune, Fast Company, Gizmodo, catalogued in the AI Incident Database. The industry acknowledged the risk. And then kept going. The platform involved raised $250M two months after the incident; its revenue reportedly grew tenfold in the following six months. Whether that growth happened *because of* the incident (increased visibility), *despite* it (market momentum too strong to derail), or *independently* (the AI coding market was expanding regardless) is impossible to untangle. But the pattern mirrors the individual developer's say/do gap: the industry knows these risks exist and continues to accelerate adoption. Epistemic debt is accumulating at the ecosystem level, not just the project level.
+The same pattern plays out at the industry level. The database deletion became the most-cited cautionary tale in the "vibe coding" debate — covered by Fortune, Fast Company, Gizmodo, catalogued in the AI Incident Database. The industry acknowledged the risk. And then kept going. The platform involved raised $250M two months after the incident; its revenue had already grown tenfold in the preceding year, driven by AI Agent adoption, and continued to accelerate afterward. But the pattern mirrors the individual developer's say/do gap: the industry knows these risks exist and continues to accelerate adoption. Epistemic debt is accumulating at the ecosystem level, not just the project level.
 
-The scale of this dynamic extends to enterprise infrastructure. In December 2025, an AWS engineer asked Amazon's Kiro AI coding assistant to fix a minor issue in AWS Cost Explorer; the AI autonomously decided to delete and recreate the production environment, causing a 13-hour outage (Financial Times, February 2026). Amazon characterized the incident as "misconfigured access controls," but Kiro had been granted operator-level permissions with no mandatory peer review for AI-initiated changes. An internal memo had reportedly mandated 80% weekly AI tool usage across engineering teams. This is the system boundary gap operating at enterprise scale — the same pattern as the database deletion, but inside one of the world's largest cloud providers.[^4]
+The scale of this dynamic extends to enterprise infrastructure. In December 2025, engineers at AWS allowed Amazon's Kiro AI coding assistant to carry out changes in AWS Cost Explorer; the AI autonomously decided to delete and recreate the production environment, causing a 13-hour outage (Financial Times, February 2026). Amazon characterized the incident as "misconfigured access controls," but Kiro had been granted operator-level permissions with no mandatory peer review for AI-initiated changes. Employees told the FT the company had set a target for 80% of developers to use AI coding tools at least once a week. This is the system boundary gap operating at enterprise scale — the same pattern as the database deletion, but inside one of the world's largest cloud providers.[^3]
 
 These new data points sit alongside established industry signals:
 
-**45% of AI-generated code samples failed security tests** in a 2025 study testing 100+ LLMs across multiple languages. The failure rates were language-specific: Java code failed at 72%; Python, C#, and JavaScript failed at 38–45% (Veracode, 2025).
+**45% of AI-generated code samples failed security tests** in a 2025 study testing 100+ LLMs across multiple languages. The failure rates were language-specific: Java code failed at over 70%; Python, C#, and JavaScript failed at 38–45% (Veracode, 2025).
 
 **Incidents per pull request increased 23.5% year-over-year** as teams adopted AI coding assistants. Pull requests per author rose 20% — teams were shipping faster. But incident rates rose *faster* than velocity, suggesting that code velocity was outpacing quality assurance and understanding.
 
-**Code duplication rose while refactoring fell** (GitClear, 2025). Copy-paste duplication — code reused without refactoring — rose from 8.3% to 12.3% of changed lines between 2020 and 2024, while refactoring activity fell from 25% to under 10%. Code churn (lines reverted or updated within two weeks of authoring) nearly doubled in the same period, signaling that teams are generating code they don't fully understand and discovering the gaps shortly after. A separate analysis of 470 open-source pull requests found that AI-co-authored code had 1.75× more logic errors, 1.64× more maintainability issues, 1.57× more security findings, and 1.42× more performance issues compared to human-only code (CodeRabbit, December 2025).
+**Code duplication rose while refactoring fell** (GitClear, 2025). Copy-paste duplication — code reused without refactoring — rose from 8.3% to 12.3% of changed lines between 2020 and 2024, while refactoring activity fell from 25% in 2021 to under 10%. Code churn (lines reverted or updated within two weeks of authoring) nearly doubled in the same period, signaling that teams are generating code they don't fully understand and discovering the gaps shortly after. A separate analysis of 470 open-source pull requests found that AI-co-authored code had 1.75× more logic errors, 1.64× more maintainability issues, 1.57× more security findings, and 1.42× more performance issues compared to human-only code (CodeRabbit, December 2025).
 
-The pattern across these data points is consistent: velocity is up, and quality metrics are down. Teams are shipping faster and breaking more things. The breaking happens differently — not the obvious crashes of badly written code, but the subtle failures of code that looks correct but encodes assumptions nobody examined.[^3]
+The pattern across these data points is consistent: velocity is up, and quality metrics are down. Teams are shipping faster and breaking more things. The breaking happens differently — not the obvious crashes of badly written code, but the subtle failures of code that looks correct but encodes assumptions nobody examined.[^2]
 
 ## The Bill Always Comes Due
 
@@ -205,20 +203,18 @@ The question is: how do teams fall into this pattern? What are the mechanisms th
 - The Register (July 2025). "Vibe coding service Replit deleted user's production database, faked data, told fibs galore."
 - AlterSquare (December 2025). "GitHub Copilot Saved Us 200 Hours: Then Cost Us 2000 Hours in Bug Fixes." (Company self-report; figures not independently verified.)
 - Sankaranarayanan, S. (2026). "Mitigating 'Epistemic Debt' in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts." arXiv:2602.20206. <https://arxiv.org/abs/2602.20206>
-- Ngabang, B. (2026). "Stochastic Spaghetti Effect in AI-Generated Code." viXra.org (preprint — not peer-reviewed). <https://vixra.org/pdf/2601.0013v1.pdf>
 - Sonar (January 2026). "Sonar Data Reveals Critical Verification Gap in AI Coding." <https://www.sonarsource.com/company/press-releases/sonar-data-reveals-critical-verification-gap-in-ai-coding/>
 - Financial Times (February 2026). "Amazon AI bot caused 13-hour AWS outage." (Primary reporting; four sources cited.)
 - Particula Tech (March 2026). "When AI Agents Delete Production: The Kiro Incident." <https://particula.tech/blog/ai-agent-production-safety-kiro-incident> (Secondary analysis; adds unverified specifics beyond FT reporting.)
 - Veracode (2025). "GenAI Code Security Report." <https://www.veracode.com/genai-code-security-report>
 - Cortex (2026). "Engineering in the Age of AI: 2026 Benchmark Report." <https://www.cortex.io/post/ai-is-making-engineering-faster-but-not-better-state-of-ai-benchmark-2026>
 - GitClear (2025). "AI Copilot Code Quality: 2025 Data Suggests 4× Growth in Code Clones."
-- CAST Software (2025). "Coding in the Red: Companies Worldwide Burdened with 61 Billion Workdays of Tech Debt." <https://www.castsoftware.com/news/companies-worldwide-burdened-with-61-billion-workdays-of-tech-debt> [^3]
+- CAST Software (2025). "Coding in the Red: Companies Worldwide Burdened with 61 Billion Workdays of Tech Debt." <https://www.castsoftware.com/news/companies-worldwide-burdened-with-61-billion-workdays-of-tech-debt> [^2]
 - CodeRabbit (December 2025). "State of AI vs Human Code Generation Report." <https://www.coderabbit.ai/blog/state-of-ai-vs-human-code-generation-report>
-- Veracode (2026). "2026 State of Software Security: Risky Debt Rising, Strategy Starts Here." <https://www.veracode.com/blog/2026-state-of-software-security-report-risky-security-debt/> [^3]
+- Veracode (2026). "2026 State of Software Security: Risky Debt Rising, Strategy Starts Here." <https://www.veracode.com/blog/2026-state-of-software-security-report-risky-security-debt/> [^2]
 
 ---
 
 [^1]: The incident is attributed to Replit in reporting by The Register (July 2025). The platform founder ran the AI coding assistant trial that resulted in production database deletion.
-[^2]: Ngabang (2026) is a viXra preprint and has not yet been peer-reviewed. The Stochastic Spaghetti Effect is a named concept in this preprint; the naming is used here as a descriptive label, not as an endorsement of the source's methodology.
-[^3]: Scale context: the 2025 "Coding in the Red" report (CAST Software) analyzed 10 billion lines of code across 47,000 applications and estimated the global burden at 61 billion workdays, with 45% of the world's code deemed "fragile." Epistemic debt compounds this: the 2026 State of Software Security report (Veracode) found 82% of organizations carry significant security debt, with high-severity flaws up 36% year-over-year. Code nobody understands is code nobody can audit for vulnerabilities.
-[^4]: The Kiro incident is disputed. The Financial Times (February 2026) reported the 13-hour outage citing four sources including an AWS employee. Amazon's official response characterized it as "user error — misconfigured access controls" and stated the FT's claim of a second incident involving Amazon Q Developer was "entirely false." The 80% adoption mandate was reported in an internal memo from SVPs Peter DeSantis and Dave Treadwell (November 2025). The framing here — as a system boundary gap — is the author's interpretation; reasonable people can read the same facts differently.
+[^2]: Scale context: the 2025 "Coding in the Red" report (CAST Software) analyzed 10 billion lines of code across 47,000 applications and estimated the global burden at 61 billion workdays, with 45% of the world's code deemed "fragile." Epistemic debt compounds this: the 2026 State of Software Security report (Veracode) found 82% of organizations carry significant security debt, with high-risk vulnerabilities up 36% year-over-year. Code nobody understands is code nobody can audit for vulnerabilities.
+[^3]: The Kiro incident is disputed. The Financial Times (February 2026) reported the 13-hour outage citing four sources including an AWS employee. Amazon's official response characterized it as "user error — misconfigured access controls" and stated the FT's claim of a second event impacting AWS was "entirely false." The DeSantis/Treadwell memo (November 2025, reported by Reuters) made Kiro the recommended development tool. The 80% weekly usage target was reported separately by the FT (February 2026), citing anonymous employees. The framing here — as a system boundary gap — is the author's interpretation; reasonable people can read the same facts differently.

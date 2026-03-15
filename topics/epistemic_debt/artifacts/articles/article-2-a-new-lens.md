@@ -14,7 +14,7 @@ estimated_reading_time: 11 min
 created: 2026-02-15
 last_updated: 2026-03-08
 published_date: null
-publication_url: ''
+publication_url: 'https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost'
 social_teasers:
   linkedin: ''
   twitter: ''

@@ -9,7 +9,7 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 1278
-current_length: 3068
+current_length: 3197
 estimated_reading_time: 13 min
 created: 2026-02-15
 last_updated: 2026-03-15
@@ -62,6 +62,7 @@ social_teasers:
     3 of the Epistemic Debt series looks at two case studies, the 77% failure rate
     from a controlled study, and the failure patterns that connect them. [ARTICLE_URL]
 ---
+
 
 
 

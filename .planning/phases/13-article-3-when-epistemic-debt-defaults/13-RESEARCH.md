@@ -1,6 +1,6 @@
 # Phase 13: Article 3 — When Epistemic Debt Defaults - Research
 
-**Researched:** 2026-03-14
+**Researched:** 2026-03-14 (updated 2026-03-15 — cross-linking addendum)
 **Domain:** Long-form technical article editing and publication (epistemic debt series)
 **Confidence:** HIGH
 
@@ -49,6 +49,7 @@
 ### Deferred Ideas (OUT OF SCOPE)
 - Amazon Kiro accountability-denial pattern — Article 4
 - Human Debt concept — Article 7 (one-paragraph forward reference only, concept is underdeveloped)
+- Ship of Theseus (A5/B5) cross-link — ON HOLD per author decision, do not implement
 </user_constraints>
 
 ---
@@ -58,26 +59,24 @@
 
 | ID | Description | Research Support |
 |----|-------------|-----------------|
-| ART3-01 | Existing case studies (SaaStr, AlterSquare, healthcare) polished to publication quality | Draft at 148 lines contains all three; SaaStr and AlterSquare need formula sidenotes added; healthcare needs condensing to 1-2 sentences |
-| ART3-02 | Amazon Kiro incident integrated as fourth case study with accountability-denial pattern | Per CONTEXT.md: Kiro appears as a prominent mention in "Not Isolated Incidents" only — facts only (13h outage, cascading failures, 80% mandated adoption); accountability-denial explicitly deferred to Article 4 |
-| ART3-03 | Each case study annotated with formula mapping (which layer k, cascade multiplier c_k, when t₀ occurred) | Formula vocabulary fully established in Article 2; sidenote format is new to Article 3; blockquote styling maps to Substack's native callout block |
-| ART3-04 | Industry data block updated with new sources (Fragile Experts 77% failure rate, Sonar verification gap) | Both sources already cited in draft references; Sonar figures (96%/48%/42%) need prose integration; Fragile Experts already partially referenced in Article 2 but not in Article 3 body |
-| ART3-05 | TODO items resolved (Stochastic Spaghetti naming, pre-LLM vs post-LLM context, CAST/Veracode data) | Four TODOs in draft header; all have CONTEXT.md decisions: Stochastic Spaghetti = named mechanism; pre-LLM = new opening section; CAST/Veracode = footnotes |
-| ART3-06 | Social teasers written (LinkedIn, Twitter/X, Instagram, Substack Notes) | Template exists at templates/social-teasers.md; conventions documented in .ai/rules/publication.md; final text goes into YAML front-matter social_teasers block |
-| ART3-07 | Article published on Substack with series cross-links updated | Pre-phase check required: Article 2 publication status is ambiguous (YAML shows draft, published_date null); series cross-links are inline in each article's header and footer |
+| ART3-01 | Existing case studies (SaaStr, AlterSquare, healthcare) polished to publication quality | COMPLETE — article body is at 221 lines with both case studies, formula sidenotes, and healthcare mention fully written |
+| ART3-02 | Amazon Kiro incident integrated as fourth case study with accountability-denial pattern | COMPLETE — Kiro appears as prominent mention in "Not Isolated Incidents" with footnote [^3] marking disputed facts |
+| ART3-03 | Each case study annotated with formula mapping (which layer k, cascade multiplier c_k, when t₀ occurred) | COMPLETE — both SaaStr and AlterSquare have blockquote formula mapping tables |
+| ART3-04 | Industry data block updated with new sources (Fragile Experts 77% failure rate, Sonar verification gap) | COMPLETE — both sources integrated with Sonar citation at sonarsource.com |
+| ART3-05 | TODO items resolved (Stochastic Spaghetti naming, pre-LLM vs post-LLM context, CAST/Veracode data) | COMPLETE — all TODOs resolved; Stochastic Spaghetti Effect named in Article 4 (not Article 3) |
+| ART3-06 | Social teasers written (LinkedIn, Twitter/X, Instagram, Substack Notes) | COMPLETE — all four platforms have content in YAML front-matter |
+| ART3-07 | Article published on Substack with series cross-links updated | PENDING — requires cross-linking (Plan 03) then actual Substack publication |
 </phase_requirements>
 
 ---
 
 ## Summary
 
-This phase is a targeted editorial and publishing task, not an open-ended writing task. The draft exists at 148 lines (`topics/epistemic_debt/artifacts/articles/article-3-when-debt-defaults.md`). It contains three developed case studies, an industry data section, and a closing. All decisions about structure are locked in CONTEXT.md. The work is: restructure the opening (add pre-LLM framing), promote SaaStr and AlterSquare to full case studies with formula sidenotes, demote healthcare to a mention, insert Kiro + new data sources into "Not Isolated Incidents," resolve four TODOs, and write social teasers.
+Plans 00-02 are complete. Article 3 body is at 221 lines in `topics/epistemic_debt/artifacts/articles/article-3-when-debt-defaults.md` — all case studies, formula sidenotes, industry data, and social teasers are done. ART3-07 is the remaining requirement: publish on Substack with series cross-links updated. Plan 03 implements the cross-linking half of ART3-07.
 
-The article is Article 3 in a 7-part series. It establishes the failure taxonomy (system boundary gap, defensive coding gap, edge case reasoning gap, Stochastic Spaghetti Effect) that Articles 4-7 reference by name. This is a semantic contract: the names assigned here must be stable.
+The cross-linking plan (`.cursor/plans/article_3_cross-linking_8f17d07e.plan.md`) is already fully specified. This addendum documents what the executor needs to know about the target articles' actual content to write accurate, non-cluttering cross-link text.
 
-The one genuine blocker is Article 2's publication status. The draft's series header links to Article 2 by URL; if that URL does not resolve, cross-links cannot be finalized. The planner must include a pre-publication verification step for Article 2 before scheduling Article 3 live.
-
-**Primary recommendation:** Treat this as a structured edit against the locked CONTEXT.md decisions. Work in section order: (1) resolve TODOs → (2) restructure opening → (3) rewrite case studies with sidenotes → (4) update industry data section → (5) update YAML and write teasers → (6) publish, contingent on Article 2 status.
+**Primary recommendation:** Execute Plan 03 as specified. The link text proposed in the cross-linking plan is well-reasoned — implement it with attention to the exact line numbers and the stub vs. draft distinction for reverse links.
 
 ---
 
@@ -89,11 +88,12 @@ This phase has no software libraries. The "stack" is the editorial and publishin
 
 | Asset | Location | Purpose | Notes |
 |-------|----------|---------|-------|
-| Article 3 draft | `topics/epistemic_debt/artifacts/articles/article-3-when-debt-defaults.md` | The working document | 148 lines, status: draft, 4 unresolved TODOs |
+| Article 3 draft | `topics/epistemic_debt/artifacts/articles/article-3-when-debt-defaults.md` | The working document | 221 lines, status: review, social teasers complete |
 | Article 2 (published) | `topics/epistemic_debt/artifacts/articles/article-2-a-new-lens.md` | Formula definitions, visual language reference | YAML shows draft/null published_date — verify actual Substack status |
 | LaTeX formula reference | `topics/epistemic_debt/artifacts/articles/article-2-latex-formulas.md` | All formula variables for sidenotes | Use for consistent c_k, τ_k, t₀ notation |
 | Social teaser template | `templates/social-teasers.md` | Per-platform teaser conventions | Final text goes into YAML social_teasers block |
 | Publication rules | `.ai/rules/publication.md` | Platform-specific tone/format conventions | LinkedIn 3-5 hashtags, Twitter hook+insight, etc. |
+| Cross-linking plan | `.cursor/plans/article_3_cross-linking_8f17d07e.plan.md` | Full specification for Plan 03 | All A1-A9, B1-B9 links specified with placement guidance |
 
 ### Supporting
 
@@ -204,6 +204,7 @@ Opening paragraph(s)
 | Social teaser format | Platform-specific formats from scratch | `templates/social-teasers.md` conventions | Template already captures all platform rules |
 | Series cross-link text | New phrasing | Existing pattern from Articles 1-2 headers | Series continuity requires identical format |
 | Sidenote visual treatment | Custom HTML/CSS | Substack blockquote (native) | Substack renders blockquotes natively; no custom markup |
+| Cross-link placement decisions | Re-derive from scratch | `.cursor/plans/article_3_cross-linking_8f17d07e.plan.md` | Already fully specified with line numbers and rationale |
 
 ---
 
@@ -404,27 +405,150 @@ New references to add:
 
 | Req ID | Behavior | Test Type | Automated Command | File Exists? |
 |--------|----------|-----------|-------------------|-------------|
-| ART3-01 | Case studies polished to publication quality | manual | Read article, verify narrative completeness | ✅ (article exists, needs edit) |
-| ART3-02 | Amazon Kiro integrated (facts only, no accountability angle) | manual | Read "Not Isolated Incidents" section, verify Kiro mention is ≤3 sentences, facts only | ❌ Wave 0: Kiro content not yet in article |
-| ART3-03 | Formula sidenotes after each core case study | manual | Read article, verify 2 sidenotes present with k, c_k, t₀ fields | ❌ Wave 0: Sidenotes not yet written |
-| ART3-04 | Fragile Experts (77%) and Sonar (96%/48%/42%) present with citations | manual | Read "Not Isolated Incidents," verify both sources present, cited, with interpretive sentence | ❌ Wave 0: Sonar not in article; Fragile Experts in TODO only |
-| ART3-05 | All 4 TODOs resolved (Stochastic Spaghetti, pre-LLM framing, CAST/Veracode, Fragile Experts block) | manual | Read article header — zero TODO markers should remain | ✅ Article exists; ❌ TODOs not yet resolved |
-| ART3-06 | Social teasers present in YAML front-matter (all 4 platforms) | manual | Read YAML, verify social_teasers block has non-empty values for linkedin, twitter, instagram_caption, substack_notes | ❌ Wave 0: All fields currently empty |
-| ART3-07 | Article live on Substack with series cross-links updated | manual | Verify Substack URL resolves; check series headers in Articles 1-6 link to Article 3 | ❌ Wave 0: Not yet published |
+| ART3-01 | Case studies polished to publication quality | manual | Read article, verify narrative completeness | ✅ Complete |
+| ART3-02 | Amazon Kiro integrated (facts only, no accountability angle) | manual | Read "Not Isolated Incidents" section, verify Kiro mention is ≤3 sentences, facts only | ✅ Complete |
+| ART3-03 | Formula sidenotes after each core case study | manual | Read article, verify 2 sidenotes present with k, c_k, t₀ fields | ✅ Complete |
+| ART3-04 | Fragile Experts (77%) and Sonar (96%/48%/42%) present with citations | manual | Read "Not Isolated Incidents," verify both sources present, cited, with interpretive sentence | ✅ Complete |
+| ART3-05 | All TODOs resolved (Stochastic Spaghetti, pre-LLM framing, CAST/Veracode, Fragile Experts block) | manual | Read article — zero TODO markers should remain | ✅ Complete |
+| ART3-06 | Social teasers present in YAML front-matter (all 4 platforms) | manual | Read YAML, verify social_teasers block has non-empty values for linkedin, twitter, instagram_caption, substack_notes | ✅ Complete |
+| ART3-07 | Article live on Substack with series cross-links updated | manual | Verify Substack URL resolves; check cross-links added per Plan 03 | ❌ Plan 03 pending |
 
 ### Sampling Rate
 
 - **Per task commit:** Author reads the edited section for voice/tone consistency and that no deferred scope leaked in
 - **Per wave merge:** Full article read-through against success criteria checklist
-- **Phase gate:** All ART3-XX criteria met; Article 2 publication status confirmed; Sonar and Kiro citations verified
+- **Phase gate:** All ART3-XX criteria met; Article 2 publication status confirmed; cross-links approved at human checkpoint
 
 ### Wave 0 Gaps
 
-- [ ] Sonar report citation — locate title, year, URL for the 96%/48%/42% figures
-- [ ] Amazon Kiro primary source — verify 13h outage, cascading failures, 80% adoption mandate with citation
 - [ ] Article 2 publication URL — confirm actual Substack URL before series cross-links can be finalized
+- [ ] Article 3 Substack URL — needed for reverse links in stub files and intra-series articles (currently `[ARTICLE_URL]` placeholder)
 
-*(If these are resolved during planning from known external sources, mark as resolved. Otherwise they are research tasks in Wave 1.)*
+*(Sonar and Kiro citations are now resolved in the article body — they are no longer Wave 0 gaps.)*
+
+---
+
+## Cross-Linking Research Addendum
+
+*Added 2026-03-15. This section focuses specifically on Plan 03 — bidirectional cross-linking between Article 3 and 9 other articles. Plans 00-02 are complete.*
+
+### Current Article 3 State (Confirmed)
+
+Article 3 is at 221 lines (`topics/epistemic_debt/artifacts/articles/article-3-when-debt-defaults.md`), status: review. The article body is finished. Key anchor points for outbound links:
+
+| Section | Approximate Lines | Cross-link opportunity |
+|---------|-------------------|----------------------|
+| "What Changed" — friction removal discussion | ~87-99 | A3 (Deleting Code — "regime change" framing) |
+| Case 1 — "linguistic plausibility implied operational understanding" | ~109 | A4 (Metaphors — projecting meaning onto AI) |
+| Formula mapping tables after each case | ~113-147 | A9 (Governance companion — operationalizes these mappings) |
+| "The Pattern" — failure taxonomy summary | ~149-159 | A7 (Article 5 — triangle framework formalizes these positions) |
+| "These Aren't Isolated Incidents" — vibe coding mention | ~169 | A1 (Vibe Designing — beyond vibe coding) |
+| Sonar data / say-do gap | ~167 | A6 (Article 4 forward-ref — rubber-stamp culture) |
+| Code churn / measurement data | ~179-181 | A8 (Article 6 forward-ref — proxy metrics) |
+| "The Bill Always Comes Due" closing | ~183-191 | A2 (Eikasia — philosophical lens for epistemic gap) |
+
+### Target Article Content Summary
+
+The cross-topic article stubs (Vibe Designing, Eikasia, Deleting Code, Metaphors) contain only `[GAP]` placeholders — their full text lives on Substack, not in the repo. The cross-linking plan's rationale for each link is drawn from knowledge of the published articles, not from the repo stubs. The executor should trust the rationale in `.cursor/plans/article_3_cross-linking_8f17d07e.plan.md` rather than re-reading the stubs.
+
+The intra-series articles (4, 5, 6, 7, governance companion) are full drafts with actual content:
+
+**Article 4 (The Solutioning Trap)** — Line 140 already contains: "This is the 200-hours-to-2,000-hours pattern from Article 3, generalized across organizations." This is the existing B6 backlink. No changes to Article 4 are needed.
+
+**Article 5 (The Trade-off Triangle)** — The triangle is introduced at line 38. The "Universal Triangle" section (~lines 42-91) discusses Speed/Understanding/Reliability positioning without naming specific examples. The B7 backlink fits naturally in the introduction (~line 38-39) where it says "The patterns described in the previous articles — epistemic debt accumulation, the solutioning trap, boundary failures — share a common structure." Article 3's case studies are those patterns. A brief reference connecting the SaaStr and AlterSquare cases to the Speed corner of the triangle would be natural here.
+
+**Article 6 (Measuring the Unmeasurable)** — The "What We Can Measure Today" section (~lines 69-98) discusses bus factor, onboarding velocity, incident diagnosis time, and code churn. The B8 backlink fits in the code churn discussion (~line 85) or the bus factor discussion (~line 75-78). Article 3's 10:1 ratio and the "bus factor = 0" concept (from Article 4 line 80, which references Article 3's case) make the connection precise.
+
+**Article 7 (Beyond Software: The Universal Framework)** — The "Content Creation" section (~lines 51-63) discusses voice drift as epistemic debt in non-software domains. The failure mode described is "code that looks professional" — directly paralleled in software by Article 3's case studies. The B9 backlink fits in the Content Creation section's domain-specific failure mode paragraph (~line 61-63) or in the "Universal Meta-Patterns" section (~lines 116-151).
+
+**Governance Companion** — The article is mostly `[GAP]` blocks. The introduction section has `[GAP]` markers explaining that the article operationalizes the formula from Article 2 and the triangle from Article 5 into a governance pipeline. The formula mappings in Article 3 (the blockquote sidenotes after each case study) are explicitly the narrative precursor to what the governance companion operationalizes. The B-governance backlink fits in the Introduction `[GAP]` block's narrative, or as a note near the "Measuring What Was Invisible" section (~line 116) which bridges to Article 6's "we can't measure well" framing.
+
+### Substack Rendering Constraints for Cross-Links
+
+Based on confirmed Substack behavior:
+
+**Links render correctly:** Standard markdown `[text](url)` renders as clickable hyperlinks in Substack. Both inline links and footnote-style links work.
+
+**Footnotes:** Substack does render `[^n]` footnotes but the rendering quality varies by reader platform (web vs. email). The cross-linking plan correctly recommends footnotes only for philosophical references (A2 Eikasia, A4 Metaphors) where the connection needs brief explanation. Practical references (A1 Vibe Designing, A3 Deleting Code) should use inline parentheticals.
+
+**Anchor links:** Substack does not support anchor links within an article (e.g., `#section-name`). Cross-links must point to full article URLs, not to sections within articles. All links in the cross-linking plan correctly use full Substack post URLs.
+
+**Unpublished articles:** For Articles 4-7 and the governance companion (all unpublished), use `[ARTICLE_URL]` as the placeholder. This is the established convention in Article 3's YAML front-matter social teasers.
+
+**Link density:** The cross-linking plan targets 5-7 outbound links from Article 3. Article 3 at 221 lines has roughly 8-9 major sections. One link per major section is the natural maximum before it feels cluttered. The plan's guidance to prioritize A1-A4 (published, with real URLs) and include A6-A9 only where they add genuine value is correct.
+
+### Reverse Link Conventions
+
+**Cross-topic stub files** (Vibe Designing, Eikasia, Deleting Code, Metaphors): These files contain only `[GAP]` placeholder sections. They have no existing cross-reference sections. Add a `## Cross-References` section at the end, before the closing CTA line (the *"If you found this article..."* italicized paragraph). The `## Cross-References` heading must come after `## References` but before the CTA.
+
+Confirmed structure of each stub (e.g., `article-2-vibe-designing.md`):
+```
+# Title
+## Abstract [GAP]
+## Introduction [GAP]
+## Conclusion [GAP]
+---
+*If you found this article...*   ← CTA line
+---
+## References [GAP]
+```
+
+Insert `## Cross-References` between `## References` and the end of the file, or after the References `[GAP]` line. The CTA line is the last content before the file ends — place `## Cross-References` before it.
+
+**Intra-series drafts** (Articles 5, 6, 7, governance): These have actual content. Insert reverse links inline at the natural anchor points identified above, or as footnotes. Keep to one sentence per reverse link. Match the surrounding text's tone.
+
+### Link Text Quality Criteria
+
+The cross-linking plan proposes specific link text for each connection. The executor should evaluate each proposed text against:
+
+1. **Accuracy to target article**: Does the description match what the target article actually argues? For cross-topic stubs, trust the plan's rationale (drawn from published Substack content). For intra-series drafts, verify against the actual draft content.
+
+2. **Non-interruption**: The link should feel like a natural aside, not a sales pitch for another article. Parenthetical asides ("(explored in depth in [X]([URL]))") or footnotes work better than full sentences dedicated to the link.
+
+3. **Exploratory tone**: Article 3's tone is investigative. Cross-link text should use the same register: "For a closer look at..." or "The philosophical vocabulary for this..." rather than "This is fully explained in..." or "You should read..."
+
+4. **Specificity**: Vague cross-links ("for more on this, see Article X") add noise without value. Specific cross-links name what the reader will find ("the 'velocity trap' framing in [Vibe Designing]") and why it connects to the current point.
+
+### Confirmed Substack URLs for Published Articles
+
+From YAML front-matter (HIGH confidence — verified in repo files):
+
+| Article | Substack URL |
+|---------|-------------|
+| Vibe Designing (A1) | `https://antoninorau.substack.com/p/from-vibe-coding-to-vibe-designing` |
+| Eikasia to Noesis (A2) | `https://antoninorau.substack.com/p/from-eikasia-to-noesis-what-plato` |
+| Deleting Code (A3) | `https://antoninorau.substack.com/p/ai-changed-how-i-delete-codeand-that` |
+| AI Metaphors (A4) | `https://antoninorau.substack.com/p/ai-models-and-meta-metaphors` |
+| Articles 4-7, Governance | `[ARTICLE_URL]` placeholder |
+
+### Cross-Link Implementation Checklist
+
+For the executor of Plan 03:
+
+**Outbound links from Article 3 (A1-A4, A6-A9):**
+- [ ] A1 (Vibe Designing): inline parenthetical near "vibe coding debate" mention (~line 169)
+- [ ] A2 (Eikasia): footnote in "The Bill Always Comes Due" closing (~lines 183-191)
+- [ ] A3 (Deleting Code): inline parenthetical in "What Changed" section (~lines 87-99)
+- [ ] A4 (Metaphors): footnote near "linguistic plausibility implied operational understanding" (~line 109)
+- [ ] A6 (Article 4 forward-ref): brief mention near Sonar survey data (~line 167) about rubber-stamp culture
+- [ ] A7 (Article 5 forward-ref): brief mention in conclusion (~lines 185-191) about trade-off triangle
+- [ ] A8 (Article 6 forward-ref): brief mention near code churn data (~line 179-181) about measurement proxies
+- [ ] A9 (Governance companion): brief mention near formula mapping tables (~lines 113-147)
+- [ ] Ship of Theseus: EXCLUDED — do not add
+
+**Reverse links in cross-topic stubs (B1-B4):**
+- [ ] B1 (Vibe Designing stub): `## Cross-References` section with Article 3 link and 10:1 ratio connection
+- [ ] B2 (Eikasia stub): `## Cross-References` section with Article 3 link and 77% failure rate connection
+- [ ] B3 (Deleting Code stub): `## Cross-References` section with Article 3 link and "surface deceptions at scale" connection
+- [ ] B4 (Metaphors stub): `## Cross-References` section with Article 3 link and database deletion projection-mechanism connection
+- [ ] Ship of Theseus: EXCLUDED — do not add
+
+**Reverse links in intra-series drafts (B7-B9, B-governance):**
+- [ ] B6 (Article 4): ALREADY EXISTS at line 140 — no changes needed
+- [ ] B7 (Article 5): one sentence in introduction or "Universal Triangle" section connecting SaaStr/AlterSquare cases to Speed corner positioning
+- [ ] B8 (Article 6): one sentence in bus factor or code churn discussion connecting 10:1 ratio / bus factor = 0 to proxy metrics
+- [ ] B9 (Article 7): one sentence in Content Creation or Universal Meta-Patterns section connecting "code that looks professional" to software-domain epistemic debt
+- [ ] B-governance: one sentence in Introduction or "Measuring What Was Invisible" section connecting Article 3 formula sidenotes to governance operationalization
 
 ---
 
@@ -432,31 +556,37 @@ New references to add:
 
 ### Primary (HIGH confidence)
 
-- `/home/arau6/projects/ai-articles/topics/epistemic_debt/artifacts/articles/article-3-when-debt-defaults.md` — existing draft, all four TODOs, current structure
+- `/home/arau6/projects/ai-articles/topics/epistemic_debt/artifacts/articles/article-3-when-debt-defaults.md` — Article 3 at 221 lines, current state confirmed
+- `/home/arau6/projects/ai-articles/topics/epistemic_debt/artifacts/articles/article-4-the-solutioning-trap.md` — confirmed B6 backlink at line 140
+- `/home/arau6/projects/ai-articles/topics/epistemic_debt/artifacts/articles/article-5-the-trade-off-triangle.md` — draft content, B7 anchor points identified
+- `/home/arau6/projects/ai-articles/topics/epistemic_debt/artifacts/articles/article-6-measuring-the-unmeasurable.md` — draft content, B8 anchor points identified
+- `/home/arau6/projects/ai-articles/topics/epistemic_debt/artifacts/articles/article-7-beyond-software.md` — draft content, B9 anchor points identified
+- `/home/arau6/projects/ai-articles/topics/epistemic_debt/artifacts/articles/article-sdd-epistemic-governance.md` — mostly GAP blocks, B-governance placement identified
+- `/home/arau6/projects/ai-articles/.cursor/plans/article_3_cross-linking_8f17d07e.plan.md` — full cross-linking specification, confirmed complete
+- YAML front-matter of all four cross-topic stub files — Substack URLs confirmed
+
+### Secondary (MEDIUM confidence)
+
 - `/home/arau6/projects/ai-articles/topics/epistemic_debt/artifacts/articles/article-2-a-new-lens.md` — Ed formula definitions, visual language, established series patterns
 - `/home/arau6/projects/ai-articles/topics/epistemic_debt/artifacts/articles/article-2-latex-formulas.md` — all formula variables in LaTeX and Unicode
 - `/home/arau6/projects/ai-articles/.planning/phases/13-article-3-when-epistemic-debt-defaults/13-CONTEXT.md` — all locked decisions
 
-### Secondary (MEDIUM confidence)
-
-- `templates/social-teasers.md` + `.ai/rules/publication.md` — platform teaser conventions (these are project-defined rules, not external sources)
-- Prather et al. (2026) — cited in draft references with URL; Fragile Experts 77% figure confirmed in both Article 2 body and Article 3 TODO block
-
 ### Tertiary (LOW confidence — needs verification before publication)
 
-- Sonar verification gap figures (96%/48%/42%) — present in CONTEXT.md with sufficient specificity to be real, but no URL or report title found in project files
-- Amazon Kiro facts (13h, cascading, 80%) — present in CONTEXT.md decisions, no primary source URL found in project files
+- Article 3 Substack URL — not yet published; needed for reverse links that reference it
+- Article 2 Substack URL — YAML shows draft status; needs human verification before Article 3 can go live
 
 ---
 
 ## Metadata
 
 **Confidence breakdown:**
-- Article structure and edits: HIGH — draft exists, all decisions locked, pattern is clear from Articles 1-2
-- Formula sidenotes: HIGH — formula vocabulary fully defined, blockquote rendering approach clear
-- Social teasers: HIGH — template and conventions well-documented
-- Sonar citation: LOW — figures specified but source URL not in project files
-- Amazon Kiro facts: LOW — facts specified but primary source not in project files
+- Article body (Plans 00-02): HIGH — all edits confirmed complete in article review
+- Cross-link specification: HIGH — fully documented in `.cursor/plans/article_3_cross-linking_8f17d07e.plan.md`
+- Target article content (intra-series): HIGH — read directly from draft files
+- Target article content (cross-topic stubs): MEDIUM — stubs contain only GAP placeholders; rationale draws on plan author's knowledge of published Substack content
+- Substack rendering behavior: MEDIUM — based on established Substack markdown conventions; no project-specific verification
+- Article 3 Substack URL: LOW — article not yet published at time of this research
 
-**Research date:** 2026-03-14
-**Valid until:** 2026-04-14 (stable editorial domain; Sonar/Kiro citations may need fresh verification if more than 30 days pass)
+**Research date:** 2026-03-14 (original); 2026-03-15 (cross-linking addendum)
+**Valid until:** 2026-04-14 (stable editorial domain; cross-linking addendum valid until Article 3 is published)

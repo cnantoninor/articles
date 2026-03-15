@@ -9,8 +9,8 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 1278
-current_length: 3079
-estimated_reading_time: 13 min
+current_length: 2825
+estimated_reading_time: 12 min
 created: 2026-02-15
 last_updated: 2026-03-15
 published_date: null

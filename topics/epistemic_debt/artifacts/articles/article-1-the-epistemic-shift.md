@@ -1,6 +1,6 @@
 ---
 title: The Epistemic Shift
-subtitle: When code generation outpaces code comprehension
+subtitle: The feeling of knowing without the labor of knowing
 status: published
 type: article
 audience:
@@ -8,7 +8,7 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 976
-current_length: 1135
+current_length: 1111
 estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-02-15

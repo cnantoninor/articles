@@ -9,8 +9,8 @@ audience:
 - engineering leaders
 - developers using AI-assisted tools
 target_length: 0
-current_length: 109
-estimated_reading_time: 1 min
+current_length: 2850
+estimated_reading_time: 12 min
 created: 2026-02-22
 last_updated: 2026-02-22
 published_date: 2025-08-17

@@ -9,7 +9,7 @@ audience:
 - senior practitioners
 - content and research professionals
 target_length: 2085
-current_length: 2127
+current_length: 2031
 estimated_reading_time: 9 min
 created: 2026-02-15
 last_updated: 2026-02-15

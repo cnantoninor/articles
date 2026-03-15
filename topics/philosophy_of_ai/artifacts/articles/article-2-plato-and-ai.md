@@ -1,14 +1,14 @@
 ---
-title: From Eikasia to Noesis
-subtitle: What Plato Can Teach AI
+title: 'From Eikasia to Noesis: What Plato Can Teach AI'
+subtitle: The Stochastic Parrot on Plato's Ladder—Where Do Language Models Stall?
 status: published
 type: article
 audience:
 - technical professionals
 - readers interested in epistemology and AI
 target_length: 0
-current_length: 94
-estimated_reading_time: 1 min
+current_length: 2150
+estimated_reading_time: 9 min
 created: 2026-02-22
 last_updated: 2026-02-22
 published_date: 2025-07-29

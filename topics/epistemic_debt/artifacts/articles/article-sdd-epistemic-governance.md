@@ -10,8 +10,8 @@ audience:
 - senior practitioners
 - technical professionals
 target_length: 3500
-current_length: 1573
-estimated_reading_time: 7 min
+current_length: 698
+estimated_reading_time: 3 min
 created: 2026-03-14
 last_updated: 2026-03-14
 published_date: null

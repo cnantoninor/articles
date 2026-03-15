@@ -7,8 +7,8 @@ audience:
 - technical professionals
 - readers interested in AI and philosophy
 target_length: 0
-current_length: 98
-estimated_reading_time: 1 min
+current_length: 3850
+estimated_reading_time: 16 min
 created: 2026-02-22
 last_updated: 2026-02-22
 published_date: 2025-07-19

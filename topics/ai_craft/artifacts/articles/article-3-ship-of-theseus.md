@@ -1,6 +1,6 @@
 ---
 title: The Ship of Theseus & The Soul of Software
-subtitle: Identity, Memory, and Context in Domain-Driven Design
+subtitle: Identity, Lifecycle, Memory, and Context in Software Engineering
 status: published
 type: article
 audience:
@@ -8,12 +8,12 @@ audience:
 - software architects
 - developers practicing DDD
 target_length: 0
-current_length: 2700
-estimated_reading_time: 11 min
+current_length: 3200
+estimated_reading_time: 13 min
 created: 2026-02-22
 last_updated: 2026-02-22
 published_date: 2025-08-24
-publication_url: https://antoninorau.substack.com/
+publication_url: https://antoninorau.substack.com/p/the-ship-of-theseus-and-the-soul
 social_teasers:
   linkedin: 'Every time you update a user''s email address in your database, you''re
     participating in a 2,500-year-old philosophical debate.

@@ -9,8 +9,8 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 1278
-current_length: 2234
-estimated_reading_time: 9 min
+current_length: 2709
+estimated_reading_time: 11 min
 created: 2026-02-15
 last_updated: 2026-03-14
 published_date: null
@@ -62,6 +62,7 @@ social_teasers:
     3 of the Epistemic Debt series looks at two case studies, the 77% failure rate
     from a controlled study, and the failure taxonomy that connects them. [ARTICLE_URL]
 ---
+
 
 
 # When Epistemic Debt Defaults

@@ -141,13 +141,15 @@ This is a system-boundary gap with shared responsibility. On the builder side, h
 
 The core lesson is not "the model understood and chose badly." The lesson is that underspecified linguistic constraints were treated as operational controls. Curation without a concrete mental model of permissions, environments, and failure modes becomes a wager that infrastructure will absorb mistakes.
 
+*Applying the formula from Part 2 to real incidents is necessarily interpretive — we cannot measure c_k, τ_k, or layer boundaries precisely from public reports. The mappings below use the framework as a diagnostic lens, not a measurement instrument.*
+
 > **Formula mapping: SaaStr**
 >
 > | Term | Value | Explanation |
 > |------|-------|-------------|
 > | Layer (k) | L4 (intent/requirements) | The founder's requirement was "do not touch production." The assistant could execute L1 operations, but those operations were not constrained by enforceable L4 policy. |
 > | t₀ | ~Day 6-7 | The moment the assistant executed production operations without human-verified constraints. No gap-detection mechanism triggered before this point. |
-> | c₄ | Relatively low (provisional) | A gap at L4 can cascade through lower layers. In this case, reported recovery appears to have been constrained by early timing (few days of accumulated complexity), a loud failure mode (deletions were visible), and available rollback paths. This estimate is provisional because second-order costs (trust, support, opportunity cost) are harder to measure from public reports alone. |
+> | c₄ | Structural: 30–70× (Part 2). Effective: capped well below that | Part 2 assigns c₄ ≈ 30–70× for requirements-level gaps, the structural expectation for an L4 failure. The effective cost fell well below this because t₀ was early (days of accumulated debt, not months), the failure was loud (deletions were immediately visible), and rollback paths existed. This is the t₀ lever from Part 2's break-even analysis working as intended: early detection doesn't change where the debt lives, it caps what recovery costs. The same L4 gap in a mature system with a late t₀ would have incurred the full structural multiplier. |
 > | Counterfactual | — | Had t₀ arrived later in a more mature system that embedded the same assumption, recovery cost would likely have been higher. |
 
 The platform's CEO acknowledged the failure within 48 hours, promised a refund and postmortem, and announced technical safeguards within days, including stronger dev/prod separation, rollback improvements, and a planning-oriented collaboration mode. The incident was catalogued in the [AI Incident Database as Incident 1152](https://incidentdatabase.ai/cite/1152/) and covered by major outlets. Within five months, the same founder who had publicly rejected the platform had returned and reportedly built multiple production applications.
@@ -174,7 +176,7 @@ The 200-to-2,000 ratio is striking, but the real story is the mechanism. The tea
 > |------|-------|-------------|
 > | Layer (k) | L1-L2 — implementation through design | Error handling gaps, missing validation, security antipatterns — the debt spanned from code-level (L1) through design decisions (L2). |
 > | t₀ | Post-MVP, in production | The moment bugs emerged and the team could not explain the generated code's behavior. By then, debt had compounded across the entire codebase. |
-> | c_k | ≈ 10× | The 200h-to-2000h reported ratio *is* the cascade multiplier made visible. Closing gaps at L1-L2 required re-understanding every generated module. |
+> | c_k | Effective ≈ 10×, above what L1-L2 structural values predict | Part 2 assigns c₁ ≈ 1× and c₂ ≈ 3–6×. The observed 10:1 ratio (a company self-report; figures not independently verified) significantly exceeds that range. The explanation is the interaction of late t₀ and volume: by the time the gap was recognized, every generated module across the codebase needed re-understanding before any of it could be safely fixed. The debt nominally lived at L1-L2, but the recovery behaved like an L3 failure because of how much had accumulated before t₀ arrived. Late detection doesn't change where the debt lives, it changes how much of the codebase it touches when it defaults. |
 > | Cs(t) vs Gc(t) | Diverging across sprint | System complexity grew with each generated module during the 200-hour sprint. The 10:1 reported cost ratio is the compound interest on that accumulated gap. |
 > | Counterfactual | — | Had t₀ arrived during the sprint (code review, integration testing), the gap would have been narrower and c_k far smaller than 10×. |
 
@@ -182,23 +184,11 @@ The 200-to-2,000 ratio is striking, but the real story is the mechanism. The tea
 
 The same pattern also appears at the industry level. The database deletion became a widely cited cautionary tale in the "vibe coding" debate, covered by Fortune, Fast Company, and Gizmodo, and catalogued in the AI Incident Database. The industry acknowledged the risk and kept going. The platform involved raised $250M two months after the incident; its revenue had already grown tenfold in the preceding year, driven by AI agent adoption, and continued to accelerate afterward. The pattern mirrors the individual developer's say/do gap: the industry knows these risks exist and continues to accelerate adoption.
 
-The scale of this dynamic extends to enterprise infrastructure. In December 2025, engineers at AWS allowed Amazon's Kiro AI coding assistant to carry out changes in AWS Cost Explorer; the assistant autonomously decided to delete and recreate the production environment, causing a 13-hour outage (Financial Times, February 2026). Amazon characterized the incident as "misconfigured access controls," but Kiro had been granted operator-level permissions with no mandatory peer review for AI-initiated changes. Employees told the FT the company had set a target for 80% of developers to use AI coding tools at least once a week. This is the system boundary gap operating at enterprise scale, the same pattern as the database deletion, but inside one of the world's largest cloud providers.[^3]
-
-## The Pattern
-
-Two different domains. Two different failure modes. The same underlying mechanism: a team shipped code they couldn't explain, and the gap between what the code did and what the team understood eventually became the point of failure.
-
-The database deletion: the gap was in *system boundaries*, assuming that the assistant could process the production/development boundary while acting with production credentials. This is the **system boundary gap**.
-
-The 10:1 cost ratio: the gap was in *defensive coding*, understanding what error handling and validation the generated code was missing. This is the **defensive coding gap**.
-
-A third pattern appears at the design and architecture level, in domains where edge cases carry the highest stakes. Consider healthcare data systems: an AI-generated validation routine might handle standard HL7 messages correctly while silently mishandling encoding edge cases, malformed patient identifiers dropped instead of flagged, data loss going undetected for weeks. This is the **edge case reasoning gap**: the team can verify the happy path, but cannot reason about the unhappy path. In healthcare, the unhappy path is where people get hurt.
-
-These are not the only ways epistemic debt surfaces; they are generalizations drawn from specific cases. In my own experience, I have encountered another pattern: AI-generated tests that validate AI-generated code, creating a closed loop where everything passes but nothing is verified against actual intent. That circular validation pattern will be explored in a later article.
+The scale of this dynamic extends to enterprise infrastructure. In December 2025, engineers at AWS allowed Amazon's Kiro AI coding assistant to carry out changes in AWS Cost Explorer; the assistant autonomously decided to delete and recreate the production environment, causing a 13-hour outage (Financial Times, February 2026). Amazon characterized the incident as "misconfigured access controls," but Kiro had been granted operator-level permissions with no mandatory peer review for AI-initiated changes. Employees told the FT the company had set a target for 80% of developers to use AI coding tools at least once a week. The same failure pattern as the database deletion, operating at enterprise scale, inside one of the world's largest cloud providers.[^3]
 
 ## The Bill Always Comes Due
 
-Sometimes it comes immediately: 200 hours of savings becomes 2,000 hours of remediation. Sometimes it hides: a silent data loss goes undetected for weeks. Sometimes it's spectacular: a production database deleted and backfilled with fiction. But it always comes.
+Sometimes it comes immediately: 200 hours of savings becomes 2,000 hours of remediation. Sometimes it's spectacular: a production database deleted and backfilled with fiction, or a production cloud environment deleted mid-session. But it always comes.
 
 The uncomfortable truth is that these failures aren't caused by bad tools. They're caused by a specific relationship between humans and tools, one where the speed of generation so far outpaces the speed of comprehension that the gap becomes the primary source of risk.
 

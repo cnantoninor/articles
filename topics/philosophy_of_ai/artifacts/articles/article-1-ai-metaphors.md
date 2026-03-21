@@ -55,3 +55,7 @@ social_teasers:
 ## References
 
 [GAP: Add references when article is imported.]
+
+## Cross-References
+
+- **Related:** [When Epistemic Debt Defaults]([ARTICLE_URL]) — a developer assumed "linguistic plausibility implied operational understanding" and an AI deleted the production database. A case study of the projection mechanism in action. *(Epistemic Debt series, Part 3)*

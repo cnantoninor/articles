@@ -57,3 +57,7 @@ social_teasers:
 ## References
 
 [GAP: Add references when article is imported.]
+
+## Cross-References
+
+- **Related:** [When Epistemic Debt Defaults]([ARTICLE_URL]) — a team saved 200 hours with AI coding assistance, then spent 2,000 hours on remediation. The 10:1 cost ratio is empirical evidence for the velocity trap. *(Epistemic Debt series, Part 3)*

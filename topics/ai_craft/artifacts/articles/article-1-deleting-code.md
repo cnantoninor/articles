@@ -57,3 +57,7 @@ social_teasers:
 ## References
 
 [GAP: Add references when article is imported.]
+
+## Cross-References
+
+- **Related:** [When Epistemic Debt Defaults]([ARTICLE_URL]) — case studies documenting "surface deceptions" at scale: code that passed review, passed tests, and hid critical gaps until failure made them visible. *(Epistemic Debt series, Part 3)*

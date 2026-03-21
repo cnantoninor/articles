@@ -55,3 +55,7 @@ social_teasers:
 ## References
 
 [GAP: Add references when article is imported.]
+
+## Cross-References
+
+- **Related:** [When Epistemic Debt Defaults]([ARTICLE_URL]) — in a controlled study, 77% of developers couldn't maintain code they'd generated with unrestricted AI assistance. A measurement of what happens when teams remain at pistis. *(Epistemic Debt series, Part 3)*

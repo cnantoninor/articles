@@ -5,7 +5,7 @@ status: draft
 type: article
 audience: []
 target_length: 0
-current_length: 96
+current_length: 139
 estimated_reading_time: 1 min
 created: YYYY-MM-DD
 last_updated: YYYY-MM-DD
@@ -17,6 +17,7 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
 
 
 # [Article Title]

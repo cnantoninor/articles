@@ -8,7 +8,7 @@ audience:
 - software architects
 - developers practicing DDD
 target_length: 0
-current_length: 2700
+current_length: 2702
 estimated_reading_time: 11 min
 created: 2026-02-22
 last_updated: 2026-02-22
@@ -43,6 +43,7 @@ social_teasers:
     Domain-Driven Design offers a sophisticated framework for thinking about identity,
     memory, and change in our digital systems.'
 ---
+
 
 
 

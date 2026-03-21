@@ -8,7 +8,7 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 976
-current_length: 1135
+current_length: 1137
 estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-02-15
@@ -49,6 +49,7 @@ social_teasers:
     the seventy-year rupture from deterministic authorship to a probabilistic layer,
     and why it matters. {{publication_url}}'
 ---
+
 
 
 

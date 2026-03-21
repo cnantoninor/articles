@@ -10,7 +10,7 @@ audience:
 - senior practitioners
 - technical professionals
 target_length: 3500
-current_length: 1573
+current_length: 1575
 estimated_reading_time: 7 min
 created: 2026-03-14
 last_updated: 2026-03-14
@@ -31,6 +31,7 @@ raw_material:
 - topics/epistemic_debt/sdd-epistemic-debt.md
 - .planning/gsd-class-diagram.md
 ---
+
 
 
 

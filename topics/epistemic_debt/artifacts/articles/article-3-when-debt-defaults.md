@@ -101,9 +101,9 @@ Post-LLM, something different is happening. Entire modules appear, with their re
 
 LLMs didn't just make code generation faster. They removed the **friction** *and* raised the **abstraction level** simultaneously. The evidence and case studies that follow show what happens after that friction disappears.
 
-## Epistemic Debt Defaults Aren't Isolated Incidents
+## A Consistent Pattern, Not a Settled Question
 
-It would be reassuring to treat AI-assisted incidents as outliers, cautionary tales from teams that were careless or inexperienced. The industry data below points to otherwise.
+It would be reassuring to treat AI-assisted incidents as outliers, cautionary tales from teams that were careless or inexperienced. The industry data below is consistent with a different reading — though not yet conclusive enough to close the question.
 
 It is also tempting to dismiss these as pre-LLM issues in a new wrapper. While human developers have always introduced bugs and security gaps, it is the scale, velocity, and two cognitive biases that make the post-LLM dynamic qualitatively different:\
 
@@ -114,9 +114,9 @@ Moreover, pre-llm automaation was mostly deterministic, post-llm automation is m
 
 Together, these biases contribute to the say/do gap: developers might know the risk exists, but they keep shipping anyway.
 
-A recent and direct evidence comes from experimental research. Sankaranarayanan (2026) ran a between-subjects experiment with 78 participants comparing unrestricted AI use against a scaffolded group with metacognitive friction built into the workflow.
+The most direct experimental signal comes from a preprint. Sankaranarayanan (2026, preprint) ran a between-subjects experiment with 78 participants — roughly 26 per condition — comparing unrestricted AI use against a scaffolded group with metacognitive friction built into the workflow. The study has not yet undergone peer review, and at this sample size, the percentages are not stable — a replication could shift them substantially. The design is nonetheless notable because it isolates a specific mechanism rather than measuring outcomes correlatively.
 
-Both AI groups significantly outperformed manual coding on functional utility and velocity, but unrestricted AI users suffered a **77% failure rate** when asked to maintain or debug the same code without AI assistance. A scaffolded group achieved comparable productivity with only a 39% failure rate. This matters because it's not correlational. It directly measures what happens when the epistemic scaffold, the AI, is removed. The code was there. The understanding wasn't.
+In this sample, unrestricted AI users had a **77% failure rate** when asked to maintain or debug the same code without AI assistance. The scaffolded group achieved comparable productivity with only a 39% failure rate. The failure mode is direct: when the epistemic scaffold — the AI — was removed, the code remained. The understanding didn't. That this shows up in a controlled design, not just field reports, is why it belongs in this list — with those caveats in place.
 
 The pattern shows up in developer behavior data as well. A 2026 Sonar survey of over 1,100 developers found that **96% do not fully trust that AI-generated code is functionally correct**, yet only 48% always verify AI-generated code before committing, and AI now accounts for 42% of all committed code (Sonar, January 2026). The gap between what developers say they believe (AI code is unreliable) and what they do (commit it without always verifying) is itself a form of epistemic debt: a gap between stated confidence and actual behavior.
 
@@ -189,7 +189,7 @@ The scale of this dynamic extends to enterprise infrastructure. In December 2025
 
 ## The Bill Always Comes Due
 
-Sometimes it comes immediately: 200 hours of savings becomes 2,000 hours of remediation. Sometimes it's spectacular: a production database deleted and backfilled with fiction, or a production cloud environment deleted mid-session. But it always comes.
+Sometimes it comes immediately: 200 hours of savings becomes 2,000 hours of remediation. Sometimes it's spectacular: a production database deleted and backfilled with fiction, or a production cloud environment deleted mid-session. In the cases examined here, it came. And the mechanisms that produce epistemic debt don't have a natural off switch.
 
 The uncomfortable truth is that these failures aren't caused by bad tools. They're caused by a specific relationship between humans and tools, one where the speed of generation so far outpaces the speed of comprehension that the gap becomes the primary source of risk.
 
@@ -209,7 +209,7 @@ The question is: how do teams fall into this pattern? What are the mechanisms th
 
 - The Register (July 2025). "Vibe coding service Replit deleted user's production database, faked data, told fibs galore." <https://www.theregister.com/2025/07/21/replit_saastr_vibe_coding_incident/>
 - AlterSquare (December 2025). "GitHub Copilot Saved Us 200 Hours: Then Cost Us 2000 Hours in Bug Fixes." (Company self-report; figures not independently verified.) <https://altersquare.medium.com/github-copilot-saved-us-200-hours-then-cost-us-2000-hours-in-bug-fixes-a34a8af46886>
-- Sankaranarayanan, S. (2026). "Mitigating 'Epistemic Debt' in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts." arXiv:2602.20206. <https://arxiv.org/abs/2602.20206>
+- Sankaranarayanan, S. (2026). "Mitigating 'Epistemic Debt' in Generative AI-Scaffolded Novice Programming using Metacognitive Scripts." arXiv:2602.20206. (Preprint; not yet peer-reviewed.) <https://arxiv.org/abs/2602.20206>
 - Sonar (January 2026). "Sonar Data Reveals Critical Verification Gap in AI Coding." <https://www.sonarsource.com/company/press-releases/sonar-data-reveals-critical-verification-gap-in-ai-coding/>
 - Financial Times (February 2026). "Amazon AI bot caused 13-hour AWS outage." (Primary reporting; four sources cited.)
 - Particula Tech (March 2026). "When AI Agents Delete Production: The Kiro Incident." <https://particula.tech/blog/ai-agent-production-safety-kiro-incident> (Secondary analysis; adds unverified specifics beyond FT reporting.)

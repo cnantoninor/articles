@@ -15,7 +15,7 @@ Requirements for articles 3-7 of the epistemic debt series. Each article maps to
 - [x] **ART3-04**: Industry data block updated with new sources (Fragile Experts 77% failure rate, Sonar verification gap)
 - [x] **ART3-05**: TODO items resolved (Stochastic Spaghetti naming, pre-LLM vs post-LLM context, CAST/Veracode data)
 - [x] **ART3-06**: Social teasers written (LinkedIn, Twitter/X, Instagram, Substack Notes)
-- [ ] **ART3-07**: Article published on Substack with series cross-links updated
+- [x] **ART3-07**: Article published on Substack with series cross-links updated
 
 ### Article 4: The Solutioning Trap
 
@@ -86,7 +86,7 @@ Which phases cover which requirements. Confirmed during roadmap creation (2026-0
 | ART3-04 | Phase 13 | Complete |
 | ART3-05 | Phase 13 | Complete |
 | ART3-06 | Phase 13 | Complete |
-| ART3-07 | Phase 13 | Pending |
+| ART3-07 | Phase 13 | Complete |
 | ART4-01 | Phase 14 | Pending |
 | ART4-02 | Phase 14 | Pending |
 | ART4-03 | Phase 14 | Pending |

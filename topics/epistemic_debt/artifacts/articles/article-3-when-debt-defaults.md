@@ -105,18 +105,11 @@ LLMs didn't just make code generation faster. They removed the **friction** *and
 
 ## A Consistent Pattern, Not a Settled Question
 
-It would be reassuring to treat AI-assisted incidents as outliers, cautionary tales from teams that were careless or inexperienced. The industry data below is consistent with a different reading — though not yet conclusive enough to close the question.
+It would be reassuring to treat AI-assisted incidents as outliers, cautionary tales from teams that were careless or inexperienced. The industry data below is consistent with a different reading, though not yet conclusive enough to close the question.
 
-It is also tempting to dismiss these as pre-LLM issues in a new wrapper. While human developers have always introduced bugs and security gaps, it is the scale, velocity, and two cognitive biases that make the post-LLM dynamic qualitatively different:\
+It is also tempting to dismiss these as pre-LLM issues in a new wrapper. While human developers have always introduced bugs and security gaps, the post-LLM shift is different in *scale* and *velocity*: more code, at higher abstraction, arriving with less of the integration friction that once bounded how fast misunderstanding could spread (see *What Changed*). The evidence below does not close the question industry-wide, but it lines up with that mechanism.
 
-1) **Confirmation bias**, the tendency to interpret new evidence as confirming existing beliefs, leads developers to read AI-generated code as correct because it looks professional and passes visible tests.
-
-2) **Automation bias**, the over-reliance on automated systems even when they produce errors, pushes teams to trust AI outputs without the scrutiny they would apply to human-written code.
-Moreover, pre-llm automaation was mostly deterministic, post-llm automation is mostly probabilistic.
-
-Together, these biases contribute to the say/do gap: developers might know the risk exists, but they keep shipping anyway.
-
-The most direct experimental signal comes from a preprint. Sankaranarayanan (2026, preprint) ran a between-subjects experiment with 78 participants — roughly 26 per condition — comparing unrestricted AI use against a scaffolded group with metacognitive friction built into the workflow. The study has not yet undergone peer review, and at this sample size, the percentages are not stable — a replication could shift them substantially. The design is nonetheless notable because it isolates a specific mechanism rather than measuring outcomes correlatively.
+A direct experimental signal comes from a preprint. Sankaranarayanan (2026, preprint) ran a between-subjects experiment with 78 participants comparing unrestricted AI use against a scaffolded group with metacognitive friction built into the workflow. The study has not yet undergone peer review, and at this sample size, the percentages are not stable — a replication could shift them substantially. The design is nonetheless notable because it isolates a specific mechanism rather than measuring outcomes correlatively.
 
 In this sample, unrestricted AI users had a **77% failure rate** when asked to maintain or debug the same code without AI assistance. The scaffolded group achieved comparable productivity with only a 39% failure rate. The failure mode is direct: when the epistemic scaffold — the AI — was removed, the code remained. The understanding didn't. That this shows up in a controlled design, not just field reports, is why it belongs in this list — with those caveats in place.
 
@@ -182,8 +175,6 @@ The 200-to-2,000 ratio is striking, but the real story is the mechanism. The tea
 > | c_k | Effective ≈ 10×, above what L1-L2 structural values predict | Part 2 assigns c₁ ≈ 1× and c₂ ≈ 3–6×. The observed 10:1 ratio (a company self-report; figures not independently verified) significantly exceeds that range. The explanation is the interaction of late t₀ and volume: by the time the gap was recognized, every generated module across the codebase needed re-understanding before any of it could be safely fixed. The debt nominally lived at L1-L2, but the recovery behaved like an L3 failure because of how much had accumulated before t₀ arrived. Late detection doesn't change where the debt lives, it changes how much of the codebase it touches when it defaults. |
 > | Cs(t) vs Gc(t) | Diverging across sprint | System complexity grew with each generated module during the 200-hour sprint. The 10:1 reported cost ratio is the compound interest on that accumulated gap. |
 > | Counterfactual | — | Had t₀ arrived during the sprint (code review, integration testing), the gap would have been narrower and c_k far smaller than 10×. |
-
-A companion article explores how these formula mappings can be operationalized into a governance pipeline for teams using AI-assisted development ([ARTICLE_URL]).
 
 ## Industry-Scale Echoes
 

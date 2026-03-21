@@ -37,7 +37,7 @@ social_teasers:
 
 ---
 
-The patterns described in the previous articles — epistemic debt accumulation, the solutioning trap, boundary failures — share a common structure. They all involve trade-offs between three competing qualities. Understanding these trade-offs requires a framework.
+The patterns described in the previous articles — epistemic debt accumulation, the solutioning trap, boundary failures — share a common structure. The case studies in [When Epistemic Debt Defaults]([ARTICLE_URL]) — a production database deleted by an AI agent, a team's 200-hour savings becoming 2,000 hours of remediation — are what these trade-offs look like when the Speed corner is chosen by default rather than by design. They all involve trade-offs between three competing qualities. Understanding these trade-offs requires a framework.
 
 ## The Universal Triangle
 

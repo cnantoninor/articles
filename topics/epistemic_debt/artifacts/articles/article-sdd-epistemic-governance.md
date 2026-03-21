@@ -117,6 +117,8 @@ raw_material:
 
 ## Measuring What Was Invisible: GSD Artifacts as Epistemic Debt Sensors
 
+The formula mappings applied to real incidents in [When Epistemic Debt Defaults]([ARTICLE_URL]) — identifying which layer k, what cascade cost c_k, and when t₀ arrived — are what this governance model makes routinely observable.
+
 [GAP: This is the section that bridges Article 6's "we can't measure well" with "here's what's concretely possible today." GSD's artifact trail provides observable proxies for cognitive grasp Gc(t).]
 
 ### Proxy Metrics

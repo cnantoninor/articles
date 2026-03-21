@@ -76,7 +76,7 @@ Despite the paradox, several proxy indicators provide useful signal — not indi
 
 **Bus Factor Analysis.** The bus factor — how many team members must leave before critical knowledge is lost — has always been relevant, but LLM-assisted development changes its dynamics. Pre-LLM, bus factor tracked slowly because code was authored incrementally and knowledge distributed through pairing and review. Post-LLM, entire subsystems can be created by a single developer in a single session, creating knowledge silos faster than traditional development.
 
-Practical approach: for each major subsystem, ask: "Who can explain how this works without reading the code?" If the answer is "the person who prompted the LLM to generate it," your bus factor for that subsystem is 1. If even they can't explain it, your bus factor is 0.
+Practical approach: for each major subsystem, ask: "Who can explain how this works without reading the code?" If the answer is "the person who prompted the LLM to generate it," your bus factor for that subsystem is 1. If even they can't explain it, your bus factor is 0. The 10:1 cost ratio documented in [When Epistemic Debt Defaults]([ARTICLE_URL]) is a bus-factor-zero case: the team that generated the code was still present but could not explain its behavior.
 
 **Onboarding Velocity.** How long does it take a new team member to make their first meaningful contribution to a specific part of the codebase? If onboarding time increases despite stable codebase size, epistemic debt may be accumulating — the code is growing harder to understand per unit of functionality.
 

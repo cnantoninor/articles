@@ -16,6 +16,10 @@ alwaysApply: false
 - **Cadence**: Weekly
 - **Subscribers**: 26-50 (goal: 100)
 
+## Article CTA Footer
+
+Every article ends with a standard CTA paragraph before References. The subscribe link must always read `[subscribe for **free**](https://antoninorau.substack.com/subscribe)` — never just `[subscribe](...)`.
+
 ## Social Media Channels
 
 - **LinkedIn**: https://www.linkedin.com/in/antoninorau/

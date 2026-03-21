@@ -57,6 +57,10 @@ social_teasers:
 
 ---
 
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](COMMENT_URL), [share it](SHARE_URL), and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+
+---
+
 ## References
 
 - [Author]. "[Title]." *Publication*, Year. [URL if applicable]

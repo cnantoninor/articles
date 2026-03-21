@@ -174,6 +174,6 @@ The question isn't whether to use LLMs — in code, content, or analysis. It's w
 
 ---
 
-*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation/comments), [share it](https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation), and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation/comments), [share it](https://antoninorau.substack.com/p/epistemic-debt-when-ai-generation), and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
 
 ---

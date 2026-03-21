@@ -1,11 +1,3 @@
-# LinkedIn Engagement Scan -- Claude Chrome Extension Workflow
-
-Use this prompt as a saved shortcut in the Claude Chrome extension. It scans your LinkedIn feed for posts relevant to your Substack articles, scores matches, drafts comments, and composes a Gmail report.
-
-**Schedule:** Weekly (Monday mornings recommended)
-**Prerequisites:** Logged into LinkedIn, Gmail, and Google Keep in Chrome
-**One-time setup:** Create a pinned Google Keep note titled `LINKEDIN_SCAN_STATE` with content: `last_run_date: YYYY-MM-DD`
-
 ---
 
 ## Prompt
@@ -169,17 +161,18 @@ Post: [URL]
 
 [Repeat for all matches]
 
-
 NO-MATCH NOTES
 --------------
-[If any posts were skipped due to missing timestamps or other issues, list them here]
 
+[If any posts were skipped due to missing timestamps or other issues, list them here]
 
 RECOMMENDATIONS
 ---------------
+
 [Patterns you noticed in the feed this week.
 Suggestions for Substack Notes topics based on trending discussions.
 Any engagement timing observations.]
+
 ```
 
 After filling in the body, click Send to deliver the report.
@@ -189,7 +182,9 @@ After filling in the body, click Send to deliver the report.
 Navigate back to <https://keep.google.com>. Open the pinned note titled "LINKEDIN_SCAN_STATE". Replace the content with:
 
 ```
+
 last_run_date: [today's date YYYY-MM-DD]
+
 ```
 
 Save the note.
@@ -204,7 +199,7 @@ Save the note.
 2. Create a new note with title: `LINKEDIN_SCAN_STATE`
 3. Content: `last_run_date: 2026-03-14` (use today's date)
 4. Pin the note
-5. In the Claude Chrome extension, save this prompt as a shortcut named "LinkedIn Engagement Scan"
+5. In the Claude Chrome extension, save this prompt as a shortcut named "LinkedIn Scan"
 6. Replace `[YOUR_EMAIL]` in the prompt with your actual email address
 7. Set the schedule: weekly, Monday mornings (or your preferred day)
 

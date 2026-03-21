@@ -175,7 +175,7 @@ In the next article, we'll look at what happens when epistemic debt defaults.
 
 ---
 
-*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost/comments), [share it](https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost), and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost/comments), [share it](https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost), and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
 
 ---
 **References**

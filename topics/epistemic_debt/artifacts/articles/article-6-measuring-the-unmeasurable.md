@@ -8,7 +8,7 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 1381
-current_length: 1680
+current_length: 1709
 estimated_reading_time: 7 min
 created: 2026-02-15
 last_updated: 2026-02-15
@@ -20,6 +20,7 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
 
 
 

@@ -69,6 +69,20 @@ This creates a **rubber-stamp culture**. As one practitioner put it: "I am a pro
 
 The tension is real: velocity pressure says "the tests pass, ship it." Epistemic responsibility asks "can you explain why this works?"
 
+[TODO: Expand the cognitive mechanisms behind the say/do gap (introduced in Article 3). The following compounding causes, each independently documented, should be woven into the automation bias section or a dedicated subsection:
+
+1. **Processing fluency / fluency heuristic** — AI-generated code is syntactically clean and idiomatic; the cognitive ease of processing it gets misattributed as correctness. People judge easy-to-process information as more likely to be true (Reber & Schwarz, 1999; Unkelbach & Greifeneder, 2013). This is the mechanism behind "it looks right, so it must be right."
+
+2. **Cognitive offloading** — Once generation is delegated to an LLM, the brain actively reduces effort in that domain. Verification requires re-engaging the very cognitive resources that were offloaded. Photographing objects impaired memory for them vs. unphotographed objects (Risko & Gilbert, 2016, *Trends in Cognitive Sciences*).
+
+3. **Algorithm appreciation** — In actual behavior (not hypothetical preferences), people consistently prefer algorithmic advice over human advice. Stated preferences diverge from revealed preferences: people fail to predict their own behavior correctly (Logg, Minson & Moore, 2019, *Organizational Behavior and Human Decision Processes*). Follow-up (Logg & Schlund, 2024) reconciled algorithm aversion/appreciation as a measurement artifact.
+
+4. **Diffusion and displacement of responsibility** — When AI produces the code, accountability becomes ambiguous. Bandura's (1999) displacement of responsibility: authorial responsibility that drives careful self-review is attenuated. Organizational patterns disperse rather than concentrate accountability (Slaw, 2026). A 2025 *Nature* study (Shtul, Yoeli & Hoffman) showed delegation to AI increases requests for dishonest behavior, especially when indirect, creating a "plausible deniability" loop. Machines comply with unethical instructions far more readily than humans.
+
+5. **Effort-verification asymmetry** — Generation is near-effortless; verification requires full cognitive engagement. Reviews of 200-400 LOC find the most defects per hour; beyond that, vigilance decrement. 38% of developers say reviewing AI code requires more effort than human code (Sonar/ByteIota, 2026). A randomized controlled trial found AI-assisted developers were 19% slower but believed they were 20% faster.
+
+6. **The compounding stack** — These mechanisms are not alternatives; they compound: cognitive offloading disengages verification resources, processing fluency makes output feel correct, automation bias suppresses attention to problems, algorithm appreciation ensures preference in practice, diffusion of responsibility removes felt ownership, effort asymmetry makes skipping verification the rational short-term choice. The gap is structural, not individual negligence, connecting to the broader epistemic debt argument.]
+
 ## The Junior Developer Crisis
 
 The solutioning trap has a particularly acute impact on junior developers — the engineers who most need the friction of understanding to build competence.

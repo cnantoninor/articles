@@ -78,29 +78,27 @@ In the previous articles, we defined epistemic debt as the growing gap between s
 
 Now let's see what happens when the bill comes due.
 
-*A note on evidence: Research on AI-assisted coding is still early, with small samples, few longitudinal studies, and some results produced by companies that build the tools being evaluated. The case studies and industry data below are signals, not proof. They align with the theoretical model developed in this series and offer a practical lens for guardrailing and iterative learning, but they do not settle the question. Read this as the start of a conversation, not its conclusion.*
+*A note on evidence: Research on AI-assisted coding is still early — small samples, few longitudinal studies, and some results produced by companies that build the tools being evaluated. The case studies and industry data below are signals, not proof. They're consistent with the theoretical model developed in this series and offer a practical lens for guardrailing and iterative learning, but they don't settle the question. Read this as the start of a conversation, not its conclusion.*
 
 ## What Changed (pre-LLMs vs post-LLMs)
 
 Copying a Stack Overflow snippet used to require integration: moving it from a generic answer to your specific context, deleting what didn't apply, reconciling it with surrounding code. Even careless pasting created cognitive dissonance when something didn't fit. That friction was annoying. It was also pedagogical.
 
-**Pre-LLM**, epistemic gaps were mostly local, bounded to a function, a snippet, a call signature. In [the language of our formula](https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost#§the-recovery-cost): debt lived at L1, where cascade cost c₁ is just τ₁, recovery stays local. You knew what you didn't know, approximately. Human review reinforced this containment: code arrived in smaller increments, PRs had less surface area, and human-authored tests encoded the developer's *intent*, catching misalignment before it compounded.
+**Pre-LLM**, epistemic gaps were mostly local — bounded to a function, a snippet, a call signature. In [the language of our formula](https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost#§the-recovery-cost): debt lived at L1, where cascade cost c₁ is just τ₁ and recovery stays local. You knew what you didn't know, approximately. Human review reinforced this containment: code arrived in smaller increments, PRs had less surface area, and human-authored tests encoded the developer's *intent*, catching misalignment before it compounded.
 
-Epistemic debt existed before LLMs, but accumulation was throttled by typing speed and integration effort. What LLMs changed is the *velocity* and *plausibility*: code arrives faster than review can absorb, and it arrives looking correct. The speed removes the throttle; the plausibility disarms the instinct to question (a shift I've explored as a [regime change in how we relate to code](https://antoninorau.substack.com/p/ai-changed-how-i-delete-codeand-that#§what-i-mean-by-regime-change), from construction to curation).
+Epistemic debt existed before LLMs. But typing speed and integration effort throttled how fast it could accumulate. What LLMs changed is the *velocity* and the *plausibility*: code arrives faster than review can absorb, and it arrives looking correct. The speed removes the throttle; the plausibility disarms the instinct to question — a shift I've explored as a [regime change in how we relate to code](https://antoninorau.substack.com/p/ai-changed-how-i-delete-codeand-that#§what-i-mean-by-regime-change), from construction to curation.
 
-**Post-LLM**, entire modules appear with their interfaces, error handling, sometimes their tests. The code looks professional, the architecture idiomatic. LLM-produced tests pass (self-validation trap), but nobody did the labor of knowing. The friction is gone, and the level at which debt is incurred has shifted from code to design, architecture, even intent.
+**Post-LLM**, entire modules appear with their interfaces, error handling, sometimes their tests. The code looks professional. The architecture is idiomatic. LLM-produced tests pass (self-validation trap), but nobody did the labor of knowing. The friction is gone, and the level at which debt is incurred has shifted — from code to design, architecture, even intent.
 
 LLMs didn't just make code generation faster. They removed the **friction** *and* raised the **abstraction level** simultaneously. The evidence and case studies that follow show what happens after that friction disappears.
 
 ## A Consistent Pattern, Not a Settled Question
 
-It would be reassuring to treat AI-assisted incidents as outliers, cautionary tales from teams that were careless or inexperienced. The industry data below is consistent with a different reading, though not yet conclusive enough to close the question.
-
-It is also tempting to dismiss these as pre-LLM issues in a new wrapper. While human developers have always introduced bugs and security gaps, the post-LLM shift is different in *scale* and *velocity*: more code, at higher abstraction, arriving with less of the integration friction that once bounded how fast misunderstanding could spread (see *What Changed* paragraph above). The evidence below does not close the question industry-wide, but it lines up with that mechanism.
+It would be reassuring to treat AI-assisted incidents as outliers — cautionary tales from teams that were careless or inexperienced. The industry data below points in a different direction, though it's not yet conclusive enough to close the question.
 
 ### The Controlled Experiment
 
-A direct experimental signal comes from Sankaranarayanan (2026, preprint). They ran a between-subjects experiment with 78 novice programmers (mean age 22.1, recruited from CS undergraduates and recent coding bootcamp graduates), divided into three groups: a manual coding (no AI) control group, an unrestricted AI use group, and a scaffolded AI use group where an "Explanation Gate" required participants to demonstrate understanding before integrating AI-generated code. The study has not yet undergone peer review, and at this sample size, the percentages are not stable; a replication could shift them. In any case, the author reports the results as statistically significant, and the experimental design is notable because it isolates a specific mechanism rather than measuring outcomes correlatively.
+A direct experimental signal comes from Sankaranarayanan (2026, preprint), who ran a between-subjects experiment with 78 novice programmers (mean age 22.1, recruited from CS undergraduates and recent coding bootcamp graduates). Three groups: a manual coding control with no AI, an unrestricted AI use group, and a scaffolded AI group where an "Explanation Gate" required participants to demonstrate understanding before integrating AI-generated code. The study has not yet undergone peer review, and at this sample size the percentages are not stable — a replication could shift them. That said, the experimental design is notable because it isolates a specific mechanism rather than measuring outcomes correlatively.
 
 In this sample, unrestricted AI users had a **77% failure rate** when asked to maintain or debug the same code without AI assistance. The scaffolded AI group had a **39% failure rate** on the same maintenance task, while matching the unrestricted group's productivity during development (Tukey HSD p = .64, no significant difference). The failure mode is direct: when the epistemic scaffold — the AI — was removed, the code remained. The understanding didn't. That this shows up in a controlled design, not just field reports, is why we include it here, with those caveats in place.
 
@@ -108,33 +106,33 @@ In this sample, unrestricted AI users had a **77% failure rate** when asked to m
 
 The pattern shows up in developer behavior data as well. A 2026 Sonar survey of over 1,100 developers found that **96% don't fully trust AI output**, yet only 48% verify AI-generated code before committing, and AI now accounts for 42% of all committed code (Sonar, January 2026). The gap between what developers say they believe (AI code is unreliable) and what they do (commit it without always verifying) is itself a form of epistemic debt: a gap between stated confidence and actual behavior.
 
-The most established explanation is automation bias, a well-documented tendency to favor suggestions from automated systems even when contradictory information is available (Parasuraman & Manzey, 2010). The mechanism is attentional, not motivational: the mere presence of a decision support system suppresses the monitoring behaviors that would otherwise surface errors, and this holds for experts and novices alike. But automation bias alone does not explain the full pattern. Processing fluency, cognitive offloading, diffusion of responsibility, and other compounding mechanisms, each independently documented, contribute to the gap between stated distrust and observed behavior. How these mechanisms compound into institutional patterns, and how the say/do gap becomes a rubber-stamp culture where review is ceremony rather than verification, is the subject of the [next article (Coming Soon)]([]).
+The most established explanation is automation bias — a well-documented tendency to favor suggestions from automated systems even when contradictory information is available (Parasuraman & Manzey, 2010). The mechanism is attentional, not motivational: the mere presence of a decision support system suppresses the monitoring behaviors that would otherwise surface errors, and this holds for experts and novices alike.
+
+But automation bias alone doesn't explain the full pattern. How it compounds with other documented mechanisms into institutional patterns is the subject of the [next article (Coming Soon)]([]).
 
 ### The Industry Data
 
-These data points sit alongside established industry signals:
+These patterns sit alongside broader industry signals:
 
-In a 2025 study testing **100+ LLMs**, models chose insecure implementations **45% of the time** when explicitly given a choice between a secure and insecure implementation path. Failure rates were language-specific (Veracode, 2025).
+In a 2025 study testing **100+ LLMs**, models chose insecure implementations **45% of the time** when explicitly given a choice between a secure and insecure path. Failure rates were language-specific (Veracode, 2025).
 
-**Incidents per pull request increased 23.5%** alongside rising AI coding assistant adoption. Pull requests per author rose 20% year-over-year; teams were shipping faster. But incident rates rose *faster* than velocity, suggesting that code velocity was outpacing quality assurance and understanding.
+**Incidents per pull request increased 23.5%** alongside rising AI coding assistant adoption. Pull requests per author rose 20% year-over-year — teams were shipping faster. But incident rates rose *faster* than velocity, suggesting that code velocity was outpacing quality assurance and understanding.
 
 ### The Lack of DRYness Data
 
-**Code duplication rose while refactoring fell** (GitClear, 2025). Copy-paste duplication, code reused without refactoring, rose from 8.3% to 12.3% of changed lines between 2020 and 2024, while refactoring activity fell from 25% in 2021 to under 10%. Short-term churn, the proportion of new code revised shortly after authoring, grew from 3.1% to 5.7% between 2020 and 2024, an approximately 84% increase, signaling that teams are generating code they don't fully understand and discovering the gaps shortly after. A separate analysis of 470 open-source pull requests found that AI-co-authored code had 1.75× more logic errors, 1.64× more maintainability issues, 1.57× more security findings, and 1.42× more performance issues compared to human-only code (CodeRabbit, December 2025).
+**Code duplication rose while refactoring fell** (GitClear, 2025). Copy-paste duplication — code reused without refactoring — rose from 8.3% to 12.3% of changed lines between 2020 and 2024, while refactoring activity fell from 25% in 2021 to under 10%. Short-term churn, the proportion of new code revised shortly after authoring, grew from 3.1% to 5.7% over the same period — an approximately 84% increase — signaling that teams are generating code they don't fully understand and discovering the gaps shortly after. A separate analysis of 470 open-source pull requests found that AI-co-authored code had 1.75× more logic errors, 1.64× more maintainability issues, 1.57× more security findings, and 1.42× more performance issues compared to human-only code (CodeRabbit, December 2025).
 
-The lack of DRYness in AI-generated code is something I've observed personally, and I've added guardrails in code generation to counter it. Code simplifier agents alleviate the problem, and deterministic gates like code quality checks are a good start. More on these guardrails and enforcement practices for reducing epistemic debt in the following articles.
-
-The pattern across these data points is consistent: velocity is up, and quality metrics are down. Teams are shipping faster and breaking more things. The breaking happens differently, not the obvious crashes of badly written code, but the subtle failures of code that looks correct but encodes **assumptions** nobody examined.[^2] Whether these metrics can reliably indicate epistemic debt — and what else might work — will be explored in [Measuring the Unmeasurable (Coming Soon)]([]).
+The pattern across these data points is consistent: velocity is up, quality metrics are down. Teams are shipping faster and breaking more things. The breaking happens differently — not the obvious crashes of badly written code, but the subtle failures of code that looks correct and encodes **assumptions** nobody examined.[^2] Whether these metrics can reliably indicate epistemic debt — and what else might work — will be explored in [Measuring the Unmeasurable (Coming Soon)]([]).
 
 With that baseline in place, the next two anecdotes are not the proof. They are instances of the mechanism at work, in real systems.
 
 ## Case 1: The Database Deletion
 
-In July 2025, a SaaS platform founder began building with an AI coding assistant.[^1] Within days, the assistant had production database credentials and permission to execute operations. The founder appears to have assumed that natural-language constraints, including "no more changes without explicit permission," would reliably govern behavior across code and data. They did not.
+In July 2025, a SaaS platform founder began building with an AI coding assistant.[^1] Within days, the assistant had production database credentials and permission to execute operations. The founder appears to have assumed that natural-language constraints — including "no more changes without explicit permission" — would reliably govern behavior across code and data. They did not.
 
 The assistant then deleted executive records and company entries from the production database. Public reporting also described generated replacement records, fabricated validation artifacts, and misleading status updates after the deletion. Whatever mechanism produced those outputs, the practical effect was concealment of failure long enough for real data loss to persist.
 
-This is a system-boundary gap with shared responsibility. On the builder side, high-risk capabilities were exposed to an assistant without enforceable guardrails. On the platform side, destructive capability appears to have been too easy to grant in a production context. Conceptual boundaries, including domain language and intent statements, can reduce ambiguity, but they are not sufficient without hard capability boundaries.
+What happened here is a system-boundary gap, with shared responsibility. On the builder side, high-risk capabilities were exposed to an assistant without enforceable guardrails. On the platform side, destructive capability was too easy to grant in a production context. Conceptual boundaries — domain language, intent statements — can reduce ambiguity, but they are not sufficient without hard capability boundaries.
 
 The core lesson is not "the model understood and chose badly." The lesson is that underspecified linguistic constraints were treated as operational controls. The developer assumed linguistic plausibility implied operational understanding.[^4] Curation without a concrete mental model of permissions, environments, and failure modes becomes a wager that infrastructure will absorb mistakes.
 
@@ -149,9 +147,7 @@ The core lesson is not "the model understood and chose badly." The lesson is tha
 > | c₃ | Structural: ~10× (Part 2). Effective: below that | Part 2 assigns c₃ ≈ 10× for architecture-level gaps. The effective cost fell below this because t₀ was early (days of accumulated debt, not months), the failure was loud (deletions were immediately visible), and rollback paths existed. This is the t₀ lever from Part 2's break-even analysis working as intended: early detection doesn't change where the debt lives, it caps what recovery costs. The same L3 gap in a mature system with a late t₀ would have incurred the full structural multiplier. |
 > | Counterfactual | — | Had t₀ arrived later in a more mature system that embedded the same architectural assumption, recovery cost would likely have been higher. |
 
-The platform's CEO acknowledged the failure within 48 hours, promised a refund and postmortem, and announced technical safeguards within days, including stronger dev/prod separation, rollback improvements, and a planning-oriented collaboration mode. The incident was catalogued in the [AI Incident Database as Incident 1152](https://incidentdatabase.ai/cite/1152/) and covered by major outlets. Within five months, the same founder who had publicly rejected the platform had returned and reportedly built multiple production applications.
-
-That return is a meaningful signal, but not definitive proof of full reputational recovery. A stronger claim would require broader retention and sentiment data. The narrower claim this case supports is that visible defaults can be reversed quickly when governance controls are tightened and the failure is loud, early, and remediable.
+The platform's CEO acknowledged the failure within 48 hours and announced technical safeguards — stronger dev/prod separation and rollback improvements. The incident was catalogued in the [AI Incident Database as Incident 1152](https://incidentdatabase.ai/cite/1152/).
 
 ## Case 2: The 10:1 Cost Ratio
 
@@ -159,13 +155,9 @@ A software development firm reported saving 200 hours during their MVP sprint us
 
 Then the bugs emerged.
 
-The AI-generated error handling logic was missing or inadequate in ways the team hadn't caught. Input validation was missing in critical paths. Security antipatterns, insecure authentication and unsanitized database connections, were buried in the code. The team spent 2,000 hours debugging, refactoring, and remediating security flaws.
+The AI-generated error handling logic was missing or inadequate in ways the team hadn't caught. Input validation was absent in critical paths. Security antipatterns — insecure authentication, unsanitized database connections — were buried in the code. The team spent 2,000 hours debugging, refactoring, and remediating security flaws.
 
-Ten times the initial savings, consumed by downstream work. A reported 10:1 cost ratio.
-
-This is the defensive coding gap in action. Code generated faster than understanding accumulated, paid back with compound interest during maintenance. The gap wasn't incompetence, the code looked professional, the tests passed initially. But when the system misbehaved, nobody could explain why. The velocity that felt like a superpower became a liability.
-
-The 200-to-2,000 ratio is striking, but the real story is the mechanism. The team didn't know what they didn't know. The absence of error handling wasn't immediately visible, and wasn't something reviews could catch. It was a gap in what was generated, not a flaw in what was present. There was also a gap at the code inspection level, in deterministic, human-authored tests.
+A reported 10:1 cost ratio. The team didn't know what they didn't know: the absence of error handling wasn't immediately visible; it wasn't something reviews caught without deterministic, human-authored tests encoding *intent*. It was a gap in what was *generated*, not a flaw in what was *present*.
 
 > **Formula mapping: AlterSquare**
 >
@@ -179,7 +171,7 @@ The 200-to-2,000 ratio is striking, but the real story is the mechanism. The tea
 
 ## Industry-Scale Echoes
 
-The same pattern also appears at the industry level. The database deletion became a widely cited cautionary tale in the "vibe coding" debate (for an exploration of what lies beyond vibe coding, see [From Vibe Coding to Vibe Designing](https://antoninorau.substack.com/p/from-vibe-coding-to-vibe-designing#§the-velocity-trap-why-faster-isnt-better)), covered by Fortune, Fast Company, and Gizmodo, and catalogued in the AI Incident Database. The industry acknowledged the risk and kept going. The platform involved raised $250M two months after the incident; its revenue had grown more than tenfold in the five months following its Agent launch, driven by AI agent adoption, and continued to accelerate afterward. The pattern mirrors the individual developer's say/do gap: the industry knows these risks exist and continues to accelerate adoption.
+These individual cases are not isolated. The database deletion became a widely cited cautionary tale in the [vibe coding debate](https://antoninorau.substack.com/p/from-vibe-coding-to-vibe-designing#§the-velocity-trap-why-faster-isnt-better). The industry acknowledged the risk — and kept going. The platform involved raised $250M two months later, its adoption accelerating.
 
 The scale of this dynamic extends to enterprise infrastructure. In December 2025, engineers at AWS allowed Amazon's Kiro AI coding assistant to carry out changes in AWS Cost Explorer; the assistant autonomously decided to delete and recreate the production environment, causing a 13-hour outage (Financial Times, February 2026). Amazon characterized the incident as "misconfigured access controls," but Kiro was used by an engineer with broader permissions than expected, and no mandatory peer review existed for AI-initiated production changes. Employees told the FT the company had set a target for 80% of developers to use AI coding tools at least once a week. The same failure pattern as the database deletion, operating at enterprise scale, inside one of the world's largest cloud providers.[^3]
 
@@ -189,7 +181,7 @@ Sometimes it comes immediately: 200 hours of savings becomes 2,000 hours of reme
 
 The uncomfortable truth is that these failures aren't caused by bad tools.
 
-> They're caused by a specific relationship between humans and tools, one where the speed of generation so far outpaces the speed of comprehension that the gap becomes the primary source of risk.[^5]
+> They're caused by a specific relationship between humans and tools — one where the speed of generation so far outpaces the speed of comprehension that the gap becomes the primary source of risk.[^5]
 
 The question is: how do teams fall into this pattern? What are the mechanisms that make epistemic debt so easy to accumulate and so hard to notice?
 

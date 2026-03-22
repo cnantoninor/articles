@@ -97,11 +97,11 @@ LLMs didn't just make code generation faster. They removed the **friction** *and
 
 It would be reassuring to treat AI-assisted incidents as outliers — cautionary tales from teams that were careless or inexperienced. The industry data below points in a different direction, though it's not yet conclusive enough to close the question.
 
-### The Controlled Experiment
+### The Controlled Experiment observing epistemic debt
 
 A direct experimental signal comes from Sankaranarayanan (2026, preprint), who ran a between-subjects experiment with 78 novice programmers (mean age 22.1, recruited from CS undergraduates and recent coding bootcamp graduates). Three groups: a manual coding control with no AI, an unrestricted AI use group, and a scaffolded AI group where an "Explanation Gate" required participants to demonstrate understanding before integrating AI-generated code. The study has not yet undergone peer review, and at this sample size the percentages are not stable — a replication could shift them. That said, the experimental design is notable because it isolates a specific mechanism rather than measuring outcomes correlatively.
 
-In this sample, unrestricted AI users had a **77% failure rate** when asked to maintain or debug the same code without AI assistance. The scaffolded AI group had a **39% failure rate** on the same maintenance task, while matching the unrestricted group's productivity during development (Tukey HSD p = .64, no significant difference). The failure mode is direct: when the epistemic scaffold — the AI — was removed, the code remained. The understanding didn't. That this shows up in a controlled design, not just field reports, is why we include it here, with those caveats in place.
+In this sample, unrestricted AI users had a **77% failure rate** when asked to maintain or debug the same code without AI assistance. The scaffolded AI group had a **39% failure rate** on the same maintenance task, while matching the unrestricted group's productivity during development - for reference the control group had a **31% failure rate**. The failure mode is direct: when the the AI was removed, the code remained. The understanding not always did. This shows up in a controlled experiment (still not peer-reviewed), and not in field reports, this is why we include it here, with all those caveats in place. But, none the less, it is a remarkable experiment and signal of epistemic debt and its eventual guardrails mechanisms.
 
 ### The Developer Behavior Data
 

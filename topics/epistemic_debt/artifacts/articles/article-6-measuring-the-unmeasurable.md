@@ -8,7 +8,7 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 1381
-current_length: 1678
+current_length: 1709
 estimated_reading_time: 7 min
 created: 2026-02-15
 last_updated: 2026-02-15
@@ -20,6 +20,9 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
+
+
 
  TO ADD: AI-ASSISTED ENGINEERING SHOULD TRACK THE EPISTEMIC STATUS AND TEMPORAL VALIDITY OF ARCHITECTURAL
 DECISIONS
@@ -74,7 +77,7 @@ Despite the paradox, several proxy indicators provide useful signal — not indi
 
 **Bus Factor Analysis.** The bus factor — how many team members must leave before critical knowledge is lost — has always been relevant, but LLM-assisted development changes its dynamics. Pre-LLM, bus factor tracked slowly because code was authored incrementally and knowledge distributed through pairing and review. Post-LLM, entire subsystems can be created by a single developer in a single session, creating knowledge silos faster than traditional development.
 
-Practical approach: for each major subsystem, ask: "Who can explain how this works without reading the code?" If the answer is "the person who prompted the LLM to generate it," your bus factor for that subsystem is 1. If even they can't explain it, your bus factor is 0.
+Practical approach: for each major subsystem, ask: "Who can explain how this works without reading the code?" If the answer is "the person who prompted the LLM to generate it," your bus factor for that subsystem is 1. If even they can't explain it, your bus factor is 0. The 10:1 cost ratio documented in [When Epistemic Debt Defaults]([ARTICLE_URL]) is a bus-factor-zero case: the team that generated the code was still present but could not explain its behavior.
 
 **Onboarding Velocity.** How long does it take a new team member to make their first meaningful contribution to a specific part of the codebase? If onboarding time increases despite stable codebase size, epistemic debt may be accumulating — the code is growing harder to understand per unit of functionality.
 
@@ -130,7 +133,7 @@ We couldn't precisely measure technical debt for decades, but we knew it when we
 
 ---
 
-*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
 
 ---
 **References**

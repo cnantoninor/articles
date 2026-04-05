@@ -7,7 +7,7 @@ audience:
 - technical professionals
 - readers interested in AI and philosophy
 target_length: 0
-current_length: 98
+current_length: 138
 estimated_reading_time: 1 min
 created: 2026-02-22
 last_updated: 2026-02-22
@@ -19,6 +19,9 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
+
+
 
 
 # AI, Models, and (Meta) Metaphors
@@ -47,9 +50,13 @@ social_teasers:
 
 ---
 
-*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/ai-models-and-meta-metaphors/comments), [share it](https://antoninorau.substack.com/p/ai-models-and-meta-metaphors), and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/ai-models-and-meta-metaphors/comments), [share it](https://antoninorau.substack.com/p/ai-models-and-meta-metaphors), and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
 
 ---
 ## References
 
 [GAP: Add references when article is imported.]
+
+## Cross-References
+
+- **Related:** [When Epistemic Debt Defaults]([ARTICLE_URL]) — a developer assumed "linguistic plausibility implied operational understanding" and an AI deleted the production database. A case study of the projection mechanism in action. *(Epistemic Debt series, Part 3)*

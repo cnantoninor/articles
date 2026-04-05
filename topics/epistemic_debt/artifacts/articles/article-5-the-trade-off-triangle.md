@@ -8,7 +8,7 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 2090
-current_length: 2333
+current_length: 2470
 estimated_reading_time: 10 min
 created: 2026-02-15
 last_updated: 2026-02-15
@@ -24,6 +24,10 @@ social_teasers:
 
 
 
+
+
+
+
 # The Trade-off Triangle
 
 *A framework for conscious positioning in LLM-augmented development*
@@ -34,7 +38,7 @@ social_teasers:
 
 ---
 
-The patterns described in the previous articles — epistemic debt accumulation, the solutioning trap, boundary failures — share a common structure. They all involve trade-offs between three competing qualities. Understanding these trade-offs requires a framework.
+The patterns described in the previous articles — epistemic debt accumulation, the solutioning trap, boundary failures — share a common structure. The case studies in [When Epistemic Debt Defaults]([ARTICLE_URL]) — a production database deleted by an AI agent, a team's 200-hour savings becoming 2,000 hours of remediation — are what these trade-offs look like when the Speed corner is chosen by default rather than by design. They all involve trade-offs between three competing qualities. Understanding these trade-offs requires a framework.
 
 ## The Universal Triangle
 
@@ -93,7 +97,7 @@ The critical insight: **you cannot maximize all three simultaneously.** Every LL
 
 Before discussing the strategies that pull you toward understanding and reliability, we need to address a failure mode that masquerades as verification. This is the third SDLC boundary from Article 4 — Implementation → Validation — and it deserves special attention because it's so deceptive.
 
-When LLMs generate both code and tests, the tests inherit the same blind spots as the code. The system *appears* verified — coverage is high, tests pass — but the reliability is illusory. The tests validate that the code matches itself, not that the code matches intent.
+When LLMs generate both code and tests, the tests inherit the same blind spots as the code. The system *appears* verified — coverage is high, tests pass — but the reliability is illusory. The tests validate that the code matches itself, not that the code matches intent. IBM Research has identified the broader version of this problem — what IBM Fellow Kush Varshney calls "validating validators": in any feedback system where AI evaluates its own output, errors get amplified rather than corrected. What I'm calling *circular validation* is a specific manifestation in code testing: the closed loop between generated code and generated tests.
 
 A developer generates an API endpoint using an LLM. They then ask the same LLM: "Write tests for this endpoint." The LLM produces unit tests that achieve 95% coverage. Every test passes. The developer, seeing high coverage and green checks, gains confidence the code is correct.
 
@@ -236,7 +240,7 @@ Epistemic debt, like technical debt, can be a deliberate trade-off. The triangle
 
 ---
 
-*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
 
 ---
 **References**
@@ -245,5 +249,7 @@ Epistemic debt, like technical debt, can be a deliberate trade-off. The triangle
 - Thoughtworks (2025). "Spec-Driven Development."
 - Evans, E. Domain-Driven Design references.
 - Yang, E. "Code Review as Human Alignment in the Era of LLMs."
+- Pan, Q., Ashktorab, Z., Desmond, M., et al. (2024). "Human-Centered Design Recommendations for LLM-as-a-Judge." IBM Research. arXiv:2407.03479. https://arxiv.org/abs/2407.03479
+- IBM Think (2025). "Who watches the AI watchers? The challenge of self-evaluating AI." https://www.ibm.com/think/news/ai-testing-advances
 - GSD framework documentation.
 - Ngabang, L.A. (2026). "The Illusion of Competence."

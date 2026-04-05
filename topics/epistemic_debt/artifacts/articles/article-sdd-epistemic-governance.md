@@ -10,7 +10,7 @@ audience:
 - senior practitioners
 - technical professionals
 target_length: 3500
-current_length: 1573
+current_length: 1609
 estimated_reading_time: 7 min
 created: 2026-03-14
 last_updated: 2026-03-14
@@ -31,6 +31,9 @@ raw_material:
 - topics/epistemic_debt/sdd-epistemic-debt.md
 - .planning/gsd-class-diagram.md
 ---
+
+
+
 
 
 
@@ -115,6 +118,8 @@ raw_material:
 
 ## Measuring What Was Invisible: GSD Artifacts as Epistemic Debt Sensors
 
+The formula mappings applied to real incidents in [When Epistemic Debt Defaults]([ARTICLE_URL]) — identifying which layer k, what cascade cost c_k, and when t₀ arrived — are what this governance model makes routinely observable.
+
 [GAP: This is the section that bridges Article 6's "we can't measure well" with "here's what's concretely possible today." GSD's artifact trail provides observable proxies for cognitive grasp Gc(t).]
 
 ### Proxy Metrics
@@ -168,7 +173,7 @@ raw_material:
 
 ---
 
-*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
 
 ---
 ## References

@@ -2,25 +2,27 @@
 title: 'Epistemic Debt: The Math, The Cost, and Why It''s Not Technical Debt'
 subtitle: A mathematical definition of epistemic debt, its economic cost, and why
   technical debt analogies break down
-status: draft
+status: published
 type: article
 audience:
 - technical professionals
 - engineering leaders
 - senior practitioners
 target_length: 2200
-current_length: 2586
+current_length: 2588
 estimated_reading_time: 11 min
 created: 2026-02-15
 last_updated: 2026-03-08
-published_date: null
-publication_url: ''
+published_date: 2026-03-09
+publication_url: https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost
 social_teasers:
   linkedin: ''
   twitter: ''
   instagram_caption: ''
   substack_notes: ''
 ---
+
+
 
 
 
@@ -174,7 +176,7 @@ In the next article, we'll look at what happens when epistemic debt defaults.
 
 ---
 
-*If you found this article valuable, I'd love to hear your thoughts. Please leave a comment, share it, and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost/comments), [share it](https://antoninorau.substack.com/p/epistemic-debt-the-math-the-cost), and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
 
 ---
 **References**

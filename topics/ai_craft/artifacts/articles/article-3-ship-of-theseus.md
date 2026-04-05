@@ -1,6 +1,6 @@
 ---
 title: The Ship of Theseus & The Soul of Software
-subtitle: Identity, Memory, and Context in Domain-Driven Design
+subtitle: Identity, Lifecycle, Memory, and Context in Software Engineering
 status: published
 type: article
 audience:
@@ -8,12 +8,12 @@ audience:
 - software architects
 - developers practicing DDD
 target_length: 0
-current_length: 2700
+current_length: 2702
 estimated_reading_time: 11 min
 created: 2026-02-22
 last_updated: 2026-02-22
 published_date: 2025-08-24
-publication_url: https://antoninorau.substack.com/
+publication_url: https://antoninorau.substack.com/p/the-ship-of-theseus-and-the-soul
 social_teasers:
   linkedin: 'Every time you update a user''s email address in your database, you''re
     participating in a 2,500-year-old philosophical debate.
@@ -43,6 +43,8 @@ social_teasers:
     Domain-Driven Design offers a sophisticated framework for thinking about identity,
     memory, and change in our digital systems.'
 ---
+
+
 
 
 # The Ship of Theseus & The Soul of Software
@@ -315,7 +317,7 @@ Leave a comment below and let's explore this together.
 
 ---
 
-*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/comments), [share it](https://antoninorau.substack.com), and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/comments), [share it](https://antoninorau.substack.com), and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
 
 ---
 ## References

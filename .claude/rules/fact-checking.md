@@ -1,0 +1,1 @@
+../../.ai/rules/fact-checking.md

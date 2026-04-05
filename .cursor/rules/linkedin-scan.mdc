@@ -1,0 +1,1 @@
+../../.ai/rules/linkedin-scan.md

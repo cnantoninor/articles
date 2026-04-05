@@ -30,7 +30,7 @@ Phases 9-12 are archived. See MILESTONES.md for details.
 
 **Milestone Goal:** Publish articles 3-7 on Substack, completing the full epistemic debt series. Each article polishes an existing draft by integrating targeted research, resolving open TODOs, and shipping with social teasers.
 
-- [ ] **Phase 13: Article 3 — When Epistemic Debt Defaults** - Polish and publish the evidence article that establishes the failure taxonomy for the rest of the series
+- [x] **Phase 13: Article 3 — When Epistemic Debt Defaults** - Polish and publish the evidence article that establishes the failure patterns for the rest of the series (completed 2026-03-21)
 - [ ] **Phase 14: Article 4 — The Solutioning Trap** - Polish and publish the mechanism article introducing SDLC boundaries 1 and 2
 - [ ] **Phase 15: Article 5 — The Trade-off Triangle** - Polish and publish the framework pivot article fulfilling two mathematical promises from Article 2
 - [ ] **Phase 16: Article 6 — Measuring the Unmeasurable** - Polish and publish the measurement article with honest-caveat posture preserved
@@ -39,7 +39,7 @@ Phases 9-12 are archived. See MILESTONES.md for details.
 ## Phase Details
 
 ### Phase 13: Article 3 — When Epistemic Debt Defaults
-**Goal**: Article 3 is live on Substack with four case studies (including Amazon Kiro), formula annotations, updated industry data, and all TODOs resolved — establishing the failure taxonomy that articles 4-7 reference by name
+**Goal**: Article 3 is live on Substack with four case studies (including Amazon Kiro), formula annotations, updated industry data, and all TODOs resolved — establishing the failure patterns that articles 4-7 reference by name
 **Depends on**: Verify Article 2 publication status (pre-phase check before scheduling)
 **Requirements**: ART3-01, ART3-02, ART3-03, ART3-04, ART3-05, ART3-06, ART3-07
 **Success Criteria** (what must be TRUE):
@@ -47,10 +47,13 @@ Phases 9-12 are archived. See MILESTONES.md for details.
   2. The Amazon Kiro incident appears as a fully integrated fourth case study with the accountability-denial pattern named and each case study annotated with formula mapping (k layer, c_k, t₀)
   3. The industry data block includes Fragile Experts 77% failure rate and Sonar verification gap figures with footnoted citations; pre-LLM vs post-LLM framing precedes the case studies
   4. Social teasers are complete (LinkedIn, Twitter/X, Instagram, Substack Notes) and the article is live with series cross-links updated
-**Plans**: TBD
+**Plans:** 4/4 plans complete
 
 Plans:
-- [ ] 13-01: TBD
+- [x] 13-00-PLAN.md — Deep fact-check: online research verification of every claim, statistic, and data point
+- [x] 13-01-PLAN.md — Restructure article body (uses fact-check report): pre-LLM opening, case studies with formula sidenotes, industry data, TODO resolution
+- [x] 13-02-PLAN.md — Social teasers and publication readiness review
+- [ ] 13-03-PLAN.md — Bidirectional cross-linking: outbound links from Article 3 to cross-topic and intra-series articles, reverse links back to Article 3
 
 ### Phase 14: Article 4 — The Solutioning Trap
 **Goal**: Article 4 is live on Substack with the Anthropic RCT as quantitative backbone, social invisibility subsection added, t₀-SDLC boundary connection written, and the solutioning trap thesis coherent across all four sub-concepts — with SDLC boundary count fixed at 2 (boundary 3 belongs to Article 5)
@@ -117,7 +120,7 @@ Plans:
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
-| 13. Article 3 — When Epistemic Debt Defaults | v3.0 | 0/TBD | Not started | - |
+| 13. Article 3 — When Epistemic Debt Defaults | 4/4 | Complete   | 2026-03-21 | - |
 | 14. Article 4 — The Solutioning Trap | v3.0 | 0/TBD | Not started | - |
 | 15. Article 5 — The Trade-off Triangle | v3.0 | 0/TBD | Not started | - |
 | 16. Article 6 — Measuring the Unmeasurable | v3.0 | 0/TBD | Not started | - |

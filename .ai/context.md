@@ -32,6 +32,7 @@
 - Promotion: LinkedIn, Twitter/X, Instagram, Substack Notes
 - MCP servers for drafting and cross-posting are documented (Phase 2); see docs/mcp-setup.md and docs/publishing-workflow.md
 - Teasers must match the exploratory writing tone
+- **Fact-check required before publication** -- every article needs a completed fact-check report (see .ai/rules/fact-checking.md); in GSD phases, this is always Plan 00
 
 ### Content
 - YAML front-matter required (see templates/article.md) -- includes title, subtitle, status, type, audience, estimated_reading_time, dates

@@ -1,13 +1,13 @@
 ---
-title: From Eikasia to Noesis
-subtitle: What Plato Can Teach AI
+title: 'From Eikasia to Noesis: What Plato Can Teach AI'
+subtitle: The Stochastic Parrot on Plato's Ladder—Where Do Language Models Stall?
 status: published
 type: article
 audience:
 - technical professionals
 - readers interested in epistemology and AI
 target_length: 0
-current_length: 94
+current_length: 136
 estimated_reading_time: 1 min
 created: 2026-02-22
 last_updated: 2026-02-22
@@ -19,6 +19,9 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
+
+
 
 
 # From Eikasia to Noesis
@@ -47,9 +50,13 @@ social_teasers:
 
 ---
 
-*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/from-eikasia-to-noesis-what-plato/comments), [share it](https://antoninorau.substack.com/p/from-eikasia-to-noesis-what-plato), and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/from-eikasia-to-noesis-what-plato/comments), [share it](https://antoninorau.substack.com/p/from-eikasia-to-noesis-what-plato), and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
 
 ---
 ## References
 
 [GAP: Add references when article is imported.]
+
+## Cross-References
+
+- **Related:** [When Epistemic Debt Defaults]([ARTICLE_URL]) — in a controlled study, 77% of developers couldn't maintain code they'd generated with unrestricted AI assistance. A measurement of what happens when teams remain at pistis. *(Epistemic Debt series, Part 3)*

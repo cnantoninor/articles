@@ -27,6 +27,7 @@ alwaysApply: false
 - Avoid jargon without definition
 - Keep sentences focused—one idea per sentence when possible
 - Use parallel structure in lists
+- **No em-dashes (`—`) as parenthetical separators** — use commas instead. Em-dashes may appear only in table placeholder cells (e.g., `| — |`) and never in prose.
 
 ### Sentence Structure
 - Lead with the main point, then elaborate

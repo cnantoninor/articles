@@ -138,6 +138,28 @@ Flexible guidelines to support growth over time. Adopt what fits your cadence; a
 
 ---
 
+## LinkedIn Engagement Automation
+
+Automated weekly scan that finds LinkedIn posts relevant to your published articles and generates engagement opportunities.
+
+**How it works:** The Claude Chrome extension runs a saved prompt on a weekly schedule that:
+1. Reads your Substack RSS feed to build an article matching profile
+2. Scrolls your LinkedIn feed and scores posts against your articles (1=weak, 2=medium, 3=strong)
+3. Checks your recent LinkedIn activity to avoid duplicate engagement
+4. Drafts contextual comments for each matched post
+5. Composes a Gmail draft report with all matches, rationale, scores, and draft comments
+6. Tracks state (last run date) via a Google Keep note
+
+**Setup:**
+1. Create a pinned Google Keep note titled `LINKEDIN_SCAN_STATE` with content: `last_run_date: YYYY-MM-DD`
+2. Save the prompt from [`analytics/prompts/linkedin-engagement-scan.md`](../analytics/prompts/linkedin-engagement-scan.md) as a Claude Chrome extension shortcut
+3. Replace `[YOUR_EMAIL]` in the prompt with your email address
+4. Schedule the shortcut to run weekly (Monday mornings recommended)
+
+**Using the report:** Check Gmail Drafts after each run. Prioritize score 3 matches for same-day engagement. Adjust draft comments to your voice before posting.
+
+---
+
 ## References
 
 | Resource | Purpose |
@@ -146,3 +168,4 @@ Flexible guidelines to support growth over time. Adopt what fits your cadence; a
 | [.ai/rules/publication.md](../.ai/rules/publication.md) | Publication target, social channels, platform-specific teaser conventions |
 | [templates/article.md](../templates/article.md) | Article front-matter (including `social_teasers`, `publication_url`, `published_date`) |
 | [templates/social-teasers.md](../templates/social-teasers.md) | Teaser drafting template with examples and fill-in blocks |
+| [analytics/prompts/linkedin-engagement-scan.md](../analytics/prompts/linkedin-engagement-scan.md) | Claude Chrome extension prompt for weekly LinkedIn engagement scan |

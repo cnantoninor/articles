@@ -1,6 +1,6 @@
 ---
 title: The Epistemic Shift
-subtitle: When code generation outpaces code comprehension
+subtitle: The feeling of knowing without the labor of knowing
 status: published
 type: article
 audience:
@@ -8,7 +8,7 @@ audience:
 - engineering leaders
 - senior practitioners
 target_length: 976
-current_length: 1135
+current_length: 1137
 estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-02-15
@@ -49,6 +49,8 @@ social_teasers:
     the seventy-year rupture from deterministic authorship to a probabilistic layer,
     and why it matters. {{publication_url}}'
 ---
+
+
 
 
 
@@ -109,7 +111,7 @@ The question isn't whether to use LLMs. It's whether we can maintain the good-en
 
 ---
 
-*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/the-epistemic-shift/comments), [share it](https://antoninorau.substack.com/p/the-epistemic-shift), and eventually [subscribe](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
+*If you found this article valuable, I'd love to hear your thoughts. Please [leave a comment](https://antoninorau.substack.com/p/the-epistemic-shift/comments), [share it](https://antoninorau.substack.com/p/the-epistemic-shift), and eventually [subscribe for **free**](https://antoninorau.substack.com/subscribe) to The AI Mirror for more explorations at the intersection of AI, software engineering and a bit of philosophy.*
 
 ---
 **References**

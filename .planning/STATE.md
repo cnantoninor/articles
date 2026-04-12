@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v3.0
 milestone_name: "Epistemic Debt Series: Articles 3-7"
-status: planning
-stopped_at: "Checkpoint 13-03 Task 3: Cross-linking review — awaiting human verification of link placement and density"
-last_updated: "2026-03-21T17:23:57.059Z"
-last_activity: 2026-03-14 — Roadmap created for v3.0 (phases 13-17)
+status: executing
+stopped_at: Plan 14-04 Task 1 complete; checkpoint awaits user approval (Task 2)
+last_updated: "2026-04-12T23:30:00.000Z"
+last_activity: 2026-04-12 -- Plans 14-01..14-03 done; 14-04 paused at human-verify
 progress:
   total_phases: 5
   completed_phases: 1
-  total_plans: 4
-  completed_plans: 4
-  percent: 0
+  total_plans: 9
+  completed_plans: 5
+  percent: 56
 ---
 
 # Project State
@@ -21,21 +21,22 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-14)
 
 **Core value:** Show practitioners how to consciously position on Speed/Understanding/Reliability triangle
-**Current focus:** Phase 13 — Article 3: When Epistemic Debt Defaults (ready to plan)
+**Current focus:** Phase 14 — article-4-the-solutioning-trap
 
 ## Current Position
 
-Phase: 13 of 17 (Article 3 — When Epistemic Debt Defaults)
-Plan: Not started
-Status: Ready to plan
-Last activity: 2026-03-14 — Roadmap created for v3.0 (phases 13-17)
+Phase: 14 (article-4-the-solutioning-trap) — EXECUTING
+Plan: 5 of 5 (14-04 checkpoint)
+Status: Executing Phase 14 — awaiting user sign-off on Article 4
+Last activity: 2026-04-12 -- Publication prep committed; human-verify gate open
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0 (v3.0)
+
+- Total plans completed: 8 (v3.0 aggregate per frontmatter; latest: 14-03)
 - Average duration: —
 - Total execution time: —
 
@@ -60,6 +61,7 @@ Progress: [░░░░░░░░░░] 0%
 Decisions logged in PROJECT.md Key Decisions table.
 
 Recent decisions affecting v3.0 work:
+
 - No explicit IRIS-2 references in Article 5 — replace with anonymized author experience
 - SDLC boundaries in Article 4 are conceptual intro only (2 boundaries max); SDD companion article owns the operational treatment
 - Article 6 forward-references SDD companion for operational measurement — do not resolve internally
@@ -85,6 +87,6 @@ Verify Article 2 publication status before scheduling Article 3 — PROJECT.md s
 
 ## Session Continuity
 
-Last session: 2026-03-21T17:23:46.584Z
-Stopped at: Checkpoint 13-03 Task 3: Cross-linking review — awaiting human verification of link placement and density
-Resume file: None
+Last session: 2026-04-12T20:09:20.029Z
+Stopped at: Phase 14 context gathered
+Resume file: .planning/phases/14-article-4-the-solutioning-trap/14-CONTEXT.md

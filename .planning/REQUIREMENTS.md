@@ -19,14 +19,24 @@ Requirements for articles 3-7 of the epistemic debt series. Each article maps to
 
 ### Article 4: The Solutioning Trap
 
-- [ ] **ART4-01**: Mechanism section polished (vibe coding, rate limiter example, automation bias, rubber-stamp culture)
-- [ ] **ART4-02**: Junior dev crisis section upgraded with Anthropic RCT data (17% comprehension gap)
-- [ ] **ART4-03**: Solutioning trap framed as t₀-delaying mechanism; automation bias as suppressing gap detection
-- [ ] **ART4-04**: Junior dev crisis connected to r_k degradation (learning rate collapse with AI reliance)
-- [ ] **ART4-05**: SDLC boundaries kept as conceptual introduction only (where debt accumulates at specific k layers)
-- [ ] **ART4-06**: TODO items resolved (social invisibility of epistemic debt, t₀ connection)
+*Rewritten 2026-04-12 for practical pivot — see `.planning/phases/14-article-4-the-solutioning-trap/14-CONTEXT.md`.*
+
+- [ ] **ART4-01**: Solutioning trap problem framed in ≤400 words, references Article 3's failure taxonomy by name
+- [ ] **ART4-02**: Anthropic Fellows RCT (Shen & Tamkin, 2026, arXiv:2601.20245) cited as a single-sentence empirical hook in the compressed bias-justification section — 17 percentage-point quiz-score gap between AI-assisted and hand-coding groups
+- [ ] **ART4-03**: Solutioning trap briefly framed as a t₀-delaying mechanism (1-2 sentences, not a section)
 - [ ] **ART4-07**: Social teasers written (LinkedIn, Twitter/X, Instagram, Substack Notes)
 - [ ] **ART4-08**: Article published on Substack with series cross-links updated
+- [ ] **ART4-09**: pmacros introduced as concrete Claude Code tool (1-3 paragraphs) with link to pmacros PROJECT.md / repo
+- [ ] **ART4-10**: `<asin>` macro documented — four surfaced categories (LLM assumptions, prompt-derived assumptions, gaps, user intent) plus worked example
+- [ ] **ART4-11**: `<soltree>` macro documented — surfaces unexplored alternative paths (non-exhaustive) and asks user to pick before proceeding, plus worked example
+- [ ] **ART4-12**: Article grounded in concrete usage — at least one worked example per macro
+- [ ] **ART4-13**: Word count ≤ 1800 words
+- [ ] **ART4-14**: Cognitive-bias section compressed to ≤20% of total length, frames bias as justification for the macros, not as primary subject
+
+**Dropped / moved:**
+- ~~ART4-04~~ r_k degradation + junior dev crisis — **moved to Article 5**
+- ~~ART4-05~~ SDLC boundaries conceptual introduction — **moved entirely to Article 5**
+- ~~ART4-06~~ Social invisibility + t₀ connection TODOs — deferred
 
 ### Article 5: The Trade-off Triangle
 
@@ -87,14 +97,20 @@ Which phases cover which requirements. Confirmed during roadmap creation (2026-0
 | ART3-05 | Phase 13 | Complete |
 | ART3-06 | Phase 13 | Complete |
 | ART3-07 | Phase 13 | Complete |
-| ART4-01 | Phase 14 | Pending |
-| ART4-02 | Phase 14 | Pending |
-| ART4-03 | Phase 14 | Pending |
-| ART4-04 | Phase 14 | Pending |
-| ART4-05 | Phase 14 | Pending |
-| ART4-06 | Phase 14 | Pending |
+| ART4-01 | Phase 14 | Pending (rewritten — practical pivot) |
+| ART4-02 | Phase 14 | Pending (rewritten — single-sentence citation) |
+| ART4-03 | Phase 14 | Pending (relaxed) |
+| ART4-04 | Phase 15 | Moved to Article 5 |
+| ART4-05 | Phase 15 | Moved to Article 5 |
+| ART4-06 | — | Deferred |
 | ART4-07 | Phase 14 | Pending |
 | ART4-08 | Phase 14 | Pending |
+| ART4-09 | Phase 14 | Pending (new — pmacros intro) |
+| ART4-10 | Phase 14 | Pending (new — `<asin>` macro) |
+| ART4-11 | Phase 14 | Pending (new — `<soltree>` macro) |
+| ART4-12 | Phase 14 | Pending (new — worked examples) |
+| ART4-13 | Phase 14 | Pending (new — ≤1800 words) |
+| ART4-14 | Phase 14 | Pending (new — bias ≤20%) |
 | ART5-01 | Phase 15 | Pending |
 | ART5-02 | Phase 15 | Pending |
 | ART5-03 | Phase 15 | Pending |

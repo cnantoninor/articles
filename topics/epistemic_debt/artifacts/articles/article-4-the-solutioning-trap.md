@@ -1,14 +1,14 @@
 ---
 title: The Solutioning Trap
 subtitle: One concrete way to slow down before the model commits
-status: draft
+status: review
 type: article
 audience:
 - technical professionals
 - engineering leaders
 - senior practitioners
 target_length: 1800
-current_length: 1280
+current_length: 1294
 estimated_reading_time: 9 min
 created: 2026-02-15
 last_updated: 2026-04-12
@@ -45,7 +45,7 @@ social_teasers:
 
 The core problem is not inexperience. It is jumping to a solution before clarifying the epistemic scope of the problem, and LLMs make that jump frictionless. Andrej Karpathy popularized the term "vibe coding" in early 2025 as a label for fast, low-checking iteration with models. The mechanism is simple: problem, prompt, code, ship. When the code looks idiomatic and tests pass, the missing step, a shared picture of what the system must assume, is easy to skip.
 
-This is the **solutioning trap**: implementing before you and the model mean the same thing by the problem. Article 3 named four patterns this trap produces in practice: the system boundary gap, the defensive coding gap, the edge case reasoning gap, and the Stochastic Spaghetti Effect, code that works but encodes implicit assumptions in ways that resist human comprehension. The question here is what to do at the keyboard before those patterns harden.
+This is the **solutioning trap**: implementing before you and the model mean the same thing by the problem. Article 3 [TODO: link to Article 3 once published] named four patterns this trap produces in practice: the system boundary gap, the defensive coding gap, the edge case reasoning gap, and the Stochastic Spaghetti Effect, code that works but encodes implicit assumptions in ways that resist human comprehension. The question here is what to do at the keyboard before those patterns harden.
 
 ## Why It's So Easy to Fall In
 
@@ -101,7 +101,7 @@ This task is INTERACTIVE and NON-EXHAUSTIVE. You will surface 2 to 4 plausible a
 
 In the vocabulary of Article 2, both macros are attempts to delay t₀, the moment epistemic debt becomes load-bearing in the system. They move the moment of correction earlier, before the model has committed to a path that future work will build on.
 
-These two macros are local defenses. They are not a strategy. The next article in the series, *The Trade-off Triangle*, asks the larger question: where on the Speed/Understanding/Reliability triangle does this kind of work belong, and how do you choose consciously instead of by default?
+These two macros are local defenses. They are not a strategy. The next article in the series, *The Trade-off Triangle* [TODO: link to Article 5 once published], asks the larger question: where on the Speed/Understanding/Reliability triangle does this kind of work belong, and how do you choose consciously instead of by default?
 
 ----
 

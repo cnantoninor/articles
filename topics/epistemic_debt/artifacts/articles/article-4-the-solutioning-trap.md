@@ -9,29 +9,50 @@ audience:
 - senior practitioners
 target_length: 1800
 current_length: 1294
-estimated_reading_time: 9 min
+estimated_reading_time: 5 min
 created: 2026-02-15
 last_updated: 2026-04-12
 published_date: null
 publication_url: ''
 social_teasers:
-  linkedin: |
-    Two moments where LLM-assisted code tends to fail: before the model locks in what you meant, and before it locks in which path to take. I have been experimenting with two small prompt expansions, `<asin>` and `<soltree>`, as deliberate pauses at those moments.
+  linkedin: 'Two moments where LLM-assisted code tends to fail: before the model locks
+    in what you meant, and before it locks in which path to take. I have been experimenting
+    with two small prompt expansions, `<asin>` and `<soltree>`, as deliberate pauses
+    at those moments.
 
-    They are not magic. They are patterns you can paste even without the tiny Claude Code helper I use to inject them. The article is a practical walkthrough with examples, not a pitch.
+
+    They are not magic. They are patterns you can paste even without the tiny Claude
+    Code helper I use to inject them. The article is a practical walkthrough with
+    examples, not a pitch.
+
 
     If you have your own rituals for slowing the model down, what are they?
 
+
     #LLM #SoftwareEngineering #PromptEngineering #AICoding #EpistemicDebt
-  twitter: "Two moments where LLM-assisted code goes wrong: before the model interprets the problem, and before it commits to a path. Two macros, `<asin>` and `<soltree>`, one deliberate pause each. I wrote about using them with Claude Code. [article link]"
-  instagram_caption: |
-    LLM code fails twice: wrong assumptions first, then the first plausible design. Article 4 is about two macros, `<asin>` and `<soltree>`, that force a pause before each mistake.
+
+    '
+  twitter: 'Two moments where LLM-assisted code goes wrong: before the model interprets
+    the problem, and before it commits to a path. Two macros, `<asin>` and `<soltree>`,
+    one deliberate pause each. I wrote about using them with Claude Code. [article
+    link]'
+  instagram_caption: 'LLM code fails twice: wrong assumptions first, then the first
+    plausible design. Article 4 is about two macros, `<asin>` and `<soltree>`, that
+    force a pause before each mistake.
+
 
     Link in bio for the full piece.
 
-    #AICoding #LLM #SoftwareEngineering #DeveloperTools #PromptEngineering #ClaudeCode #VibeCoding #EpistemicDebt #TechReading #CodeQuality #DevLife #AIAssistants
-  substack_notes: "Article 4 is up on the solutioning trap. Two small macros, `<asin>` and `<soltree>`, that I use to slow myself down before the model commits to a path I will regret. [article link]"
+
+    #AICoding #LLM #SoftwareEngineering #DeveloperTools #PromptEngineering #ClaudeCode
+    #VibeCoding #EpistemicDebt #TechReading #CodeQuality #DevLife #AIAssistants
+
+    '
+  substack_notes: Article 4 is up on the solutioning trap. Two small macros, `<asin>`
+    and `<soltree>`, that I use to slow myself down before the model commits to a
+    path I will regret. [article link]
 ---
+
 
 # The Solutioning Trap
 

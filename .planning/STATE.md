@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v3.0
 milestone_name: "Epistemic Debt Series: Articles 3-7"
 status: executing
-stopped_at: Phase 14 context gathered
-last_updated: "2026-04-12T21:17:13.422Z"
-last_activity: 2026-04-12 -- Phase 14 planning complete
+stopped_at: Plan 14-00 complete; next 14-01
+last_updated: "2026-04-12T22:00:00.000Z"
+last_activity: 2026-04-12 -- Plan 14-00 fact-check approved; unblocked 14-01
 progress:
   total_phases: 5
   completed_phases: 1
   total_plans: 9
-  completed_plans: 4
-  percent: 44
+  completed_plans: 5
+  percent: 56
 ---
 
 # Project State
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-14)
 
 **Core value:** Show practitioners how to consciously position on Speed/Understanding/Reliability triangle
-**Current focus:** Phase 14 — Article 4: The Solutioning Trap (ready to plan)
+**Current focus:** Phase 14 — article-4-the-solutioning-trap
 
 ## Current Position
 
-Phase: 14 of 17 (Article 4 — The Solutioning Trap)
-Plan: Not started
-Status: Ready to execute
-Last activity: 2026-04-12 -- Phase 14 planning complete
+Phase: 14 (article-4-the-solutioning-trap) — EXECUTING
+Plan: 2 of 5 (next: 14-01 macro artifacts)
+Status: Executing Phase 14
+Last activity: 2026-04-12 -- Plan 14-00 fact-check approved
 
 Progress: [██░░░░░░░░] 20%
 
@@ -36,7 +36,7 @@ Progress: [██░░░░░░░░] 20%
 
 **Velocity:**
 
-- Total plans completed: 0 (v3.0)
+- Total plans completed: 5 (v3.0 aggregate per frontmatter; latest: 14-00)
 - Average duration: —
 - Total execution time: —
 

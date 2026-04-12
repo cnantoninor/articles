@@ -64,10 +64,10 @@ Plans:
   2. Both macros (`<asin>` and `<soltree>`) are documented with locked contracts (four-category order for `<asin>`; INTERACTIVE + 2-4 NON-EXHAUSTIVE for `<soltree>`) and one worked example each
   3. The article back-references Article 3's failure patterns by name and bridges to Article 5 at the close
   4. Fact-check report exists and is approved before any prose plan runs; social teasers complete; article reaches `status: review` for user sign-off
-**Plans:** 5 plans
+**Plans:** 1/5 plans complete
 
 Plans:
-- [ ] 14-00-PLAN.md — Fact-check gate (BLOCKING): verify every external claim and update REQUIREMENTS.md §ART4
+- [x] 14-00-PLAN.md — Fact-check gate (BLOCKING): verify every external claim and update REQUIREMENTS.md §ART4 (completed 2026-04-12)
 - [ ] 14-01-PLAN.md — Standalone macro artifacts (`<asin>`, `<soltree>`) with bodies, worked examples, and prior-art grounding
 - [ ] 14-02-PLAN.md — Article rewrite to ≤1800 words honoring all locked decisions
 - [ ] 14-03-PLAN.md — Social teasers (LinkedIn, Twitter/X, Instagram, Substack Notes) embedded in front-matter

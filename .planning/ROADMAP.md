@@ -64,13 +64,13 @@ Plans:
   2. Both macros (`<asin>` and `<soltree>`) are documented with locked contracts (four-category order for `<asin>`; INTERACTIVE + 2-4 NON-EXHAUSTIVE for `<soltree>`) and one worked example each
   3. The article back-references Article 3's failure patterns by name and bridges to Article 5 at the close
   4. Fact-check report exists and is approved before any prose plan runs; social teasers complete; article reaches `status: review` for user sign-off
-**Plans:** 1/5 plans complete
+**Plans:** 4/5 plans executed
 
 Plans:
 - [x] 14-00-PLAN.md — Fact-check gate (BLOCKING): verify every external claim and update REQUIREMENTS.md §ART4 (completed 2026-04-12)
-- [ ] 14-01-PLAN.md — Standalone macro artifacts (`<asin>`, `<soltree>`) with bodies, worked examples, and prior-art grounding
-- [ ] 14-02-PLAN.md — Article rewrite to ≤1800 words honoring all locked decisions
-- [ ] 14-03-PLAN.md — Social teasers (LinkedIn, Twitter/X, Instagram, Substack Notes) embedded in front-matter
+- [x] 14-01-PLAN.md — Standalone macro artifacts (`<asin>`, `<soltree>`) with bodies, worked examples, and prior-art grounding
+- [x] 14-02-PLAN.md — Article rewrite to ≤1800 words honoring all locked decisions
+- [x] 14-03-PLAN.md — Social teasers (LinkedIn, Twitter/X, Instagram, Substack Notes) embedded in front-matter
 - [ ] 14-04-PLAN.md — Publication prep: cross-links, grammar pass, status=review, user sign-off checkpoint
 
 ### Phase 15: Article 5 — The Trade-off Triangle
@@ -125,7 +125,7 @@ Plans:
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
 | 13. Article 3 — When Epistemic Debt Defaults | 4/4 | Complete   | 2026-03-21 | - |
-| 14. Article 4 — The Solutioning Trap | v3.0 | 0/TBD | Not started | - |
+| 14. Article 4 — The Solutioning Trap | v3.0 | 4/5 | In Progress|  |
 | 15. Article 5 — The Trade-off Triangle | v3.0 | 0/TBD | Not started | - |
 | 16. Article 6 — Measuring the Unmeasurable | v3.0 | 0/TBD | Not started | - |
 | 17. Article 7 — Beyond Software | v3.0 | 0/TBD | Not started | - |

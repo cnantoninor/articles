@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v3.0
 milestone_name: "Epistemic Debt Series: Articles 3-7"
 status: executing
-stopped_at: Plan 14-00 complete; next 14-01
-last_updated: "2026-04-12T22:00:00.000Z"
-last_activity: 2026-04-12 -- Plan 14-00 fact-check approved; unblocked 14-01
+stopped_at: Plan 14-04 Task 1 complete; checkpoint awaits user approval (Task 2)
+last_updated: "2026-04-12T23:30:00.000Z"
+last_activity: 2026-04-12 -- Plans 14-01..14-03 done; 14-04 paused at human-verify
 progress:
   total_phases: 5
   completed_phases: 1
@@ -26,17 +26,17 @@ See: .planning/PROJECT.md (updated 2026-03-14)
 ## Current Position
 
 Phase: 14 (article-4-the-solutioning-trap) — EXECUTING
-Plan: 2 of 5 (next: 14-01 macro artifacts)
-Status: Executing Phase 14
-Last activity: 2026-04-12 -- Plan 14-00 fact-check approved
+Plan: 5 of 5 (14-04 checkpoint)
+Status: Executing Phase 14 — awaiting user sign-off on Article 4
+Last activity: 2026-04-12 -- Publication prep committed; human-verify gate open
 
-Progress: [██░░░░░░░░] 20%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 5 (v3.0 aggregate per frontmatter; latest: 14-00)
+- Total plans completed: 8 (v3.0 aggregate per frontmatter; latest: 14-03)
 - Average duration: —
 - Total execution time: —
 

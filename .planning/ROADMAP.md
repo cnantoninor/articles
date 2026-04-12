@@ -56,18 +56,22 @@ Plans:
 - [ ] 13-03-PLAN.md — Bidirectional cross-linking: outbound links from Article 3 to cross-topic and intra-series articles, reverse links back to Article 3
 
 ### Phase 14: Article 4 — The Solutioning Trap
-**Goal**: Article 4 is live on Substack with the Anthropic RCT as quantitative backbone, social invisibility subsection added, t₀-SDLC boundary connection written, and the solutioning trap thesis coherent across all four sub-concepts — with SDLC boundary count fixed at 2 (boundary 3 belongs to Article 5)
+**Goal**: Article 4 is live on Substack as a practical reorientation (≤1800 words) anchored on two pmacros default macros, `<asin>` and `<soltree>`, with the cognitive-bias section compressed to ≤20% of total length and the Anthropic Fellows RCT (Shen & Tamkin 2026) cited as a single-sentence empirical hook. SDLC boundaries and r_k degradation are moved to Article 5.
 **Depends on**: Phase 13
-**Requirements**: ART4-01, ART4-02, ART4-03, ART4-04, ART4-05, ART4-06, ART4-07, ART4-08
+**Requirements**: ART4-01, ART4-02, ART4-03, ART4-07, ART4-08, ART4-09, ART4-10, ART4-11, ART4-12, ART4-13, ART4-14
 **Success Criteria** (what must be TRUE):
-  1. A reader can state the solutioning trap in one sentence after reading; each of the four sub-concepts (vibe coding, automation bias, junior developer crisis, SDLC boundaries) has one connecting sentence back to the trap definition
-  2. The Anthropic RCT (17% comprehension gap, debugging gap) is integrated as the quantitative backbone and the junior dev crisis is connected to r_k degradation
-  3. The article introduces exactly two SDLC boundaries and frames them as t₀-delaying mechanisms; no third boundary appears
-  4. Social teasers are complete and the article is live with series cross-links updated
-**Plans**: TBD
+  1. The article is ≤1800 words; the bias justification section is ≤360 words (≤20%)
+  2. Both macros (`<asin>` and `<soltree>`) are documented with locked contracts (four-category order for `<asin>`; INTERACTIVE + 2-4 NON-EXHAUSTIVE for `<soltree>`) and one worked example each
+  3. The article back-references Article 3's failure patterns by name and bridges to Article 5 at the close
+  4. Fact-check report exists and is approved before any prose plan runs; social teasers complete; article reaches `status: review` for user sign-off
+**Plans:** 5 plans
 
 Plans:
-- [ ] 14-01: TBD
+- [ ] 14-00-PLAN.md — Fact-check gate (BLOCKING): verify every external claim and update REQUIREMENTS.md §ART4
+- [ ] 14-01-PLAN.md — Standalone macro artifacts (`<asin>`, `<soltree>`) with bodies, worked examples, and prior-art grounding
+- [ ] 14-02-PLAN.md — Article rewrite to ≤1800 words honoring all locked decisions
+- [ ] 14-03-PLAN.md — Social teasers (LinkedIn, Twitter/X, Instagram, Substack Notes) embedded in front-matter
+- [ ] 14-04-PLAN.md — Publication prep: cross-links, grammar pass, status=review, user sign-off checkpoint
 
 ### Phase 15: Article 5 — The Trade-off Triangle
 **Goal**: Article 5 is live on Substack with the ε_k tolerance factor introduced, strategy forces connected to t₀ and break-even formula, Boundary 3 linked to Article 2's "Circular Confirmation Trap," IRIS-2 references replaced by anonymized author experience, and the ASCII triangle rendering verified in Substack preview

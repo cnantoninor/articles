@@ -22,6 +22,7 @@ Requirements for articles 3-7 of the epistemic debt series. Each article maps to
 *Rewritten 2026-04-12 for practical pivot — see `.planning/phases/14-article-4-the-solutioning-trap/14-CONTEXT.md`.*
 
 - [ ] **ART4-01**: Solutioning trap problem framed in ≤400 words, references Article 3's failure taxonomy by name
+- [ ] **ART4-02**: Anthropic Fellows RCT (Shen & Tamkin, 2026, arXiv:2601.20245) cited as a single-sentence empirical hook in the compressed bias-justification section — 17 percentage-point quiz-score gap between AI-assisted and hand-coding groups
 - [ ] **ART4-03**: Solutioning trap briefly framed as a t₀-delaying mechanism (1-2 sentences, not a section)
 - [ ] **ART4-07**: Social teasers written (LinkedIn, Twitter/X, Instagram, Substack Notes)
 - [ ] **ART4-08**: Article published on Substack with series cross-links updated
@@ -33,7 +34,6 @@ Requirements for articles 3-7 of the epistemic debt series. Each article maps to
 - [ ] **ART4-14**: Cognitive-bias section compressed to ≤20% of total length, frames bias as justification for the macros, not as primary subject
 
 **Dropped / moved:**
-- ~~ART4-02~~ Anthropic RCT 17% comprehension gap — dropped as backbone (may be briefly cited in the ≤20% bias section if useful)
 - ~~ART4-04~~ r_k degradation + junior dev crisis — **moved to Article 5**
 - ~~ART4-05~~ SDLC boundaries conceptual introduction — **moved entirely to Article 5**
 - ~~ART4-06~~ Social invisibility + t₀ connection TODOs — deferred
@@ -98,7 +98,7 @@ Which phases cover which requirements. Confirmed during roadmap creation (2026-0
 | ART3-06 | Phase 13 | Complete |
 | ART3-07 | Phase 13 | Complete |
 | ART4-01 | Phase 14 | Pending (rewritten — practical pivot) |
-| ART4-02 | Phase 14 | Dropped as backbone |
+| ART4-02 | Phase 14 | Pending (rewritten — single-sentence citation) |
 | ART4-03 | Phase 14 | Pending (relaxed) |
 | ART4-04 | Phase 15 | Moved to Article 5 |
 | ART4-05 | Phase 15 | Moved to Article 5 |

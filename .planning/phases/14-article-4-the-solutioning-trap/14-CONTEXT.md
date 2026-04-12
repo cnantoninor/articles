@@ -92,12 +92,12 @@ The original ART4-01..08 required the article to be an academic-weight expositio
 
 **Keep (relaxed):**
 - **ART4-01** (rewritten): "Solutioning trap problem framed in ≤400 words, references Article 3's failure taxonomy by name"
+- **ART4-02** (rewritten — VERIFIED SOURCE): Cite the Anthropic Fellows RCT (Shen & Tamkin, 2026, arXiv:2601.20245) as a **single-sentence empirical hook** in the compressed bias-justification section. The 17% quiz-score gap between AI-assisted and hand-coding groups is directly on-topic and verifiable. No longer required as "backbone" — it is a one-sentence citation, not a section.
 - **ART4-03** (rewritten): "Solutioning trap briefly framed as a t₀-delaying mechanism (1-2 sentences, not a section)"
 - **ART4-07**: Social teasers — unchanged
 - **ART4-08**: Article published on Substack — unchanged
 
 **Dropped or moved to Article 5:**
-- **ART4-02** (dropped from Article 4): Anthropic RCT 17% data — no longer required as backbone. May be mentioned in the short bias-justification section if the planner judges it adds value within the ≤1800 word budget.
 - **ART4-04** (moved to Article 5): r_k degradation + junior dev crisis connection — belongs to the trade-off triangle article.
 - **ART4-05** (dropped from Article 4): SDLC boundaries conceptual introduction — moved entirely to Article 5.
 - **ART4-06** (dropped): TODO items around social invisibility and t₀ connection — deferred; not required for practical pivot.

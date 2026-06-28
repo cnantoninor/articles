@@ -1,9 +1,12 @@
 ---
-title: "SDD Governance Slides — Fact-Check Report"
+title: SDD Governance Slides — Fact-Check Report
 created: 2026-03-14
 scope: sdd-governance-slides.md + sdd-epistemic-debt.md
 status: completed
+current_length: 1458
+estimated_reading_time: 6 min
 ---
+
 
 # Fact-Check Report: SDD Governance Presentation
 

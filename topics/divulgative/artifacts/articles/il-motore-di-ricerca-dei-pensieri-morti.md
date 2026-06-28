@@ -1,6 +1,7 @@
 ---
 title: Il motore di ricerca dei pensieri morti
-subtitle: Sull'intelligenza artificiale, il corpo del pensare e ciò che le macchine non possono soffrire
+subtitle: Sull'intelligenza artificiale, il corpo del pensare e ciò che le macchine
+  non possono soffrire
 status: draft
 type: article
 language: it
@@ -9,7 +10,7 @@ audience:
 - educatori
 - lettori interessati a IA e cultura
 target_length: 1200
-current_length: 0
+current_length: 1182
 estimated_reading_time: 5 min
 created: 2026-06-28
 last_updated: 2026-06-28
@@ -21,6 +22,7 @@ social_teasers:
   instagram_caption: ''
   substack_notes: ''
 ---
+
 
 # Il motore di ricerca dei pensieri morti
 

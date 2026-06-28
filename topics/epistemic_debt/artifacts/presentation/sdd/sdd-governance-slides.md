@@ -1,178 +1,57 @@
 ---
 marp: true
 paginate: true
-title: 'SDD (Spec-Driven Development) Governance Framework: Managing Epistemic Debt at Scale'
+title: 'SDD (Spec-Driven Development) Governance Framework: Managing Epistemic Debt
+  at Scale'
 status: draft
 type: slides
 audience:
-  - engineering leadership
-  - technical leads
+- engineering leadership
+- technical leads
 target_length: 0
-current_length: 0
-estimated_reading_time: 30 min
+current_length: 4534
+estimated_reading_time: 19 min
 created: 2026-03-14
 last_updated: 2026-03-14
-style: |
-  :root {
-    --bg: #0c0e13;
-    --bg-light: #141720;
-    --bg-card: #1a1d28;
-    --text: #e2e8f0;
-    --text-dim: #94a3b8;
-    --orange: #f97316;
-    --blue: #3b82f6;
-    --green: #22c55e;
-    --red: #ef4444;
-    --yellow: #eab308;
-    --purple: #a855f7;
-  }
-  section {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-    font-size: 26px;
-    padding: 50px 60px;
-  }
-  h1 {
-    color: var(--orange);
-    font-size: 2.2em;
-    font-weight: 700;
-    border-bottom: none;
-  }
-  h2 {
-    color: var(--orange);
-    font-size: 1.5em;
-    font-weight: 600;
-    border-bottom: 2px solid var(--orange);
-    padding-bottom: 8px;
-    margin-bottom: 20px;
-  }
-  h3 {
-    color: var(--blue);
-    font-size: 1.15em;
-    font-weight: 600;
-  }
-  strong {
-    color: var(--orange);
-  }
-  em {
-    color: var(--blue);
-  }
-  a {
-    color: var(--blue);
-  }
-  code {
-    background: var(--bg-card);
-    color: var(--green);
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 0.85em;
-  }
-  pre {
-    background: var(--bg-card) !important;
-    border: 1px solid #2a2d38;
-    border-radius: 8px;
-    padding: 20px !important;
-  }
-  pre code {
-    background: transparent;
-    color: var(--text);
-    font-size: 0.78em;
-  }
-  table {
-    font-size: 0.82em;
-    width: 100%;
-    border-collapse: collapse;
-  }
-  th {
-    background: var(--bg-card);
-    color: var(--orange);
-    padding: 10px 14px;
-    text-align: left;
-    border-bottom: 2px solid var(--orange);
-  }
-  td {
-    padding: 8px 14px;
-    border-bottom: 1px solid #2a2d38;
-  }
-  tr:nth-child(even) td {
-    background: var(--bg-light);
-  }
-  blockquote {
-    border-left: 4px solid var(--orange);
-    background: var(--bg-card);
-    padding: 16px 24px;
-    margin: 16px 0;
-    border-radius: 0 8px 8px 0;
-    font-style: italic;
-    color: var(--text-dim);
-  }
-  section.title-slide {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  section.title-slide h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-  }
-  section.title-slide h2 {
-    border-bottom: none;
-    color: var(--text-dim);
-    font-size: 1.1em;
-    font-weight: 400;
-  }
-  section.section-break {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  section.section-break h2 {
-    font-size: 2em;
-    border-bottom: none;
-    color: var(--orange);
-  }
-  section.section-break h3 {
-    font-size: 1.2em;
-    color: var(--text-dim);
-    font-weight: 400;
-  }
-  .highlight-box {
-    background: var(--bg-card);
-    border-left: 4px solid var(--orange);
-    padding: 16px 20px;
-    border-radius: 0 8px 8px 0;
-    margin: 12px 0;
-  }
-  .metric-box {
-    background: var(--bg-card);
-    border: 1px solid var(--blue);
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin: 8px 0;
-    text-align: center;
-  }
-  .columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-  }
-  .col {
-    padding: 0;
-  }
-  footer {
-    color: var(--text-dim);
-    font-size: 0.6em;
-  }
-  section::after {
-    color: var(--text-dim);
-    font-size: 0.7em;
-  }
+style: ":root {\n  --bg: #0c0e13;\n  --bg-light: #141720;\n  --bg-card: #1a1d28;\n\
+  \  --text: #e2e8f0;\n  --text-dim: #94a3b8;\n  --orange: #f97316;\n  --blue: #3b82f6;\n\
+  \  --green: #22c55e;\n  --red: #ef4444;\n  --yellow: #eab308;\n  --purple: #a855f7;\n\
+  }\nsection {\n  background: var(--bg);\n  color: var(--text);\n  font-family: 'Inter',\
+  \ 'Segoe UI', system-ui, sans-serif;\n  font-size: 26px;\n  padding: 50px 60px;\n\
+  }\nh1 {\n  color: var(--orange);\n  font-size: 2.2em;\n  font-weight: 700;\n  border-bottom:\
+  \ none;\n}\nh2 {\n  color: var(--orange);\n  font-size: 1.5em;\n  font-weight: 600;\n\
+  \  border-bottom: 2px solid var(--orange);\n  padding-bottom: 8px;\n  margin-bottom:\
+  \ 20px;\n}\nh3 {\n  color: var(--blue);\n  font-size: 1.15em;\n  font-weight: 600;\n\
+  }\nstrong {\n  color: var(--orange);\n}\nem {\n  color: var(--blue);\n}\na {\n \
+  \ color: var(--blue);\n}\ncode {\n  background: var(--bg-card);\n  color: var(--green);\n\
+  \  padding: 2px 8px;\n  border-radius: 4px;\n  font-size: 0.85em;\n}\npre {\n  background:\
+  \ var(--bg-card) !important;\n  border: 1px solid #2a2d38;\n  border-radius: 8px;\n\
+  \  padding: 20px !important;\n}\npre code {\n  background: transparent;\n  color:\
+  \ var(--text);\n  font-size: 0.78em;\n}\ntable {\n  font-size: 0.82em;\n  width:\
+  \ 100%;\n  border-collapse: collapse;\n}\nth {\n  background: var(--bg-card);\n\
+  \  color: var(--orange);\n  padding: 10px 14px;\n  text-align: left;\n  border-bottom:\
+  \ 2px solid var(--orange);\n}\ntd {\n  padding: 8px 14px;\n  border-bottom: 1px\
+  \ solid #2a2d38;\n}\ntr:nth-child(even) td {\n  background: var(--bg-light);\n}\n\
+  blockquote {\n  border-left: 4px solid var(--orange);\n  background: var(--bg-card);\n\
+  \  padding: 16px 24px;\n  margin: 16px 0;\n  border-radius: 0 8px 8px 0;\n  font-style:\
+  \ italic;\n  color: var(--text-dim);\n}\nsection.title-slide {\n  display: flex;\n\
+  \  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n\
+  \  text-align: center;\n}\nsection.title-slide h1 {\n  font-size: 2.5em;\n  margin-bottom:\
+  \ 10px;\n}\nsection.title-slide h2 {\n  border-bottom: none;\n  color: var(--text-dim);\n\
+  \  font-size: 1.1em;\n  font-weight: 400;\n}\nsection.section-break {\n  display:\
+  \ flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n\
+  \  text-align: center;\n}\nsection.section-break h2 {\n  font-size: 2em;\n  border-bottom:\
+  \ none;\n  color: var(--orange);\n}\nsection.section-break h3 {\n  font-size: 1.2em;\n\
+  \  color: var(--text-dim);\n  font-weight: 400;\n}\n.highlight-box {\n  background:\
+  \ var(--bg-card);\n  border-left: 4px solid var(--orange);\n  padding: 16px 20px;\n\
+  \  border-radius: 0 8px 8px 0;\n  margin: 12px 0;\n}\n.metric-box {\n  background:\
+  \ var(--bg-card);\n  border: 1px solid var(--blue);\n  border-radius: 8px;\n  padding:\
+  \ 12px 16px;\n  margin: 8px 0;\n  text-align: center;\n}\n.columns {\n  display:\
+  \ grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 30px;\n}\n.col {\n  padding:\
+  \ 0;\n}\nfooter {\n  color: var(--text-dim);\n  font-size: 0.6em;\n}\nsection::after\
+  \ {\n  color: var(--text-dim);\n  font-size: 0.7em;\n}"
 ---
+
 
 <!-- _class: title-slide -->
 <!-- _paginate: false -->

@@ -3,7 +3,9 @@
 ## Project
 - Structured repo for AI-related articles, presentations, and research
 - Publication: The AI Mirror (https://antoninorau.substack.com/)
-- Audience: Technical professionals interested in AI and software development
+- **Audience, terminology, language, and tone are topic-dependent** -- the values below are the *default*, but each topic may override them via a rule in `.ai/rules/` (activated by file path). Always check for a topic-specific rule before assuming the default applies.
+- Default audience: Technical professionals interested in AI and software development (assumes familiarity with programming concepts)
+- Example override: `topics/divulgative/` targets a general, non-technical readership in Italian -- see `.ai/rules/divulgative-articles.md`
 
 ## Repository Layout
 - topics/<name>/   -- all content (articles, slides, references, exports)
@@ -52,3 +54,4 @@
 - epistemic_debt -- Epistemic risks of LLM-based software engineering
 - philosophy_of_ai -- Metaphors, epistemology, and cognitive limits (TAM1, TAM2)
 - ai_craft -- Development practice, design, and identity (TAM3, TAM4, TAM5)
+- divulgative -- General-audience essays on AI and culture, in Italian (non-technical readership; see .ai/rules/divulgative-articles.md)

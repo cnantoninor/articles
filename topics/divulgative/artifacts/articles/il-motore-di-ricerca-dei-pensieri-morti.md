@@ -44,25 +44,25 @@ Tecnicamente è sempre la stessa idea di alto livello del vecchio motore di rice
 
 ## Il pensiero vivo è incarnato
 
-Il pensiero vivo, invece, è legato ai sensi e al corpo. È pensiero incarnato. La scienza cognitiva chiama questa idea "cognizione incarnata": la mente non è un calcolo che gira nel vuoto, ma è intessuta di corpo ed emozioni. [TODO: fact-check] Il neuroscienziato Antonio Damasio, in *L'errore di Cartesio*, mostra che le emozioni non sono nemiche della ragione: ne sono il presupposto. Pazienti con certe lesioni cerebrali conservavano logica e quoziente intellettivo, ma, persa la capacità di sentire, diventavano incapaci persino di decidere. [TODO: fact-check] I linguisti George Lakoff e Mark Johnson, in *Metafore e vita quotidiana*, aggiungono che persino i nostri concetti astratti poggiano sul corpo: l'affetto lo diciamo "calore", la difficoltà la sentiamo come "peso".
+Il pensiero vivo, invece, è legato ai sensi e al corpo. È pensiero incarnato. La scienza cognitiva chiama questa idea "cognizione incarnata": la mente non è un calcolo che gira nel vuoto, ma è intessuta di corpo ed emozioni. Il neuroscienziato Antonio Damasio, in *L'errore di Cartesio*, mostra che le emozioni non sono nemiche della ragione: ne sono il presupposto. Pazienti con certe lesioni cerebrali conservavano logica e quoziente intellettivo, ma, persa la capacità di sentire, diventavano incapaci persino di decidere. I linguisti George Lakoff e Mark Johnson, in *Metafora e vita quotidiana*, aggiungono che persino i nostri concetti astratti poggiano sul corpo: l'affetto lo diciamo "calore", la difficoltà la sentiamo come "peso".
 
-C'è di più. Il pensiero vivo è aperto: come la metafora viva di cui parla Paul Ricoeur, che crea senso nuovo prima di logorarsi e diventare modo di dire, [TODO: fact-check] esso è poietico, creatore. Poi, col tempo, ciò che era vivo si sedimenta, viene accettato, e plasma il nostro modo di pensare. Nasce vivo, e solo dopo, eventualmente, muore.
+C'è di più. Il pensiero vivo è aperto: come la metafora viva di cui parla Paul Ricoeur, che crea senso nuovo prima di logorarsi e diventare modo di dire, esso è poietico, creatore. Poi, col tempo, ciò che era vivo si sedimenta, viene accettato, e plasma il nostro modo di pensare. Nasce vivo, e solo dopo, eventualmente, muore.
 
 ## Ma l'IA non crea pensieri nuovi?
 
 Si obietterà: gli LLM producono combinazioni che nessuno aveva mai scritto, dunque pensieri nuovi.
 Esistono molte ricerche in corsro per investigare se gli LLM producono pensieri "nuovi". Non essendo incarnati si potrebbe dire che forse stiamo ancora ricommettendo l'errore di Cartesio, che pensa senza corpo.
-Anche nel campo della matematica si sta investigando se gli LLM possono risolvere problemi mai incontrati nel loro dataset di training. [TODO: fact-check]
+Anche nel campo della matematica si sta investigando se gli LLM possano risolvere problemi mai incontrati nel loro dataset di training: benchmark come FrontierMath sono costruiti apposta con problemi inediti, e finora i risultati restano limitati.
 
-Sono difatti ricombinazioni statistiche di pensieri morti, un Frankenstein cucito con frammenti di altri. Sono combinazioni non ancorate a un corpo né a un avvenire (LLM non hanno alcun senso del tempo), a quel possibile verso cui un essere vivo si protende. Restano perciò non davvero nuove: l'LLM non pensa pensieri, li ricombina, con un certo grado di casualità che gli addetti chiamano "temperatura".
+Sono difatti ricombinazioni statistiche di pensieri morti, un Frankenstein cucito con frammenti di altri. Sono combinazioni non ancorate a un corpo né a un avvenire (gli LLM, va detto, non hanno un'esperienza del tempo come la nostra), a quel possibile verso cui un essere vivo si protende. Per questo, è la tesi che provo a sostenere qui, faticano a essere davvero nuove: l'LLM non pensa pensieri, li ricombina, con un certo grado di casualità che gli addetti chiamano "temperatura".
 
-È uno specchio straordinario, e' una simulazione di conoscenza (cfr. Quattrociocchi ed Epistemia). Riflette il nostro sapere, ma dietro il vetro non c'è pulsazione biologica, non c'è esperienza vissuta, non c'è intenzione. Quando un essere umano pensa "brucia", c'è la memoria del dolore, della mano ritratta di scatto. Quando lo dice la macchina, c'è solo la vicinanza, nello spazio dei numeri e in quel contesto, tra quella parola e altre parole. La macchina è confidente anche quando "inventa", ricombina pensieri morti, e sopratutto non sapra' mai di non sapere.
+È uno specchio straordinario, e' una simulazione di conoscenza (cfr. Quattrociocchi ed Epistemia). Riflette il nostro sapere, ma dietro il vetro non c'è pulsazione biologica, non c'è esperienza vissuta, non c'è intenzione. Quando un essere umano pensa "brucia", c'è la memoria del dolore, della mano ritratta di scatto. Quando lo dice la macchina, c'è solo la vicinanza, nello spazio dei numeri e in quel contesto, tra quella parola e altre parole. La macchina è confidente anche quando "inventa", ricombina pensieri morti e, a differenza nostra, non sembra sapere di non sapere.
 
 ## Il rischio: credere che pensare sia ricombinare
 
-Qui si annida il pericolo, che chiamo LLMorphism: modellare il nostro pensare sul funzionamento dell'LLM, fino a credere che pensare sia riprodurre pensieri morti, senza incarnamento, senza fatica, senza sofferenza. Lo studente che accetta l'output e lo consegna contrae un debito epistemico: porta a casa il prodotto finito di un pensiero senza aver fatto il lavoro che lo rende davvero suo. Possiede la sintassi, non la comprensione.
+Qui si annida il pericolo che Valerio Capraro ha chiamato LLMorphism: modellare il nostro pensare sul funzionamento dell'LLM, fino a credere che pensare sia riprodurre pensieri morti, senza incarnamento, senza fatica, senza sofferenza. Lo studente che accetta l'output e lo consegna contrae un debito epistemico: porta a casa il prodotto finito di un pensiero senza aver fatto il lavoro che lo rende davvero suo. Possiede la sintassi, non la comprensione.
 
-A questo si aggiungono i limiti attuali della tecnologia, che stridono con la vivacità del pensare: la non spiegabilità, le cosiddette "allucinazioni", la tendenza a compiacere chi domanda, l'indeterminismo dei risultati. La macchina è confidente anche quando inventa, e non sa di non sapere.
+A questo si aggiungono i limiti attuali della tecnologia, che stridono con la vivacità del pensare: la non spiegabilità, le cosiddette "allucinazioni", la tendenza a compiacere chi domanda, l'indeterminismo dei risultati. La macchina è confidente anche quando inventa, e non sembra sapere di non sapere.
 
 ## La domanda aperta
 
@@ -76,8 +76,8 @@ Come usare questa macchina straordinaria continuando a pensare? Come tenere lo s
 
 ## Riferimenti
 
-[TODO: completare e verificare i riferimenti prima della pubblicazione]
-
+- Capraro, Valerio. *LLMorphism: When humans come to see themselves as language models*. arXiv:2605.05419, 2026. https://arxiv.org/abs/2605.05419
 - Damasio, Antonio. *L'errore di Cartesio. Emozione, ragione e cervello umano*. Adelphi, 1995 (ed. orig. *Descartes' Error*, 1994).
-- Lakoff, George, e Mark Johnson. *Metafore e vita quotidiana*. Bompiani (ed. orig. *Metaphors We Live By*, 1980).
+- Lakoff, George, e Mark Johnson. *Metafora e vita quotidiana*. Bompiani, 1998 (ed. orig. *Metaphors We Live By*, 1980).
+- Quattrociocchi, Walter, et al. *The simulation of judgment in LLMs*. PNAS, 2025 (concetto di «epistemia»).
 - Ricoeur, Paul. *La metafora viva*. Jaca Book (ed. orig. *La métaphore vive*, 1975).
